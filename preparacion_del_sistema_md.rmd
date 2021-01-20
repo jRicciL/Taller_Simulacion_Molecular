@@ -16,15 +16,15 @@ mkdir wd_md
         
 3.  Ahora **guardamos en dos archivos** diferentes a la proteína y al ligando (esto se puede hacer utilizando  `grep` o `sed` desde la terminal o de la siguiente manera):
     a. Desde UCSF Chimera, seleccionar los átomos de la proteína desde el menú "*Select > Structure > protein*"
-    b. Con los átomos seleccionados ir a "*File > Save PDB...*" y en la ventana que se abrirá seleccionar la opción "*Save selected atoms only*" y guardar el archivo `.pdb` de la proteína: ==**prot_unprep.pdb**==
+    b. Con los átomos seleccionados ir a "*File > Save PDB...*" y en la ventana que se abrirá seleccionar la opción "*Save selected atoms only*" y guardar el archivo `.pdb` de la proteína: **<mark>prot_unprep.pdb</mark>**
     c.  Hacer lo mismo para el ligando:
         1.  Seleccionar los átomos del ligando: "Select > Residue > 9JU"
-        2.  Guardar el ligando en formato pdb, de la misma manera que se hizo con la proteína: ==**lig_unprep.pdb**==
+        2.  Guardar el ligando en formato pdb, de la misma manera que se hizo con la proteína: **<mark>lig_unprep.pdb</mark>**
 
 ```
 📂 wd_md
-│  📜 prot_unprep.pdb
-│  📜 lig_unprep.pdb
+│  🗒 prot_unprep.pdb
+│  🗒 lig_unprep.pdb
 
 ```
 
@@ -38,68 +38,159 @@ pdb2pqr --ff=amber --with-ph=7.0 --ffout=amber \
 --ph-calc-method=propka \
 --chain prot_unprep.pdb prot.pdb
 ```
-> Esto creará un nuevo archivo ==**prot.pdb**== con la nomenclatura correcta en Amber y con los estados de protonación a pH 7 de los residuos ionizables.
+> Esto creará un nuevo archivo **<mark>prot.pdb</mark>** con la nomenclatura correcta en Amber y con los estados de protonación a pH 7 de los residuos ionizables.
 
-3.  Convertir el ligando a formato `mol2`:
-    1.  Ejecutar el siguiente comando:
+### Convertir el ligando a formato `mol2`
+1.  Ejecutar el siguiente comando usando *[Open Babel](https://openbabel.org/docs/dev/Command-line_tools/babel.html)*:
         	
 ```{bash, eval=F}
 obabel -ipdb lig_unprep.pdb -omol2 -O lig_unprep.mol2 -p 7.0
 ```
-> Esto creará un nuevo archivo ==**lig_unprep.mol2**== con la molécula protonizada a un pH de 7.0.
+> Esto creará un nuevo archivo **<mark>lig_unprep.mol2</mark>** con la molécula protonizada a un pH de 7.0.
 
-4.  En este punto, vamos a necesitar únicamente el archivo ==**prot.pdb**== y el archivo ==**lig.mol2**== que ya fueron creados.
+4.  En este punto, vamos a necesitar únicamente el archivo **<mark>prot.pdb</mark>** y el archivo **<mark>lig.mol2</mark>** que ya acaban de ser creados.
 
 ```
 📂 wd_md
 │  📜 prot_unprep.pdb
 │  📜 lig_unprep.pdb
-│  📜 **prot.pdb**
-│  📜 **lig.mol2**
-│  ...
+|  📜 prot.pdb.propka
+│  🗒 prot.pdb
+│  🗒 lig_unprep.mol2
 ```
 
 
 ***
 ### Preparación de parámetros y de coordenadas del ligando
-Un tutorial más a detalle se puede consultar [aquí](http://ambermd.org/tutorials/basic/tutorial4b/index.php):
+Un tutorial más a detalle se puede consultar [aquí](http://ambermd.org/tutorials/basic/tutorial4b/index.php).
 
-#### Uso de Antechamber y parmcheck
+#### Uso de Antechamber para definir la estructura y nomenclatura del ligando
 
 1.  Desde la terminal con el ambiente de conda `amber` activado y estando en el directorio de trabajo (`wd_md`), ejecutar:
 
 ```{bash, eval=F}
 antechamber -i lig_unprep.mol2 -fi mol2 /
--o LIG.mol2 -fo mol2 -c bcc -s 2 -rn LIG
+-o LIG_def.mol2 -fo mol2 -c bcc -s 2 -rn LIG
 ```
 > Esto permite usar la herramienta [Antechamber](http://ambermd.org/antechamber/antechamber.html) para generar los archivos de topología del ligando, necesarios para la dinámica.
-> El proceso suele tardar un poco. Una vez finalizado, se crearán varios archivos, pero de todos ellos sólo nos interesa el archivo ==**LIG.mol2**==, que ya contiene las coordenadas, nomenclatura y las cargas parciales adecuadas para el campo de fuerza.
+> **El proceso suele tardar un poco.** Una vez finalizado, se crearán varios archivos, pero de todos ellos sólo nos interesa el archivo **<mark>LIG_def.mol2</mark>**, que define a la molécula como un residuo y define los tipos de átomos, la nomenclatura correspondiente y las cargas parciales adecuadas para cada átomo.
 
-2. Ahora definimos los parámetros del campo de fuerza necesarios para la molécula, para ello ejecutar lo siguiente:
+> El parámetro `-c bcc` indica a *antechamber* usar el modelo de cargas AM1-BCC (*semi-empirical (AM1) with bond charge correction (BCC)*) para calcular las cargas parciales de la molécula. La opción `-rn` indica renombrar el nombre de la molécula a `LIG`. Finalmente, `-s 2 `define una opción de *verbose* que nos permite recibir información en la terminal del proceso de ejecución. 
 
-```{bash, eval=F}
-parmchk2 -i LIG.mol2 -f mol2 -o LIG.frcmod
+```
+📂 wd_md
+│  📜 ANTECHAMBER_*
+│  📜 ATOMTYPE.INF
+│  📜 sqm.*
+│  📜 ...
+│  🗒 prot.pdb
+│  🗒 LIG_def.mol2
 ```
 
-> Esto crea un archivo ==**LIG.frcmod**== donde reporta los tipos de enlaces en la molécula que no están directamente en el campo de fuerza, pero que pueden ser representados por otros que ya se encuentran en el campo de fuerza **[GAFF](http://ambermd.org/antechamber/gaff.html)** (*General AMBER Force Field*).
-> Si abres el archivo ==**LIG.frcmod**== podrás ver ahí qué enlaces son los que requieren dicha reasignación.
+#### Uso de parmcheck para verificar los parámetros del campo de fuerza
 
-#### Creación de la librería de parámetros
+1. Ahora validamos que los parámetros del campo de fuerza necesarios para la molécula estén disponibles en las librerías de AMBER. Para ello ejecutar lo siguiente:
 
- Los siguientes pasos son para crear una librería de parámetros del ligando que permitan construir el sistema.
+```{bash, eval=F}
+parmchk2 -i LIG_def.mol2 -f mol2 -o LIG_def.frcmod
+```
+
+> Esto crea un archivo **<mark>LIG_def.frcmod</mark>** donde reporta los tipos de enlaces en la molécula que no están directamente en el campo de fuerza, pero que pueden ser representados por otros que ya se encuentran en el campo de fuerza **[GAFF](http://ambermd.org/antechamber/gaff.html)** (*General AMBER Force Field*).
+> Si abres el archivo **<mark>LIG_def.frcmod</mark>** podrás ver ahí qué enlaces son los que requieren dicha reasignación.
+
+```
+📂 wd_md
+│  📜 ANTECHAMBER_*
+│  📜 ATOMTYPE.INF
+│  📜 sqm.*
+│  📜 ...
+│  🗒 prot.pdb
+│  🗒 LIG_def.mol2
+│  🗒 LIG_def.frcmod
+```
+
+
+#### Creación de la librería de parámetros con *tleap*
+
+Los siguientes pasos son para crear una librería de parámetros del ligando que permitan construir el sistema.
+
 1. En la terminal, ejecutar:
 
 ```{bash, eval=F}
-tleap -f oldff/leaprc.ff99SB
+tleap -f oldff/leaprc.ff14SB
 ```
-> Esto abrirá la consola de **LEaP** precargando el campo de fuerza *ff99SB* (m'as sobre los campos de fuerza: [https://ambermd.org/AmberModels.php](https://ambermd.org/AmberModels.php))
+> Esto abrirá la consola de **LEaP** precargando el campo de fuerza *ff14SB* (más sobre los campos de fuerza de AMBER: [AmberModels](https://ambermd.org/AmberModels.php))
 
-2. Estando en la terminal de `tleap`, ejecutar uno a uno los siguientes comandos:
+1. Estando en la terminal de `tleap`, ejecutar uno a uno los siguientes comandos:
 
 -  `source leaprc.gaff`
--  `LIG = loadmol2 LIG.mol2`
--  `loadamberparams LIG.frcmod`
--  `saveoff LIG LIG.lib`
+-  `LIG = loadmol2 LIG_def.mol2`
+-  `loadamberparams LIG_def.frcmod`
+-  `saveoff LIG LIG_def.lib`
 -  `quit`
   
-3. Lo anterior creará la librería ==**LIG.lib**==
+3. Lo anterior creará la librería **<mark>LIG_def.lib</mark>**
+
+4. Revisa el archivo.
+
+```
+📂 wd_md
+│  📜 ANTECHAMBER_*
+│  📜 ATOMTYPE.INF
+│  📜 sqm.*
+│  📜 ...
+│  🗒 prot.pdb
+│  🗒 LIG_def.mol2
+│  🗒 LIG_def.frcmod
+│  🗒 LIG_def.lib
+```
+
+***
+### Construcción y solvatación del Sistema
+
+Entra nuevamente a `tleap` desde la terminal, esta vez tecleando unicamente (o hay que precargar ningún campo de fuerza esta vez):
+
+```{bash, eval=F}
+tleap
+```
+
+Dentro de tleap, ejecutar uno a uno los siguientes comandos:
+
+1. **Carga de las librerías del campo de fuerza** - Carga de las librerías necesarias tanto como para la proteína como para el solvente del sistema:
+- `source leaprc.gaff`
+- `source leaprc.protein.ff14SB`
+- `source leaprc.water.tip3p`
+- `loadoff atomic_ions.lib`
+
+2. **Carga de las librerías del ligando** - Carga de las librerías del ligando, las cuales se crearon en el paso anterior:
+- `loadamberparams LIG_def.frcmod`
+- `loadoff LIG_def.lib` 
+
+3. **Creación del complejo** - Se leen los archivos `pdb` y `mol2` de la proteína y ligando, respectivamente, y se combinan en un sólo objeto:
+- `protein = loadpdb prot.pdb`
+- `LIG = loadmol2 LIG_def.mol2`
+- `system = combine {protein LIG}`
+
+4. **Solvatación del sistema** - Se solvata el complejo proteína-ligando utilizando agua `TIP3P`. 
+- `solvateOct system TIP3PBOX 12`
+
+    > Si se quiere solvatar en caja de agua sustituir `solvateOct` por `solvatebox`.
+    > El número `12` indica la distancia en A del *padding* de la caja de agua.
+
+5. **Neutralización del sistema** - Se neutraliza todo el sistema usando los iones correspondientes:
+- `addions system Cl- 0`
+
+    > Dado que en este caso el sistema tiene carga positiva, lo que hacemos en neutralizar con iones `Cl-`. El `0` indica que se añadan tantos iones como sean necesarios para alcanzar una carga total igual a 0 (neutra).
+
+6. Finalmente, **guardar los archivos de topología** (`prmtop`) y de **coordenadas** (`rst7`):
+- `saveamberparm system prot_LIG.prmtop prot_LIG.rst7`
+- `quit`
+
+7. Los archivos **<mark>prot_LIG.prmtop</mark>** y **<mark>prot_LIG.rst7</mark>** son los que servirán como entrada para llevar a cabo la dinámica.
+
+```
+📂 wd_md
+│  📜 ...
+│  🗒 prot_LIG.prmtop
+│  🗒 prot_LIG.rst7
+```

@@ -3,6 +3,12 @@
   padding: 0px 10%;
 }
 
+mark, .mark {
+  background-color: #f8f2b7;
+  color: #333;
+  border-radius: 2px; 
+}
+
 p.mb-0 {
   font-size: 0.9em;
   font-style: italic;

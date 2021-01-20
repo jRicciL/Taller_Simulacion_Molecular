@@ -354,7 +354,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Curso de DM</a>
+      <a class="navbar-brand" href="index.html">Tópicos</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -363,36 +363,6 @@ $(document).ready(function () {
 </li>
 <li>
   <a href="intro_DM.html">Introducción</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Dinámica Molecular
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="prep_sistema.html">Preparación del Sistema</a>
-    </li>
-    <li>
-      <a href="parametros_dm.html">Archivos de Configuración</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Análisis de Trayectorias
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="analisis_traj.html">Manejo de trayectorias con pytraj</a>
-    </li>
-    <li>
-      <a href="rmsd_y_rmsf.html">RMSD y RMSF</a>
-    </li>
-  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -412,10 +382,10 @@ $(document).ready(function () {
 
 
 <hr />
-<div id="obtención-y-preparación-de-la-proteína-y-el-ligando" class="section level3">
-<h3>Obtención y preparación de la proteína y el ligando:</h3>
-<div id="descarga-de-las-moléculas" class="section level4">
-<h4>Descarga de las moléculas:</h4>
+<div id="obtención-y-preparación-de-la-proteína-y-el-ligando" class="section level2">
+<h2>Obtención y preparación de la proteína y el ligando:</h2>
+<div id="descarga-de-las-moléculas" class="section level3">
+<h3>Descarga de las moléculas:</h3>
 <ol style="list-style-type: decimal">
 <li>Definir una carpeta de trabajo para guardar los archivos que se irán generando.</li>
 </ol>
@@ -425,37 +395,192 @@ $(document).ready(function () {
 <li><p>Ahora <strong>guardamos en dos archivos</strong> diferentes a la proteína y al ligando (esto se puede hacer utilizando <code>grep</code> o <code>sed</code> desde la terminal o de la siguiente manera):</p>
 <ol style="list-style-type: lower-alpha">
 <li>Desde UCSF Chimera, seleccionar los átomos de la proteína desde el menú “<em>Select &gt; Structure &gt; protein</em>”</li>
-<li>Con los átomos seleccionados ir a “<em>File &gt; Save PDB…</em>” y en la ventana que se habrirá seleccionar la opción “<em>Save selected atoms only</em>” y guardar el archivo <code>.pdb</code> de la proteína: ==<strong>prot_unprep.pdb</strong>==</li>
+<li>Con los átomos seleccionados ir a “<em>File &gt; Save PDB…</em>” y en la ventana que se abrirá seleccionar la opción “<em>Save selected atoms only</em>” y guardar el archivo <code>.pdb</code> de la proteína: <strong><mark>prot_unprep.pdb</mark></strong></li>
 <li>Hacer lo mismo para el ligando:
 <ol style="list-style-type: decimal">
 <li>Seleccionar los átomos del ligando: “Select &gt; Residue &gt; 9JU”</li>
-<li>Guardar el ligando en formato pdb, de la misma manera que se hizo con la proteína: ==<strong>lig_unprep.pdb</strong>==</li>
+<li>Guardar el ligando en formato pdb, de la misma manera que se hizo con la proteína: <strong><mark>lig_unprep.pdb</mark></strong></li>
 </ol></li>
 </ol></li>
 </ol>
+<pre><code>📂 wd_md
+│  🗒 prot_unprep.pdb
+│  🗒 lig_unprep.pdb
+</code></pre>
+<hr />
 </div>
-<div id="preparación-de-la-proteína-con-pdb2pqr" class="section level4">
-<h4>Preparación de la proteína con <a href="https://pdb2pqr.readthedocs.io/en/latest/using/">PDB2PQR</a>:</h4>
+<div id="preparación-de-la-proteína-con-pdb2pqr" class="section level3">
+<h3>Preparación de la proteína con <a href="https://pdb2pqr.readthedocs.io/en/latest/using/">PDB2PQR</a>:</h3>
 <ol style="list-style-type: decimal">
-<li>Tener el ambiente <code>amber</code> activato y localizarse en la carpeta de trabajo (<code>wd_md</code>).</li>
+<li>Tener el ambiente <code>amber</code> activado y localizarse en la carpeta de trabajo (<code>wd_md</code>).</li>
 <li>Ejecutar <strong>PDB2PQR</strong> con el siguiente comando:</li>
 </ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">pdb2pqr</span> --ff=amber --with-ph=7.0 --ffout=amber \</span>
-<span id="cb2-2"><a href="#cb2-2"></a>--ph-calc-method=propka \</span>
-<span id="cb2-3"><a href="#cb2-3"></a>--chain prot_unprep.pdb prot.pdb</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">pdb2pqr</span> --ff=amber --with-ph=7.0 --ffout=amber \</span>
+<span id="cb3-2"><a href="#cb3-2"></a>--ph-calc-method=propka \</span>
+<span id="cb3-3"><a href="#cb3-3"></a>--chain prot_unprep.pdb prot.pdb</span></code></pre></div>
 <blockquote>
-<p>Esto creará un nuevo archivo ==<strong>prot.pdb</strong>== con la nomenclatura correcta en Amber y con los estados de protonación a pH 7 de los residuos ionizables.</p>
+<p>Esto creará un nuevo archivo <strong><mark>prot.pdb</mark></strong> con la nomenclatura correcta en Amber y con los estados de protonación a pH 7 de los residuos ionizables.</p>
 </blockquote>
-<ol start="3" style="list-style-type: decimal">
-<li>Convertir el ligando a formato <code>mol2</code>:
+</div>
+<div id="convertir-el-ligando-a-formato-mol2" class="section level3">
+<h3>Convertir el ligando a formato <code>mol2</code></h3>
 <ol style="list-style-type: decimal">
-<li>Ejecutar el siguiente comando: ``</li>
-</ol></li>
+<li>Ejecutar el siguiente comando usando <em><a href="https://openbabel.org/docs/dev/Command-line_tools/babel.html">Open Babel</a></em>:</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">obabel</span> -ipdb lig_unprep.pdb -omol2 -O lig_unprep.mol2 -p 7.0</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">obabel</span> -ipdb lig_unprep.pdb -omol2 -O lig_unprep.mol2 -p 7.0</span></code></pre></div>
 <blockquote>
-<p>Esto creará un nuevo archivo ==<strong>lig_unprep.mol2</strong>== 1. En este punto, vamos a necesitar ’unicamente el archivo ==<strong>prot.pdb</strong>== y el archivo ==<strong>lig.mol2</strong>== que ya fueron creados.</p>
+<p>Esto creará un nuevo archivo <strong><mark>lig_unprep.mol2</mark></strong> con la molécula protonizada a un pH de 7.0.</p>
 </blockquote>
+<ol start="4" style="list-style-type: decimal">
+<li>En este punto, vamos a necesitar únicamente el archivo <strong><mark>prot.pdb</mark></strong> y el archivo <strong><mark>lig.mol2</mark></strong> que ya acaban de ser creados.</li>
+</ol>
+<pre><code>📂 wd_md
+│  📜 prot_unprep.pdb
+│  📜 lig_unprep.pdb
+|  📜 prot.pdb.propka
+│  🗒 prot.pdb
+│  🗒 lig_unprep.mol2</code></pre>
+<hr />
+</div>
+<div id="preparación-de-parámetros-y-de-coordenadas-del-ligando" class="section level3">
+<h3>Preparación de parámetros y de coordenadas del ligando</h3>
+<p>Un tutorial más a detalle se puede consultar <a href="http://ambermd.org/tutorials/basic/tutorial4b/index.php">aquí</a>.</p>
+<div id="uso-de-antechamber-para-definir-la-estructura-y-nomenclatura-del-ligando" class="section level4">
+<h4>Uso de Antechamber para definir la estructura y nomenclatura del ligando</h4>
+<ol style="list-style-type: decimal">
+<li>Desde la terminal con el ambiente de conda <code>amber</code> activado y estando en el directorio de trabajo (<code>wd_md</code>), ejecutar:</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">antechamber</span> -i lig_unprep.mol2 -fi mol2 /</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="ex">-o</span> LIG_def.mol2 -fo mol2 -c bcc -s 2 -rn LIG</span></code></pre></div>
+<blockquote>
+<p>Esto permite usar la herramienta <a href="http://ambermd.org/antechamber/antechamber.html">Antechamber</a> para generar los archivos de topología del ligando, necesarios para la dinámica. <strong>El proceso suele tardar un poco.</strong> Una vez finalizado, se crearán varios archivos, pero de todos ellos sólo nos interesa el archivo <strong><mark>LIG_def.mol2</mark></strong>, que define a la molécula como un residuo y define los tipos de átomos, la nomenclatura correspondiente y las cargas parciales adecuadas para cada átomo.</p>
+</blockquote>
+<blockquote>
+<p>El parámetro <code>-c bcc</code> indica a <em>antechamber</em> usar el modelo de cargas AM1-BCC (<em>semi-empirical (AM1) with bond charge correction (BCC)</em>) para calcular las cargas parciales de la molécula. La opción <code>-rn</code> indica renombrar el nombre de la molécula a <code>LIG</code>. Finalmente, <code>-s 2</code>define una opción de <em>verbose</em> que nos permite recibir información en la terminal del proceso de ejecución.</p>
+</blockquote>
+<pre><code>📂 wd_md
+│  📜 ANTECHAMBER_*
+│  📜 ATOMTYPE.INF
+│  📜 sqm.*
+│  📜 ...
+│  🗒 prot.pdb
+│  🗒 LIG_def.mol2</code></pre>
+</div>
+<div id="uso-de-parmcheck-para-verificar-los-parámetros-del-campo-de-fuerza" class="section level4">
+<h4>Uso de parmcheck para verificar los parámetros del campo de fuerza</h4>
+<ol style="list-style-type: decimal">
+<li>Ahora validamos que los parámetros del campo de fuerza necesarios para la molécula estén disponibles en las librerías de AMBER. Para ello ejecutar lo siguiente:</li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">parmchk2</span> -i LIG_def.mol2 -f mol2 -o LIG_def.frcmod</span></code></pre></div>
+<blockquote>
+<p>Esto crea un archivo <strong><mark>LIG_def.frcmod</mark></strong> donde reporta los tipos de enlaces en la molécula que no están directamente en el campo de fuerza, pero que pueden ser representados por otros que ya se encuentran en el campo de fuerza <strong><a href="http://ambermd.org/antechamber/gaff.html">GAFF</a></strong> (<em>General AMBER Force Field</em>). Si abres el archivo <strong><mark>LIG_def.frcmod</mark></strong> podrás ver ahí qué enlaces son los que requieren dicha reasignación.</p>
+</blockquote>
+<pre><code>📂 wd_md
+│  📜 ANTECHAMBER_*
+│  📜 ATOMTYPE.INF
+│  📜 sqm.*
+│  📜 ...
+│  🗒 prot.pdb
+│  🗒 LIG_def.mol2
+│  🗒 LIG_def.frcmod</code></pre>
+</div>
+<div id="creación-de-la-librería-de-parámetros-con-tleap" class="section level4">
+<h4>Creación de la librería de parámetros con <em>tleap</em></h4>
+<p>Los siguientes pasos son para crear una librería de parámetros del ligando que permitan construir el sistema.</p>
+<ol style="list-style-type: decimal">
+<li>En la terminal, ejecutar:</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="ex">tleap</span> -f oldff/leaprc.ff14SB</span></code></pre></div>
+<blockquote>
+<p>Esto abrirá la consola de <strong>LEaP</strong> precargando el campo de fuerza <em>ff14SB</em> (más sobre los campos de fuerza de AMBER: <a href="https://ambermd.org/AmberModels.php">AmberModels</a>)</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>Estando en la terminal de <code>tleap</code>, ejecutar uno a uno los siguientes comandos:</li>
+</ol>
+<ul>
+<li><code>source leaprc.gaff</code></li>
+<li><code>LIG = loadmol2 LIG_def.mol2</code></li>
+<li><code>loadamberparams LIG_def.frcmod</code></li>
+<li><code>saveoff LIG LIG_def.lib</code></li>
+<li><code>quit</code></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Lo anterior creará la librería <strong><mark>LIG_def.lib</mark></strong></p></li>
+<li><p>Revisa el archivo.</p></li>
+</ol>
+<pre><code>📂 wd_md
+│  📜 ANTECHAMBER_*
+│  📜 ATOMTYPE.INF
+│  📜 sqm.*
+│  📜 ...
+│  🗒 prot.pdb
+│  🗒 LIG_def.mol2
+│  🗒 LIG_def.frcmod
+│  🗒 LIG_def.lib</code></pre>
+<hr />
+</div>
+</div>
+<div id="construcción-y-solvatación-del-sistema" class="section level3">
+<h3>Construcción y solvatación del Sistema</h3>
+<p>Entra nuevamente a <code>tleap</code> desde la terminal, esta vez tecleando unicamente (o hay que precargar ningún campo de fuerza esta vez):</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1"></a><span class="ex">tleap</span></span></code></pre></div>
+<p>Dentro de tleap, ejecutar uno a uno los siguientes comandos:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Carga de las librerías del campo de fuerza</strong> - Carga de las librerías necesarias tanto como para la proteína como para el solvente del sistema:</li>
+</ol>
+<ul>
+<li><code>source leaprc.gaff</code></li>
+<li><code>source leaprc.protein.ff14SB</code></li>
+<li><code>source leaprc.water.tip3p</code></li>
+<li><code>loadoff atomic_ions.lib</code></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Carga de las librerías del ligando</strong> - Carga de las librerías del ligando, las cuales se crearon en el paso anterior:</li>
+</ol>
+<ul>
+<li><code>loadamberparams LIG_def.frcmod</code></li>
+<li><code>loadoff LIG_def.lib</code></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Creación del complejo</strong> - Se leen los archivos <code>pdb</code> y <code>mol2</code> de la proteína y ligando, respectivamente, y se combinan en un sólo objeto:</li>
+</ol>
+<ul>
+<li><code>protein = loadpdb prot.pdb</code></li>
+<li><code>LIG = loadmol2 LIG_def.mol2</code></li>
+<li><code>system = combine {protein LIG}</code></li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Solvatación del sistema</strong> - Se solvata el complejo proteína-ligando utilizando agua <code>TIP3P</code>.</li>
+</ol>
+<ul>
+<li><p><code>solvateOct system TIP3PBOX 12</code></p>
+<blockquote>
+<p>Si se quiere solvatar en caja de agua sustituir <code>solvateOct</code> por <code>solvatebox</code>. El número <code>12</code> indica la distancia en A del <em>padding</em> de la caja de agua.</p>
+</blockquote></li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li><strong>Neutralización del sistema</strong> - Se neutraliza todo el sistema usando los iones correspondientes:</li>
+</ol>
+<ul>
+<li><p><code>addions system Cl- 0</code></p>
+<blockquote>
+<p>Dado que en este caso el sistema tiene carga positiva, lo que hacemos en neutralizar con iones <code>Cl-</code>. El <code>0</code> indica que se añadan tantos iones como sean necesarios para alcanzar una carga total igual a 0 (neutra).</p>
+</blockquote></li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li>Finalmente, <strong>guardar los archivos de topología</strong> (<code>prmtop</code>) y de <strong>coordenadas</strong> (<code>rst7</code>):</li>
+</ol>
+<ul>
+<li><code>saveamberparm system prot_LIG.prmtop prot_LIG.rst7</code></li>
+<li><code>quit</code></li>
+</ul>
+<ol start="7" style="list-style-type: decimal">
+<li>Los archivos <strong><mark>prot_LIG.prmtop</mark></strong> y <strong><mark>prot_LIG.rst7</mark></strong> son los que servirán como entrada para llevar a cabo la dinámica.</li>
+</ol>
+<pre><code>📂 wd_md
+│  📜 ...
+│  🗒 prot_LIG.prmtop
+│  🗒 prot_LIG.rst7</code></pre>
 </div>
 </div>
 
@@ -468,7 +593,7 @@ $(document).ready(function () {
   </div>
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2019 Copyright:
+  <div class="footer-copyright text-center py-3">© 2021 Copyright:
     <a href="https://github.com/jRicciL"> J. Ricci L.</a>
   </div>
   <!-- Copyright -->
