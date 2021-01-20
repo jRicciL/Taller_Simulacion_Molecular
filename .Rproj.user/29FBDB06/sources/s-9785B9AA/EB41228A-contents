@@ -1,6 +1,6 @@
-name: "Curso_DM_namd"
+name: "Taller_SMSB_2021"
 output_dir: "docs"
-title: "Curso de DM"
+title: "Taller SMSB 2021"
 
 header-includes:
 - \usepackage{fancyhdr}
@@ -11,24 +11,12 @@ header-includes:
 plugins:
  - jekyll-seo-tag
 navbar:
-  title: "Curso de DM"
+  title: "Tópicos"
   left:
   - text: "Inicio"
     href: index.html
   - text: "Introducción"
     href: intro_DM.html
-  - text: "Dinámica Molecular"
-    menu:
-      - text: "Preparación del Sistema"
-        href: prep_sistema.html
-      - text: "Archivos de Configuración"
-        href: parametros_dm.html
-  - text: "Análisis de Trayectorias"
-    menu:
-      - text: "Manejo de trayectorias con pytraj"
-        href: analisis_traj.html
-      - text: "RMSD y RMSF"
-        href: rmsd_y_rmsf.html
 right:
   - icon: fa-question fa-lg
 output:
