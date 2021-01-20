@@ -3,9 +3,9 @@ title: 'Preparación del sistema'
 ---
 ***
 
-### Obtención y preparación de la proteína y el ligando:
+## Obtención y preparación de la proteína y el ligando:
 
-#### Descarga de las moléculas:
+### Descarga de las moléculas:
    
 1.  Definir una carpeta de trabajo para guardar los archivos que se irán generando.  
 ```{bash, eval=F}
@@ -21,8 +21,15 @@ mkdir wd_md
         1.  Seleccionar los átomos del ligando: "Select > Residue > 9JU"
         2.  Guardar el ligando en formato pdb, de la misma manera que se hizo con la proteína: ==**lig_unprep.pdb**==
 
+```
+📂 wd_md
+│  📜 prot_unprep.pdb
+│  📜 lig_unprep.pdb
 
-#### Preparación de la proteína con [PDB2PQR](https://pdb2pqr.readthedocs.io/en/latest/using/):
+```
+
+***
+### Preparación de la proteína con [PDB2PQR](https://pdb2pqr.readthedocs.io/en/latest/using/):
 
 1.  Tener el ambiente `amber` activado y localizarse en la carpeta de trabajo (`wd_md`).
 2.  Ejecutar **PDB2PQR** con el siguiente comando:
@@ -35,10 +42,64 @@ pdb2pqr --ff=amber --with-ph=7.0 --ffout=amber \
 
 3.  Convertir el ligando a formato `mol2`:
     1.  Ejecutar el siguiente comando:
-        	``
+        	
 ```{bash, eval=F}
 obabel -ipdb lig_unprep.pdb -omol2 -O lig_unprep.mol2 -p 7.0
 ```
 > Esto creará un nuevo archivo ==**lig_unprep.mol2**== con la molécula protonizada a un pH de 7.0.
 
-1.  En este punto, vamos a necesitar 'unicamente el archivo ==**prot.pdb**== y el archivo ==**lig.mol2**== que ya fueron creados.
+4.  En este punto, vamos a necesitar únicamente el archivo ==**prot.pdb**== y el archivo ==**lig.mol2**== que ya fueron creados.
+
+```
+📂 wd_md
+│  📜 prot_unprep.pdb
+│  📜 lig_unprep.pdb
+│  📜 **prot.pdb**
+│  📜 **lig.mol2**
+│  ...
+```
+
+
+***
+### Preparación de parámetros y de coordenadas del ligando
+Un tutorial más a detalle se puede consultar [aquí](http://ambermd.org/tutorials/basic/tutorial4b/index.php):
+
+#### Uso de Antechamber y parmcheck
+
+1.  Desde la terminal con el ambiente de conda `amber` activado y estando en el directorio de trabajo (`wd_md`), ejecutar:
+
+```{bash, eval=F}
+antechamber -i lig_unprep.mol2 -fi mol2 /
+-o LIG.mol2 -fo mol2 -c bcc -s 2 -rn LIG
+```
+> Esto permite usar la herramienta [Antechamber](http://ambermd.org/antechamber/antechamber.html) para generar los archivos de topología del ligando, necesarios para la dinámica.
+> El proceso suele tardar un poco. Una vez finalizado, se crearán varios archivos, pero de todos ellos sólo nos interesa el archivo ==**LIG.mol2**==, que ya contiene las coordenadas, nomenclatura y las cargas parciales adecuadas para el campo de fuerza.
+
+2. Ahora definimos los parámetros del campo de fuerza necesarios para la molécula, para ello ejecutar lo siguiente:
+
+```{bash, eval=F}
+parmchk2 -i LIG.mol2 -f mol2 -o LIG.frcmod
+```
+
+> Esto crea un archivo ==**LIG.frcmod**== donde reporta los tipos de enlaces en la molécula que no están directamente en el campo de fuerza, pero que pueden ser representados por otros que ya se encuentran en el campo de fuerza **[GAFF](http://ambermd.org/antechamber/gaff.html)** (*General AMBER Force Field*).
+> Si abres el archivo ==**LIG.frcmod**== podrás ver ahí qué enlaces son los que requieren dicha reasignación.
+
+#### Creación de la librería de parámetros
+
+ Los siguientes pasos son para crear una librería de parámetros del ligando que permitan construir el sistema.
+1. En la terminal, ejecutar:
+
+```{bash, eval=F}
+tleap -f oldff/leaprc.ff99SB
+```
+> Esto abrirá la consola de **LEaP** precargando el campo de fuerza *ff99SB* (m'as sobre los campos de fuerza: [https://ambermd.org/AmberModels.php](https://ambermd.org/AmberModels.php))
+
+2. Estando en la terminal de `tleap`, ejecutar uno a uno los siguientes comandos:
+
+-  `source leaprc.gaff`
+-  `LIG = loadmol2 LIG.mol2`
+-  `loadamberparams LIG.frcmod`
+-  `saveoff LIG LIG.lib`
+-  `quit`
+  
+3. Lo anterior creará la librería ==**LIG.lib**==
