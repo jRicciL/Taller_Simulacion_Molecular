@@ -1,0 +1,21 @@
+---
+title: 'Preparación del ambiente de Trabajo'
+---
+***
+
+## Instalación de herramietas necesarias 
+
+###  Instalación de **conda** y de los módulos necesarios:
+1.  Instalación de **conda** y de los módulos necesarios:
+	-  Instalación y activación del ambiente de conda
+		1.  `conda create -n amber python=3.6`
+		2.  `conda activate amber`
+    
+    - Instalación de *AmberTools* (hay que activar previamente el ambiente "*amber*")
+		1.  `conda install -c ambermd ambertools`
+    
+    - **Librerías extra** (también verificar que el ambiente "*amber*" esté activado antes de instalar):
+		1.  `conda install -c conda-forge vmd`
+		2.  `conda install -c conda-forge openbabel`
+		3.  `conda install -c schrodinger pdb2pqr`
+
