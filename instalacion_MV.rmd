@@ -1,0 +1,39 @@
+---
+title: 'Preparación del Ambiente de Trabajo'
+---
+***
+
+## Descarga e instalación de la Máquina Virtual
+
+1. Descarga e instala **[VirtualBox](https://www.virtualbox.org/wiki/Downloads)** en tu sistema operativo:
+
+> <a href="https://www.virtualbox.org/wiki/Downloads">
+    <img src="https://www.virtualbox.org/graphics/button61.png" alt="virtualbox-link" height="40"/>
+</a>
+
+2. Descarga e instala **[7zip](https://7zip.es/)**:
+
+> <a href="https://7zip.es/">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/7ziplogo.svg/1280px-7ziplogo.svg.png" alt="7zip-link" height="40"/>
+</a>
+
+1. Una vez descargadas las 8 partes, y estando todas en el mismo directorio, abre el archivo **<mark>SSB.ova.7zip.001</mark>** )utilizando **7zip**, y extrae el archivo **<mark>SSB.ova</mark>**. Puedes extraerla en cualquier directorio al que te sea más cómodo acceder. Más adelante podrás eliminar este archivo, si así lo deseas.
+
+2. Abre VirtualBox y en la barra superior selecciona *Archivo > Importar Servicio Virtualizado*. 
+
+3. En la ventana emergente, da click en la sección de Archivo y en el explorador busca y selecciona al archivo **<mark>SSB.ova</mark>**. Da click en Siguiente.
+
+4. Se abrirá una ventana titulada **Preferencias de servicio** con los datos de la máquina virtual. Da click en ***Importar***.
+
+5. Acepta la licencia.
+
+6. El proceso tardará unos minutos.
+
+7. En la ventana principal de **VirtualBox** tendrás ahora acceso a la MV llamada **<mark>SSB</mark>**.
+
+8. OPCIONAL: Puedes ir a la opción de Configuración para modificar algunas propiedades de la máquina.
+> Por ejemplo, en Sistema puedes modificar la cantidad de memoria RAM asignada a la MV (si tienes suficiente en tu equipo puedes probar aumentando la RAM a 3 GB)
+
+9. Listo. la máquina está instalada y puedes "encenderla" haciendo doble click sobre su nombre.
+
+10. Si llegase a haber algún problema con la máquina o con el sistema operativo, siempre puedes volver a usar el archivo **<mark>SSB.ova</mark>** para volver a la configuración inicial. Es decir, puedes echarla a perder sin culpa alguna. 
