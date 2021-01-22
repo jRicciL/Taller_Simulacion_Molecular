@@ -3,7 +3,11 @@ title: 'Preparación del Ambiente de Trabajo'
 ---
 ***
 
-## Descarga e instalación de la Máquina Virtual
+
+
+## Máquina virtual
+
+### Descarga de VirtualBox y 7zip
 
 1. Descarga e instala **[VirtualBox](https://www.virtualbox.org/wiki/Downloads)** en tu sistema operativo:
 
@@ -17,23 +21,146 @@ title: 'Preparación del Ambiente de Trabajo'
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/7ziplogo.svg/1280px-7ziplogo.svg.png" alt="7zip-link" height="40"/>
 </a>
 
+### Descarga de la MV
+
+1. Descarga cada una de las siguientes partes de la máquina virtual:
+
+<center>
+| Parte      | Enlace | Peso | |
+| :-----------: | :-----------: | :-----------: | :-----------: |
+| 1      | [SSB.ova.7z.001](https://drive.google.com/file/d/1DpfPUguu6dJyfDne-AWfz8Q-OuxsCVVN/view?usp=sharing)       | 700 MB | |
+| 2      | [SSB.ova.7z.002](https://drive.google.com/file/d/1vrLR_aIs7LhT6_XrAppDMrvRPUjcdLow/view?usp=sharing)       | 700 MB | |
+| 3      | [SSB.ova.7z.003](https://drive.google.com/file/d/1_I68YCcC1T03M2RQWGZ7V1OrZ57TysV8/view?usp=sharing)       | 700 MB | |
+| 4      | [SSB.ova.7z.004](https://drive.google.com/file/d/1bKTpX6cHbrfOZDO8v4QXyMQLWT6w8LRi/view?usp=sharing)       | 700 MB | |
+| 5      | [SSB.ova.7z.005](https://drive.google.com/file/d/1REc2-oGsgMT5AFNALugl5RK-UoVWF8DU/view?usp=sharing)       | 700 MB | |
+| 6      | [SSB.ova.7z.006](https://drive.google.com/file/d/1otQaStob-v9GBIZ2RfuqvQxBscIaTNZr/view?usp=sharing)       | 700 MB | |
+| 7      | [SSB.ova.7z.007](https://drive.google.com/file/d/1czUYeqyL0kf0F8Sfw8ioUmYjRUZBuSxe/view?usp=sharing)       | 700 MB | |
+| 8      | [SSB.ova.7z.008](https://drive.google.com/file/d/1Z9AB-QbzlxDmVUOdCHl5-HZHOVPu8qY9/view?usp=sharing)       | 85 MB | |
+
+</center>
+
+### Instalación de la MV
+
 1. Una vez descargadas las 8 partes, y estando todas en el mismo directorio, abre el archivo **<mark>SSB.ova.7zip.001</mark>** )utilizando **7zip**, y extrae el archivo **<mark>SSB.ova</mark>**. Puedes extraerla en cualquier directorio al que te sea más cómodo acceder. Más adelante podrás eliminar este archivo, si así lo deseas.
 
 2. Abre VirtualBox y en la barra superior selecciona *Archivo > Importar Servicio Virtualizado*. 
 
-3. En la ventana emergente, da click en la sección de Archivo y en el explorador busca y selecciona al archivo **<mark>SSB.ova</mark>**. Da click en Siguiente.
+3. En la ventana emergente, da click en la sección de Archivo y en el explorador busca y selecciona al archivo **<mark>SSB.ova</mark>**. Da click en ***Siguiente***.
 
-4. Se abrirá una ventana titulada **Preferencias de servicio** con los datos de la máquina virtual. Da click en ***Importar***.
+4. Se abrirá una ventana titulada ***Preferencias de servicio*** con los datos de la máquina virtual. Da click en ***Importar***.
 
 5. Acepta la licencia.
 
-6. El proceso tardará unos minutos.
+6.  El proceso tardará unos minutos.
 
-7. En la ventana principal de **VirtualBox** tendrás ahora acceso a la MV llamada **<mark>SSB</mark>**.
+7.  En la ventana principal de **VirtualBox** tendrás ahora acceso a la MV llamada **<mark>SSB</mark>**.
 
-8. OPCIONAL: Puedes ir a la opción de Configuración para modificar algunas propiedades de la máquina.
-> Por ejemplo, en Sistema puedes modificar la cantidad de memoria RAM asignada a la MV (si tienes suficiente en tu equipo puedes probar aumentando la RAM a 3 GB)
+> <a href="https://www.virtualbox.org/wiki/Downloads">
+    <img src="./images/vbox_main.png" alt="virtualbox-main" height="350"/>
+</a>
 
-9. Listo. la máquina está instalada y puedes "encenderla" haciendo doble click sobre su nombre.
+8.  **<mark style='background-color: #B5F0EF;'>OPCIONAL</mark>**: Puedes ir a la opción de Configuración para modificar algunas propiedades de la máquina.
+<div class="p-3 mb-2 bg-warning text-dark">
+Por ejemplo, en **Sistema** puedes modificar la cantidad de memoria RAM asignada a la MV (si tienes suficiente en tu equipo puedes probar aumentando la RAM a 3 GB)
+</div>
 
-10. Si llegase a haber algún problema con la máquina o con el sistema operativo, siempre puedes volver a usar el archivo **<mark>SSB.ova</mark>** para volver a la configuración inicial. Es decir, puedes echarla a perder sin culpa alguna. 
+9. **Listo**. la máquina está instalada y puedes "encenderla" haciendo doble click sobre su nombre.
+**<mark>La contraseña o password del superusuario es ssb</mark>**.
+
+
+1.   Si hubiese algún problema con la máquina o con el sistema operativo, siempre puedes volver a usar el archivo **<mark>SSB.ova</mark>** para volver a la configuración inicial. Es decir, puedes echarla a perder sin culpa alguna. 
+
+***
+## Programas y librerías 
+
+La siguiente es una lista de los programas principales a utilizar en el taller. Estos están ya incluidos en la máquina virtual:
+
+<details>
+<summary><b>Da click para desplegar la lista:</b></summary>
+```
+- Autodock4
+- MGLTools
+- Smina
+- Open Babel
+- Amber Tools
+- VMD
+- UCSF Chimera 
+- VIM
+- Sublime
+- ZSH
+- Conda
+  - Python 3.8
+    - numpy
+    - pandas
+    - seaborn
+    - jupyter
+    - pytraj
+```
+</details>
+
+
+***
+
+## Instalación "Manual" de las librerías y creación de ambientes conda
+
+Si ya cuentas con una versión de Linux te recomiendo instalar **Conda** o [Miniconda](https://docs.conda.io/en/latest/miniconda.html).
+A través de **conda** puedes instalar los paquetes y programas antes mencionados. 
+
+> <a href="https://www.anaconda.com/products/individual">
+    <img src="https://assets-cdn.anaconda.com/assets/company/anaconda-logo.png" alt="7zip-link" height="40"/>
+</a>
+
+
+<div class="p-3 mb-2 bg-danger text-dark">
+Cada vez que crees un ambiente no olvides activarlo para instalar las librerías en él.
+No olvides tampoco desactivarlo cada vez que necesites usar un nuevo ambiente.
+</div>
+
+#### Ambiente Autodock4
+
+Una vez instalado **conda**, crea un ambiente llamado adt4:
+
+Crea un ambiente para autodock 4:
+```{#numCode .R .numberLines}
+conda create -n ad4
+conda activate ad4
+conda install -c hcc autodock
+conda install -c bioconda mgltools
+conda deactivate
+```
+
+#### Ambiente Smina
+
+Para smina y sofware relacionado con la preparación de las moléculas:
+
+```{#numCode .R .numberLines}
+conda create -n dock
+conda activate dock
+conda install -c conda-forge pdb2pqr openbabel
+conda install -c bioconda smina autodock-vina
+conda deactivate
+```
+
+#### Ambiente AmberTools
+Crea un ambiente para dinámica molecular:
+
+```{#numCode .R .numberLines}
+conda create -n mds
+conda activate mds
+conda install -c conda-forge ambertools vmd
+conda deactivate
+```
+
+#### Ambiente de análisis con python
+Crea un ambiente para análisis de datos con python:
+
+```{#numCode .R .numberLines}
+conda create -n jup python=3.7 numpy scipy pandas seaborn jupyter
+conda install -c ambermd pytraj
+conda deactivate
+```
+
+#### Instalación de UCSF Chimera
+Descarga e instala UCSF Chimera a través de [este enlace](https://www.cgl.ucsf.edu/chimera/download.html).
+
+
