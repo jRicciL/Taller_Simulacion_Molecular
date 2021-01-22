@@ -7,7 +7,7 @@ title: 'Preparación del Ambiente de Trabajo'
 En esta sección se muestran los enlaces de descarga y el proceso de instalación de la **Máquina Virtual**.
 
 Adicionalmente, se ofrecen dos alternativas para aquellos que opten utilizar una versión [GNU/Linux](#instalación-manual-de-las-librerías-y-creación-de-ambientes-conda) propia o utilizar [WSL en Windows](#instalación-de-wsl-en-windows).
-No obstante, quien decida tomar alguna de estas opciones deberá hacerlo por su cuenta. 
+No obstante, quien decida tomar alguna de estas opciones deberá instalar y configurar los programas por su cuenta. La lista de programas se muestra más adelante.
 
 
 ***
@@ -81,14 +81,15 @@ No obstante, quien decida tomar alguna de estas opciones deberá hacerlo por su 
 
 
 
-1. **Listo**  🎉 🎉 🎉. la máquina está instalada y puedes "encenderla" haciendo doble click sobre su nombre.  
-<mark>La contraseña o password del superusuario es <i>ssb</i></mark>.
+1. **Listo**  🎉 🎉 🎉.  
+La máquina está instalada y puedes "encenderla" haciendo doble click sobre su nombre.  
+<mark>La contraseña (password) del superusuario es <i>ssb</i></mark>.
 
 
-10.   Si hubiese algún problema con la máquina o con el sistema operativo, siempre puedes volver a usar el archivo **<mark>SSB.ova</mark>** para volver a la configuración inicial. Es decir, puedes echarla a perder sin culpa alguna. 
+1.    Si hubiese algún problema con la máquina o con el sistema operativo, siempre puedes volver a usar el archivo **<mark>SSB.ova</mark>** para volver a la configuración inicial. Es decir, puedes echarla a perder sin culpa alguna. 
 
 ***
-## Programas y librerías 
+### Programas y librerías 
 
 La siguiente es una lista de los programas principales a utilizar en el taller. Estos están ya incluidos en la máquina virtual:
 
