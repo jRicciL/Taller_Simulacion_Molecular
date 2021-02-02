@@ -29,6 +29,10 @@ cd wd_dk
         
 1.  Abrir **UCSF Chimera** y en la opción "*File > Fetch by id...*" descargar del pdb la proteína **<mark>5IF1</mark>**.
 
+```
+/home/ssb/.local/UCSF-Chimera64-1.15rc/bin/chimera
+```
+
 2.  Ahora **guardamos** en un archivo `.pdb` únicamente los átomos de la proteína CDK2:
     a. Selecciona únicamente los átomos de la proteína CDK2:
         1. Visualiza todos los átomos del cristal mediante “*Actions > Atom/Bonds > show*”
