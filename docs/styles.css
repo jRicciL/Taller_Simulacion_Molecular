@@ -133,3 +133,9 @@ p, ol, li {
     max-height: 125px;
     max-width: 350px;
 }
+
+pre.scroll-350 {
+  max-height: 350px;
+  overflow-y: auto;
+  background-color: inherit;
+}
