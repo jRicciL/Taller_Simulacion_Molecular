@@ -144,6 +144,13 @@ data-style1='stick' >
 
 En esta sección se preparan los archivos de la proteína y el ligando en formato [PDBQT](http://autodock.scripps.edu/faqs-help/faq/what-is-the-format-of-a-pdbqt-file/), los cuales son necesarios para la ejecución de AD4.
 
+### Obtenci'on de los scripts a utilizar
+
+Si estas usando la maquina virtual LINK
+```
+export PATH="/home/ssb/miniconda3/envs/ad4/MGLToolsPckgs/AutoDockTools/Utilities24/:"$PATH
+```
+
 #### Preparación del ligando
 
 ```{r, echo=FALSE}
