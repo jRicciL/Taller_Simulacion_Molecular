@@ -608,6 +608,18 @@ pythonsh ./summarize_docking.py \
 cat ATP_dock_results.txt
 ```
 
+```
+# -b -e -k \
+lowestEnergy_dlgfn     #runs #cl #LEC    LE      rmsd_LE  #hb  #ESTAT      #HB     #VDW   #DSOLV #ats #tors
+DLG,   3,  3,  1, -2.8100, 101.8166, 3, -0.0886, -1.7324, -9.8023,  4.5065,  39,15
+```
+
+   
+``` summarize_results4.py -d -r -b -e -k -o
+lowestEnergy_dlgfn #runs #cl #LEC LE rmsd_LE #hb #ESTAT #HB #VDW #DSOLV #ats #tors #h_ats #lig_eff
+./DLG,   3,  3,  1, -2.8100, 101.8166, 3, -0.0886, -1.7324, -9.8023,  4.5065  39,15, 8, -0.0906
+```
+
 ### Extrae la pose con la mejor afinidad (menor energía)
 
 1. Ejecuta el siguiente comando:
