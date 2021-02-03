@@ -144,12 +144,16 @@ data-style1='stick' >
 
 En esta sección se preparan los archivos de la proteína y el ligando en formato [PDBQT](http://autodock.scripps.edu/faqs-help/faq/what-is-the-format-of-a-pdbqt-file/), los cuales son necesarios para la ejecución de AD4.
 
-### Obtenci'on de los scripts a utilizar
+#### Activar los scripts de ejecución
 
-Si estas usando la maquina virtual LINK
+Si estas usando la [máquina virtual](https://jriccil.github.io/Taller_Simulacion_Molecular/instalacion_MV.html) ejecuta el siguiente comando para agregar al path el directorio con los scripts de análisis.
+
+```{#numCode .R .numberLines}
+echo \
+    'export PATH="/home/ssb/miniconda3/envs/ad4/MGLToolsPckgs/AutoDockTools/Utilities24/:"$PATH' \
+    >> ~/.zshrc
 ```
-export PATH="/home/ssb/miniconda3/envs/ad4/MGLToolsPckgs/AutoDockTools/Utilities24/:"$PATH
-```
+> Si no estás usando la máquina virtual deberás sustituir la parte `/home/ssb/miniconda3/` con la ruta que corresponda a tu sistema.
 
 #### Preparación del ligando
 
@@ -176,8 +180,8 @@ Esta fase consiste en utilizar las coordenadas del archivo ATP.mol2 para generar
 
 
 1. Activar el ambiente de conda `ad4` y localizarse en la carpeta de trabajo.
-2. **Descargar** el siguiente archivo y colocarlo en la carpeta de trabajo: [prepare_ligand4.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_ligand4.py)
-3. Ejecutar el siguiente comando:
+<!-- 2. **Descargar** el siguiente archivo y colocarlo en la carpeta de trabajo: [prepare_ligand4.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_ligand4.py) -->
+2. Ejecutar el siguiente comando:
 
 ```{#numCode .R .numberLines}
 # Genera el archivo PDBQT del ligando
@@ -206,7 +210,7 @@ d['ATP'] = {'atom_types': ['A', 'C', 'HD', 'N', 'NA', 'OA', 'P' ],
 > - ¿Cuántos enlaces rotables tiene?
 > - ¿Hay algún átomo que no posea carga parcial?
 
-5. Inspecciona el archivo **<mark>ATP.pdbqt</mark>** mediante un editor de texto. 
+3. Inspecciona el archivo **<mark>ATP.pdbqt</mark>** mediante un editor de texto. 
 
 #### Preparación del receptor en formato PDBQT
 
@@ -218,8 +222,8 @@ graph LR
     ", height = '80%', width = '100%')
 ```
 
-1. **Descargar** el archivo [prepare_receptor4.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_receptor4.py) y guárdalo en la carpeta de trabajo.
-2. Ejecuta lo siguiente:
+<!-- 1. **Descargar** el archivo [prepare_receptor4.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_receptor4.py) y guárdalo en la carpeta de trabajo. -->
+1. Ejecuta lo siguiente:
    
 ```{#numCode .R .numberLines}
 prepare_receptor4.py \
@@ -237,7 +241,7 @@ prepare_receptor4.py \
 >   - También la [publicación correspondiene a Autodock4](https://onlinelibrary.wiley.com/doi/full/10.1002/jcc.21256).
 
 
-1. Inspecciona el archivo **<mark>prot.pdbqt</mark>** mediante un editor de texto, verifica que las cargas parciales y los tipos de átomos hayan sido añadidos.
+2. Inspecciona el archivo **<mark>prot.pdbqt</mark>** mediante un editor de texto, verifica que las cargas parciales y los tipos de átomos hayan sido añadidos.
 
 ```
 📂 wd_dk
@@ -306,11 +310,11 @@ graph LR
     ", height = '80%', width = '100%')
 ```
 
-1. **Descargar** el archivo [prepare_gpf4.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_gpf4.py).
-2. Ten a la mano la siguiente información necesaria para el siguiente paso:
+<!-- 1. **Descargar** el archivo [prepare_gpf4.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_gpf4.py). -->
+1. Ten a la mano la siguiente información necesaria para el siguiente paso:
    1. Tipos de átomos del ligando listados en el archivo `ligand_dict.py`
    2. Dimensiones y centro del grid (`'-80,-46,10'`)
-3. Ejecuta lo siguiente:
+2. Ejecuta lo siguiente:
 
 ```{#numCode .R .numberLines}
 # ¿Identificas qué significa cada uno de los parámetros?
@@ -332,7 +336,7 @@ prepare_gpf4.py \
 </ul>
 </div>
 
-4. Inspecciona el archivo **<mark>GPF.gpf</mark>**:
+3. Inspecciona el archivo **<mark>GPF.gpf</mark>**:
 
 ```{#numCode .R .numberLines}
 cat GPF.gpf
@@ -427,8 +431,8 @@ graph LR
 
 En este paso se crea el archivo de parámetros para el ejecutable `autodock4`: el archivo `.gpf` (*grid parameter file*), los cuales utilizará para llevar a cabo el acoplamiento entre el ligando y el receptor, incluyéndo aquellos que usará para el algoritmo de búsqueda. Especifica además los archivos .map a utilizar para facilitar el cálculo de la función de puntaje.
 
-1. Descarga el archivo [prepare_dpf42.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_dpf42.py).
-2. Ejecuta el siguiente comando:
+<!-- 1. Descarga el archivo [prepare_dpf42.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_dpf42.py). -->
+1. Ejecuta el siguiente comando:
 
 ```{#numCode .R .numberLines}
 # ¿Identificas qué significa cada uno de los parámetros?
@@ -463,7 +467,7 @@ prepare_dpf42.py \
 </ul>
 </div>
 
-4. Inspecciona el archivo **<mark>DPF.dpf</mark>**:
+2. Inspecciona el archivo **<mark>DPF.dpf</mark>**:
 
 ```{#numCode .R .numberLines}
 cat DPF.dpf
@@ -542,11 +546,11 @@ autodock4 -p DPF.dpf -l DLG.dlg
 ***
 ## Análisis de los Resultados 🎯
  
-1. Descarga los siguientes archivos y guárdalos en el directorio de trabajo: 
+<!-- 1. Descarga los siguientes archivos y guárdalos en el directorio de trabajo: 
    a. [pdbqt_to_pdb.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/pdbqt_to_pdb.py)
    b. [write_lowest_energy_ligand.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/write_lowest_energy_ligand.py)
    c. [write_largest_cluster_ligand.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/write_largest_cluster_ligand.py)
-   d. [summarize_docking.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/summarize_docking.py)
+   d. [summarize_docking.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/summarize_docking.py) -->
 
 ### Análisis del archivo DLG.dlg
 

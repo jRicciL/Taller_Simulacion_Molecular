@@ -508,15 +508,20 @@ GASTEIGER
 <div id="preparación-de-los-archivos-necesarios-para-docking-pdbqt" class="section level3">
 <h3>Preparación de los archivos necesarios para Docking (PDBQT)</h3>
 <p>En esta sección se preparan los archivos de la proteína y el ligando en formato <a href="http://autodock.scripps.edu/faqs-help/faq/what-is-the-format-of-a-pdbqt-file/">PDBQT</a>, los cuales son necesarios para la ejecución de AD4.</p>
+<div id="activar-los-scripts-de-ejecución" class="section level4">
+<h4>Activar los scripts de ejecución</h4>
+<p>Si estas usando la <a href="https://jriccil.github.io/Taller_Simulacion_Molecular/instalacion_MV.html">máquina virtual</a> ejecuta el siguiente comando para agregar al path el directorio con los scripts de análisis.</p>
+<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>echo \</span>
+<span id="numCode-2"><a href="#numCode-2"></a>    <span class="st">&#39;export PATH=&quot;/home/ssb/miniconda3/envs/ad4/MGLToolsPckgs/AutoDockTools/Utilities24/:&quot;$PATH&#39;</span> \</span>
+<span id="numCode-3"><a href="#numCode-3"></a>    <span class="op">&gt;</span><span class="er">&gt;</span><span class="st"> </span><span class="er">~/</span>.zshrc</span></code></pre></div>
+<blockquote>
+<p>Si no estás usando la máquina virtual deberás sustituir la parte <code>/home/ssb/miniconda3/</code> con la ruta que corresponda a tu sistema.</p>
+</blockquote>
 </div>
-<div id="obtencion-de-los-scripts-a-utilizar" class="section level3">
-<h3>Obtenci’on de los scripts a utilizar</h3>
-<p>Si estas usando la maquina virtual LINK</p>
-<pre><code>export PATH=&quot;/home/ssb/miniconda3/envs/ad4/MGLToolsPckgs/AutoDockTools/Utilities24/:&quot;$PATH</code></pre>
 <div id="preparación-del-ligando" class="section level4">
 <h4>Preparación del ligando</h4>
-<div id="htmlwidget-b1bb1197b8cbd6ba53a1" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b1bb1197b8cbd6ba53a1">{"x":{"diagram":"\ngraph LR\n    A(ATP.mol2)-->|prepare_ligand4.py| B(ATP.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9ed3317ce160ff9ebd2c" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9ed3317ce160ff9ebd2c">{"x":{"diagram":"\ngraph LR\n    A(ATP.mol2)-->|prepare_ligand4.py| B(ATP.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <p>Esta fase consiste en utilizar las coordenadas del archivo ATP.mol2 para generar un archivo <a href="http://autodock.scripps.edu/faqs-help/faq/what-is-the-format-of-a-pdbqt-file/">PDBQT</a> al se le incluirá la siguiente información:</p>
 <ul>
 <li><strong><mark>Q:</mark></strong> Cargas parciales de <a href="http://expertcomputationalchemistry.blogspot.com/2016/08/the-difference-between-kollman-charges.html?m=1">Gasteiger</a>.</li>
@@ -536,8 +541,7 @@ Más sobre los <strong>parámetros del campo de fuerza empleado por AD4</strong>
 </ul>
 </div>
 <ol style="list-style-type: decimal">
-<li>Activar el ambiente de conda <code>ad4</code> y localizarse en la carpeta de trabajo.</li>
-<li><strong>Descargar</strong> el siguiente archivo y colocarlo en la carpeta de trabajo: <a href="https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_ligand4.py">prepare_ligand4.py</a></li>
+<li>Activar el ambiente de conda <code>ad4</code> y localizarse en la carpeta de trabajo. <!-- 2. **Descargar** el siguiente archivo y colocarlo en la carpeta de trabajo: [prepare_ligand4.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_ligand4.py) --></li>
 <li>Ejecutar el siguiente comando:</li>
 </ol>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Genera el archivo PDBQT del ligando</span></span>
@@ -564,16 +568,16 @@ d[&#39;ATP&#39;] = {&#39;atom_types&#39;: [&#39;A&#39;, &#39;C&#39;, &#39;HD&#39
 <li>¿Hay algún átomo que no posea carga parcial?</li>
 </ul>
 </blockquote>
-<ol start="5" style="list-style-type: decimal">
+<ol start="3" style="list-style-type: decimal">
 <li>Inspecciona el archivo <strong><mark>ATP.pdbqt</mark></strong> mediante un editor de texto.</li>
 </ol>
 </div>
 <div id="preparación-del-receptor-en-formato-pdbqt" class="section level4">
 <h4>Preparación del receptor en formato PDBQT</h4>
-<div id="htmlwidget-aca460724c70977a5531" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-aca460724c70977a5531">{"x":{"diagram":"\ngraph LR\n    A(prot.pdb)-->|prepare_receptor4.py| B(prot.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-87c9164cf2ba92df7f63" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-87c9164cf2ba92df7f63">{"x":{"diagram":"\ngraph LR\n    A(prot.pdb)-->|prepare_receptor4.py| B(prot.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<!-- 1. **Descargar** el archivo [prepare_receptor4.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_receptor4.py) y guárdalo en la carpeta de trabajo. -->
 <ol style="list-style-type: decimal">
-<li><strong>Descargar</strong> el archivo <a href="https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_receptor4.py">prepare_receptor4.py</a> y guárdalo en la carpeta de trabajo.</li>
 <li>Ejecuta lo siguiente:</li>
 </ol>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>prepare_receptor4.py \</span>
@@ -595,7 +599,7 @@ d[&#39;ATP&#39;] = {&#39;atom_types&#39;: [&#39;A&#39;, &#39;C&#39;, &#39;HD&#39
 </ul></li>
 </ul>
 </blockquote>
-<ol style="list-style-type: decimal">
+<ol start="2" style="list-style-type: decimal">
 <li>Inspecciona el archivo <strong><mark>prot.pdbqt</mark></strong> mediante un editor de texto, verifica que las cargas parciales y los tipos de átomos hayan sido añadidos.</li>
 </ol>
 <pre><code>📂 wd_dk
@@ -656,10 +660,10 @@ d[&#39;ATP&#39;] = {&#39;atom_types&#39;: [&#39;A&#39;, &#39;C&#39;, &#39;HD&#39
 </div>
 <div id="crear-el-archivo-gpf" class="section level5">
 <h5>Crear el archivo GPF</h5>
-<div id="htmlwidget-7d51a56e1a0dd1a8e563" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7d51a56e1a0dd1a8e563">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_gpf4.py]\n    B(ATP.pdbqt)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-594f2b2c5a5044d1ba35" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-594f2b2c5a5044d1ba35">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_gpf4.py]\n    B(ATP.pdbqt)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<!-- 1. **Descargar** el archivo [prepare_gpf4.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_gpf4.py). -->
 <ol style="list-style-type: decimal">
-<li><strong>Descargar</strong> el archivo <a href="https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_gpf4.py">prepare_gpf4.py</a>.</li>
 <li>Ten a la mano la siguiente información necesaria para el siguiente paso:
 <ol style="list-style-type: decimal">
 <li>Tipos de átomos del ligando listados en el archivo <code>ligand_dict.py</code></li>
@@ -689,7 +693,7 @@ Revisa el sigiente vínculo para más información al respecto: <a href="http://
 </li>
 </ul>
 </div>
-<ol start="4" style="list-style-type: decimal">
+<ol start="3" style="list-style-type: decimal">
 <li>Inspecciona el archivo <strong><mark>GPF.gpf</mark></strong>:</li>
 </ol>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>cat GPF.gpf</span></code></pre></div>
@@ -719,8 +723,8 @@ dielectric -0.1465                   # &lt;0, AD4 distance-dep.diel;&gt;0, const
 </div>
 <div id="ejecutar-autogrid" class="section level5">
 <h5>Ejecutar Autogrid</h5>
-<div id="htmlwidget-da33ef9bba7c87ad71b3" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-da33ef9bba7c87ad71b3">{"x":{"diagram":"\ngraph LR\n    A(GPF.gpf)-->C[autogrid4]\n    C-->D(GLG.glg)\n    C-->F(*.map)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4fb47c7a07371be06975" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4fb47c7a07371be06975">{"x":{"diagram":"\ngraph LR\n    A(GPF.gpf)-->C[autogrid4]\n    C-->D(GLG.glg)\n    C-->F(*.map)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Ejecuta el siguiente comando:</li>
 </ol>
@@ -761,11 +765,11 @@ dielectric -0.1465                   # &lt;0, AD4 distance-dep.diel;&gt;0, const
 <h3>Ejecución de Autodock4.2</h3>
 <div id="archivo-de-parámetros-de-autodock-dpf" class="section level4">
 <h4>Archivo de parámetros de Autodock (DPF)</h4>
-<div id="htmlwidget-551e91194fef747f70e0" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-551e91194fef747f70e0">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_dpf42.py]\n    B(ATP.pdbqt)--oC\n    E(Parámetros de búsqueda)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b984ef33e6b27629d9e7" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b984ef33e6b27629d9e7">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_dpf42.py]\n    B(ATP.pdbqt)--oC\n    E(Parámetros de búsqueda)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <p>En este paso se crea el archivo de parámetros para el ejecutable <code>autodock4</code>: el archivo <code>.gpf</code> (<em>grid parameter file</em>), los cuales utilizará para llevar a cabo el acoplamiento entre el ligando y el receptor, incluyéndo aquellos que usará para el algoritmo de búsqueda. Especifica además los archivos .map a utilizar para facilitar el cálculo de la función de puntaje.</p>
+<!-- 1. Descarga el archivo [prepare_dpf42.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_dpf42.py). -->
 <ol style="list-style-type: decimal">
-<li>Descarga el archivo <a href="https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_dpf42.py">prepare_dpf42.py</a>.</li>
 <li>Ejecuta el siguiente comando:</li>
 </ol>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># ¿Identificas qué significa cada uno de los parámetros?</span></span>
@@ -804,7 +808,7 @@ Revisa el sigiente vínculo para ver <strong>recomendaciones de los parámetros 
 </li>
 </ul>
 </div>
-<ol start="4" style="list-style-type: decimal">
+<ol start="2" style="list-style-type: decimal">
 <li>Inspecciona el archivo <strong><mark>DPF.dpf</mark></strong>:</li>
 </ol>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>cat DPF.dpf</span></code></pre></div>
@@ -875,15 +879,11 @@ analysis                             # perform a ranked cluster analysis
 </div>
 <div id="análisis-de-los-resultados" class="section level2">
 <h2>Análisis de los Resultados 🎯</h2>
-<ol style="list-style-type: decimal">
-<li>Descarga los siguientes archivos y guárdalos en el directorio de trabajo:
-<ol style="list-style-type: lower-alpha">
-<li><a href="https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/pdbqt_to_pdb.py">pdbqt_to_pdb.py</a></li>
-<li><a href="https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/write_lowest_energy_ligand.py">write_lowest_energy_ligand.py</a></li>
-<li><a href="https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/write_largest_cluster_ligand.py">write_largest_cluster_ligand.py</a></li>
-<li><a href="https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/summarize_docking.py">summarize_docking.py</a></li>
-</ol></li>
-</ol>
+<!-- 1. Descarga los siguientes archivos y guárdalos en el directorio de trabajo: 
+   a. [pdbqt_to_pdb.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/pdbqt_to_pdb.py)
+   b. [write_lowest_energy_ligand.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/write_lowest_energy_ligand.py)
+   c. [write_largest_cluster_ligand.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/write_largest_cluster_ligand.py)
+   d. [summarize_docking.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/summarize_docking.py) -->
 <div id="análisis-del-archivo-dlg.dlg" class="section level3">
 <h3>Análisis del archivo DLG.dlg</h3>
 <ol style="list-style-type: decimal">
