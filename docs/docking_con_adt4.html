@@ -515,8 +515,8 @@ GASTEIGER
 <pre><code>export PATH=&quot;/home/ssb/miniconda3/envs/ad4/MGLToolsPckgs/AutoDockTools/Utilities24/:&quot;$PATH</code></pre>
 <div id="preparación-del-ligando" class="section level4">
 <h4>Preparación del ligando</h4>
-<div id="htmlwidget-1c9cf15c4753395b948f" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1c9cf15c4753395b948f">{"x":{"diagram":"\ngraph LR\n    A(ATP.mol2)-->|prepare_ligand4.py| B(ATP.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b1bb1197b8cbd6ba53a1" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b1bb1197b8cbd6ba53a1">{"x":{"diagram":"\ngraph LR\n    A(ATP.mol2)-->|prepare_ligand4.py| B(ATP.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <p>Esta fase consiste en utilizar las coordenadas del archivo ATP.mol2 para generar un archivo <a href="http://autodock.scripps.edu/faqs-help/faq/what-is-the-format-of-a-pdbqt-file/">PDBQT</a> al se le incluirá la siguiente información:</p>
 <ul>
 <li><strong><mark>Q:</mark></strong> Cargas parciales de <a href="http://expertcomputationalchemistry.blogspot.com/2016/08/the-difference-between-kollman-charges.html?m=1">Gasteiger</a>.</li>
@@ -561,7 +561,7 @@ d[&#39;ATP&#39;] = {&#39;atom_types&#39;: [&#39;A&#39;, &#39;C&#39;, &#39;HD&#39
 <ul>
 <li>¿Qué tipos de átomo contiene la molécula de ATP?</li>
 <li>¿Cuántos enlaces rotables tiene?</li>
-<li>¿Hay algún átomo que no posee carga parcial?</li>
+<li>¿Hay algún átomo que no posea carga parcial?</li>
 </ul>
 </blockquote>
 <ol start="5" style="list-style-type: decimal">
@@ -570,8 +570,8 @@ d[&#39;ATP&#39;] = {&#39;atom_types&#39;: [&#39;A&#39;, &#39;C&#39;, &#39;HD&#39
 </div>
 <div id="preparación-del-receptor-en-formato-pdbqt" class="section level4">
 <h4>Preparación del receptor en formato PDBQT</h4>
-<div id="htmlwidget-bda385108f9c1bc7298e" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bda385108f9c1bc7298e">{"x":{"diagram":"\ngraph LR\n    A(prot.pdb)-->|prepare_receptor4.py| B(prot.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-aca460724c70977a5531" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-aca460724c70977a5531">{"x":{"diagram":"\ngraph LR\n    A(prot.pdb)-->|prepare_receptor4.py| B(prot.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li><strong>Descargar</strong> el archivo <a href="https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_receptor4.py">prepare_receptor4.py</a> y guárdalo en la carpeta de trabajo.</li>
 <li>Ejecuta lo siguiente:</li>
@@ -583,16 +583,18 @@ d[&#39;ATP&#39;] = {&#39;atom_types&#39;: [&#39;A&#39;, &#39;C&#39;, &#39;HD&#39
 <span id="numCode-5"><a href="#numCode-5"></a>    <span class="op">-</span>v</span></code></pre></div>
 <blockquote>
 <ul>
-<li>¿Qué <strong>tipo de cargas parciales</strong> fueron asignadas a la proteína? ¿<em>Gasteiger</em> o <em>Kollmann</em>?</li>
+<li>¿Qué <strong>tipo de cargas parciales</strong> fueron asignadas a la proteína? ¿<em>Gasteiger</em> o <em>Kollmann</em>?
+<ul>
+<li>Revisa los parámetros que requiere el script <code>prepare_receptor4.py</code> ➡︎ <a href="http://autodock.scripps.edu/faqs-help/how-to/how-to-prepare-a-receptor-file-for-autodock4">Link</a></li>
+</ul></li>
+<li>¿Por qué una y no otra?
+<ul>
+<li>Compara los scripts <code>prepare_receptor.py</code> y <code>prepare_receptor4.py</code> (usado aquí).</li>
+<li>Revisa la discusión entre el autor de Autodock y un usuario en este <a href="http://mgldev.scripps.edu/pipermail/autodock/2007-December/003235.html">link</a>.</li>
+<li>También la <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/jcc.21256">publicación correspondiene a Autodock4</a>.</li>
+</ul></li>
 </ul>
 </blockquote>
-<pre><code>&gt; Revisa los parámetros que requiere el script ´prepare_receptor4.py´ ➡︎ [Link](http://autodock.scripps.edu/faqs-help/how-to/how-to-prepare-a-receptor-file-for-autodock4)</code></pre>
-<blockquote>
-<p>¿Por qué una y no otra?</p>
-</blockquote>
-<pre><code>&gt; Compara los scripts ´prepare_receptor.py´ y ´prepare_receptor4.py´ (usado aquí).
-&gt; Revisa la discusión entre el autor de Autodock y un usuario en este [link](http://mgldev.scripps.edu/pipermail/autodock/2007-December/003235.html).
-&gt; También la [publicación correspondiene a Autodock4](https://onlinelibrary.wiley.com/doi/full/10.1002/jcc.21256).</code></pre>
 <ol style="list-style-type: decimal">
 <li>Inspecciona el archivo <strong><mark>prot.pdbqt</mark></strong> mediante un editor de texto, verifica que las cargas parciales y los tipos de átomos hayan sido añadidos.</li>
 </ol>
@@ -654,8 +656,8 @@ d[&#39;ATP&#39;] = {&#39;atom_types&#39;: [&#39;A&#39;, &#39;C&#39;, &#39;HD&#39
 </div>
 <div id="crear-el-archivo-gpf" class="section level5">
 <h5>Crear el archivo GPF</h5>
-<div id="htmlwidget-a5ff8c049514f5aa5899" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a5ff8c049514f5aa5899">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_gpf4.py]\n    B(ATP.pdbqt)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7d51a56e1a0dd1a8e563" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7d51a56e1a0dd1a8e563">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_gpf4.py]\n    B(ATP.pdbqt)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li><strong>Descargar</strong> el archivo <a href="https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_gpf4.py">prepare_gpf4.py</a>.</li>
 <li>Ten a la mano la siguiente información necesaria para el siguiente paso:
@@ -717,8 +719,8 @@ dielectric -0.1465                   # &lt;0, AD4 distance-dep.diel;&gt;0, const
 </div>
 <div id="ejecutar-autogrid" class="section level5">
 <h5>Ejecutar Autogrid</h5>
-<div id="htmlwidget-3f432a7623b30ef97e96" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3f432a7623b30ef97e96">{"x":{"diagram":"\ngraph LR\n    A(GPF.gpf)-->C[autogrid4]\n    C-->D(GLG.glg)\n    C-->F(*.map)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-da33ef9bba7c87ad71b3" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-da33ef9bba7c87ad71b3">{"x":{"diagram":"\ngraph LR\n    A(GPF.gpf)-->C[autogrid4]\n    C-->D(GLG.glg)\n    C-->F(*.map)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Ejecuta el siguiente comando:</li>
 </ol>
@@ -759,8 +761,8 @@ dielectric -0.1465                   # &lt;0, AD4 distance-dep.diel;&gt;0, const
 <h3>Ejecución de Autodock4.2</h3>
 <div id="archivo-de-parámetros-de-autodock-dpf" class="section level4">
 <h4>Archivo de parámetros de Autodock (DPF)</h4>
-<div id="htmlwidget-27b44c55192354ae11f6" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-27b44c55192354ae11f6">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_dpf42.py]\n    B(ATP.pdbqt)--oC\n    E(Parámetros de búsqueda)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-551e91194fef747f70e0" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-551e91194fef747f70e0">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_dpf42.py]\n    B(ATP.pdbqt)--oC\n    E(Parámetros de búsqueda)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <p>En este paso se crea el archivo de parámetros para el ejecutable <code>autodock4</code>: el archivo <code>.gpf</code> (<em>grid parameter file</em>), los cuales utilizará para llevar a cabo el acoplamiento entre el ligando y el receptor, incluyéndo aquellos que usará para el algoritmo de búsqueda. Especifica además los archivos .map a utilizar para facilitar el cálculo de la función de puntaje.</p>
 <ol style="list-style-type: decimal">
 <li>Descarga el archivo <a href="https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_dpf42.py">prepare_dpf42.py</a>.</li>

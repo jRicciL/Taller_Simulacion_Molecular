@@ -204,7 +204,7 @@ d['ATP'] = {'atom_types': ['A', 'C', 'HD', 'N', 'NA', 'OA', 'P' ],
 ```
 > - ¿Qué tipos de átomo contiene la molécula de ATP?
 > - ¿Cuántos enlaces rotables tiene?
-> - ¿Hay algún átomo que no posee carga parcial?
+> - ¿Hay algún átomo que no posea carga parcial?
 
 5. Inspecciona el archivo **<mark>ATP.pdbqt</mark>** mediante un editor de texto. 
 
@@ -230,11 +230,11 @@ prepare_receptor4.py \
 ```
 
 > - ¿Qué **tipo de cargas parciales** fueron asignadas a la proteína? ¿*Gasteiger* o *Kollmann*?
-    > Revisa los parámetros que requiere el script ´prepare_receptor4.py´ ➡︎ [Link](http://autodock.scripps.edu/faqs-help/how-to/how-to-prepare-a-receptor-file-for-autodock4)
-> ¿Por qué una y no otra?
-    > Compara los scripts ´prepare_receptor.py´ y ´prepare_receptor4.py´ (usado aquí).
-    > Revisa la discusión entre el autor de Autodock y un usuario en este [link](http://mgldev.scripps.edu/pipermail/autodock/2007-December/003235.html).
-    > También la [publicación correspondiene a Autodock4](https://onlinelibrary.wiley.com/doi/full/10.1002/jcc.21256).
+>   - Revisa los parámetros que requiere el script `prepare_receptor4.py` ➡︎ [Link](http://autodock.scripps.edu/faqs-help/how-to/how-to-prepare-a-receptor-file-for-autodock4)
+> - ¿Por qué una y no otra?
+>   - Compara los scripts `prepare_receptor.py` y `prepare_receptor4.py` (usado aquí).
+>   - Revisa la discusión entre el autor de Autodock y un usuario en este [link](http://mgldev.scripps.edu/pipermail/autodock/2007-December/003235.html).
+>   - También la [publicación correspondiene a Autodock4](https://onlinelibrary.wiley.com/doi/full/10.1002/jcc.21256).
 
 
 1. Inspecciona el archivo **<mark>prot.pdbqt</mark>** mediante un editor de texto, verifica que las cargas parciales y los tipos de átomos hayan sido añadidos.
