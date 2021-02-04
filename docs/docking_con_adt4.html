@@ -447,6 +447,8 @@ $(document).ready(function () {
 </div>
 <pre><code>📂 wd_dk
 │  📜 prot_unprep.pdb
+│  📜 pqr_file.pqr
+│  📜 pqr_file.log
 │  🗒 prot.pdb</code></pre>
 <hr />
 </div>
@@ -454,6 +456,8 @@ $(document).ready(function () {
 <div id="obtención-de-la-molécula-ligante" class="section level3">
 <h3>Obtención de la Molécula Ligante</h3>
 <p>Existen múltiples bases de datos para poder descargar librerías de moléculas, para efectos del taller recurriremos a la base de datos <strong><a href="https://pubchem.ncbi.nlm.nih.gov/">PubChem</a></strong> para descargar la “estructura” de la molécula de ATP, que usaremos como ligando.</p>
+<div id="htmlwidget-436685bec241a8782772" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-436685bec241a8782772">{"x":{"diagram":"\ngraph LR\n    A(ATP - SMILES)-->|obabel| B(ATP.mol2 - 3D info)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Da click en el siguiente link para acceder a Pubchem: <a href="https://pubchem.ncbi.nlm.nih.gov/compound/Adenosine-5_-triphosphate">página ATP Puchem</a>.</li>
 <li>En la sección <em>2.1.4 Canonical Smiles</em> verás la siguiente cadena de texto que corresponde a la representación de la molécula en formato <a href="https://es.wikipedia.org/wiki/SMILES">SMILES</a>:</li>
@@ -495,10 +499,36 @@ GASTEIGER
 
 </div>
 <pre><code>📂 wd_dk
-│  📜 prot_unprep.pdb
+│  📜 ...
 │  📜 smiles_atp.smi
 │  🗒 prot.pdb
 │  🗒 ATP.mol2</code></pre>
+<div class="alert alert-dismissible alert-warning">
+<h4 class="alert-heading">
+Bases de datos para docking:
+</h4>
+Consulta aquí otras bases de datos útiles para encontrar moléculas para tus ensayos de docking:
+<ul>
+<li>
+<a href="https://zinc15.docking.org/">ZINC15</a>
+</li>
+<li>
+<a href="https://zinc20.docking.org/substances/home/">ZINC20</a>
+</li>
+<li>
+The <a href="https://www.bindingdb.org/bind/index.jsp">BindingDatabase</a>
+</li>
+<li>
+<a href="http://www.pdbbind.org.cn/">PDBbind</a>
+</li>
+<li>
+<a href="https://www.ebi.ac.uk/pdbe/pdbe-kb/protein?">PDBe-KB</a>
+</li>
+<li>
+<a href="https://www.difacquim.com/d-databases/">D-Databases</a>
+</li>
+</ul>
+</div>
 <hr />
 </div>
 </div>
@@ -520,8 +550,8 @@ GASTEIGER
 </div>
 <div id="preparación-del-ligando" class="section level4">
 <h4>Preparación del ligando</h4>
-<div id="htmlwidget-9ed3317ce160ff9ebd2c" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9ed3317ce160ff9ebd2c">{"x":{"diagram":"\ngraph LR\n    A(ATP.mol2)-->|prepare_ligand4.py| B(ATP.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e61c3119fac1c19977f3" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e61c3119fac1c19977f3">{"x":{"diagram":"\ngraph LR\n    A(ATP.mol2)-->|prepare_ligand4.py| B(ATP.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <p>Esta fase consiste en utilizar las coordenadas del archivo ATP.mol2 para generar un archivo <a href="http://autodock.scripps.edu/faqs-help/faq/what-is-the-format-of-a-pdbqt-file/">PDBQT</a> al se le incluirá la siguiente información:</p>
 <ul>
 <li><strong><mark>Q:</mark></strong> Cargas parciales de <a href="http://expertcomputationalchemistry.blogspot.com/2016/08/the-difference-between-kollman-charges.html?m=1">Gasteiger</a>.</li>
@@ -546,10 +576,10 @@ Más sobre los <strong>parámetros del campo de fuerza empleado por AD4</strong>
 </ol>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Genera el archivo PDBQT del ligando</span></span>
 <span id="numCode-2"><a href="#numCode-2"></a>prepare_ligand4.py <span class="op">-</span>l ATP.mol2 <span class="op">-</span>v <span class="op">-</span>o ATP.pdbqt \</span>
-<span id="numCode-3"><a href="#numCode-3"></a>    <span class="op">-</span>d ligand_dict.py <span class="op">-</span>U <span class="st">&#39;nphs&#39;</span> <span class="op">-</span>C</span></code></pre></div>
+<span id="numCode-3"><a href="#numCode-3"></a>    <span class="op">-</span>d ligand_dict.py <span class="op">-</span>U <span class="st">&#39;nphs_lps&#39;</span> <span class="op">-</span>C</span></code></pre></div>
 <blockquote>
 <p>Puedes ejecutar simplemente <code>prepare_ligand4.py</code> o abrir el archivo <strong><mark>prepare_ligand4.py</mark></strong> con un editor de texto para saber qué indica cada parámetro usado.<br />
-- Pon particular atención en los parámetros <code>-U 'nphs'</code> y <code>-C</code> usados.<br />
+- Pon particular atención en los parámetros <code>-U 'nphs_lps'</code> y <code>-C</code> usados.<br />
 - ¿Qué relación hay entre el parámetro <code>-U 'nphs'</code> y el modelo <em><a href="http://autodock.scripps.edu/faqs-help/faq/should-i-always-use-polar-hydrogens/?searchterm=united%20atom">Unit-Atom</a></em> de Autodock?</p>
 </blockquote>
 <ol start="4" style="list-style-type: decimal">
@@ -574,8 +604,8 @@ d[&#39;ATP&#39;] = {&#39;atom_types&#39;: [&#39;A&#39;, &#39;C&#39;, &#39;HD&#39
 </div>
 <div id="preparación-del-receptor-en-formato-pdbqt" class="section level4">
 <h4>Preparación del receptor en formato PDBQT</h4>
-<div id="htmlwidget-87c9164cf2ba92df7f63" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-87c9164cf2ba92df7f63">{"x":{"diagram":"\ngraph LR\n    A(prot.pdb)-->|prepare_receptor4.py| B(prot.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ea7f72284fbf96f9d196" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ea7f72284fbf96f9d196">{"x":{"diagram":"\ngraph LR\n    A(prot.pdb)-->|prepare_receptor4.py| B(prot.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <!-- 1. **Descargar** el archivo [prepare_receptor4.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_receptor4.py) y guárdalo en la carpeta de trabajo. -->
 <ol style="list-style-type: decimal">
 <li>Ejecuta lo siguiente:</li>
@@ -591,7 +621,7 @@ d[&#39;ATP&#39;] = {&#39;atom_types&#39;: [&#39;A&#39;, &#39;C&#39;, &#39;HD&#39
 <ul>
 <li>Revisa los parámetros que requiere el script <code>prepare_receptor4.py</code> ➡︎ <a href="http://autodock.scripps.edu/faqs-help/how-to/how-to-prepare-a-receptor-file-for-autodock4">Link</a></li>
 </ul></li>
-<li>¿Por qué una y no otra?
+<li>¿Por qué usar una carga u otra?
 <ul>
 <li>Compara los scripts <code>prepare_receptor.py</code> y <code>prepare_receptor4.py</code> (usado aquí).</li>
 <li>Revisa la discusión entre el autor de Autodock y un usuario en este <a href="http://mgldev.scripps.edu/pipermail/autodock/2007-December/003235.html">link</a>.</li>
@@ -654,14 +684,14 @@ d[&#39;ATP&#39;] = {&#39;atom_types&#39;: [&#39;A&#39;, &#39;C&#39;, &#39;HD&#39
 <p>La imagen superior muestra un ejemplo de los parámetros elegidos.</p>
 </blockquote>
 <ol start="6" style="list-style-type: decimal">
-<li>Deja el parámetro de <em>Spacing (angstrom)</em> con su valor por defecto: <span class="math inline">\(0.375\)</span>.</li>
+<li>Deja el parámetro de <em>Spacing (angstrom)</em> con su valor por defecto: 0.375 Å ≈ <a href="https://en.wikipedia.org/wiki/Carbon%E2%80%93carbon_bond#:~:text=A%20typical%20carbon%E2%80%93carbon%20single,pm%20and%20120%20pm%2C%20respectively.">1/4 de la longitud del enlace C-C</a>.</li>
 <li>🚨 <strong>Toma nota de los parámetros</strong>, es decir, de las dimensiones en <span class="math inline">\(x, y, z\)</span> de la caja, así como de la posición <span class="math inline">\(x,y,z\)</span> de la misma.</li>
 </ol>
 </div>
 <div id="crear-el-archivo-gpf" class="section level5">
 <h5>Crear el archivo GPF</h5>
-<div id="htmlwidget-594f2b2c5a5044d1ba35" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-594f2b2c5a5044d1ba35">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_gpf4.py]\n    B(ATP.pdbqt)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d45d45cf29260411a907" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d45d45cf29260411a907">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_gpf4.py]\n    B(ATP.pdbqt)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <!-- 1. **Descargar** el archivo [prepare_gpf4.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_gpf4.py). -->
 <ol style="list-style-type: decimal">
 <li>Ten a la mano la siguiente información necesaria para el siguiente paso:
@@ -723,8 +753,8 @@ dielectric -0.1465                   # &lt;0, AD4 distance-dep.diel;&gt;0, const
 </div>
 <div id="ejecutar-autogrid" class="section level5">
 <h5>Ejecutar Autogrid</h5>
-<div id="htmlwidget-4fb47c7a07371be06975" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4fb47c7a07371be06975">{"x":{"diagram":"\ngraph LR\n    A(GPF.gpf)-->C[autogrid4]\n    C-->D(GLG.glg)\n    C-->F(*.map)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-bbca946ca08db198b9ad" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bbca946ca08db198b9ad">{"x":{"diagram":"\ngraph LR\n    A(GPF.gpf)-->C[autogrid4]\n    C-->D(GLG.glg)\n    C-->F(*.map)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Ejecuta el siguiente comando:</li>
 </ol>
@@ -765,8 +795,8 @@ dielectric -0.1465                   # &lt;0, AD4 distance-dep.diel;&gt;0, const
 <h3>Ejecución de Autodock4.2</h3>
 <div id="archivo-de-parámetros-de-autodock-dpf" class="section level4">
 <h4>Archivo de parámetros de Autodock (DPF)</h4>
-<div id="htmlwidget-b984ef33e6b27629d9e7" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b984ef33e6b27629d9e7">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_dpf42.py]\n    B(ATP.pdbqt)--oC\n    E(Parámetros de búsqueda)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-312a14f2a9a15efbc90b" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-312a14f2a9a15efbc90b">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_dpf42.py]\n    B(ATP.pdbqt)--oC\n    E(Parámetros de búsqueda)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <p>En este paso se crea el archivo de parámetros para el ejecutable <code>autodock4</code>: el archivo <code>.gpf</code> (<em>grid parameter file</em>), los cuales utilizará para llevar a cabo el acoplamiento entre el ligando y el receptor, incluyéndo aquellos que usará para el algoritmo de búsqueda. Especifica además los archivos .map a utilizar para facilitar el cálculo de la función de puntaje.</p>
 <!-- 1. Descarga el archivo [prepare_dpf42.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_dpf42.py). -->
 <ol style="list-style-type: decimal">
@@ -777,7 +807,7 @@ dielectric -0.1465                   # &lt;0, AD4 distance-dep.diel;&gt;0, const
 <span id="numCode-3"><a href="#numCode-3"></a>    <span class="op">-</span>l ATP.pdbqt \</span>
 <span id="numCode-4"><a href="#numCode-4"></a>    <span class="op">-</span>r prot.pdbqt \</span>
 <span id="numCode-5"><a href="#numCode-5"></a>    <span class="op">-</span>o DPF.dpf \</span>
-<span id="numCode-6"><a href="#numCode-6"></a>    <span class="op">-</span>p ga_num_evals=<span class="st">&#39;100000&#39;</span> \</span>
+<span id="numCode-6"><a href="#numCode-6"></a>    <span class="op">-</span>p ga_num_evals=<span class="st">&#39;1000000&#39;</span> \</span>
 <span id="numCode-7"><a href="#numCode-7"></a>    <span class="op">-</span>p ga_run=<span class="st">&#39;3&#39;</span> \</span>
 <span id="numCode-8"><a href="#numCode-8"></a>    <span class="op">-</span>p ga_num_generations=<span class="st">&#39;27000&#39;</span> \</span>
 <span id="numCode-9"><a href="#numCode-9"></a>    <span class="op">-</span>p ga_pop_size=<span class="st">&#39;150&#39;</span> \</span>
@@ -827,22 +857,22 @@ map prot.P.map                       # atom-specific affinity map
 map prot.HD.map                      # atom-specific affinity map
 elecmap prot.e.map                   # electrostatics map
 desolvmap prot.d.map                 # desolvation map
-move ATP_u.pdbqt                     # small molecule
-about 3.447 4.371 -0.356             # small molecule center
-tran0 random                         # initial coordinates/A or random
-quaternion0 random                   # initial orientation
-dihe0 random                         # initial dihedrals (relative) or random
+move ATP.pdbqt                       # small molecule
+about 3.852 3.682 -1.331             # small molecule center
+tran0 3.852 3.682 -1.331             # initial coordinates/A or random
+quaternion0 0. 0. 0. 1.              # initial orientation
+dihe0 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.  # initial dihedrals (relative) or random
 torsdof 15                           # torsional degrees of freedom
 rmstol 2.0                           # cluster_tolerance/A
 extnrg 1000.0                        # external grid energy
 e0max 0.0 10000                      # max initial energy; max number of retries
 ga_pop_size 150                      # number of individuals in population
-ga_num_evals 100000                  # maximum number of energy evaluations
+ga_num_evals 1000000                 # maximum number of energy evaluations
 ga_num_generations 27000             # maximum number of generations
 ga_elitism 1                         # number of top individuals to survive to next generation
 ga_mutation_rate 0.02                # rate of gene mutation
 ga_crossover_rate 0.8                # rate of crossover
-ga_window_size 10                    # 
+ga_window_size 10                    #
 ga_cauchy_alpha 0.0                  # Alpha parameter of Cauchy distribution
 ga_cauchy_beta 1.0                   # Beta parameter Cauchy distribution
 set_ga                               # set the above parameters for GA or LGA
@@ -855,8 +885,7 @@ ls_search_freq 0.06                  # probability of performing local search on
 set_psw1                             # set the above pseudo-Solis &amp; Wets parameters
 unbound_model bound                  # state of unbound ligand
 ga_run 3                             # do this many hybrid GA-LS runs
-analysis                             # perform a ranked cluster analysis
-</code></pre>
+analysis                             # perform a ranked cluster analysis</code></pre>
 <hr />
 </div>
 <div id="ejecución-del-docking" class="section level4">
@@ -922,6 +951,9 @@ DOCKED: MODEL        2
 ....
 DOCKED: MODEL        3
 ....
+....
+    CLUSTERING HISTOGRAM
+    ____________________
 ....</code></pre>
 <blockquote>
 <ul>
@@ -948,11 +980,30 @@ DOCKED: MODEL        3
 <span id="numCode-4"><a href="#numCode-4"></a>    <span class="op">-</span>b <span class="op">-</span>e <span class="op">-</span>k \</span>
 <span id="numCode-5"><a href="#numCode-5"></a>    <span class="op">-</span>o ATP_dock_results.txt</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
-<li>Inspecciona los resultados:</li>
+<li>Inspecciona los <strong>resultados</strong>:</li>
 </ol>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>cat ATP_dock_results.txt</span></code></pre></div>
-<pre><code>lowestEne.. #runs  #cl #LEC LE rmsd_LE #hb #ESTAT #HB #VDW #DSOLV #ats #tors #h_ats #lig_eff
-./DLG,       3,  3,  1, -2.8100, 101.8166, 3, -0.0886, -1.7324, -9.8023,  4.5065,  39,15, 8, -0.0906</code></pre>
+<pre><code>lowestEne.., #runs, #cl, #LEC, LE, rmsd_LE, #hb, #ESTAT, #HB, #VDW, #DSOLV, #ats, #tors, #h_ats, #lig_eff
+./DLG,       3,     3,    1,  -4.26, 101.1168, 5, -0.3993, -2.6203, -9.5273,  4.1757  39, 15, 8, -0.1374</code></pre>
+<details>
+<p><summary><b>🚨 🚨 🚨 ¿Qué significa cada una de las columnas? 🚨 🚨 🚨</b></summary></p>
+<pre><code>1. Nombre
+2. # runs (número de corridas de docking)
+3. # cluster al que pertenece (según el criterio de RMSD entre poses)
+4. # ranking de energía del cluster
+5. Lowest Energy (Energía libre de unión)
+6. RMSD de la pose con respecto a la conformación inicial de la molécula
+7. # de enlaces de hidrógeno
+8. E elect
+9. E de HB
+10. E de vDW
+11. E de Desolv 
+12. # átoms
+13. # enlaces rotables
+14. # de Hs
+15. Eficiencia del ligando (LE/#ats pesados)</code></pre>
+</details>
+<hr />
 </div>
 <div id="extrae-la-pose-con-la-mejor-afinidad-menor-energía" class="section level3">
 <h3>Extrae la pose con la mejor afinidad (menor energía)</h3>
@@ -979,12 +1030,22 @@ DOCKED: MODEL        3
 <ol style="list-style-type: decimal">
 <li>Tutorial usando la interfaz de <a href="http://autodock.scripps.edu/faqs-help/tutorial/using-autodock-4-with-autodocktools/2012_ADTtut.pdf">AutoDockTools</a></li>
 <li>Vieo Tutorial:<br />
-&gt; <a href="https://www.youtube.com/watch?v=2ewpDYW081Y" title="Docking with ADT"><img src="http://img.youtube.com/vi/2ewpDYW081Y/0.jpg" alt="IMAGE ALT TEXT" /></a></li>
+&gt; <a href="https://www.youtube.com/watch?v=0bj7tImWXSc" title="Docking desde cero. Tutorial AutodockTools"><img src="http://img.youtube.com/vi/0bj7tImWXSc/0.jpg" alt="IMAGE ALT TEXT" /></a><br />
+&gt; Muy buen tutorial en español usando la interfaz gráfica.</li>
 </ol></li>
 <li>Explora los resultados usando Chimera
 <ol style="list-style-type: decimal">
 <li><a href="https://www.cgl.ucsf.edu/chimera/docs/ContributedSoftware/viewdock/framevd.html">Herramienta de análisis de Chimera</a>.</li>
 </ol></li>
+</ol>
+</div>
+<div id="referencias" class="section level3">
+<h3>Referencias</h3>
+<ol style="list-style-type: decimal">
+<li>Morris, G. M. et al. (1996). [..] AutoDock 2.4. Journal of Computer-Aided Molecular Design.</li>
+<li>Morris, et al. (1998) Automated Docking Using a Lamarckian Genetic Algorithm and an Empirical Binding Free Energy Function. Journal of Computational Chemistry, Vol. 19, No. 14, 1639]1662</li>
+<li>Huey, R., Morris, G. M., Olson, A. J. and Goodsell, D. S. (2007), A Semiempirical Free Energy Force Field with Charge-Based Desolvation J. Computational Chemistry, 28: 1145-1152.</li>
+<li>Ashtawy, H.M. &amp; Mahapatra, N.R., 2018. Journal of Bioinformatics and Computational Biology, 16(3).</li>
 </ol>
 </div>
 </div>

@@ -74,6 +74,8 @@ data-style1='cartoon:color=spectrum' >
 ```
 📂 wd_dk
 │  📜 prot_unprep.pdb
+│  📜 pqr_file.pqr
+│  📜 pqr_file.log
 │  🗒 prot.pdb
 ```
 
@@ -81,6 +83,14 @@ data-style1='cartoon:color=spectrum' >
 
 ### Obtención de la Molécula Ligante
 Existen múltiples bases de datos para poder descargar librerías de moléculas, para efectos del taller recurriremos a la base de datos **[PubChem](https://pubchem.ncbi.nlm.nih.gov/)** para descargar la "estructura" de la molécula de ATP, que usaremos como ligando.
+
+```{r, echo=FALSE}
+mermaid("
+graph LR
+    A(ATP - SMILES)-->|obabel| B(ATP.mol2 - 3D info)
+    class A, B mermaid_class;
+    ", height = '80%', width = '100%')
+```
 
 1. Da click en el siguiente link para acceder a Pubchem: [página ATP Puchem](https://pubchem.ncbi.nlm.nih.gov/compound/Adenosine-5_-triphosphate).
 2. En la sección *2.1.4 Canonical Smiles* verás la siguiente cadena de texto que corresponde a la representación de la molécula en formato [SMILES](https://es.wikipedia.org/wiki/SMILES):
@@ -131,11 +141,25 @@ data-style1='stick' >
 
 ```
 📂 wd_dk
-│  📜 prot_unprep.pdb
+│  📜 ...
 │  📜 smiles_atp.smi
 │  🗒 prot.pdb
 │  🗒 ATP.mol2
 ```
+
+<div class="alert alert-dismissible alert-warning">
+<h4 class="alert-heading">Bases de datos para docking:</h4>
+Consulta aquí otras bases de datos útiles para encontrar moléculas para tus ensayos de docking:
+<ul>
+<li><a href="https://zinc15.docking.org/">ZINC15</a></li>
+<li><a href="https://zinc20.docking.org/substances/home/">ZINC20</a></li>
+<li>The <a href="https://www.bindingdb.org/bind/index.jsp">BindingDatabase</a></li>
+<li><a href="http://www.pdbbind.org.cn/">PDBbind</a></li>
+<li><a href="https://www.ebi.ac.uk/pdbe/pdbe-kb/protein?">PDBe-KB</a></li>
+<li><a href="https://www.difacquim.com/d-databases/">D-Databases</a></li>
+</ul>
+</div>
+
 
 ***
 
@@ -186,11 +210,11 @@ Esta fase consiste en utilizar las coordenadas del archivo ATP.mol2 para generar
 ```{#numCode .R .numberLines}
 # Genera el archivo PDBQT del ligando
 prepare_ligand4.py -l ATP.mol2 -v -o ATP.pdbqt \
-    -d ligand_dict.py -U 'nphs' -C
+    -d ligand_dict.py -U 'nphs_lps' -C
 ```
 
 > Puedes ejecutar simplemente `prepare_ligand4.py` o abrir el archivo **<mark>prepare_ligand4.py</mark>** con un editor de texto para saber qué indica cada parámetro usado.  
-> - Pon particular atención en los parámetros `-U 'nphs'` y `-C` usados.  
+> - Pon particular atención en los parámetros `-U 'nphs_lps'` y `-C` usados.  
 > - ¿Qué relación hay entre el parámetro `-U 'nphs'` y el modelo *[Unit-Atom](http://autodock.scripps.edu/faqs-help/faq/should-i-always-use-polar-hydrogens/?searchterm=united%20atom)* de Autodock?
 
 4. Inspecciona el archivo de salida llamado **<mark>ligand_dict.py</mark>**, la información que contiene será necesaria más adelante.
@@ -235,7 +259,7 @@ prepare_receptor4.py \
 
 > - ¿Qué **tipo de cargas parciales** fueron asignadas a la proteína? ¿*Gasteiger* o *Kollmann*?
 >   - Revisa los parámetros que requiere el script `prepare_receptor4.py` ➡︎ [Link](http://autodock.scripps.edu/faqs-help/how-to/how-to-prepare-a-receptor-file-for-autodock4)
-> - ¿Por qué una y no otra?
+> - ¿Por qué usar una carga u otra?
 >   - Compara los scripts `prepare_receptor.py` y `prepare_receptor4.py` (usado aquí).
 >   - Revisa la discusión entre el autor de Autodock y un usuario en este [link](http://mgldev.scripps.edu/pipermail/autodock/2007-December/003235.html).
 >   - También la [publicación correspondiene a Autodock4](https://onlinelibrary.wiley.com/doi/full/10.1002/jcc.21256).
@@ -295,7 +319,7 @@ adt prot.pdbqt
 
 > La imagen superior muestra un ejemplo de los parámetros elegidos.
 
-6. Deja el parámetro de *Spacing (angstrom)* con su valor por defecto: $0.375$.
+6. Deja el parámetro de *Spacing (angstrom)* con su valor por defecto: 0.375 Å ≈ [1/4 de la longitud del enlace C-C](https://en.wikipedia.org/wiki/Carbon%E2%80%93carbon_bond#:~:text=A%20typical%20carbon%E2%80%93carbon%20single,pm%20and%20120%20pm%2C%20respectively.).
 7. 🚨 **Toma nota de los parámetros**, es decir, de las dimensiones en $x, y, z$ de la caja, así como de la posición $x,y,z$ de la misma. 
 
 ##### Crear el archivo GPF
@@ -440,7 +464,7 @@ prepare_dpf42.py \
     -l ATP.pdbqt \
     -r prot.pdbqt \
     -o DPF.dpf \
-    -p ga_num_evals='100000' \
+    -p ga_num_evals='1000000' \
     -p ga_run='3' \
     -p ga_num_generations='27000' \
     -p ga_pop_size='150' \
@@ -489,22 +513,22 @@ map prot.P.map                       # atom-specific affinity map
 map prot.HD.map                      # atom-specific affinity map
 elecmap prot.e.map                   # electrostatics map
 desolvmap prot.d.map                 # desolvation map
-move ATP_u.pdbqt                     # small molecule
-about 3.447 4.371 -0.356             # small molecule center
-tran0 random                         # initial coordinates/A or random
-quaternion0 random                   # initial orientation
-dihe0 random                         # initial dihedrals (relative) or random
+move ATP.pdbqt                       # small molecule
+about 3.852 3.682 -1.331             # small molecule center
+tran0 3.852 3.682 -1.331             # initial coordinates/A or random
+quaternion0 0. 0. 0. 1.              # initial orientation
+dihe0 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.  # initial dihedrals (relative) or random
 torsdof 15                           # torsional degrees of freedom
 rmstol 2.0                           # cluster_tolerance/A
 extnrg 1000.0                        # external grid energy
 e0max 0.0 10000                      # max initial energy; max number of retries
 ga_pop_size 150                      # number of individuals in population
-ga_num_evals 100000                  # maximum number of energy evaluations
+ga_num_evals 1000000                 # maximum number of energy evaluations
 ga_num_generations 27000             # maximum number of generations
 ga_elitism 1                         # number of top individuals to survive to next generation
 ga_mutation_rate 0.02                # rate of gene mutation
 ga_crossover_rate 0.8                # rate of crossover
-ga_window_size 10                    # 
+ga_window_size 10                    #
 ga_cauchy_alpha 0.0                  # Alpha parameter of Cauchy distribution
 ga_cauchy_beta 1.0                   # Beta parameter Cauchy distribution
 set_ga                               # set the above parameters for GA or LGA
@@ -518,7 +542,6 @@ set_psw1                             # set the above pseudo-Solis & Wets paramet
 unbound_model bound                  # state of unbound ligand
 ga_run 3                             # do this many hybrid GA-LS runs
 analysis                             # perform a ranked cluster analysis
-
 ```
 
 ***
@@ -591,6 +614,9 @@ DOCKED: MODEL        2
 DOCKED: MODEL        3
 ....
 ....
+	CLUSTERING HISTOGRAM
+	____________________
+....
 ```
 
 > - ¿Qué **información** contiene dicho archivo?
@@ -615,17 +641,39 @@ summarize_results4.py \
     -o ATP_dock_results.txt
 ```
 
-2. Inspecciona los resultados:
+2. Inspecciona los **resultados**:
 
 ```{#numCode .R .numberLines}
 cat ATP_dock_results.txt
 ```
 
 ``` 
-lowestEne.. #runs  #cl #LEC LE rmsd_LE #hb #ESTAT #HB #VDW #DSOLV #ats #tors #h_ats #lig_eff
-./DLG,       3,  3,  1, -2.8100, 101.8166, 3, -0.0886, -1.7324, -9.8023,  4.5065,  39,15, 8, -0.0906
+lowestEne.., #runs, #cl, #LEC, LE, rmsd_LE, #hb, #ESTAT, #HB, #VDW, #DSOLV, #ats, #tors, #h_ats, #lig_eff
+./DLG,       3,     3,    1,  -4.26, 101.1168, 5, -0.3993, -2.6203, -9.5273,  4.1757  39, 15, 8, -0.1374
 ```
 
+<details>
+<summary><b>🚨 🚨 🚨 ¿Qué significa cada una de las columnas? 🚨 🚨 🚨</b></summary>
+```
+1. Nombre
+2. # runs (número de corridas de docking)
+3. # cluster al que pertenece (según el criterio de RMSD entre poses)
+4. # ranking de energía del cluster
+5. Lowest Energy (Energía libre de unión)
+6. RMSD de la pose con respecto a la conformación inicial de la molécula
+7. # de enlaces de hidrógeno
+8. E elect
+9. E de HB
+10. E de vDW
+11. E de Desolv 
+12. # átoms
+13. # enlaces rotables
+14. # de Hs
+15. Eficiencia del ligando (LE/#ats pesados)
+```
+</details>
+
+***
 
 ### Extrae la pose con la mejor afinidad (menor energía)
 
@@ -643,7 +691,6 @@ pdbqt_to_pdb.py \
     -o best_pose_ATP.pdb
 ```
 
-
 ***
 ## Recursos Extras
 
@@ -652,6 +699,14 @@ pdbqt_to_pdb.py \
 1. Explora los resultados usando AutoDockTools:
    1. Tutorial usando la interfaz de [AutoDockTools](http://autodock.scripps.edu/faqs-help/tutorial/using-autodock-4-with-autodocktools/2012_ADTtut.pdf)
    2. Vieo Tutorial:  
-> [![IMAGE ALT TEXT](http://img.youtube.com/vi/2ewpDYW081Y/0.jpg)](https://www.youtube.com/watch?v=2ewpDYW081Y "Docking with ADT")
+> [![IMAGE ALT TEXT](http://img.youtube.com/vi/0bj7tImWXSc/0.jpg)](https://www.youtube.com/watch?v=0bj7tImWXSc "Docking desde cero. Tutorial AutodockTools")  
+> Muy buen tutorial en español usando la interfaz gráfica.
 2. Explora los resultados usando Chimera
    1. [Herramienta de análisis de Chimera](https://www.cgl.ucsf.edu/chimera/docs/ContributedSoftware/viewdock/framevd.html).
+
+### Referencias
+
+1. Morris, G. M. et al. (1996). [..] AutoDock 2.4. Journal of Computer-Aided Molecular Design.
+2. Morris, et al. (1998) Automated Docking Using a Lamarckian Genetic Algorithm and an Empirical Binding Free Energy Function. Journal of Computational Chemistry, Vol. 19, No. 14, 1639]1662
+3. Huey, R., Morris, G. M., Olson, A. J. and Goodsell, D. S. (2007), A Semiempirical Free Energy Force Field with Charge-Based Desolvation J. Computational Chemistry, 28: 1145-1152.
+4. Ashtawy, H.M. & Mahapatra, N.R., 2018. Journal of Bioinformatics and Computational Biology, 16(3).
