@@ -456,8 +456,8 @@ $(document).ready(function () {
 <div id="obtención-de-la-molécula-ligante" class="section level3">
 <h3>Obtención de la Molécula Ligante</h3>
 <p>Existen múltiples bases de datos para poder descargar librerías de moléculas, para efectos del taller recurriremos a la base de datos <strong><a href="https://pubchem.ncbi.nlm.nih.gov/">PubChem</a></strong> para descargar la “estructura” de la molécula de ATP, que usaremos como ligando.</p>
-<div id="htmlwidget-436685bec241a8782772" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-436685bec241a8782772">{"x":{"diagram":"\ngraph LR\n    A(ATP - SMILES)-->|obabel| B(ATP.mol2 - 3D info)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e85e11aebb60a4d9d171" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e85e11aebb60a4d9d171">{"x":{"diagram":"\ngraph LR\n    A(ATP - SMILES)-->|obabel| B(ATP.mol2 - 3D info)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Da click en el siguiente link para acceder a Pubchem: <a href="https://pubchem.ncbi.nlm.nih.gov/compound/Adenosine-5_-triphosphate">página ATP Puchem</a>.</li>
 <li>En la sección <em>2.1.4 Canonical Smiles</em> verás la siguiente cadena de texto que corresponde a la representación de la molécula en formato <a href="https://es.wikipedia.org/wiki/SMILES">SMILES</a>:</li>
@@ -550,8 +550,8 @@ The <a href="https://www.bindingdb.org/bind/index.jsp">BindingDatabase</a>
 </div>
 <div id="preparación-del-ligando" class="section level4">
 <h4>Preparación del ligando</h4>
-<div id="htmlwidget-e61c3119fac1c19977f3" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e61c3119fac1c19977f3">{"x":{"diagram":"\ngraph LR\n    A(ATP.mol2)-->|prepare_ligand4.py| B(ATP.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5c00791be0acaee5c44a" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5c00791be0acaee5c44a">{"x":{"diagram":"\ngraph LR\n    A(ATP.mol2)-->|prepare_ligand4.py| B(ATP.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <p>Esta fase consiste en utilizar las coordenadas del archivo ATP.mol2 para generar un archivo <a href="http://autodock.scripps.edu/faqs-help/faq/what-is-the-format-of-a-pdbqt-file/">PDBQT</a> al se le incluirá la siguiente información:</p>
 <ul>
 <li><strong><mark>Q:</mark></strong> Cargas parciales de <a href="http://expertcomputationalchemistry.blogspot.com/2016/08/the-difference-between-kollman-charges.html?m=1">Gasteiger</a>.</li>
@@ -580,7 +580,7 @@ Más sobre los <strong>parámetros del campo de fuerza empleado por AD4</strong>
 <blockquote>
 <p>Puedes ejecutar simplemente <code>prepare_ligand4.py</code> o abrir el archivo <strong><mark>prepare_ligand4.py</mark></strong> con un editor de texto para saber qué indica cada parámetro usado.<br />
 - Pon particular atención en los parámetros <code>-U 'nphs_lps'</code> y <code>-C</code> usados.<br />
-- ¿Qué relación hay entre el parámetro <code>-U 'nphs'</code> y el modelo <em><a href="http://autodock.scripps.edu/faqs-help/faq/should-i-always-use-polar-hydrogens/?searchterm=united%20atom">Unit-Atom</a></em> de Autodock?</p>
+- ¿Qué relación hay entre el parámetro <code>-U 'nphs'</code> y el modelo <em><a href="http://autodock.scripps.edu/faqs-help/faq/should-i-always-use-polar-hydrogens/?searchterm=united%20atom">United-Atom</a></em> de Autodock?</p>
 </blockquote>
 <ol start="4" style="list-style-type: decimal">
 <li>Inspecciona el archivo de salida llamado <strong><mark>ligand_dict.py</mark></strong>, la información que contiene será necesaria más adelante.</li>
@@ -604,8 +604,8 @@ d[&#39;ATP&#39;] = {&#39;atom_types&#39;: [&#39;A&#39;, &#39;C&#39;, &#39;HD&#39
 </div>
 <div id="preparación-del-receptor-en-formato-pdbqt" class="section level4">
 <h4>Preparación del receptor en formato PDBQT</h4>
-<div id="htmlwidget-ea7f72284fbf96f9d196" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ea7f72284fbf96f9d196">{"x":{"diagram":"\ngraph LR\n    A(prot.pdb)-->|prepare_receptor4.py| B(prot.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4f25a59663758976981c" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4f25a59663758976981c">{"x":{"diagram":"\ngraph LR\n    A(prot.pdb)-->|prepare_receptor4.py| B(prot.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <!-- 1. **Descargar** el archivo [prepare_receptor4.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_receptor4.py) y guárdalo en la carpeta de trabajo. -->
 <ol style="list-style-type: decimal">
 <li>Ejecuta lo siguiente:</li>
@@ -690,8 +690,8 @@ d[&#39;ATP&#39;] = {&#39;atom_types&#39;: [&#39;A&#39;, &#39;C&#39;, &#39;HD&#39
 </div>
 <div id="crear-el-archivo-gpf" class="section level5">
 <h5>Crear el archivo GPF</h5>
-<div id="htmlwidget-d45d45cf29260411a907" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d45d45cf29260411a907">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_gpf4.py]\n    B(ATP.pdbqt)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7da3ee97eb52fd583a07" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7da3ee97eb52fd583a07">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_gpf4.py]\n    B(ATP.pdbqt)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <!-- 1. **Descargar** el archivo [prepare_gpf4.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_gpf4.py). -->
 <ol style="list-style-type: decimal">
 <li>Ten a la mano la siguiente información necesaria para el siguiente paso:
@@ -753,8 +753,8 @@ dielectric -0.1465                   # &lt;0, AD4 distance-dep.diel;&gt;0, const
 </div>
 <div id="ejecutar-autogrid" class="section level5">
 <h5>Ejecutar Autogrid</h5>
-<div id="htmlwidget-bbca946ca08db198b9ad" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bbca946ca08db198b9ad">{"x":{"diagram":"\ngraph LR\n    A(GPF.gpf)-->C[autogrid4]\n    C-->D(GLG.glg)\n    C-->F(*.map)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3fab7835eea43a6fab51" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3fab7835eea43a6fab51">{"x":{"diagram":"\ngraph LR\n    A(GPF.gpf)-->C[autogrid4]\n    C-->D(GLG.glg)\n    C-->F(*.map)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Ejecuta el siguiente comando:</li>
 </ol>
@@ -795,8 +795,8 @@ dielectric -0.1465                   # &lt;0, AD4 distance-dep.diel;&gt;0, const
 <h3>Ejecución de Autodock4.2</h3>
 <div id="archivo-de-parámetros-de-autodock-dpf" class="section level4">
 <h4>Archivo de parámetros de Autodock (DPF)</h4>
-<div id="htmlwidget-312a14f2a9a15efbc90b" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-312a14f2a9a15efbc90b">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_dpf42.py]\n    B(ATP.pdbqt)--oC\n    E(Parámetros de búsqueda)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-10ab9948992947187f45" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-10ab9948992947187f45">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_dpf42.py]\n    B(ATP.pdbqt)--oC\n    E(Parámetros de búsqueda)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <p>En este paso se crea el archivo de parámetros para el ejecutable <code>autodock4</code>: el archivo <code>.gpf</code> (<em>grid parameter file</em>), los cuales utilizará para llevar a cabo el acoplamiento entre el ligando y el receptor, incluyéndo aquellos que usará para el algoritmo de búsqueda. Especifica además los archivos .map a utilizar para facilitar el cálculo de la función de puntaje.</p>
 <!-- 1. Descarga el archivo [prepare_dpf42.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_dpf42.py). -->
 <ol style="list-style-type: decimal">
@@ -961,7 +961,7 @@ DOCKED: MODEL        3
 <li>¿Qué significa el término torsional degrees of freedom? ¿Cómo afecta a la energía final de interacción?</li>
 <li>¿Cuántos <code>MODEL</code> hay y a qué corresponde cada uno?</li>
 <li>¿Cuál es la <strong>energía libre de interacción total</strong> estimada del primer <code>MODEL</code>?</li>
-<li>¿Es el <code>MODEL</code> la pose con la mejor energía?</li>
+<li>¿Es el primer <code>MODEL</code> la pose con la mejor energía?</li>
 <li>¿Cuáles son los <strong>cuatro términos que autodock usa para estimar</strong> dicha energía?</li>
 <li>¿Cuáles es la contribución de las <strong>interacciones electrostáticas</strong>?</li>
 <li>¿Cómo se calcula la <strong>constante de inhibición</strong> <span class="math inline">\(K_i\)</span> y qué valor tuvo?</li>
@@ -1047,6 +1047,9 @@ DOCKED: MODEL        3
 <li>Huey, R., Morris, G. M., Olson, A. J. and Goodsell, D. S. (2007), A Semiempirical Free Energy Force Field with Charge-Based Desolvation J. Computational Chemistry, 28: 1145-1152.</li>
 <li>Ashtawy, H.M. &amp; Mahapatra, N.R., 2018. Journal of Bioinformatics and Computational Biology, 16(3).</li>
 </ol>
+<hr />
+<!-- hitwebcounter Code START -->
+<p><a href="https://www.hitwebcounter.com" target="_blank"> <img src="https://hitwebcounter.com/counter/counter.php?page=7748964&style=0007&nbdigits=5&type=ip&initCount=0" title="Free Counter" Alt="web counter"   border="0" /></a></p>
 </div>
 </div>
 

@@ -215,7 +215,7 @@ prepare_ligand4.py -l ATP.mol2 -v -o ATP.pdbqt \
 
 > Puedes ejecutar simplemente `prepare_ligand4.py` o abrir el archivo **<mark>prepare_ligand4.py</mark>** con un editor de texto para saber qué indica cada parámetro usado.  
 > - Pon particular atención en los parámetros `-U 'nphs_lps'` y `-C` usados.  
-> - ¿Qué relación hay entre el parámetro `-U 'nphs'` y el modelo *[Unit-Atom](http://autodock.scripps.edu/faqs-help/faq/should-i-always-use-polar-hydrogens/?searchterm=united%20atom)* de Autodock?
+> - ¿Qué relación hay entre el parámetro `-U 'nphs'` y el modelo *[United-Atom](http://autodock.scripps.edu/faqs-help/faq/should-i-always-use-polar-hydrogens/?searchterm=united%20atom)* de Autodock?
 
 4. Inspecciona el archivo de salida llamado **<mark>ligand_dict.py</mark>**, la información que contiene será necesaria más adelante.
 
@@ -623,7 +623,7 @@ DOCKED: MODEL        3
 > - ¿Qué significa el término torsional degrees of freedom? ¿Cómo afecta a la energía final de interacción?
 > - ¿Cuántos `MODEL` hay y a qué corresponde cada uno?
 > - ¿Cuál es la **energía libre de interacción total** estimada del primer `MODEL`?
-> - ¿Es el `MODEL` la pose con la mejor energía?
+> - ¿Es el primer `MODEL` la pose con la mejor energía?
 > - ¿Cuáles son los **cuatro términos que autodock usa para estimar** dicha energía?
 > - ¿Cuáles es la contribución de las **interacciones electrostáticas**?
 > - ¿Cómo se calcula la **constante de inhibición** $K_i$ y qué valor tuvo?
@@ -710,3 +710,9 @@ pdbqt_to_pdb.py \
 2. Morris, et al. (1998) Automated Docking Using a Lamarckian Genetic Algorithm and an Empirical Binding Free Energy Function. Journal of Computational Chemistry, Vol. 19, No. 14, 1639]1662
 3. Huey, R., Morris, G. M., Olson, A. J. and Goodsell, D. S. (2007), A Semiempirical Free Energy Force Field with Charge-Based Desolvation J. Computational Chemistry, 28: 1145-1152.
 4. Ashtawy, H.M. & Mahapatra, N.R., 2018. Journal of Bioinformatics and Computational Biology, 16(3).
+
+***
+
+<!-- hitwebcounter Code START -->
+<a href="https://www.hitwebcounter.com" target="_blank">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7748964&style=0007&nbdigits=5&type=ip&initCount=0" title="Free Counter" Alt="web counter"   border="0" /></a>                       
