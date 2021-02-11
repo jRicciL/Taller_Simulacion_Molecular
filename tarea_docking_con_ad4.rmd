@@ -1,0 +1,73 @@
+---
+title: 'Tarea Autodock 4.2'
+---
+***
+
+## Acoplamiento molecular con Autodock4.2
+
+1. **<mark>Descarga</mark> las siguientes moléculas:**
+   
+| Receptor        | Ligando | 
+| :-----------:   | :--------: | 
+| prot_U.pdb      |  lig_U.pdb |
+| prot_W.pdb      |  lig_W.pdb |
+
+1. **Realiza el acoplamiento molecular entre los pares correspondientes, `prot_U` con `lig_U` y `prot_W` con `lig_W`, utiliando Autodock4.2**
+   1. Realiza las conversiones y preparaciones necesarias de ambas moléculas.
+   2. Identifica la que consideres la mejor cavidad de la proteína para el acoplamiento. Usa [CASTp](http://sts.bioe.uic.edu/castp/index.html?4jii) de ser necesario.
+   3. Define tú mismo el espácio de búsqueda estableciendo el tamaño y posición del grid.
+
+2. **Usa los <mark>siguientes parámetros</mark> para llevar a cabo el docking con cada una de las moléculas:**
+   1. Número de evaluaciones del algoritmo genético lamarckiano = `2500000` (2.5 millones)
+   2. Número de corridas de docking = `30`
+   3. Modelo de la función de scoring = `bound`
+
+3. **Utiliza la base de datos [BindigDB](https://www.bindingdb.org/), en la sección *Compound > Chemical Structure* para buscar información sobre los dos ligandos `lig_U` y `lig_W`.**
+   1. Tendrás que utilizar la búsqueda mediante SMILES (¿Cómo conviertes tu archivo `pdb` a `SMILES`?)
+   2. Procura generar el SMILES de la molécula sin los átomos de hidrógeno.
+   3. Pega únicamente el SMILES  en el cuadro de texto que pone `More SMILES or InChI` para realizar la búsqueda por similitud del ligando en la base de datos.
+   4. De la tabla de resultados, identifíca la(s) molécula(s) con mayor similitud (`similarity=1.0`). Identifica aquellas que reporten un valor de `Kd` y anota el mejor `Kd` disponible tanto para `lig_U` como para `lig_W`.
+
+### Reporte de Resultados
+
+1. 🚨 🚨 🚨 **En un <mark>archivo excel</mark> (plantilla), reporta los siguientes campos (cada campo es una fila):** 
+   1. **Sobre la molécula:**
+      1. Nombre del ligando:
+      2. Número de hidrógenos:
+      3. Número de hidrógenos polares:
+      4. Número de átomos:
+      5. Número de enlaces rotables:
+      6. Tipos de átomo del ligando:
+   2. **Sobre los parámetros del acoplamiento molecular:**
+      1. Dimensiones del grid (x, y, z):
+      2. Posición del centro del grid (x, y, z):
+      3. Espaciado del grid (Å):
+   3. **Sobre los resultados del mejor acoplamiento:**
+      1. Energía libre de unión predicha por AD4:
+      2. RMSD de la pose con respecto a la conformación inicial:
+      3. Componente de energía electrostática:
+      4. Componente de E de vdW:
+      5. Componente de E de enlaces de hidrógeno:
+      6. Eficiencia del ligando:
+      7. Número de enlaces de hidrógeno con la proteína:
+      8. Residuos de la proteína con los que forma enlaces de hidrógeno:
+   4. **Sobre la constante de disociación experimental reportada por [BindinbDB](https://www.bindingdb.org/)**
+      1. Kd experimental:
+      2. Constante de inhibición:
+   
+2. **Añade al excel del ligando acoplado a la cavidad de la proteína, mostrando los residuos con los que establece enlaces de hidrógeno.**
+   1. Puedes usar UCSF Chimera o AD4
+   
+3. 🚨 🚨 🚨 **Enviar únicamente el archivo excel por mensaje personal a mi cuenta (Joel Ricci) en el Slack del grupo.**
+4. <mark>Fecha límite de envío es el día jueves 18 de febrero a las 24:00 horas.</mark>
+
+
+***
+## Recursos 
+
+1. Explora los resultados usando AutoDockTools:
+   1. Tutorial usando la interfaz de [AutoDockTools](http://autodock.scripps.edu/faqs-help/tutorial/using-autodock-4-with-autodocktools/2012_ADTtut.pdf)
+   2. [Video Tutorial](https://www.youtube.com/watch?v=0bj7tImWXSc "Docking desde cero. Tutorial AutodockTools")  
+2. Explora los resultados usando Chimera
+   1. [Herramienta de análisis de Chimera](https://www.cgl.ucsf.edu/chimera/docs/ContributedSoftware/viewdock/framevd.html).
+   2. [ViewDock Tutorial](https://www.cgl.ucsf.edu/chimera/current/docs/UsersGuide/tutorials/vdtut.html)
