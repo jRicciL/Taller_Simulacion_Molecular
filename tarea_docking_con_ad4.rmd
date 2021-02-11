@@ -9,8 +9,8 @@ title: 'Tarea Autodock 4.2'
    
 | Receptor        | Ligando | 
 | :-----------:   | :--------: | 
-| prot_U.pdb      |  lig_U.pdb |
-| prot_W.pdb      |  lig_W.pdb |
+| [prot_U.pdb](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/docking/prot_U.pdb)      |  [lig_U.pdb](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/docking/lig_U.pdb) |
+| [prot_W.pdb](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/docking/prot_W.pdb)      |  [lig_W.pdb](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/docking/lig_W.pdb) |
 
 1. **Realiza el acoplamiento molecular entre los pares correspondientes, `prot_U` con `lig_U` y `prot_W` con `lig_W`, utiliando Autodock4.2**
    1. Realiza las conversiones y preparaciones necesarias de ambas moléculas.
@@ -30,7 +30,7 @@ title: 'Tarea Autodock 4.2'
 
 ### Reporte de Resultados
 
-1. 🚨 🚨 🚨 **En un <mark>archivo excel</mark> (plantilla), reporta los siguientes campos (cada campo es una fila):** 
+1. 🚨 🚨 🚨 **En un <mark>archivo excel</mark> ([plantilla](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/Reporte_Docking_AD4_TSSB.xlsx)), reporta los siguientes campos (cada campo es una fila):** 
    1. **Sobre la molécula:**
       1. Nombre del ligando:
       2. Número de hidrógenos:
