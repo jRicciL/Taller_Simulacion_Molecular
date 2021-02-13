@@ -11,14 +11,30 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 ## Obtención y preparación de las moléculas
 
-1. **Descarga** el archivo de la proteína y de las moléculas en formato SMILES:
-   - Proteína [1fin_PROT.pdb](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/1fin_PROT.pdb)
-   - [cdk2_sample.smi](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/cdk2_sample.smi)
+1. Crea tu directorio de trabajo:
+```{#numCode .R .numberLines}
+mkdir wd_vs
+cd wd_vs
+```
 
-2. **Descarga** los siguientes archivos y **guardalos** en tu directorio de trabajo:
+2. **Descarga** el archivo de la proteína y de las moléculas en formato SMILES ⬇️:
+   - Proteína: [1fin_PROT.pdb](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/1fin_PROT.pdb)
+   - Archivo de ligandos (SMILES): [cdk2_sample.smi](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/cdk2_sample.smi)
+
+3. **Descarga** los siguientes archivos y **guardalos** en tu directorio de trabajo ⬇️ (guárdalos para después):
    - [cdk2_activity_mols.csv](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/cdk2_activity_mols.csv)
    - [plot_metrics.py](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/plot_metrics.py)
+   - [analisis_resultados_vina.ipynb](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/analisis_resultados_vina.ipynb)
 
+
+```
+📂 wd_vs
+│  🗒 1fin_PROT.pdb
+│  🗒 cdk2_sample.smi
+│  🗒 cdk2_activity_mols.csv
+│  🗒 plot_metrics.py
+│  🗒 analisis_resultados_vina.ipynb
+```
 
 ### Preparación de los ligandos
 
@@ -62,6 +78,17 @@ mkdir ligs_pdbqt
 obabel -imol2 ligands/* -opdbqt -O ligands_pdbqt/.pdbqt -m
 ```
 
+```
+📂 wd_vs
+|  📜 ...
+│  🗒 1fin_PROT.pdb
+│  🗒 cdk2_sample.smi
+├── 📂 ligands
+│   ├── *.mol2
+├── 📂 ligands_pdbqt
+│   ├── *.pdbqt
+```
+
 ***
 ## Preparación del Receptor
 
@@ -78,9 +105,8 @@ pdb2pqr30 --ff='AMBER' --ffout='AMBER' \
 
 2. Utiliza **Castp** para identificar el mejor candidato al sitio de unión.
 
-> <a href="https://www.virtualbox.org/wiki/Downloads">
-    <img src="./images/castp_vs.png" alt="virtualbox-link" height="200"/>
-    <img src="./images/castp_vs.png" alt="" height="200"/>
+> <a href="http://sts.bioe.uic.edu/castp/index.html?4jii">
+    <img src="./images/castp_vs.png" alt="castp-link" height="200"/>
 </a>
 
 1. Utiliza **UCSF Chimera** para establecer el tamaño y posición del espacio de búsqueda (puedes utilizar **AutodockTools** si lo deseas).
@@ -88,7 +114,7 @@ pdb2pqr30 --ff='AMBER' --ffout='AMBER' \
     2. Ve a *Tools > Surface/Binding Analysis > Autodock Vina*
     3. Utiliza el cursor para dibujar la caja en la posición que consideres adecuada.
 
-> <a href="https://www.virtualbox.org/wiki/Downloads">
+> <a href="https://www.cgl.ucsf.edu/chimera/docs/ContributedSoftware/vina/vina.html">
     <img src="./images/box_chimera.png" alt="box_chimera" height="350"/>
 </a>
 
@@ -116,7 +142,7 @@ obabel -ipdb prot.pdb -xr -opdbqt -O prot.pdbqt
 > `-x` es un [argumento](https://openbabel.org/docs/dev/Command-line_tools/babel.html) que permite especificar parámetros específicos del formato de salida, en este caso de `pdbqt`, usando el parámetro [r](https://openbabel.org/docs/dev/FileFormats/AutoDock_PDQBT_format.html).
 
 <div class="alert alert-dismissible alert-warning">
-<h4 class="alert-heading">Sobre las cargas parciales:</h4>
+<h4 class="alert-heading">🚨 Sobre las cargas parciales: 🚨</h4>
 <ul>
 <li>¿Qué tipo de <strong>cargas parciales</strong> estamos usando tanto para la proteína como para los ligandos?</li>
 <li>¿Por qué no fue necesario utilizar el script <pm>prepare_ligand4.py</code>?</li>
@@ -175,7 +201,24 @@ smina -r prot.pdbqt \
       --size_z 22
 ```
 
-3. Explora los resultados utilizando *UCSF Chimera* o *AutodockTools*.
+3. Explora los resultados utilizando *UCSF Chimera* o *[AutodockTools](http://autodock.scripps.edu/faqs-help/tutorial/using-autodock-4-with-autodocktools/2012_ADTtut.pdf)*.
+
+
+
+
+```
+📂 wd_vs
+|  📜 ...
+│  🗒 1fin_PROT.pdb
+│  🗒 cdk2_sample.smi
+├── 📂 ligands
+│   ├── *.mol2
+├── 📂 ligands_pdbqt
+│   ├── *.pdbqt
+│  🗒 CS1_docked.pdbqt
+│  🗒 CS1_docked.log
+```
+
 
 ***
 ## Múltiples acoplamientos utilizando smina
@@ -227,6 +270,20 @@ dkoes_scoring
 dkoes_scoring_old
 vina
 vinardo
+```
+
+```
+📂 wd_vs
+|  📜 ...
+│  🗒 1fin_PROT.pdb
+│  🗒 cdk2_sample.smi
+├── 📂 ligands
+│   ├── *.mol2
+├── 📂 ligands_pdbqt
+│   ├── *.pdbqt
+├── 📂 docks
+│   ├── *.pdbqt
+│   ├── *.log
 ```
 
 ***
@@ -360,7 +417,11 @@ CS47, -7.9
 ```
 
 ***
-# Análisis de los resultados
+# Análisis de los resultados con jupyter
+
+> <a href="https://jupyter.brynmawr.edu/services/public/dblank/Jupyter%20Notebook%20Users%20Manual.ipynb">
+    <img src="https://empresas.blogthinkbig.com/wp-content/uploads/2019/03/Figura1LogoJupyter.png" alt="jupyter-link" height="200"/>
+</a>
 
 1. Activa el **ambiente** `jup`con conda.
 2. Asegurate de haber **descargado** y **guardado** en tu carpeta de trabajo los archivos:
@@ -397,9 +458,8 @@ vs_res = PlotMetric(y_true = df.actividad,
 vs_res.plot_actives_distribution(add_to_title='')
 ```
 
-> <a href="https://www.virtualbox.org/wiki/Downloads">
-    <img src="./images/smina_rank.png" alt="virtualbox-link" width="300"/>
-</a>
+> <img src="./images/smina_rank.png" alt="virtualbox-link" width="300"/>
+
 
 ***
 #### Curva ROC y Área bajo la curva ROC
@@ -411,9 +471,7 @@ vs_res.plot_roc_auc(title='VS results',
                     show_by_itself = False)
 ```
 
-> <a href="https://www.virtualbox.org/wiki/Downloads">
-    <img src="./images/roc_curve.png" alt="virtualbox-link" height="400"/>
-</a>
+> <img src="./images/roc_curve.png" alt="virtualbox-link" height="400"/>
 
 ***
 #### Distribución de los scores entre Activos e Inactivos
@@ -439,6 +497,12 @@ Mann-Whitney (no paramétrica)
 '> W = 32.0 , p-value=0.4464'
 ```
 
-> <a href="https://www.virtualbox.org/wiki/Downloads">
-    <img src="./images/histogramas.png" alt="virtualbox-link" height="400"/>
-</a>
+> <img src="./images/histogramas.png" alt="virtualbox-link" height="400"/>
+
+
+## Recursos
+
+1. Sobre curvas ROC:
+
+
+> [![IMAGE ALT TEXT](http://img.youtube.com/vi/4jRBRDbJemM/0.jpg)](https://www.youtube.com/watch?v=4jRBRDbJemM&ab_channel=StatQuestwithJoshStarmer "Docking desde cero. Tutorial AutodockTools")  

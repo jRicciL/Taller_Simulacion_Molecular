@@ -698,7 +698,7 @@ pdbqt_to_pdb.py \
 
 1. Explora los resultados usando AutoDockTools:
    1. Tutorial usando la interfaz de [AutoDockTools](http://autodock.scripps.edu/faqs-help/tutorial/using-autodock-4-with-autodocktools/2012_ADTtut.pdf)
-   2. Vieo Tutorial:  
+   2. Video Tutorial:  
 > [![IMAGE ALT TEXT](http://img.youtube.com/vi/0bj7tImWXSc/0.jpg)](https://www.youtube.com/watch?v=0bj7tImWXSc "Docking desde cero. Tutorial AutodockTools")  
 > Muy buen tutorial en español usando la interfaz gráfica.
 2. Explora los resultados usando Chimera
