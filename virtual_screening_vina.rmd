@@ -159,7 +159,8 @@ obabel -ipdb prot.pdb -xr -opdbqt -O prot.pdbqt
 smina --help
 ```
 
-```
+<pre style='background-color: #ddd;'>
+<code >
 Input:
   -r [ --receptor ] arg         rigid part of the receptor (PDBQT)
   --flex arg                    flexible side chains, if any (PDBQT)
@@ -184,7 +185,8 @@ Output (optional):
   --out_flex arg                output file for flexible receptor residues
   --log arg                     optionally, write log file
 ...
-```
+</code>
+</pre>
 
 2. Realiza el **primer acoplamiento** con smina:
 
