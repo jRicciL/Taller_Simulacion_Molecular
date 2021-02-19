@@ -8,16 +8,16 @@ title: 'Tarea: Cribado Virtual con Smina'
 ## Objetivo
 
 - Realizar **<mark>4 ensayos de cribado virtual (CV)</mark>**  utilizando Smina.
-- La librería de moléculas consiste en 50 compuestos del *benchmarking set* [CSAR 2012](http://www.csardock.org/), el cual incluye compuestos **activos** (*true binders - inhibitors*) e **inactivos** de la proteína CDK2 (experimentalmente probados). Más sobre este *challenge* CSAR 2012 [aquí](https://pubs.acs.org/doi/10.1021/ci4000486).
+- La librería de moléculas consiste en 50 compuestos del *benchmarking set* [CSAR 2012](http://www.csardock.org/){target="_blank"}, el cual incluye compuestos **activos** (*true binders - inhibitors*) e **inactivos** de la proteína CDK2 (experimentalmente probados). Más sobre este *challenge* CSAR 2012 [aquí](https://pubs.acs.org/doi/10.1021/ci4000486){target="_blank"}.
 - Se usarán dos conformaciones de la proteína CDK2.
-    - [2vv9](https://www.rcsb.org/structure/2VV9)
-    - [5a14](https://www.rcsb.org/structure/5A14)
+    - [2vv9](https://www.rcsb.org/structure/2VV9){target="_blank"}
+    - [5a14](https://www.rcsb.org/structure/5A14){target="_blank"}
   
 > **Nota**: No descargar los `pdb` de las proteínas de estos links. Más abajo se brindan los links de descarga de los archivos a usar.
 
 - Se usarán dos funciones de *scoring* (a una exhaustividad de **12**):
-  - [vina](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3041641/)
-  - [vinardo](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0155183)
+  - [vina](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3041641/){target="_blank"}
+  - [vinardo](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0155183){target="_blank"}
 - Cada ensayo de CV **combina** una conformación de la proteína y una función de *scoring*. Dándo como resultado **4 ensayos de CV**.
 - Reportar los **resultados** y **comparar** el desempeño del CV en función del *scoring* utilizado y las conformaciones de la proteína.
 
@@ -25,16 +25,16 @@ title: 'Tarea: Cribado Virtual con Smina'
 
 1. **Descarga** el archivo de las proteínas y de las moléculas en formato SMILES ⬇️:
    - Proteínas : 
-     - [2vv9_PROT.pdb](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/2vv9_PROT.pdb)
-     - [5a14_PROT.pdb](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/5a14_PROT.pdb)
-   - Archivo de ligandos (SMILES): [cdk2_mols.smi](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/cdk2_mols.smi)
+     - [2vv9_PROT.pdb](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/2vv9_PROT.pdb){target="_blank"}
+     - [5a14_PROT.pdb](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/5a14_PROT.pdb){target="_blank"}
+   - Archivo de ligandos (SMILES): [cdk2_mols.smi](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/cdk2_mols.smi){target="_blank"}
 
 2. **Descarga** los siguientes archivos y **guardalos** en tu directorio de trabajo ⬇️ (serán necesarios para el análisis final):
-   - [cdk2_activity_mols.csv](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/cdk2_activity_mols.csv)
-   - [plot_metrics.py](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/plot_metrics.py)
-   - [analisis_resultados_vina.ipynb](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/analisis_resultados_vina.ipynb)
+   - [cdk2_activity_mols.csv](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/cdk2_activity_mols.csv){target="_blank"}
+   - [plot_metrics.py](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/plot_metrics.py){target="_blank"}
+   - [analisis_resultados_vina.ipynb](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/analisis_resultados_vina.ipynb){target="_blank"}
 
-3. **Apoyate del siguiente material** para realizar los ensayos de CV: [Acoplamiento molecular con Smina](https://jriccil.github.io/Taller_Simulacion_Molecular/virtual_screening_vina.html)
+3. **Apoyate del siguiente material** para realizar los ensayos de CV: [Acoplamiento molecular con Smina](https://jriccil.github.io/Taller_Simulacion_Molecular/virtual_screening_vina.html){target="_blank"}
 
 4. **Especificaciones** de las corridas de *docking*:
    1. Usar un valor de exhaustividad de `12`.
@@ -86,5 +86,5 @@ title: 'Tarea: Cribado Virtual con Smina'
 
 ## Recursos
 
-- [Curso de bash scripting en Datacamp](https://www.datacamp.com/courses/introduction-to-bash-scripting). **¡Tienes acceso gratis!**
-- [Página de descarga de smina con algunos recursos extra](https://sourceforge.net/projects/smina/files/)
+- [Curso de bash scripting en Datacamp](https://www.datacamp.com/courses/introduction-to-bash-scripting){target="_blank"}. **¡Tienes acceso a todo el contenido!**
+- [Página de descarga de smina con algunos recursos extra](https://sourceforge.net/projects/smina/files/){target="_blank"}
