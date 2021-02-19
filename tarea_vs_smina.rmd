@@ -1,0 +1,90 @@
+---
+title: 'Tarea: Cribado Virtual con Smina'
+---
+***
+
+# Tarea 2: Cribado Virtual con Smina
+
+## Objetivo
+
+- Realizar **<mark>4 ensayos de cribado virtual (CV)</mark>**  utilizando Smina.
+- La librería de moléculas consiste en 50 compuestos del *benchmarking set* [CSAR 2012](http://www.csardock.org/), el cual incluye compuestos **activos** (*true binders - inhibitors*) e **inactivos** de la proteína CDK2 (experimentalmente probados). Más sobre este *challenge* CSAR 2012 [aquí](https://pubs.acs.org/doi/10.1021/ci4000486).
+- Se usarán dos conformaciones de la proteína CDK2.
+    - [2vv9](https://www.rcsb.org/structure/2VV9)
+    - [5a14](https://www.rcsb.org/structure/5A14)
+  
+> **Nota**: No descargar los `pdb` de las proteínas de estos links. Más abajo se brindan los links de descarga de los archivos a usar.
+
+- Se usarán dos funciones de *scoring* (a una exhaustividad de **12**):
+  - [vina](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3041641/)
+  - [vinardo](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0155183)
+- Cada ensayo de CV **combina** una conformación de la proteína y una función de *scoring*. Dándo como resultado **4 ensayos de CV**.
+- Reportar los **resultados** y **comparar** el desempeño del CV en función del *scoring* utilizado y las conformaciones de la proteína.
+
+## Instrucciones
+
+1. **Descarga** el archivo de las proteínas y de las moléculas en formato SMILES ⬇️:
+   - Proteínas : 
+     - [2vv9_PROT.pdb](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/2vv9_PROT.pdb)
+     - [5a14_PROT.pdb](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/5a14_PROT.pdb)
+   - Archivo de ligandos (SMILES): [cdk2_mols.smi](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/cdk2_mols.smi)
+
+2. **Descarga** los siguientes archivos y **guardalos** en tu directorio de trabajo ⬇️ (serán necesarios para el análisis final):
+   - [cdk2_activity_mols.csv](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/cdk2_activity_mols.csv)
+   - [plot_metrics.py](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/plot_metrics.py)
+   - [analisis_resultados_vina.ipynb](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/analisis_resultados_vina.ipynb)
+
+3. **Apoyate del siguiente material** para realizar los ensayos de CV: [Acoplamiento molecular con Smina](https://jriccil.github.io/Taller_Simulacion_Molecular/virtual_screening_vina.html)
+
+4. **Especificaciones** de las corridas de *docking*:
+   1. Usar un valor de exhaustividad de `12`.
+   2. El sitio activo es el mismo que en la tarea anterior (para ambas conformaciones). Un caja que cubra los residuos *9, 33, 86, 88, 89, 132, 145* y *146* debe ser más que suficiente.
+   3. Usa el parámetro `--scoring vina` o `--scoring vinardo` para definir la función de *scoring* correspondiente a cada ensayo. Revisa el `help` de smina si tienes dudas (`smina --help`).
+   4. Usa el notebook de jupyter `analisis_resultados_vina.ipynb` para generar las gráficas de resultados de cada ensayo.
+
+
+## Reporte
+
+**En reporte de resultados consiste en lo siguiente:**
+
+1. **Mostrar las 3 gráficas de resultados, debidamente tituladas y etiquetadas, de cada ensayo de CV en una diapositiva de `ppt`:**
+   - Gráfico del ranking de moléculas activas vs activas.
+   - Curva ROC, incluyendo el valor del AUC-ROC.
+   - Histogramas del scoring de activos vs inactivos.
+
+2. **En la diapositiva correspondiente, reporta las 3 mejores moléculas (con menor energía libre de interacción con la proteína) de cada ensayo de CV.**
+   - Escribe el nombre, el valor de energía predicho y si la molécula es realmente activa o no.
+
+<!-- 3. **En la diapositiva correspondiente, incluye una imagen del acoplamiento con la mejor molécula según cada ensayo de CV.**
+   - Puedes usar UCSF Chimera o Autodock Tools.
+   - Muestra la mejor pose de la mejor molécula de cada ensayo, incluye en la visualización los residuos *9, 33, 86, 88, 89, 132, 145* y *146*.
+   - Puedes visitar el siguiente link para ver cómo generar algunas visualizaciones de interés: https://www.cgl.ucsf.edu/chimera/docs/UsersGuide/frametut.html -->
+
+3. **En una última diapositiva, responder las siguientes preguntas:**
+   1. ¿Consideras que la función de *scoring* elegida marca alguna diferencia en los resultados del CV? ¿Por qué?
+   2. ¿Consideras que la conformación elegida marca alguna diferencia en los resultados del CV? ¿Por qué?
+   3. ¿Hay alguna diferencia destacable entre los sitios de unión de ambas conformaciones? ¿Cuál?
+   4. Si tuvieras que hacer un cribado virtual para descubrir nuevos inhibidores de la CDK2 a partir de una librería de 1,000,000 de moléculas, ¿Qué conformación y qué función de scoring usarías?
+   5. ¿Qué moléculas activas representan un mayor desafío para el programa de *docking*? ¿Tendrá algo que ver el tamaño de la molécula?
+   6. En los cuatro ensayos de VS ¿hay moléculas que tiendan a tener siempre los valores más bajos de energía de interacción (*scoring*)? ¿A qué crees que se deba independientemente de que sean activas o inactivas?
+
+5. **Anota tu nombre en la última diapositiva.**
+
+6. 🚨 🚨 🚨 **Enviar únicamente el archivo pdf por mensaje personal a mi cuenta (Joel Ricci) en el Slack del grupo.**
+7. <mark>Fecha límite de envío es el día viernes 26 de febrero a las 24:00 horas.</mark>
+
+## Algunos *tips*:
+1. 🚨 **¡No te confíes con el tiempo!** 🚨
+   1. La duración de cada ensayo de CV puede tomar desde 30 min a 2 horas ⏱ (en promedio 1-1:30 min por molécula) dependiendo de los recursos de tu equipo y de el número de procesadores que utilices (revisa el parámetro `cpu` de smina).
+   2. Usa como mínimo dos procesadores (`cpu`), si tu equipo cuenta con más, puedes aprovecharlo 💻.
+   3. Planifica bien en qué momento realizarás las corridas de *docking* tomando en cuenta lo anterior 📝. 
+2. De preferencia **realiza cada ensayo de CV en una carpeta independiente** para evitar confundirte y sobreescribir archivos de ensayos previos 😰.
+3. Recuerda que el tamaño del grid está en Å. Un grid demasiado grande hará mucho más tardado el análisis. Una caja no mayor a `24x24x24` (incluso un poco menos) debería bastar para ambas conformaciones.
+   1. En *Chimera* puedes utilizar el *Command Line* para seleccionar los residuos mencionados arriba y usarlos de referencia para trazar la caja -> `sel :9,33,86,88,89,132,145,146`
+4. Basta con hacer la fase de preparación de los `pdbqt` una sola vez. 
+5. Si te sirve, **anota los comandos y ciclos for que vas utilizando** en un archivo de texto (sustituyendo adecuadamente los nombres de los archivos de entrada y salida).
+
+## Recursos
+
+- [Curso de bash scripting en Datacamp](https://www.datacamp.com/courses/introduction-to-bash-scripting). **¡Tienes acceso gratis!**
+- [Página de descarga de smina con algunos recursos extra](https://sourceforge.net/projects/smina/files/)
