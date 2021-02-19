@@ -38,7 +38,15 @@ cd wd_vs
 
 ### Preparación de los ligandos
 
-3. **Extraer** las moléculas del archivo  **<mark>cdk2_sample.smi</mark>** en una nueva carpeta
+3. **Extraer** las moléculas del archivo  **<mark>cdk2_sample.smi</mark>** en una nueva carpeta utilizando [OpenBabel](https://openbabel.org/docs/dev/Command-line_tools/babel.html)
+
+```{r, echo=FALSE}
+mermaid("
+graph LR
+    A(*SMILES)-->|obabel| B(*.mol2 - 3D info)
+    class A, B mermaid_class;
+    ", height = '80%', width = '100%')
+```
 
 ```{#numCode .R .numberLines}
 mkdir ligands
@@ -48,7 +56,7 @@ mkdir ligands
 obabel -ismi cdk2_sample.smi -omol2 -O ligands/ -m --gen3d -p 7
 ```
 
-2. Recupera los **nombres originales** de las moléculas
+1. Recupera los **nombres originales** de las moléculas
 
 ```{#numCode .R .numberLines}
 # Entra a la carpeta ligands
@@ -67,6 +75,14 @@ done
 
 3. Usa `obabel` para **convertir las moléculas** a `pdbqt`:
 
+```{r, echo=FALSE}
+mermaid("
+graph LR
+    A(*.mol2)-->|obabel| B(*.pdbqt)
+    class A, B mermaid_class;
+    ", height = '80%', width = '100%')
+```
+
 ```{#numCode .R .numberLines}
 # Sal de la carpeta ligands al directorio padre
 cd ..
@@ -75,7 +91,7 @@ cd ..
 mkdir ligs_pdbqt
 
 # Ejecuta openbabel para **múltiples** inputs
-obabel -imol2 ligands/* -opdbqt -O ligands_pdbqt/.pdbqt -m
+obabel -imol2 ligands/* -opdbqt -O ligs_pdbqt/.pdbqt -m
 ```
 
 ```
@@ -85,7 +101,7 @@ obabel -imol2 ligands/* -opdbqt -O ligands_pdbqt/.pdbqt -m
 │  🗒 cdk2_sample.smi
 ├── 📂 ligands
 │   ├── *.mol2
-├── 📂 ligands_pdbqt
+├── 📂 ligs_pdbqt
 │   ├── *.pdbqt
 ```
 
@@ -110,13 +126,19 @@ pdb2pqr30 --ff='AMBER' --ffout='AMBER' \
 </a>
 
 1. Utiliza **UCSF Chimera** para establecer el tamaño y posición del espacio de búsqueda (puedes utilizar **AutodockTools** si lo deseas).
-    1. Abre el archivo `prot.pdb`con UCSF Chimera.
+    1. Abre el archivo **<mark>prot.pdb</mark>** con UCSF Chimera.
     2. Ve a *Tools > Surface/Binding Analysis > Autodock Vina*
     3. Utiliza el cursor para dibujar la caja en la posición que consideres adecuada.
 
 > <a href="https://www.cgl.ucsf.edu/chimera/docs/ContributedSoftware/vina/vina.html">
     <img src="./images/box_chimera.png" alt="box_chimera" height="350"/>
 </a>
+
+<div class="alert alert-dismissible alert-warning">
+<h4 class="alert-heading">🚨 Sobre el espaciado del grid en Vina/Smina 🚨</h4>
+Toma en cuenta que, al contrario que con Autodock4, en Vina el espaciado por default es de 1 Å, y no de 0.375 Å.
+Si utilizas AutodockTools para obtener las dimensiones de la caja, debes tomar esto en cuenta.
+</div>
 
 
 1. **Anota las coordenadas** del tamaño y posición del espacio de búsqueda.
@@ -134,6 +156,14 @@ z = 22
 ```
 
 3. **Convierte** el archivo `pdb` de la proteína a `pdbqt`:
+
+```{r, echo=FALSE}
+mermaid("
+graph LR
+    A(prot.pdb)-->|obabel| B(prot.pdbqt)
+    class A, B mermaid_class;
+    ", height = '80%', width = '100%')
+```
 
 ```{#numCode .R .numberLines}
 obabel -ipdb prot.pdb -xr -opdbqt -O prot.pdbqt
@@ -192,7 +222,7 @@ Output (optional):
 
 ```{#numCode .R .numberLines}
 smina -r prot.pdbqt \
-      -l ligands_pdbqt/CS1.pdbqt \
+      -l ligs_pdbqt/CS1.pdbqt \
       -o CS1_docked.pdbqt \
       --log CS1_docked.log \
       --center_x -16 \
@@ -215,7 +245,7 @@ smina -r prot.pdbqt \
 │  🗒 cdk2_sample.smi
 ├── 📂 ligands
 │   ├── *.mol2
-├── 📂 ligands_pdbqt
+├── 📂 ligs_pdbqt
 │   ├── *.pdbqt
 │  🗒 CS1_docked.pdbqt
 │  🗒 CS1_docked.log
@@ -231,7 +261,7 @@ smina -r prot.pdbqt \
 mkdir docks
 ```
 
-2. Crea un archivo de configuración para definir los parámetros generales: `docking_smina.conf`.
+2. Con tu editor de texto, **crea un archivo de configuración ⚙️** para definir los parámetros generales: **<mark>docking_smina.conf</mark>**.
 
 ```{#numCode .bash .numberLines}
 # Nombre del archivo del receptor
@@ -255,7 +285,7 @@ scoring = vina
 3. Ejecuta **smina** utilizando un ciclo `for`:
 
 ```{#numCode .R .numberLines}
-for lig in ligands_pdbqt/*.pdbqt;
+for lig in ligs_pdbqt/*.pdbqt;
 do name=`basename $lig .pdbqt`;
 echo "Ejecutanto para $name";
 smina --config docking_smina.conf --ligand $lig --log docks/$name.log --out docks/"$name"_dk.pdbqt;
@@ -264,7 +294,8 @@ done
 
 4. Funciones de *scoring* disponibles:
 
-```
+<pre style='background-color: #DAF9E8;'>
+<code>
 ad4_scoring
 default
 dkoes_fast
@@ -272,16 +303,18 @@ dkoes_scoring
 dkoes_scoring_old
 vina
 vinardo
-```
+</code>
+</pre>
 
 ```
 📂 wd_vs
 |  📜 ...
 │  🗒 1fin_PROT.pdb
 │  🗒 cdk2_sample.smi
+│  🗒 docking_smina.conf
 ├── 📂 ligands
 │   ├── *.mol2
-├── 📂 ligands_pdbqt
+├── 📂 ligs_pdbqt
 │   ├── *.pdbqt
 ├── 📂 docks
 │   ├── *.pdbqt
