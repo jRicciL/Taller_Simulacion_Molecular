@@ -541,3 +541,8 @@ Mann-Whitney (no paramétrica)
 
 
 > [![IMAGE ALT TEXT](http://img.youtube.com/vi/4jRBRDbJemM/0.jpg)](https://www.youtube.com/watch?v=4jRBRDbJemM&ab_channel=StatQuestwithJoshStarmer "Docking desde cero. Tutorial AutodockTools")  
+
+2. [Tutorial de Vina.](http://vina.scripps.edu/tutorial.html)
+3. [Autodock vina Features](http://vina.scripps.edu/manual.html#features)
+4. [1001 Ways to run AutoDock Vina for virtual screening](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4801993/)
+5. [Vinardo: A Scoring Function Based on Autodock Vina Improves Scoring, Docking, and Virtual Screening](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0155183)

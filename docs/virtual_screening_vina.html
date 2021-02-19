@@ -418,8 +418,8 @@ $(document).ready(function () {
 <ol start="3" style="list-style-type: decimal">
 <li><strong>Extraer</strong> las moléculas del archivo <strong><mark>cdk2_sample.smi</mark></strong> en una nueva carpeta utilizando <a href="https://openbabel.org/docs/dev/Command-line_tools/babel.html">OpenBabel</a></li>
 </ol>
-<div id="htmlwidget-06408be9bd09e265f048" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-06408be9bd09e265f048">{"x":{"diagram":"\ngraph LR\n    A(*SMILES)-->|obabel| B(*.mol2 - 3D info)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-be905f66cfe4be6f77ad" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-be905f66cfe4be6f77ad">{"x":{"diagram":"\ngraph LR\n    A(*SMILES)-->|obabel| B(*.mol2 - 3D info)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>mkdir ligands</span></code></pre></div>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>obabel <span class="op">-</span>ismi cdk2_sample.smi <span class="op">-</span>omol2 <span class="op">-</span>O ligands<span class="op">/</span><span class="st"> </span><span class="op">-</span>m <span class="op">--</span>gen3d <span class="op">-</span>p <span class="dv">7</span></span></code></pre></div>
 <ol style="list-style-type: decimal">
@@ -439,8 +439,8 @@ $(document).ready(function () {
 <ol start="3" style="list-style-type: decimal">
 <li>Usa <code>obabel</code> para <strong>convertir las moléculas</strong> a <code>pdbqt</code>:</li>
 </ol>
-<div id="htmlwidget-24fae32797a641eae958" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-24fae32797a641eae958">{"x":{"diagram":"\ngraph LR\n    A(*.mol2)-->|obabel| B(*.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-078372260256c0b4842f" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-078372260256c0b4842f">{"x":{"diagram":"\ngraph LR\n    A(*.mol2)-->|obabel| B(*.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Sal de la carpeta ligands al directorio padre</span></span>
 <span id="numCode-2"><a href="#numCode-2"></a>cd ..</span>
 <span id="numCode-3"><a href="#numCode-3"></a></span>
@@ -509,8 +509,8 @@ z = 22</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li><strong>Convierte</strong> el archivo <code>pdb</code> de la proteína a <code>pdbqt</code>:</li>
 </ol>
-<div id="htmlwidget-03a36f56a360825271dd" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-03a36f56a360825271dd">{"x":{"diagram":"\ngraph LR\n    A(prot.pdb)-->|obabel| B(prot.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f7f890720fd51f9fc1ee" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f7f890720fd51f9fc1ee">{"x":{"diagram":"\ngraph LR\n    A(prot.pdb)-->|obabel| B(prot.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>obabel <span class="op">-</span>ipdb prot.pdb <span class="op">-</span>xr <span class="op">-</span>opdbqt <span class="op">-</span>O prot.pdbqt</span></code></pre></div>
 <blockquote>
 <p><code>-x</code> es un <a href="https://openbabel.org/docs/dev/Command-line_tools/babel.html">argumento</a> que permite especificar parámetros específicos del formato de salida, en este caso de <code>pdbqt</code>, usando el parámetro <a href="https://openbabel.org/docs/dev/FileFormats/AutoDock_PDQBT_format.html">r</a>.</p>
@@ -839,6 +839,12 @@ Mann-Whitney (no paramétrica)
 <blockquote>
 <p><a href="https://www.youtube.com/watch?v=4jRBRDbJemM&amp;ab_channel=StatQuestwithJoshStarmer" title="Docking desde cero. Tutorial AutodockTools"><img src="http://img.youtube.com/vi/4jRBRDbJemM/0.jpg" alt="IMAGE ALT TEXT" /></a></p>
 </blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li><a href="http://vina.scripps.edu/tutorial.html">Tutorial de Vina.</a></li>
+<li><a href="http://vina.scripps.edu/manual.html#features">Autodock vina Features</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4801993/">1001 Ways to run AutoDock Vina for virtual screening</a></li>
+<li><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0155183">Vinardo: A Scoring Function Based on Autodock Vina Improves Scoring, Docking, and Virtual Screening</a></li>
+</ol>
 </div>
 </div>
 
