@@ -81,8 +81,11 @@ title: 'Tarea: Cribado Virtual con Smina'
 2. De preferencia **realiza cada ensayo de CV en una carpeta independiente** para evitar confundirte y sobreescribir archivos de ensayos previos 😰.
 3. Recuerda que el tamaño del grid está en Å. Un grid demasiado grande hará mucho más tardado el análisis. Una caja no mayor a `24x24x24` (incluso un poco menos) debería bastar para ambas conformaciones.
    1. En *Chimera* puedes utilizar el *Command Line* para seleccionar los residuos mencionados arriba y usarlos de referencia para trazar la caja -> `sel :9,33,86,88,89,132,145,146`
-4. Basta con hacer la fase de preparación de los `pdbqt` una sola vez. 
-5. Si te sirve, **anota los comandos y ciclos for que vas utilizando** en un archivo de texto (sustituyendo adecuadamente los nombres de los archivos de entrada y salida).
+
+<img src="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/pk_selection.png" alt="pk-sel-link" height="400"/>
+
+1. Basta con hacer la fase de preparación de los `pdbqt` una sola vez. 
+2. Si te sirve, **anota los comandos y ciclos for que vas utilizando** en un archivo de texto (sustituyendo adecuadamente los nombres de los archivos de entrada y salida).
 
 ## Recursos
 
