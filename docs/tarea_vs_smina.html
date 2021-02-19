@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Tarea: Cribado Virtual con Smina</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 61px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h2 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h3 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h4 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h5 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h6 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Inicio</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Tarea: Cribado Virtual con Smina</h1>
+
+</div>
+
+
+<hr />
+<div id="tarea-2-cribado-virtual-con-smina" class="section level1">
+<h1>Tarea 2: Cribado Virtual con Smina</h1>
+<div id="objetivo" class="section level2">
+<h2>Objetivo</h2>
+<ul>
+<li>Realizar <strong><mark>4 ensayos de cribado virtual (CV)</mark></strong> utilizando Smina.</li>
+<li>La librería de moléculas consiste en 50 compuestos del <em>benchmarking set</em> <a href="http://www.csardock.org/">CSAR 2012</a>, el cual incluye compuestos <strong>activos</strong> (<em>true binders - inhibitors</em>) e <strong>inactivos</strong> de la proteína CDK2 (experimentalmente probados). Más sobre este <em>challenge</em> CSAR 2012 <a href="https://pubs.acs.org/doi/10.1021/ci4000486">aquí</a>.</li>
+<li>Se usarán dos conformaciones de la proteína CDK2.
+<ul>
+<li><a href="https://www.rcsb.org/structure/2VV9">2vv9</a></li>
+<li><a href="https://www.rcsb.org/structure/5A14">5a14</a></li>
+</ul></li>
+</ul>
+<blockquote>
+<p><strong>Nota</strong>: No descargar los <code>pdb</code> de las proteínas de estos links. Más abajo se brindan los links de descarga de los archivos a usar.</p>
+</blockquote>
+<ul>
+<li>Se usarán dos funciones de <em>scoring</em> (a una exhaustividad de <strong>12</strong>):
+<ul>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3041641/">vina</a></li>
+<li><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0155183">vinardo</a></li>
+</ul></li>
+<li>Cada ensayo de CV <strong>combina</strong> una conformación de la proteína y una función de <em>scoring</em>. Dándo como resultado <strong>4 ensayos de CV</strong>.</li>
+<li>Reportar los <strong>resultados</strong> y <strong>comparar</strong> el desempeño del CV en función del <em>scoring</em> utilizado y las conformaciones de la proteína.</li>
+</ul>
+</div>
+<div id="instrucciones" class="section level2">
+<h2>Instrucciones</h2>
+<ol style="list-style-type: decimal">
+<li><p><strong>Descarga</strong> el archivo de las proteínas y de las moléculas en formato SMILES ⬇️:</p>
+<ul>
+<li>Proteínas :
+<ul>
+<li><a href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/2vv9_PROT.pdb">2vv9_PROT.pdb</a></li>
+<li><a href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/5a14_PROT.pdb">5a14_PROT.pdb</a></li>
+</ul></li>
+<li>Archivo de ligandos (SMILES): <a href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/cdk2_mols.smi">cdk2_mols.smi</a></li>
+</ul></li>
+<li><p><strong>Descarga</strong> los siguientes archivos y <strong>guardalos</strong> en tu directorio de trabajo ⬇️ (serán necesarios para el análisis final):</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/cdk2_activity_mols.csv">cdk2_activity_mols.csv</a></li>
+<li><a href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/plot_metrics.py">plot_metrics.py</a></li>
+<li><a href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/analisis_resultados_vina.ipynb">analisis_resultados_vina.ipynb</a></li>
+</ul></li>
+<li><p><strong>Apoyate del siguiente material</strong> para realizar los ensayos de CV: <a href="https://jriccil.github.io/Taller_Simulacion_Molecular/virtual_screening_vina.html">Acoplamiento molecular con Smina</a></p></li>
+<li><p><strong>Especificaciones</strong> de las corridas de <em>docking</em>:</p>
+<ol style="list-style-type: decimal">
+<li>Usar un valor de exhaustividad de <code>12</code>.</li>
+<li>El sitio activo es el mismo que en la tarea anterior (para ambas conformaciones). Un caja que cubra los residuos <em>9, 33, 86, 88, 89, 132, 145</em> y <em>146</em> debe ser más que suficiente.</li>
+<li>Usa el parámetro <code>--scoring vina</code> o <code>--scoring vinardo</code> para definir la función de <em>scoring</em> correspondiente a cada ensayo. Revisa el <code>help</code> de smina si tienes dudas (<code>smina --help</code>).</li>
+<li>Usa el notebook de jupyter <code>analisis_resultados_vina.ipynb</code> para generar las gráficas de resultados de cada ensayo.</li>
+</ol></li>
+</ol>
+</div>
+<div id="reporte" class="section level2">
+<h2>Reporte</h2>
+<p><strong>En reporte de resultados consiste en lo siguiente:</strong></p>
+<ol style="list-style-type: decimal">
+<li><strong>Mostrar las 3 gráficas de resultados, debidamente tituladas y etiquetadas, de cada ensayo de CV en una diapositiva de <code>ppt</code>:</strong>
+<ul>
+<li>Gráfico del ranking de moléculas activas vs activas.</li>
+<li>Curva ROC, incluyendo el valor del AUC-ROC.</li>
+<li>Histogramas del scoring de activos vs inactivos.</li>
+</ul></li>
+<li><strong>En la diapositiva correspondiente, reporta las 3 mejores moléculas (con menor energía libre de interacción con la proteína) de cada ensayo de CV.</strong>
+<ul>
+<li>Escribe el nombre, el valor de energía predicho y si la molécula es realmente activa o no.</li>
+</ul></li>
+</ol>
+<!-- 3. **En la diapositiva correspondiente, incluye una imagen del acoplamiento con la mejor molécula según cada ensayo de CV.**
+   - Puedes usar UCSF Chimera o Autodock Tools.
+   - Muestra la mejor pose de la mejor molécula de cada ensayo, incluye en la visualización los residuos *9, 33, 86, 88, 89, 132, 145* y *146*.
+   - Puedes visitar el siguiente link para ver cómo generar algunas visualizaciones de interés: https://www.cgl.ucsf.edu/chimera/docs/UsersGuide/frametut.html -->
+<ol start="3" style="list-style-type: decimal">
+<li><p><strong>En una última diapositiva, responder las siguientes preguntas:</strong></p>
+<ol style="list-style-type: decimal">
+<li>¿Consideras que la función de <em>scoring</em> elegida marca alguna diferencia en los resultados del CV? ¿Por qué?</li>
+<li>¿Consideras que la conformación elegida marca alguna diferencia en los resultados del CV? ¿Por qué?</li>
+<li>¿Hay alguna diferencia destacable entre los sitios de unión de ambas conformaciones? ¿Cuál?</li>
+<li>Si tuvieras que hacer un cribado virtual para descubrir nuevos inhibidores de la CDK2 a partir de una librería de 1,000,000 de moléculas, ¿Qué conformación y qué función de scoring usarías?</li>
+<li>¿Qué moléculas activas representan un mayor desafío para el programa de <em>docking</em>? ¿Tendrá algo que ver el tamaño de la molécula?</li>
+<li>En los cuatro ensayos de VS ¿hay moléculas que tiendan a tener siempre los valores más bajos de energía de interacción (<em>scoring</em>)? ¿A qué crees que se deba independientemente de que sean activas o inactivas?</li>
+</ol></li>
+<li><p><strong>Anota tu nombre en la última diapositiva.</strong></p></li>
+<li><p>🚨 🚨 🚨 <strong>Enviar únicamente el archivo pdf por mensaje personal a mi cuenta (Joel Ricci) en el Slack del grupo.</strong></p></li>
+<li><p><mark>Fecha límite de envío es el día viernes 26 de febrero a las 24:00 horas.</mark></p></li>
+</ol>
+</div>
+<div id="algunos-tips" class="section level2">
+<h2>Algunos <em>tips</em>:</h2>
+<ol style="list-style-type: decimal">
+<li>🚨 <strong>¡No te confíes con el tiempo!</strong> 🚨
+<ol style="list-style-type: decimal">
+<li>La duración de cada ensayo de CV puede tomar desde 30 min a 2 horas ⏱ (en promedio 1-1:30 min por molécula) dependiendo de los recursos de tu equipo y de el número de procesadores que utilices (revisa el parámetro <code>cpu</code> de smina).</li>
+<li>Usa como mínimo dos procesadores (<code>cpu</code>), si tu equipo cuenta con más, puedes aprovecharlo 💻.</li>
+<li>Planifica bien en qué momento realizarás las corridas de <em>docking</em> tomando en cuenta lo anterior 📝.</li>
+</ol></li>
+<li>De preferencia <strong>realiza cada ensayo de CV en una carpeta independiente</strong> para evitar confundirte y sobreescribir archivos de ensayos previos 😰.</li>
+<li>Recuerda que el tamaño del grid está en Å. Un grid demasiado grande hará mucho más tardado el análisis. Una caja no mayor a <code>24x24x24</code> (incluso un poco menos) debería bastar para ambas conformaciones.
+<ol style="list-style-type: decimal">
+<li>En <em>Chimera</em> puedes utilizar el <em>Command Line</em> para seleccionar los residuos mencionados arriba y usarlos de referencia para trazar la caja -&gt; <code>sel :9,33,86,88,89,132,145,146</code></li>
+</ol></li>
+<li>Basta con hacer la fase de preparación de los <code>pdbqt</code> una sola vez.</li>
+<li>Si te sirve, <strong>anota los comandos y ciclos for que vas utilizando</strong> en un archivo de texto (sustituyendo adecuadamente los nombres de los archivos de entrada y salida).</li>
+</ol>
+</div>
+<div id="recursos" class="section level2">
+<h2>Recursos</h2>
+<ul>
+<li><a href="https://www.datacamp.com/courses/introduction-to-bash-scripting">Curso de bash scripting en Datacamp</a>. <strong>¡Tienes acceso gratis!</strong></li>
+<li><a href="https://sourceforge.net/projects/smina/files/">Página de descarga de smina con algunos recursos extra</a></li>
+</ul>
+</div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+  
+  <!-- Counter -->
+  <div class="container text-center">
+  <!-- a href="https://smallseotools.com/visitor-hit-counter/" target="_blank" title="Traffic Counter by Small Seo Tools" rel="nofollow noopener"><img src="https://smallseotools.com/counterDisplay?code=48f89ebe91e41e4e5cf53c9693a62c10&style=0004&pad=5&type=page&initCount=1" alt="Traffic Counter by Small Seo Tools" border="0"></a-->
+  </div>
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2021 Copyright:
+    <a href="https://github.com/jRicciL"> J. Ricci L.</a>
+  </div>
+  <!-- Copyright -->
+  <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+
+</footer>
+<!-- Footer -->
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
