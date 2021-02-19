@@ -45,7 +45,7 @@ title: 'Tarea: Cribado Virtual con Smina'
 
 ## Reporte
 
-**En reporte de resultados consiste en lo siguiente:**
+**En reporte de resultados consiste en un archivo `pdf` de cinco diapositivas con lo siguiente:**
 
 1. **Mostrar las 3 gráficas de resultados, debidamente tituladas y etiquetadas, de cada ensayo de CV en una diapositiva de `ppt`:**
    - Gráfico del ranking de moléculas activas vs activas.
@@ -53,7 +53,7 @@ title: 'Tarea: Cribado Virtual con Smina'
    - Histogramas del scoring de activos vs inactivos.
 
 2. **En la diapositiva correspondiente, reporta las 3 mejores moléculas (con menor energía libre de interacción con la proteína) de cada ensayo de CV.**
-   - Escribe el nombre, el valor de energía predicho y si la molécula es realmente activa o no.
+   - Escribe en una tabla el nombre, el valor de energía predicho y si la molécula es realmente activa o no.
 
 <!-- 3. **En la diapositiva correspondiente, incluye una imagen del acoplamiento con la mejor molécula según cada ensayo de CV.**
    - Puedes usar UCSF Chimera o Autodock Tools.
@@ -70,7 +70,7 @@ title: 'Tarea: Cribado Virtual con Smina'
 
 5. **Anota tu nombre en la última diapositiva.**
 
-6. 🚨 🚨 🚨 **Enviar únicamente el archivo pdf por mensaje personal a mi cuenta (Joel Ricci) en el Slack del grupo.**
+6. 🚨 🚨 🚨 **Enviar únicamente el archivo pdf con las cinco diapositivas por mensaje personal a mi cuenta (Joel Ricci) en el Slack del grupo.**
 7. <mark>Fecha límite de envío es el día viernes 26 de febrero a las 24:00 horas.</mark>
 
 ## Algunos *tips*:
