@@ -183,7 +183,7 @@ conda deactivate
 Crea un ambiente para análisis de datos con python:
 
 ```{#numCode .R .numberLines}
-conda create -n jup python=3.7 numpy scipy pandas seaborn jupyter
+conda create -n jup python=3.7 numpy scipy pandas seaborn scikit-learn jupyter 
 conda install -c ambermd pytraj
 conda deactivate
 ```
