@@ -261,8 +261,8 @@ Las constantes de fuerza ($k_{a,b}, V_n, \epsilon$), constantes de equilibrio ($
 
 #### Biblioteca de parámetros
 
-1. **Proteínas y péptidos** -> [leaprc.protein.ff14SB](https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/cmd/leaprc.protein.ff14SB):
-   1. [parm10.dat](https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/parm/parm10.dat): Archivo principal con la mayoría de parámetros del campo de fuerza.
+1. **Proteínas y péptidos** -> [leaprc.protein.ff14SB](https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/cmd/leaprc.protein.ff14SB){target="_blank"}:
+   1. [parm10.dat](https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/parm/parm10.dat){target="_blank"}: Archivo principal con la mayoría de parámetros del campo de fuerza.
       1. Tipos de átomos
       2. Masas
       3. Cargas $q_i$
@@ -270,11 +270,11 @@ Las constantes de fuerza ($k_{a,b}, V_n, \epsilon$), constantes de equilibrio ($
       5. Enlaces ($k_a, l^0$)
       6. Ángulos ($k_b, \theta^0$)
       7. Torsiones ($V_n, n, \gamma$)
-   2. [frcmod.ff14SB](https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/parm/frcmod.ff14SB): Suplementa a `parm10.dat`
+   2. [frcmod.ff14SB](https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/parm/frcmod.ff14SB){target="_blank"}: Suplementa a `parm10.dat`
    3. `amino12.lib`
-2. **Moléculas orgánicas** (*general AMBER force field* ) -> [leaprc.gaff](https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/cmd/leaprc.gaff):
-   1. [gaff.dat](https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/parm/gaff.dat)
-3. **Solvente** -> [leaprc.water.tip3p](https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/cmd/leaprc.water.tip3p)
+2. **Moléculas orgánicas** (*general AMBER force field* ) -> [leaprc.gaff](https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/cmd/leaprc.gaff){target="_blank"}:
+   1. [gaff.dat](https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/parm/gaff.dat){target="_blank"}
+3. **Solvente** -> [leaprc.water.tip3p](https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/cmd/leaprc.water.tip3p){target="_blank"}
    1. `atomic_ions.lib`
    2. `solvents.lib`
    3. `frcmod.ionsjc_tip3p`
@@ -299,9 +299,11 @@ mkdir wd_md
 ```
 
 2. **Descarga los archivos de la proteína y el ligando**:
+    - [prot_unprep.pdb](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/dm/prot_unprep.pdb)
+    - [lig_unprep.pdb](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/dm/lig_unprep.pdb)
 
-3. Ambos archivos pertenecen al modelo [4fkw](https://www.rcsb.org/structure/4FKW).
-4. Los residuos faltantes de la proteína (*loops* o regiones sin estructura secundaria definida) fueron añadidos utilizando [Modeller](https://salilab.org/modeller/), en un proceso conocido como *Model/Refine Loops*. Puedes revisar más sobre el tema de modelado de proteínas en los siguientes links:
+3. Ambos archivos pertenecen al modelo [4fkw](https://www.rcsb.org/structure/4FKW){target="_blank"}.
+4. Los residuos faltantes de la proteína (*loops* o regiones sin estructura secundaria definida) fueron añadidos utilizando [Modeller](https://salilab.org/modeller/){target="_blank"}, en un proceso conocido como *Model/Refine Loops*. Puedes revisar más sobre el tema de modelado de proteínas en los siguientes links:
    1. [Chimera Interface to Modeller](https://www.cgl.ucsf.edu/chimera/docs/ContributedSoftware/multalignviewer/modeller.html)
       1. [Chimera Modeller tutorial](https://static-bcrf.biochem.wisc.edu/tutorials/modeller/Chimera_II_Modeller_GUI_document.pdf)
    2. [Modeller Tutorial](https://salilab.org/modeller/9.24/manual.pdf)
@@ -339,10 +341,13 @@ graph LR
 
 1.  Tener el ambiente `amber` activado y localizarse en la carpeta de trabajo (`wd_md`).
 2.  Ejecutar **PDB2PQR** con alguno de los siguientes comandos (dependiendo de la versión):
+
 ```{#numCode .R .numberLines}
-pdb2pqr --ff=amber --with-ph=7.0 --ffout=amber \
---ph-calc-method=propka \
---chain prot_unprep.pdb prot.pdb
+# Para la versión más reciente
+pdb2pqr30 --ff='AMBER' --ffout='AMBER' \
+    --with-ph=7.0 --drop-water --keep-chain \
+    --pdb-output prot.pdb \
+    prot_unprep.pdb pqr_file.pqr
 ```
 
 ```{#numCode .R .numberLines}
@@ -365,7 +370,7 @@ graph LR
     ", height = '80%', width = '100%')
 ```
 
-1.  Ejecutar el siguiente comando usando *[Open Babel](https://openbabel.org/docs/dev/Command-line_tools/babel.html)*:
+1.  Ejecutar el siguiente comando usando *[Open Babel](https://openbabel.org/docs/dev/Command-line_tools/babel.html){target="_blank"}*:
         	
 ```{#numCode .R .numberLines}
 obabel -ipdb lig_unprep.pdb -omol2 -O lig.mol2 -p 7.0
@@ -389,7 +394,7 @@ obabel -ipdb lig_unprep.pdb -omol2 -O lig.mol2 -p 7.0
 
 
 
-Un tutorial más a detalle se puede consultar [aquí](http://ambermd.org/tutorials/basic/tutorial4b/index.php).
+Un tutorial más a detalle se puede consultar [aquí](http://ambermd.org/tutorials/basic/tutorial4b/index.php){target="_blank"}.
 
 #### Uso de Antechamber para definir la estructura y nomenclatura del ligando
 
@@ -408,10 +413,10 @@ antechamber -i lig_unprep.mol2 -fi mol2 /
 -o LIG_def.mol2 -fo mol2 -c bcc -s 2 -rn LIG
 ```
 
-> Esto permite usar la herramienta [Antechamber](http://ambermd.org/antechamber/antechamber.html) para generar los archivos de topología del ligando, necesarios para la dinámica.
+> Esto permite usar la herramienta [Antechamber](http://ambermd.org/antechamber/antechamber.html){target="_blank"} para generar los archivos de topología del ligando, necesarios para la dinámica.
 > **El proceso suele tardar un poco.** Una vez finalizado, se crearán varios archivos, pero de todos ellos sólo nos interesa el archivo **<mark>LIG_def.mol2</mark>**, que define a la molécula como un residuo y define los tipos de átomos, la nomenclatura correspondiente y las cargas parciales adecuadas para cada átomo.
 
-> El parámetro `-c bcc` indica a *antechamber* usar el modelo de cargas [AM1-BCC](https://pubmed.ncbi.nlm.nih.gov/12395429/) (*semi-empirical (AM1) with bond charge correction (BCC)*) para calcular las cargas parciales de la molécula. La opción `-rn` indica renombrar el nombre de la molécula a `LIG`. Finalmente, `-s 2 `define una opción de *verbose* que nos permite recibir información en la terminal del proceso de ejecución. 
+> El parámetro `-c bcc` indica a *antechamber* usar el modelo de cargas [AM1-BCC](https://pubmed.ncbi.nlm.nih.gov/12395429/){target="_blank"} (*semi-empirical (AM1) with bond charge correction (BCC)*) para calcular las cargas parciales de la molécula. La opción `-rn` indica renombrar el nombre de la molécula a `LIG`. Finalmente, `-s 2 `define una opción de *verbose* que nos permite recibir información en la terminal del proceso de ejecución. 
 
 ```
 📂 wd_md
@@ -439,7 +444,7 @@ graph LR
 parmchk2 -i LIG_def.mol2 -f mol2 -o LIG_def.frcmod
 ```
 
-> Esto crea un archivo **<mark>LIG_def.frcmod</mark>** donde reporta los tipos de enlaces en la molécula que no están directamente en el campo de fuerza, pero que pueden ser representados por otros que ya se encuentran en el campo de fuerza **[GAFF](http://ambermd.org/antechamber/gaff.html)** (*General AMBER Force Field*).
+> Esto crea un archivo **<mark>LIG_def.frcmod</mark>** donde reporta los tipos de enlaces en la molécula que no están directamente en el campo de fuerza, pero que pueden ser representados por otros que ya se encuentran en el campo de fuerza **[GAFF](http://ambermd.org/antechamber/gaff.html){target="_blank"}** (*General AMBER Force Field*).
 > Si abres el archivo **<mark>LIG_def.frcmod</mark>** podrás ver ahí qué enlaces son los que requieren dicha reasignación.
 
 
@@ -472,7 +477,7 @@ Los siguientes pasos son para crear una librería de parámetros del ligando que
 ```{bash, eval=F}
 tleap -f oldff/leaprc.ff14SB
 ```
-> Esto abrirá la consola de **LEaP** precargando el campo de fuerza *ff14SB* (más sobre los campos de fuerza de AMBER: [AmberModels](https://ambermd.org/AmberModels.php))
+> Esto abrirá la consola de **LEaP** precargando el campo de fuerza *ff14SB* (más sobre los campos de fuerza de AMBER: [AmberModels](https://ambermd.org/AmberModels.php){target="_blank"})
 
 1. Estando en la terminal de `tleap`, ejecutar uno a uno los siguientes comandos:
 
@@ -511,7 +516,7 @@ Dentro de tleap, ejecutar uno a uno los siguientes comandos:
 
 1. **Carga de las librerías del campo de fuerza** - Carga de las librerías necesarias tanto como para la proteína como para el solvente del sistema:
 
-```{#numCode .R .numberLines}
+```{#numCode .python .numberLines}
 source leaprc.gaff
 source leaprc.protein.ff14SB
 source leaprc.water.tip3p
@@ -519,14 +524,14 @@ source leaprc.water.tip3p
 
 1. **Carga de las librerías del ligando** - Carga de las librerías del ligando, las cuales se crearon en el paso anterior:
 
-```{#numCode .R .numberLines}
+```{#numCode .python .numberLines}
 loadamberparams LIG_def.frcmod
 loadoff LIG_def.lib
 ```
 
 3. **Creación del complejo** - Se leen los archivos `pdb` y `mol2` de la proteína y ligando, respectivamente, y se combinan en un sólo objeto:
 
-```{#numCode .R .numberLines}
+```{#numCode .python .numberLines}
 protein = loadpdb prot.pdb
 LIG = loadmol2 LIG_def.mol2
 system = combine {protein LIG}
@@ -534,7 +539,7 @@ system = combine {protein LIG}
 
 1. **Solvatación del sistema** - Se solvata el complejo proteína-ligando utilizando agua `TIP3P`.
 
-```{#numCode .bash .numberLines}
+```{#numCode .python .numberLines}
 solvateOct system TIP3PBOX 12
 ```
 
@@ -543,7 +548,7 @@ solvateOct system TIP3PBOX 12
 
 1. **Neutralización del sistema** - Se neutraliza todo el sistema usando los iones correspondientes:
 
-```{#numCode .R .numberLines}
+```{#numCode .python .numberLines}
 addions system Cl- 0
 ```
 
@@ -568,8 +573,8 @@ quit
 ***
 # Referencias y Recursos
 
-- [Manual Amber 2019](https://ambermd.org/doc12/Amber19.pdf)
-- [GAFF](http://ambermd.org/antechamber/gaff.html)
-- [Fundamentals of LEaP](https://ambermd.org/tutorials/pengfei/index.php)
-- Amber> [Developing Nonstandard Parameters](https://ambermd.org/tutorials/ForceField.php)
-- [Amber Force Fields](https://ambermd.org/AmberModels.php)
+- [Manual Amber 2019](https://ambermd.org/doc12/Amber19.pdf){target="_blank"}
+- [GAFF](http://ambermd.org/antechamber/gaff.html){target="_blank"}
+- [Fundamentals of LEaP](https://ambermd.org/tutorials/pengfei/index.php){target="_blank"}
+- Amber> [Developing Nonstandard Parameters](https://ambermd.org/tutorials/ForceField.php){target="_blank"}
+- [Amber Force Fields](https://ambermd.org/AmberModels.php){target="_blank"}

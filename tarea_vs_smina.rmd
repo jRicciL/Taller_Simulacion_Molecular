@@ -42,6 +42,16 @@ title: 'Tarea: Cribado Virtual con Smina'
    3. Usa el parámetro `--scoring vina` o `--scoring vinardo` para definir la función de *scoring* correspondiente a cada ensayo. Revisa el `help` de smina si tienes dudas (`smina --help`).
    4. Usa el notebook de jupyter `analisis_resultados_vina.ipynb` para generar las gráficas de resultados de cada ensayo.
 
+<!-- <div class="alert alert-dismissible alert-warning">
+<h4 class="alert-heading">🚨 Instala la librería scikit-learn en el ambiente jup: 🚨</h4>
+<ul>
+<li>Para realizar análisis con el notebook de jupyter y generar las gráficas es necesario instalar la librería scikit-learn, o de otro modo verás un error como el siguiente:</li>
+<li><code>ModuleNotFoundError: No module named 'sklearn'</code></li>
+<li>Para hacer la instalación debes activar el ambiente de conda llamado <pm>jup</code></li>
+<li>Ahora instala scikit-learn con el siguite comando <pm>pip install scikit-learn</code></li>
+</ul>
+</div> -->
+
 
 ## Reporte
 
