@@ -21,6 +21,14 @@
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="site_libs/d3-3.3.8/d3.min.js"></script>
+<script src="site_libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="site_libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+<script src="site_libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="site_libs/chromatography-0.1/chromatography.js"></script>
+<script src="site_libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -354,16 +362,11 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Tópicos</a>
+      <a class="navbar-brand" href="index.html">Inicio</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li>
-  <a href="index.html">Inicio</a>
-</li>
-<li>
-  <a href="intro_DM.html">Introducción</a>
-</li>
+        
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -382,6 +385,393 @@ $(document).ready(function () {
 
 
 <hr />
+<div id="preliminares" class="section level2">
+<h2>Preliminares</h2>
+<p>Para llevar a cabo la dinámica molecular es necesario <strong>preparar el sistema a simular</strong>. El sistema estará representado por los siguientes dos archivos:</p>
+<ol style="list-style-type: decimal">
+<li>📃 <code>.rst7</code> que contiene:
+<ul>
+<li>Las coordenadas de los átomos del sistema.</li>
+</ul></li>
+<li>📃 <code>.prmtop</code>:
+<ul>
+<li>Los parámetros del campo de fuerza.</li>
+<li>Información sobre la topología del sistema.</li>
+<li>Propiedades de los átomos
+<ul>
+<li>Carga, masa, tipo de átomo</li>
+</ul></li>
+</ul></li>
+</ol>
+<div id="información-contenida-en-cada-tipo-de-archivo" class="section level3">
+<h3>Información contenida en cada tipo de archivo</h3>
+<p>Los archivos <code>.rst7</code> y <code>.prmtop</code> se construyen a partir de la información contenida en los archivos de entrada.</p>
+<!-- <div class="table-responsive-sm">
+<table class="table">
+  <thead class='thead-dark'>
+    <tr>
+      <th scope="col"  style="width:140px"><b>Archivo de Estructura</b></th>
+      <th scope="col"  style="width:140px"><b>Archivo de Librería</b></th>
+      <th scope="col"  style="width:140px"><b>Archivo de Parámetros</b></th>
+      <th scope="col" style="width:30px"></th>
+      <th scope="col"  style="width:140px"><b>Topología</b></th>
+      <th scope="col"  style="width:140px"><b>Coordenadas</b></th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td  style="width:140px">
+      Moléculas<br>
+      Nombre/Átomos<br><br><br>
+      <span class="imbed" style="color:#ff0000">Connexiones</span><br>
+      Coordenadas<br><br><br><br>
+    </td>
+    <td style="width:140px">
+      Residuos<br>
+      Nombre/Átomos<br>
+      Tipos/Átomos<br>
+      Cargas<br>
+      Conexiones<br>
+      <span class="imbed" style="color:#ff0000">Coordenadas</span><br>
+      Masa<br>
+      Parm. Enlazantes<br>
+      Parm. No enlazantes<br>
+    </td>
+    <td style="width:140px">
+      <br><br>
+      Tipos/Átomos<br><br><br><br>
+      Masas<br>
+      Parm. Enlazantes<br>
+      Parm. No Enlazantes<br>   
+    </td>
+    <td style="width:30px; text-align:center">
+      →<br>→<br>→<br><br><br>→
+    </td>
+    <td style="width:140px; font-weight:bold">
+      Residuos<br>
+      Nombre/Átomos<br>
+      Tipos/Átomos<br>
+      Cargas<br>
+      Conexiones<br><br>
+      Masas<br>
+      Parm. Enlazantes<br>
+      Parm. No enlazantes<br>   
+    </td>
+    <td style="width:140px; font-weight:bold">
+      <br><br><br><br><br>Coordenadas<br><br><br><br>
+    </td>
+  </tr>
+</tbody></table>
+</div> -->
+<div class="table-responsive-sm">
+<table class="table table-hover">
+<!-- <caption>Propiedades disponibles en cada tipo de archivo</caption> -->
+<thead class='thead-dark'>
+<tr class="table-primary" style=' background-color: #373737; color: white'>
+<th scope="col" style="width:140px">
+</th>
+<th scope="col" style="text-align: center;width:140px" colspan="2">
+<b>Estructura (Input)</b>
+</th>
+<th scope="col" style="text-align: center;width:140px" colspan="2">
+<b>Parámetros (Input)</b>
+</th>
+<th scope="col" style="text-align: center;width:140px" colspan="2">
+<b>Output Files</b>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr style='background-color: #FFFEE1; font-weight: bold'>
+<th scope="row" style="width:140px">
+Archivo
+</th>
+<td style="text-align:center">
+.pdb
+</td>
+<td style="text-align:center">
+.mol2
+</td>
+<td style="text-align:center">
+.lib<br>.mol2
+</td>
+<td style="text-align:center">
+.dat<br>.frcmod
+</td>
+<td style="text-align:center; color: #FC483F">
+.prmtop<br>.parm7
+</td>
+<td style="text-align:center; color: #FC483F">
+.inpcrd<br>.rst7
+</td>
+</tr>
+<tr>
+<th scope="row" style="width:140px">
+Moléculas
+</th>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+—
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+—
+</td>
+</tr>
+<tr>
+<th scope="row" style="width:140px">
+Nombre Átomos
+</th>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+—
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+—
+</td>
+</tr>
+<tr>
+<th scope="row" style="width:240px">
+Tipo de Átomos
+</th>
+<td style="text-align:center">
+—
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+—
+</td>
+</tr>
+<tr>
+<th scope="row" style="width:240px">
+Cargas
+</th>
+<td style="text-align:center">
+—
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+—
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+—
+</td>
+</tr>
+<tr>
+<th scope="row" style="width:240px">
+Conexiones
+</th>
+<td style="text-align:center">
+—
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+—
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+—
+</td>
+</tr>
+<tr>
+<th scope="row" style="width:240px">
+Coordenadas
+</th>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+—
+</td>
+<td style="text-align:center">
+—
+</td>
+<td style="text-align:center">
+✅
+</td>
+</tr>
+<tr>
+<th scope="row" style="width:240px">
+Masa
+</th>
+<td style="text-align:center">
+—
+</td>
+<td style="text-align:center">
+—
+</td>
+<td style="text-align:center">
+—
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+—
+</td>
+</tr>
+<tr>
+<th scope="row" style="width:240px">
+Parm. Enlazantes
+</th>
+<td style="text-align:center">
+—
+</td>
+<td style="text-align:center">
+—
+</td>
+<td style="text-align:center">
+—
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+—
+</td>
+</tr>
+<tr>
+<th scope="row" style="width:240px">
+Parm. No enlazantes
+</th>
+<td style="text-align:center">
+—
+</td>
+<td style="text-align:center">
+—
+</td>
+<td style="text-align:center">
+—
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+✅
+</td>
+<td style="text-align:center">
+—
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="creación-de-los-archivos-de-topología-.prmtop-y-coordenadas-rst7" class="section level3">
+<h3>Creación de los archivos de topología <code>.prmtop</code> y coordenadas <code>rst7</code></h3>
+<p>El programa <strong>LEaP</strong> permite utilizar la información de los archivos de entrada: <strong>estructura</strong> y <strong>parámetros de campo de fuerza</strong>, para generar los archivos <code>.rst7</code> y <code>.prmtop</code>.</p>
+<div id="htmlwidget-3dcfee806350f4823135" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3dcfee806350f4823135">{"x":{"diagram":"\ngraph LR\n    A(prot_unprep.pdb)-->Q[pdb2pqr]\n    Q-->D\n    D(prot.pdb)--> F[LEaP]\n    L(lig.mol2)--> B(lig.mol2)\n    L(lig.mol2)-->Z[Antechamber]\n    L(lig.mol2)--> P[parmchk2]\n    Z-->E(LIG_def.mol2)\n    P-->|GAFF.dat|G(LIG_def.frcmod)\n    B(lig.mol2)--> F\n    E --> K(LIG_def.lib)\n    G --> K(LIG_def.lib)\n    K --> F\n    V(Parámetros Extra)-->|leaprc.xxx.xxx| F\n\n    subgraph Inputs\n    A\n    L\n    end\n\n    subgraph Estructura\n    B\n    D\n    end\n\n    subgraph Parámetros-Librería\n    subgraph Ligando - GAFF\n    E\n    G\n    K\n    end\n    V\n    end\n\n    F-->prot_lig.prmtop\n    F-->prot_lig.rst7\n    subgraph Sistema P+L Solv.\n    prot_lig.prmtop\n    prot_lig.rst7 \n    end\n"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="campo-de-fuerza-de-amber" class="section level3">
+<h3>Campo de Fuerza de Amber</h3>
+<p>El objetivo de la preparación de los archivos es contar con la información necesaria respecto a las moléculas del sistema para calcular su energía potencial (<span class="math inline">\(V\)</span>) de acuerdo con el campo de fuerza de amber durante la simulación de la dinámica molecular:</p>
+<p><span class="math display">\[
+\begin{aligned}
+V(r^{N}) &amp; =\sum _{i\in {\text{bonds}}}{\color{red}k_{b}}_{i}(l_{i}-\color{red}l_{i}^{0})^{2} \\
+&amp; +\sum _{i\in {\text{angles}}}{\color{red}k_{a}}_{i}(\theta _{i}-\color{red}\theta _{i}^{0})^{2} \\
+&amp; +\sum _{i\in {\text{torsions}}}\sum _{n}{\frac {1}{2}}\color{red}V_{i,n}[1+\cos(\color{red}n\omega _{i}-\color{red}\gamma _{i})] \\
+&amp; +\sum _{j=1}^{N-1}\sum _{i=j+1}^{N}{\biggl \{}\color{red}\epsilon _{ij}{\biggl [}\left({\frac {\color{red}r_{ij}^{0}}{r_{ij}}} \right)^{12}-2\left({\frac {\color{red}r_{ij}^{0}}{r_{ij}}}\right)^{6}{\biggr ]}+{\frac {q_{i}q_{j}}{4\pi \epsilon _{0}r_{ij}}}{\biggr \}}
+\end{aligned}
+\]</span></p>
+<p>Las constantes de fuerza (<span class="math inline">\(k_{a,b}, V_n, \epsilon\)</span>), constantes de equilibrio (<span class="math inline">\(\theta^0, l^0, \gamma, r^0\)</span>), y las cargas parciales (<span class="math inline">\(q\)</span>), así como la masa de cada tipo de átomo son recuperadas de las librerías de campo de fuerza de AMBER y almacenadas en el archivo <code>.prmtop</code>.</p>
+<div id="biblioteca-de-parámetros" class="section level4">
+<h4>Biblioteca de parámetros</h4>
+<ol style="list-style-type: decimal">
+<li><strong>Proteínas y péptidos</strong> -&gt; <a href="https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/cmd/leaprc.protein.ff14SB">leaprc.protein.ff14SB</a>:
+<ol style="list-style-type: decimal">
+<li><a href="https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/parm/parm10.dat">parm10.dat</a>: Archivo principal con la mayoría de parámetros del campo de fuerza.
+<ol style="list-style-type: decimal">
+<li>Tipos de átomos</li>
+<li>Masas</li>
+<li>Cargas <span class="math inline">\(q_i\)</span></li>
+<li>Parámetros de Lennard-Jones (<span class="math inline">\(\epsilon_{ij}, r_{ij}\)</span>)</li>
+<li>Enlaces (<span class="math inline">\(k_a, l^0\)</span>)</li>
+<li>Ángulos (<span class="math inline">\(k_b, \theta^0\)</span>)</li>
+<li>Torsiones (<span class="math inline">\(V_n, n, \gamma\)</span>)</li>
+</ol></li>
+<li><a href="https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/parm/frcmod.ff14SB">frcmod.ff14SB</a>: Suplementa a <code>parm10.dat</code></li>
+<li><code>amino12.lib</code></li>
+</ol></li>
+<li><strong>Moléculas orgánicas</strong> (<em>general AMBER force field</em> ) -&gt; <a href="https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/cmd/leaprc.gaff">leaprc.gaff</a>:
+<ol style="list-style-type: decimal">
+<li><a href="https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/parm/gaff.dat">gaff.dat</a></li>
+</ol></li>
+<li><strong>Solvente</strong> -&gt; <a href="https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/cmd/leaprc.water.tip3p">leaprc.water.tip3p</a>
+<ol style="list-style-type: decimal">
+<li><code>atomic_ions.lib</code></li>
+<li><code>solvents.lib</code></li>
+<li><code>frcmod.ionsjc_tip3p</code></li>
+<li><code>frcmod.ions234lm_126_tip3p</code></li>
+</ol></li>
+</ol>
+<p>Estos archivos se encuentran el siguiente directorio de la máquina virtual:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">/home/ssb/miniconda3/envs/amber/dat/leap/</span></span></code></pre></div>
+<hr />
+</div>
+</div>
+</div>
+<div id="tutorial" class="section level1">
+<h1>Tutorial</h1>
 <div id="obtención-y-preparación-de-la-proteína-y-el-ligando" class="section level2">
 <h2>Obtención y preparación de la proteína y el ligando:</h2>
 <div id="descarga-de-las-moléculas" class="section level3">
@@ -389,20 +779,30 @@ $(document).ready(function () {
 <ol style="list-style-type: decimal">
 <li>Definir una carpeta de trabajo para guardar los archivos que se irán generando.</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">mkdir</span> wd_md</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">mkdir</span> wd_md</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Abrir <strong>UCSF Chimera</strong> y en la opción “<em>File &gt; Fetch by id…</em>” descargar del pdb la proteína <strong><mark>5zty</mark></strong>.</p></li>
-<li><p>Ahora <strong>guardamos en dos archivos</strong> diferentes a la proteína y al ligando (esto se puede hacer utilizando <code>grep</code> o <code>sed</code> desde la terminal o de la siguiente manera):</p>
-<ol style="list-style-type: lower-alpha">
-<li>Desde UCSF Chimera, seleccionar los átomos de la proteína desde el menú “<em>Select &gt; Structure &gt; protein</em>”</li>
-<li>Con los átomos seleccionados ir a “<em>File &gt; Save PDB…</em>” y en la ventana que se abrirá seleccionar la opción “<em>Save selected atoms only</em>” y guardar el archivo <code>.pdb</code> de la proteína: <strong><mark>prot_unprep.pdb</mark></strong></li>
-<li>Hacer lo mismo para el ligando:
+<li><p><strong>Descarga los archivos de la proteína y el ligando</strong>:</p></li>
+<li><p>Ambos archivos pertenecen al modelo <a href="https://www.rcsb.org/structure/4FKW">4fkw</a>.</p></li>
+<li><p>Los residuos faltantes de la proteína (<em>loops</em> o regiones sin estructura secundaria definida) fueron añadidos utilizando <a href="https://salilab.org/modeller/">Modeller</a>, en un proceso conocido como <em>Model/Refine Loops</em>. Puedes revisar más sobre el tema de modelado de proteínas en los siguientes links:</p>
 <ol style="list-style-type: decimal">
-<li>Seleccionar los átomos del ligando: “Select &gt; Residue &gt; 9JU”</li>
-<li>Guardar el ligando en formato pdb, de la misma manera que se hizo con la proteína: <strong><mark>lig_unprep.pdb</mark></strong></li>
+<li><a href="https://www.cgl.ucsf.edu/chimera/docs/ContributedSoftware/multalignviewer/modeller.html">Chimera Interface to Modeller</a>
+<ol style="list-style-type: decimal">
+<li><a href="https://static-bcrf.biochem.wisc.edu/tutorials/modeller/Chimera_II_Modeller_GUI_document.pdf">Chimera Modeller tutorial</a></li>
 </ol></li>
+<li><a href="https://salilab.org/modeller/9.24/manual.pdf">Modeller Tutorial</a></li>
+<li><a href="https://swissmodel.expasy.org/">Swiss-Model</a> -&gt; Servidor para <strong>modelado por homología</strong>.</li>
+<li><a href="https://zhanglab.ccmb.med.umich.edu/I-TASSER/">ITASSER</a> -&gt; Servdor para modelado por enhebrado.</li>
+<li><a href="https://swissmodel.expasy.org/coursetext/appendix_B.htm">Más servidores</a> para modelado de estructura 3D de proteínas.</li>
 </ol></li>
 </ol>
+<!-- 2.  Abrir **UCSF Chimera** y en la opción "*File > Fetch by id...*" descargar del pdb la proteína **<mark>5zty</mark>**.
+        
+1.  Ahora **guardamos en dos archivos** diferentes a la proteína y al ligando (esto se puede hacer utilizando  `grep` o `sed` desde la terminal o de la siguiente manera):
+    a. Desde UCSF Chimera, seleccionar los átomos de la proteína desde el menú "*Select > Structure > protein*"
+    b. Con los átomos seleccionados ir a "*File > Save PDB...*" y en la ventana que se abrirá seleccionar la opción "*Save selected atoms only*" y guardar el archivo `.pdb` de la proteína: **<mark>prot_unprep.pdb</mark>**
+    c.  Hacer lo mismo para el ligando:
+        1.  Seleccionar los átomos del ligando: "Select > Residue > 9JU"
+        2.  Guardar el ligando en formato pdb, de la misma manera que se hizo con la proteína: **<mark>lig_unprep.pdb</mark>** -->
 <pre><code>📂 wd_md
 │  🗒 prot_unprep.pdb
 │  🗒 lig_unprep.pdb
@@ -411,25 +811,33 @@ $(document).ready(function () {
 </div>
 <div id="preparación-de-la-proteína-con-pdb2pqr" class="section level3">
 <h3>Preparación de la proteína con <a href="https://pdb2pqr.readthedocs.io/en/latest/using/">PDB2PQR</a>:</h3>
+<div id="htmlwidget-6d82db37867c4d969b5a" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6d82db37867c4d969b5a">{"x":{"diagram":"\ngraph LR\n    A(prot_unprep.pdb)-->|PDB2PQR| B(prot.pdb)\n    A(prot_unprep.pdb)-->|pdb4amber| B(prot.pdb)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Tener el ambiente <code>amber</code> activado y localizarse en la carpeta de trabajo (<code>wd_md</code>).</li>
-<li>Ejecutar <strong>PDB2PQR</strong> con el siguiente comando:</li>
+<li>Ejecutar <strong>PDB2PQR</strong> con alguno de los siguientes comandos (dependiendo de la versión):</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">pdb2pqr</span> --ff=amber --with-ph=7.0 --ffout=amber \</span>
-<span id="cb3-2"><a href="#cb3-2"></a>--ph-calc-method=propka \</span>
-<span id="cb3-3"><a href="#cb3-3"></a>--chain prot_unprep.pdb prot.pdb</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>pdb2pqr <span class="op">--</span>ff=amber <span class="op">--</span>with<span class="op">-</span>ph=<span class="fl">7.0</span> <span class="op">--</span>ffout=amber \</span>
+<span id="numCode-2"><a href="#numCode-2"></a><span class="op">--</span>ph<span class="op">-</span>calc<span class="op">-</span>method=propka \</span>
+<span id="numCode-3"><a href="#numCode-3"></a><span class="op">--</span>chain prot_unprep.pdb prot.pdb</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Para versiones anteriores</span></span>
+<span id="numCode-2"><a href="#numCode-2"></a>pdb2pqr <span class="op">--</span>ff=amber <span class="op">--</span>with<span class="op">-</span>ph=<span class="fl">7.0</span> <span class="op">--</span>ffout=amber \</span>
+<span id="numCode-3"><a href="#numCode-3"></a>    <span class="op">--</span>ph<span class="op">-</span>calc<span class="op">-</span>method=propka \</span>
+<span id="numCode-4"><a href="#numCode-4"></a>    <span class="op">--</span>chain prot_unprep.pdb prot.pdb</span></code></pre></div>
 <blockquote>
 <p>Esto creará un nuevo archivo <strong><mark>prot.pdb</mark></strong> con la nomenclatura correcta en Amber y con los estados de protonación a pH 7 de los residuos ionizables.</p>
 </blockquote>
 </div>
 <div id="convertir-el-ligando-a-formato-mol2" class="section level3">
 <h3>Convertir el ligando a formato <code>mol2</code></h3>
+<div id="htmlwidget-177198ac261c877b1a1b" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-177198ac261c877b1a1b">{"x":{"diagram":"\ngraph LR\n    A(lig_unprep.pdb)-->|obabel| B(lig.mol2)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Ejecutar el siguiente comando usando <em><a href="https://openbabel.org/docs/dev/Command-line_tools/babel.html">Open Babel</a></em>:</li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">obabel</span> -ipdb lig_unprep.pdb -omol2 -O lig_unprep.mol2 -p 7.0</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>obabel <span class="op">-</span>ipdb lig_unprep.pdb <span class="op">-</span>omol2 <span class="op">-</span>O lig.mol2 <span class="op">-</span>p <span class="fl">7.0</span></span></code></pre></div>
 <blockquote>
-<p>Esto creará un nuevo archivo <strong><mark>lig_unprep.mol2</mark></strong> con la molécula protonizada a un pH de 7.0.</p>
+<p>Esto creará un nuevo archivo <strong><mark>lig.mol2</mark></strong> con la molécula protonizada a un pH de 7.0.</p>
 </blockquote>
 <ol start="4" style="list-style-type: decimal">
 <li>En este punto, vamos a necesitar únicamente el archivo <strong><mark>prot.pdb</mark></strong> y el archivo <strong><mark>lig.mol2</mark></strong> que ya acaban de ser creados.</li>
@@ -439,7 +847,7 @@ $(document).ready(function () {
 │  📜 lig_unprep.pdb
 |  📜 prot.pdb.propka
 │  🗒 prot.pdb
-│  🗒 lig_unprep.mol2</code></pre>
+│  🗒 lig.mol2</code></pre>
 <hr />
 </div>
 <div id="preparación-de-parámetros-y-de-coordenadas-del-ligando" class="section level3">
@@ -447,16 +855,18 @@ $(document).ready(function () {
 <p>Un tutorial más a detalle se puede consultar <a href="http://ambermd.org/tutorials/basic/tutorial4b/index.php">aquí</a>.</p>
 <div id="uso-de-antechamber-para-definir-la-estructura-y-nomenclatura-del-ligando" class="section level4">
 <h4>Uso de Antechamber para definir la estructura y nomenclatura del ligando</h4>
+<div id="htmlwidget-f0284dfd99f4b739b3e8" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f0284dfd99f4b739b3e8">{"x":{"diagram":"\ngraph LR\n    A(lig.mol2)-->|antechamber| B(LIG_def.mol2)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Desde la terminal con el ambiente de conda <code>amber</code> activado y estando en el directorio de trabajo (<code>wd_md</code>), ejecutar:</li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">antechamber</span> -i lig_unprep.mol2 -fi mol2 /</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="ex">-o</span> LIG_def.mol2 -fo mol2 -c bcc -s 2 -rn LIG</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>antechamber <span class="op">-</span>i lig_unprep.mol2 <span class="op">-</span>fi mol2 <span class="op">/</span></span>
+<span id="numCode-2"><a href="#numCode-2"></a><span class="op">-</span>o LIG_def.mol2 <span class="op">-</span>fo mol2 <span class="op">-</span>c bcc <span class="op">-</span>s <span class="dv">2</span> <span class="op">-</span>rn LIG</span></code></pre></div>
 <blockquote>
 <p>Esto permite usar la herramienta <a href="http://ambermd.org/antechamber/antechamber.html">Antechamber</a> para generar los archivos de topología del ligando, necesarios para la dinámica. <strong>El proceso suele tardar un poco.</strong> Una vez finalizado, se crearán varios archivos, pero de todos ellos sólo nos interesa el archivo <strong><mark>LIG_def.mol2</mark></strong>, que define a la molécula como un residuo y define los tipos de átomos, la nomenclatura correspondiente y las cargas parciales adecuadas para cada átomo.</p>
 </blockquote>
 <blockquote>
-<p>El parámetro <code>-c bcc</code> indica a <em>antechamber</em> usar el modelo de cargas AM1-BCC (<em>semi-empirical (AM1) with bond charge correction (BCC)</em>) para calcular las cargas parciales de la molécula. La opción <code>-rn</code> indica renombrar el nombre de la molécula a <code>LIG</code>. Finalmente, <code>-s 2</code>define una opción de <em>verbose</em> que nos permite recibir información en la terminal del proceso de ejecución.</p>
+<p>El parámetro <code>-c bcc</code> indica a <em>antechamber</em> usar el modelo de cargas <a href="https://pubmed.ncbi.nlm.nih.gov/12395429/">AM1-BCC</a> (<em>semi-empirical (AM1) with bond charge correction (BCC)</em>) para calcular las cargas parciales de la molécula. La opción <code>-rn</code> indica renombrar el nombre de la molécula a <code>LIG</code>. Finalmente, <code>-s 2</code>define una opción de <em>verbose</em> que nos permite recibir información en la terminal del proceso de ejecución.</p>
 </blockquote>
 <pre><code>📂 wd_md
 │  📜 ANTECHAMBER_*
@@ -468,13 +878,25 @@ $(document).ready(function () {
 </div>
 <div id="uso-de-parmcheck-para-verificar-los-parámetros-del-campo-de-fuerza" class="section level4">
 <h4>Uso de parmcheck para verificar los parámetros del campo de fuerza</h4>
+<div id="htmlwidget-937223353c7f74dc3cc9" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-937223353c7f74dc3cc9">{"x":{"diagram":"\ngraph LR\n    A(LIG_def.mol2)-->|parmchk2| B(LIG_def.frcmod)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Ahora validamos que los parámetros del campo de fuerza necesarios para la molécula estén disponibles en las librerías de AMBER. Para ello ejecutar lo siguiente:</li>
 </ol>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">parmchk2</span> -i LIG_def.mol2 -f mol2 -o LIG_def.frcmod</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>parmchk2 <span class="op">-</span>i LIG_def.mol2 <span class="op">-</span>f mol2 <span class="op">-</span>o LIG_def.frcmod</span></code></pre></div>
 <blockquote>
 <p>Esto crea un archivo <strong><mark>LIG_def.frcmod</mark></strong> donde reporta los tipos de enlaces en la molécula que no están directamente en el campo de fuerza, pero que pueden ser representados por otros que ya se encuentran en el campo de fuerza <strong><a href="http://ambermd.org/antechamber/gaff.html">GAFF</a></strong> (<em>General AMBER Force Field</em>). Si abres el archivo <strong><mark>LIG_def.frcmod</mark></strong> podrás ver ahí qué enlaces son los que requieren dicha reasignación.</p>
 </blockquote>
+<div class="alert alert-dismissible alert-warning">
+<h4 class="alert-heading">
+General AMBER force field (GAFF) for rational drug design
+</h4>
+<ul>
+<li>
+Más información sobre los parámetros del campo de fuerza GAFF <a href="http://ambermd.org/antechamber/gaff.html">Aquí</a>
+</li>
+</ul>
+</div>
 <pre><code>📂 wd_md
 │  📜 ANTECHAMBER_*
 │  📜 ATOMTYPE.INF
@@ -490,7 +912,7 @@ $(document).ready(function () {
 <ol style="list-style-type: decimal">
 <li>En la terminal, ejecutar:</li>
 </ol>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="ex">tleap</span> -f oldff/leaprc.ff14SB</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">tleap</span> -f oldff/leaprc.ff14SB</span></code></pre></div>
 <blockquote>
 <p>Esto abrirá la consola de <strong>LEaP</strong> precargando el campo de fuerza <em>ff14SB</em> (más sobre los campos de fuerza de AMBER: <a href="https://ambermd.org/AmberModels.php">AmberModels</a>)</p>
 </blockquote>
@@ -523,65 +945,67 @@ $(document).ready(function () {
 <div id="construcción-y-solvatación-del-sistema" class="section level3">
 <h3>Construcción y solvatación del Sistema</h3>
 <p>Entra nuevamente a <code>tleap</code> desde la terminal, esta vez tecleando unicamente (o hay que precargar ningún campo de fuerza esta vez):</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1"></a><span class="ex">tleap</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="ex">tleap</span></span></code></pre></div>
 <p>Dentro de tleap, ejecutar uno a uno los siguientes comandos:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Carga de las librerías del campo de fuerza</strong> - Carga de las librerías necesarias tanto como para la proteína como para el solvente del sistema:</li>
 </ol>
-<ul>
-<li><code>source leaprc.gaff</code></li>
-<li><code>source leaprc.protein.ff14SB</code></li>
-<li><code>source leaprc.water.tip3p</code></li>
-<li><code>loadoff atomic_ions.lib</code></li>
-</ul>
-<ol start="2" style="list-style-type: decimal">
+<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>source leaprc.gaff</span>
+<span id="numCode-2"><a href="#numCode-2"></a>source leaprc.protein.ff14SB</span>
+<span id="numCode-3"><a href="#numCode-3"></a>source leaprc.water.tip3p</span></code></pre></div>
+<ol style="list-style-type: decimal">
 <li><strong>Carga de las librerías del ligando</strong> - Carga de las librerías del ligando, las cuales se crearon en el paso anterior:</li>
 </ol>
-<ul>
-<li><code>loadamberparams LIG_def.frcmod</code></li>
-<li><code>loadoff LIG_def.lib</code></li>
-</ul>
+<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>loadamberparams LIG_def.frcmod</span>
+<span id="numCode-2"><a href="#numCode-2"></a>loadoff LIG_def.lib</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li><strong>Creación del complejo</strong> - Se leen los archivos <code>pdb</code> y <code>mol2</code> de la proteína y ligando, respectivamente, y se combinan en un sólo objeto:</li>
 </ol>
-<ul>
-<li><code>protein = loadpdb prot.pdb</code></li>
-<li><code>LIG = loadmol2 LIG_def.mol2</code></li>
-<li><code>system = combine {protein LIG}</code></li>
-</ul>
-<ol start="4" style="list-style-type: decimal">
+<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>protein =<span class="st"> </span>loadpdb prot.pdb</span>
+<span id="numCode-2"><a href="#numCode-2"></a>LIG =<span class="st"> </span>loadmol2 LIG_def.mol2</span>
+<span id="numCode-3"><a href="#numCode-3"></a>system =<span class="st"> </span>combine {protein LIG}</span></code></pre></div>
+<ol style="list-style-type: decimal">
 <li><strong>Solvatación del sistema</strong> - Se solvata el complejo proteína-ligando utilizando agua <code>TIP3P</code>.</li>
 </ol>
-<ul>
-<li><p><code>solvateOct system TIP3PBOX 12</code></p>
+<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource bash numberLines"><code class="sourceCode bash"><span id="numCode-1"><a href="#numCode-1"></a><span class="ex">solvateOct</span> system TIP3PBOX 12</span></code></pre></div>
 <blockquote>
-<p>Si se quiere solvatar en caja de agua sustituir <code>solvateOct</code> por <code>solvatebox</code>. El número <code>12</code> indica la distancia en A del <em>padding</em> de la caja de agua.</p>
-</blockquote></li>
-</ul>
-<ol start="5" style="list-style-type: decimal">
+<p>Si se quiere solvatar en caja de agua sustituir <code>solvateOct</code> por <code>solvatebox</code>.</p>
+</blockquote>
+<blockquote>
+<p>El número <code>12</code> indica la distancia en A del <em>padding</em> de la caja de agua.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
 <li><strong>Neutralización del sistema</strong> - Se neutraliza todo el sistema usando los iones correspondientes:</li>
 </ol>
-<ul>
-<li><p><code>addions system Cl- 0</code></p>
+<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>addions system Cl<span class="op">-</span><span class="st"> </span><span class="dv">0</span></span></code></pre></div>
 <blockquote>
 <p>Dado que en este caso el sistema tiene carga positiva, lo que hacemos en neutralizar con iones <code>Cl-</code>. El <code>0</code> indica que se añadan tantos iones como sean necesarios para alcanzar una carga total igual a 0 (neutra).</p>
-</blockquote></li>
-</ul>
-<ol start="6" style="list-style-type: decimal">
+</blockquote>
+<ol style="list-style-type: decimal">
 <li>Finalmente, <strong>guardar los archivos de topología</strong> (<code>prmtop</code>) y de <strong>coordenadas</strong> (<code>rst7</code>):</li>
 </ol>
-<ul>
-<li><code>saveamberparm system prot_LIG.prmtop prot_LIG.rst7</code></li>
-<li><code>quit</code></li>
-</ul>
-<ol start="7" style="list-style-type: decimal">
+<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>saveamberparm system prot_LIG.prmtop prot_LIG.rst7</span>
+<span id="numCode-2"><a href="#numCode-2"></a>quit</span></code></pre></div>
+<ol style="list-style-type: decimal">
 <li>Los archivos <strong><mark>prot_LIG.prmtop</mark></strong> y <strong><mark>prot_LIG.rst7</mark></strong> son los que servirán como entrada para llevar a cabo la dinámica.</li>
 </ol>
 <pre><code>📂 wd_md
 │  📜 ...
 │  🗒 prot_LIG.prmtop
 │  🗒 prot_LIG.rst7</code></pre>
+<hr />
 </div>
+</div>
+</div>
+<div id="referencias-y-recursos" class="section level1">
+<h1>Referencias y Recursos</h1>
+<ul>
+<li><a href="https://ambermd.org/doc12/Amber19.pdf">Manual Amber 2019</a></li>
+<li><a href="http://ambermd.org/antechamber/gaff.html">GAFF</a></li>
+<li><a href="https://ambermd.org/tutorials/pengfei/index.php">Fundamentals of LEaP</a></li>
+<li>Amber&gt; <a href="https://ambermd.org/tutorials/ForceField.php">Developing Nonstandard Parameters</a></li>
+<li><a href="https://ambermd.org/AmberModels.php">Amber Force Fields</a></li>
+</ul>
 </div>
 
 <!-- Footer -->
