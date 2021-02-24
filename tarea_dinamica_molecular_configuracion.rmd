@@ -19,10 +19,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Instrucciones
 1. Descarga los **archivos de configuración** correspondientes a las siguientes fases de simulación:
-   a) [min_all.in](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/min_all.smi) -> Minimización de la energía potencial del sistema.
-   b) [heat.in](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/heat.smi) -> Calentamiento del sistema.
-   c) [eq.in](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/eq.smi) -> Equilibrado del sistema.
-   d) [prod.in](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/prod.smi) -> Fase de producción de la dinámica molecular.
+   a) [min_all.in](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/min_all.in) -> Minimización de la energía potencial del sistema.
+   b) [heat.in](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/heat.in) -> Calentamiento del sistema.
+   c) [eq.in](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/eq.in) -> Equilibrado del sistema.
+   d) [prod.in](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/prod.in) -> Fase de producción de la dinámica molecular.
 
 
 2. 🚨 Utilizando el [manual de Amber](https://ambermd.org/doc12/Amber19.pdf), búsca cada uno de los comandos usados en cada fase y **<mark>comenta brevemente qué hace cada uno</mark>** (ver ejemplo del comentario más abajo).
