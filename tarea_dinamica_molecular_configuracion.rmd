@@ -269,7 +269,7 @@ Fase de Producción
 /
 ```
 
-
+***
 # Cuestionario (21 preguntas)
 
 **Responde las preguntas del siguiente cuestionario.** Las preguntas están relacionadas con los archivos de configuración mostrados arriba y el significado de los parámetros usados.
