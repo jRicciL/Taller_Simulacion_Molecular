@@ -427,8 +427,8 @@ $(document).ready(function () {
 <span id="numCode-7"><a href="#numCode-7"></a>  <span class="op">-</span>o sistema_MIN.out \    <span class="co"># Archivo de salida (propiedades físicas del sistema)</span></span>
 <span id="numCode-8"><a href="#numCode-8"></a>  <span class="op">-</span>r sistema_MIN.rst7 \   <span class="co"># Archivo restart al finalizar (coords)</span></span>
 <span id="numCode-9"><a href="#numCode-9"></a>  <span class="op">-</span>inf sistema_MIN.mdinfo <span class="co"># Información de la ejecución</span></span></code></pre></div>
-<div id="htmlwidget-0f5cd4afc384aea24f0c" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0f5cd4afc384aea24f0c">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_MIN.rst7)\n    B --> |Propiedades del sistema|F(sistema_MIN.out)\n    B --> |Info. ejecución|G(sistema_MIN.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ee58945bc790e679d4e7" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ee58945bc790e679d4e7">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_MIN.rst7)\n    B --> |Propiedades del sistema|F(sistema_MIN.out)\n    B --> |Info. ejecución|G(sistema_MIN.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <div id="archivo-de-configuración" class="section level3">
 <h3>Archivo de configuración</h3>
 <p>La línea 4 muestra un ejemple de comentario. Los comentarios empiezan con el símbolo <code>!</code>.</p>
@@ -470,8 +470,8 @@ $(document).ready(function () {
 <span id="numCode-7"><a href="#numCode-7"></a>  <span class="op">-</span>r sistema_HEAT.rst7 \   <span class="co"># Archivo restart al finalizar (coords y velocidades)</span></span>
 <span id="numCode-8"><a href="#numCode-8"></a>  <span class="op">-</span>x sistema_HEAT.nc \     <span class="co"># Archivo de la trayectoria (mrcd)</span></span>
 <span id="numCode-9"><a href="#numCode-9"></a>  <span class="op">-</span>inf sistema_HEAT.mdinfo <span class="co"># Información de la ejecución</span></span></code></pre></div>
-<div id="htmlwidget-19970575717f1e0ff528" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-19970575717f1e0ff528">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema_MIN.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_HEAT.rst7)\n    B --> |Propiedades del sistema|F(sistema_HEAT.out)\n    B --> |Trayectoria|H(sistema_HEAT.nc)\n    B --> |Info. ejecución|G(sistema_HEAT.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3f46af91a16a5e265a46" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3f46af91a16a5e265a46">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema_MIN.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_HEAT.rst7)\n    B --> |Propiedades del sistema|F(sistema_HEAT.out)\n    B --> |Trayectoria|H(sistema_HEAT.nc)\n    B --> |Info. ejecución|G(sistema_HEAT.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <div id="archivo-de-configuración-1" class="section level3">
 <h3>Archivo de configuración</h3>
 <p>La línea 10 muestra un ejemple de comentario. Los comentarios empiezan con el símbolo <code>!</code>.</p>
@@ -512,8 +512,8 @@ $(document).ready(function () {
 <span id="numCode-7"><a href="#numCode-7"></a>  <span class="op">-</span>r sistema_EQ.rst7 \    <span class="co"># Archivo restart al finalizar (coords y velocidades)</span></span>
 <span id="numCode-8"><a href="#numCode-8"></a>  <span class="op">-</span>x sistema_EQ.nc \      <span class="co"># Archivo de la trayectoria (mrcd)</span></span>
 <span id="numCode-9"><a href="#numCode-9"></a>  <span class="op">-</span>inf sistema_EQ.mdinfo  <span class="co"># Información de la ejecución</span></span></code></pre></div>
-<div id="htmlwidget-a5779544240ec76cbde4" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a5779544240ec76cbde4">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema_HEAT.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_EQ.rst7)\n    B --> |Propiedades del sistema|F(sistema_EQ.out)\n    B --> |Trayectoria|H(sistema_EQ.nc)\n    B --> |Info. ejecución|G(sistema_EQ.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-77cc1b6d40439f3159cc" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-77cc1b6d40439f3159cc">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema_HEAT.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_EQ.rst7)\n    B --> |Propiedades del sistema|F(sistema_EQ.out)\n    B --> |Trayectoria|H(sistema_EQ.nc)\n    B --> |Info. ejecución|G(sistema_EQ.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <div id="archivo-de-configuración-2" class="section level3">
 <h3>Archivo de configuración</h3>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>cat eq.in</span></code></pre></div>
@@ -557,8 +557,8 @@ $(document).ready(function () {
 <span id="numCode-7"><a href="#numCode-7"></a>  <span class="op">-</span>r sistema_PROD.rst7 \   <span class="co"># Archivo restart al finalizar (coords y velocidades)</span></span>
 <span id="numCode-8"><a href="#numCode-8"></a>  <span class="op">-</span>x sistema_PROD.nc \     <span class="co"># Archivo de la trayectoria (mrcd)</span></span>
 <span id="numCode-9"><a href="#numCode-9"></a>  <span class="op">-</span>inf sistema_PROD.mdinfo <span class="co"># Información de la ejecución</span></span></code></pre></div>
-<div id="htmlwidget-3ff7f44fcf4f592c5999" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3ff7f44fcf4f592c5999">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema_EQ.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_PROD.rst7)\n    B --> |Propiedades del sistema|F(sistema_PROD.out)\n    B --> |Trayectoria|H(sistema_PROD.nc)\n    B --> |Info. ejecución|G(sistema_PROD.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f1ca5da6985d7580cf19" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f1ca5da6985d7580cf19">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema_EQ.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_PROD.rst7)\n    B --> |Propiedades del sistema|F(sistema_PROD.out)\n    B --> |Trayectoria|H(sistema_PROD.nc)\n    B --> |Info. ejecución|G(sistema_PROD.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <div id="archivo-de-configuración-3" class="section level3">
 <h3>Archivo de configuración</h3>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>cat prod.in</span></code></pre></div>
@@ -595,7 +595,7 @@ $(document).ready(function () {
 <blockquote>
 <p>🚨 El cuestionario está dividido en <strong>cuatro secciones</strong> según las fases de la dinámica. Las preguntas dentro de cada sección hacen referencia a la fase correspondiente.</p>
 </blockquote>
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSejRrmGGhKppqshNFE0e_U7WsPOfHF-Al3nesgGKumjtIZAwQ/viewform?embedded=true" width="720" max-height="520" frameborder="0" marginheight="0" marginwidth="0">
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSejRrmGGhKppqshNFE0e_U7WsPOfHF-Al3nesgGKumjtIZAwQ/viewform?embedded=true" width="720" height="800" frameborder="0" marginheight="0" marginwidth="0">
 Cargando…
 </iframe>
 </div>

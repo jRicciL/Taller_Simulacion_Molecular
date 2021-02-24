@@ -288,4 +288,4 @@ Fase de Producción
 
 > 🚨 El cuestionario está dividido en **cuatro secciones** según las fases de la dinámica. Las preguntas dentro de cada sección hacen referencia a la fase correspondiente. 
   
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSejRrmGGhKppqshNFE0e_U7WsPOfHF-Al3nesgGKumjtIZAwQ/viewform?embedded=true" width="720" max-height="520" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSejRrmGGhKppqshNFE0e_U7WsPOfHF-Al3nesgGKumjtIZAwQ/viewform?embedded=true" width="720" height="800" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
