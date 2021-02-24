@@ -19,10 +19,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Instrucciones
 1. Descarga los **archivos de configuración** correspondientes a las siguientes fases de simulación:
-   a) min_all.in -> Minimización de la energía potencial del sistema.
-   b) heat.in -> Calentamiento del sistema.
-   c) eq.in -> Equilibrado del sistema.
-   d) prod.in -> Fase de producción de la dinámica molecular.
+   a) [min_all.in](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/min_all.smi) -> Minimización de la energía potencial del sistema.
+   b) [heat.in](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/heat.smi) -> Calentamiento del sistema.
+   c) [eq.in](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/eq.smi) -> Equilibrado del sistema.
+   d) [prod.in](https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/prod.smi) -> Fase de producción de la dinámica molecular.
 
 
 2. 🚨 Utilizando el [manual de Amber](https://ambermd.org/doc12/Amber19.pdf), búsca cada uno de los comandos usados en cada fase y **<mark>comenta brevemente qué hace cada uno</mark>** (ver ejemplo del comentario más abajo).
@@ -31,7 +31,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 3. **Responde las preguntas del cuestionario mostrado al final.**
 
-
+4. <mark>📆 Fecha límite para responder el cuestionario es el jueves 4 de marzo a las 24:00 horas.</mark>
 
 ***
 ## 1) Fase 1: Minimización de la energía potencial del sistema
@@ -130,6 +130,10 @@ graph LR
 La línea 10 muestra un ejemple de comentario. Los comentarios empiezan con el símbolo `!`.
 
 ```{#numCode .R .numberLines}
+cat heat.in
+```
+
+```{#numCode .R .numberLines}
 &cntrl
     imin=0,          ! 
     irest=0,         ! 
@@ -184,6 +188,10 @@ graph LR
 ```
 
 ### Archivo de configuración
+
+```{#numCode .R .numberLines}
+cat eq.in
+```
 
 ```{#numCode .R .numberLines}
 Fase de Equilibrado
@@ -244,6 +252,10 @@ graph LR
 ### Archivo de configuración
 
 ```{#numCode .R .numberLines}
+cat prod.in
+```
+
+```{#numCode .R .numberLines}
 Fase de Producción
 &cntrl
     imin=0,         !
@@ -274,10 +286,6 @@ Fase de Producción
 
 **Responde las preguntas del siguiente cuestionario.** Las preguntas están relacionadas con los archivos de configuración mostrados arriba y el significado de los parámetros usados.
 
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSejRrmGGhKppqshNFE0e_U7WsPOfHF-Al3nesgGKumjtIZAwQ/viewform?embedded=true" width="720" height="5883" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
-
-***
-# Referencias y Recursos
-
-- [Manual Amber 2019](https://ambermd.org/doc12/Amber19.pdf){target="_blank"}
-- [Tutoriales de Amber](https://ambermd.org/tutorials/){target="_blank"}
+> 🚨 El cuestionario está dividido en **cuatro secciones** según las fases de la dinámica. Las preguntas dentro de cada sección hacen referencia a la fase correspondiente. 
+  
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSejRrmGGhKppqshNFE0e_U7WsPOfHF-Al3nesgGKumjtIZAwQ/viewform?embedded=true" width="720" max-height="520" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
