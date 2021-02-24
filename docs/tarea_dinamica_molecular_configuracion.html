@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Tarea: Archivos de configuración DM</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 61px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h2 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h3 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h4 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h5 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h6 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Inicio</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Tarea: Archivos de configuración DM</h1>
+
+</div>
+
+
+<hr />
+<div id="tarea-3-dinámica-molecular" class="section level1">
+<h1>Tarea 3: Dinámica Molecular</h1>
+<p><strong><mark>Archivos de configuración para realizar la DM con Amber</mark></strong></p>
+<div id="objetivos" class="section level2">
+<h2>Objetivos</h2>
+<ul>
+<li>Revisar los archivos de configuración que definen el comportamiento de la ejecución de dinámica molecular con Amber.</li>
+<li>Describir brevemente los parámetros utilizados dentro de cada archivo de configuración.</li>
+<li>Responder un cuestionario sobre las propiedades de la dinámica de acuerdo a los siguientes archivos de configuración.</li>
+</ul>
+</div>
+<div id="instrucciones" class="section level2">
+<h2>Instrucciones</h2>
+<ol style="list-style-type: decimal">
+<li><p>Descarga los archivos de configuración correspondientes a las siguientes fases de simulación:</p>
+<ol style="list-style-type: decimal">
+<li>Minimización de la energía potencial del sistema.</li>
+<li>Calentamiento del sistema.</li>
+<li>Equilibrado del sistema.</li>
+<li>Fase de producción de la dinámica molecular.</li>
+</ol></li>
+<li><p>Utilizando el manual de Amber, búsca cada uno de los comandos usados en cada fase y comenta brevemente qué hace cada uno (ver ejemplo del comentario más abajo). &gt; Puedes usar <code>Ctrl+F</code> y/o el Índice a partir de la página 949 del manual de Amber.</p></li>
+<li><p>Responde las preguntas del cuestionario.</p></li>
+</ol>
+</div>
+<div id="minimización-de-la-energía-potencial-del-sistema" class="section level2">
+<h2>Minimización de la energía potencial del sistema</h2>
+<p>La línea 4 muestra un ejemple de comentario. Los comentarios empiezan con el símbolo <code>!</code>.</p>
+<pre><code>Minimize all atoms, minimizacion de todo el sistema
+   System minimization:
+&amp;cntrl
+   imin=1,         ! =1, llevar a cabo minimización del sistema
+   ntmin=1,     
+   ncyc=2500,
+   maxcyc=50000,
+   drms=0.01,  
+   ntx=1,       
+   irest=0,      
+   ntpr=100,    
+   ntwr=100,    
+   iwrap=0,     
+   ntf=1,       
+   igb=0,
+   ntb=1,
+   nsnb=20,       
+   cut=10.0,
+&amp;end
+ /</code></pre>
+<ul>
+<li><p>¿Qué método de minimización de la energía potencial se usa?</p>
+<ul>
+<li>sólo descenso del gradiente más pronunciado</li>
+<li>sólo gradiente conjugado</li>
+<li>descenso del gradiente más pronunciado + gradiente conjugado</li>
+</ul></li>
+<li><p>¿Cuál es el número máximo de iteraciones para minimizar el sistema?</p>
+<ul>
+<li>2500 pasos</li>
+<li>50000 pasos</li>
+<li>100 pasos</li>
+</ul></li>
+<li><p>¿Cada cuantos pasos se guardará la información de la energía del sistema?</p></li>
+<li><p>¿De acuerdo al comando <code>ntf=1</code> el cálculo de la energía incluye?</p>
+<ul>
+<li>Únicamente los términos no enlazantes</li>
+<li>Todos los términos excepto los enlaces de átomos de Hidrógeno</li>
+<li>Todos los términos excepto las torsiones</li>
+<li>Todos los términos, enlazantes y no enlazantes</li>
+</ul></li>
+<li><p>¿Cuál es la distancia de corte (en A) para evaluar las interacciones no enlazantes entre dos pares de átomos?</p></li>
+<li><p>¿Cada cuantos pasos son evaluadas las interacciones no enlazantes?</p></li>
+<li><p>Cada 1 paso</p></li>
+<li><p>Cada 2 pasos</p></li>
+<li><p>Cada 20 pasos</p></li>
+<li><p>¿Se toma en cuenta la temperatura del sistema (las velocidades de los átomos) en esta fase?</p></li>
+</ul>
+</div>
+<div id="calentamiento" class="section level2">
+<h2>Calentamiento</h2>
+<pre><code>&amp;cntrl
+    imin=0,     
+    irest=0,    
+    iwrap=1,    
+    ntx=1,      
+    ntb=1,      
+    cut=10.0,   
+    ntc=2,      
+    ntf=2,
+    ntt=3,           ! Tipo de termostato a utilizar; =3 Langevin
+    tempi=0.0,  
+    temp0=300.0,
+    gamma_ln=1.0, 
+    dt=0.001,
+    nstlim=3000000, 
+    ntpr=10000, 
+    ntwx=10000, 
+    ntwr=100000,
+/</code></pre>
+<ul>
+<li>¿Cuál es la temperatura inicial del sistema?</li>
+<li>¿Si <code>tempi</code> fuera igual a <code>tempi=100</code>, de donde se obtendrían las velocidades iniciales del sistema?
+<ul>
+<li>Se asignan aleatoriamente siguiendo una distribución de Maxwell-Boltzmann</li>
+<li>Se obtienen del campo de fuerza</li>
+<li>No se toman en cuenta para la simulación</li>
+</ul></li>
+<li>¿Cuál es la temperatura final del sistema?</li>
+<li>¿Cada cuantos picosegundos se lleva a cabo un paso de integración durante el calentamiento?</li>
+<li>¿Cuántos nanosegundos dura la fase de calentamiento?</li>
+<li>¿En esta fase se lleva a cabo nuevamente una minimización de la energía potencial?</li>
+<li>De acuerdo al parámetro <code>ntc</code>, la activación del algoritmo SHAKE permite:
+<ul>
+<li>Poner restricciones a los enlaces con átomos de hidrógeno para simplificar el cálculo</li>
+<li>Simular la oscilación de los enlaces con átomos de hidrógeno para hacer el cálculo más preciso</li>
+</ul></li>
+<li>¿Cada cuantos pasos se guarda información de las coordenadas de los átomos en el archivo de trayectoria (archivo mdcr)?</li>
+<li>¿Se están usando condiciones periódicas de frontera?</li>
+<li>¿De acuerdo al comando <code>ntb=1</code>, ¿Qué tipo de conglomerado se usa?
+<ul>
+<li>NVT</li>
+<li>NPT</li>
+</ul></li>
+</ul>
+</div>
+<div id="equilibrado" class="section level2">
+<h2>Equilibrado</h2>
+<ul>
+<li>¿Cuál es la temperatura inicial del sistema?</li>
+<li>¿Cuál es la temperatura final del sistema?</li>
+<li>¿Cada cuantos picosegundos se lleva a cabo un paso de integración durante el equilibrado?</li>
+<li>¿Cuántos nanosegundos dura la fase de equilibrado? Toma en cuenta el valor de <code>dt</code>antes de responder.</li>
+<li>¿De acuerdo al comando <code>ntb=1</code>, ¿Qué tipo de conglomerado se usa?
+<ul>
+<li>NVT</li>
+<li>NPT</li>
+</ul></li>
+<li>¿Por qué ya no se usa el comando <code>tempi</code>?
+<ul>
+<li>Porque la temperatura es la misma que la final del calentamiento</li>
+<li>Porque la temperatura inicial se estima de las velocidades proporcionadas por el archivo inpcrd del calentamiento usando el comando <code>ntx=5</code></li>
+</ul></li>
+<li>¿Cada cuantos picosegundos se lleva a cabo un paso de integración durante el calentamiento?</li>
+</ul>
+</div>
+<div id="producción" class="section level2">
+<h2>Producción</h2>
+<ul>
+<li>¿Cuál es la temperatura inicial del sistema?</li>
+<li>¿Cuál es la temperatura final del sistema?</li>
+<li>¿Cada cuantos picosegundos se lleva a cabo un paso de integración durante la producción?</li>
+<li>¿Cuántos nanosegundos dura la fase de producción?</li>
+</ul>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeQIlmrlI7N05Z9jYOYi4tqCdKaM-GlFGMXgaKombDyzlhSeA/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">
+Cargando…
+</iframe>
+</div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+  
+  <!-- Counter -->
+  <div class="container text-center">
+  <!-- a href="https://smallseotools.com/visitor-hit-counter/" target="_blank" title="Traffic Counter by Small Seo Tools" rel="nofollow noopener"><img src="https://smallseotools.com/counterDisplay?code=48f89ebe91e41e4e5cf53c9693a62c10&style=0004&pad=5&type=page&initCount=1" alt="Traffic Counter by Small Seo Tools" border="0"></a-->
+  </div>
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2021 Copyright:
+    <a href="https://github.com/jRicciL"> J. Ricci L.</a>
+  </div>
+  <!-- Copyright -->
+  <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+
+</footer>
+<!-- Footer -->
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

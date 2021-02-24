@@ -1,0 +1,146 @@
+---
+title: 'Tarea: Archivos de configuración DM'
+---
+***
+
+# Tarea 3: Dinámica Molecular
+**<mark>Archivos de configuración para realizar la DM con Amber</mark>**
+
+## Objetivos
+- Revisar los archivos de configuración que definen el comportamiento de la ejecución de dinámica molecular con Amber.
+- Describir brevemente los parámetros utilizados dentro de cada archivo de configuración.
+- Responder un cuestionario sobre las propiedades de la dinámica de acuerdo a los siguientes archivos de configuración.
+
+## Instrucciones
+1. Descarga los archivos de configuración correspondientes a las siguientes fases de simulación:
+   1. Minimización de la energía potencial del sistema.
+   2. Calentamiento del sistema.
+   3. Equilibrado del sistema.
+   4. Fase de producción de la dinámica molecular.
+
+2. Utilizando el manual de Amber, búsca cada uno de los comandos usados en cada fase y comenta brevemente qué hace cada uno (ver ejemplo del comentario más abajo).
+> Puedes usar `Ctrl+F` y/o el Índice a partir de la página 949 del manual de Amber.
+
+3. Responde las preguntas del cuestionario. 
+
+## Minimización de la energía potencial del sistema
+
+La línea 4 muestra un ejemple de comentario. Los comentarios empiezan con el símbolo `!`.
+
+```
+Minimize all atoms, minimizacion de todo el sistema
+   System minimization:
+&cntrl
+   imin=1,         ! =1, llevar a cabo minimización del sistema
+   ntmin=1,     
+   ncyc=2500,
+   maxcyc=50000,
+   drms=0.01,  
+   ntx=1,       
+   irest=0,      
+   ntpr=100,    
+   ntwr=100,    
+   iwrap=0,     
+   ntf=1,       
+   igb=0,
+   ntb=1,
+   nsnb=20,       
+   cut=10.0,
+&end
+ /
+```
+
+- ¿Qué método de minimización de la energía potencial se usa?
+  - sólo descenso del gradiente más pronunciado
+  - sólo gradiente conjugado
+  - descenso del gradiente más pronunciado + gradiente conjugado
+
+- ¿Cuál es el número máximo de iteraciones para minimizar el sistema?
+  - 2500 pasos
+  - 50000 pasos
+  - 100 pasos
+
+- ¿Cada cuantos pasos se guardará la información de la energía del sistema?
+
+- ¿De acuerdo al comando `ntf=1` el cálculo de la energía incluye?
+  - Únicamente los términos no enlazantes
+  - Todos los términos excepto los enlaces de átomos de Hidrógeno
+  - Todos los términos excepto las torsiones
+  - Todos los términos, enlazantes y no enlazantes
+
+- ¿Cuál es la distancia de corte (en A) para evaluar las interacciones no enlazantes entre dos pares de átomos?
+
+- ¿Cada cuantos pasos son evaluadas las interacciones no enlazantes?
+- Cada 1 paso
+- Cada 2 pasos
+- Cada 20 pasos
+
+- ¿Se toma en cuenta la temperatura del sistema (las velocidades de los átomos) en esta fase?
+
+## Calentamiento
+
+```
+&cntrl
+    imin=0,     
+    irest=0,    
+    iwrap=1,    
+    ntx=1,      
+    ntb=1,      
+    cut=10.0,   
+    ntc=2,      
+    ntf=2,
+    ntt=3,           ! Tipo de termostato a utilizar; =3 Langevin
+    tempi=0.0,  
+    temp0=300.0,
+    gamma_ln=1.0, 
+    dt=0.001,
+    nstlim=3000000, 
+    ntpr=10000, 
+    ntwx=10000, 
+    ntwr=100000,
+/
+```
+
+
+- ¿Cuál es la temperatura inicial del sistema?
+- ¿Si `tempi` fuera igual a `tempi=100`, de donde se obtendrían las velocidades iniciales del sistema?
+  - Se asignan aleatoriamente siguiendo una distribución de Maxwell-Boltzmann
+  - Se obtienen del campo de fuerza
+  - No se toman en cuenta para la simulación
+- ¿Cuál es la temperatura final del sistema?
+- ¿Cada cuantos picosegundos se lleva a cabo un paso de integración durante el calentamiento?
+- ¿Cuántos nanosegundos dura la fase de calentamiento?
+- ¿En esta fase se lleva a cabo nuevamente una minimización de la energía potencial?
+- De acuerdo al parámetro `ntc`, la activación del algoritmo SHAKE permite:
+  - Poner restricciones a los enlaces con átomos de hidrógeno para simplificar el cálculo
+  - Simular la oscilación de los enlaces con átomos de hidrógeno para hacer el cálculo más preciso
+- ¿Cada cuantos pasos se guarda información de las coordenadas de los átomos en el archivo de trayectoria (archivo mdcr)?
+- ¿Se están usando condiciones periódicas de frontera?
+- ¿De acuerdo al comando `ntb=1`, ¿Qué tipo de conglomerado se usa?
+  - NVT
+  - NPT
+
+## Equilibrado
+
+
+
+- ¿Cuál es la temperatura inicial del sistema?
+- ¿Cuál es la temperatura final del sistema?
+- ¿Cada cuantos picosegundos se lleva a cabo un paso de integración durante el equilibrado?
+- ¿Cuántos nanosegundos dura la fase de equilibrado? Toma en cuenta el valor de `dt`antes de responder.
+- ¿De acuerdo al comando `ntb=1`, ¿Qué tipo de conglomerado se usa?
+  - NVT
+  - NPT
+- ¿Por qué ya no se usa el comando `tempi`?
+  - Porque la temperatura es la misma que la final del calentamiento
+  - Porque la temperatura inicial se estima de las velocidades proporcionadas por el archivo inpcrd del calentamiento usando el comando `ntx=5`
+- ¿Cada cuantos picosegundos se lleva a cabo un paso de integración durante el calentamiento?
+
+
+## Producción
+- ¿Cuál es la temperatura inicial del sistema?
+- ¿Cuál es la temperatura final del sistema?
+- ¿Cada cuantos picosegundos se lleva a cabo un paso de integración durante la producción?
+- ¿Cuántos nanosegundos dura la fase de producción?
+
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeQIlmrlI7N05Z9jYOYi4tqCdKaM-GlFGMXgaKombDyzlhSeA/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
