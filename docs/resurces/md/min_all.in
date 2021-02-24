@@ -1,0 +1,20 @@
+Fase de minimizacion de todo el sistema
+   System minimization:
+&cntrl
+   imin=1,         ! =1, llevar a cabo minimizacion del sistema
+   ntmin=1,        ! Comentario
+   ncyc=2500,      ! Comentario
+   maxcyc=50000,   ! Comentario
+   drms=0.01,      ! Comentario
+   ntx=1,          ! Comentario
+   irest=0,        ! Comentario
+   ntpr=100,       ! Comentario
+   ntwr=100,       ! Comentario
+   iwrap=0,        ! Comentario
+   ntf=1,          ! Comentario
+   igb=0,          ! Comentario
+   ntb=1,          ! Comentario
+   nsnb=20,        ! Comentario
+   cut=10.0,       ! Comentario
+&end
+ /

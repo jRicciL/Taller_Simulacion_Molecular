@@ -1,0 +1,19 @@
+&cntrl
+    imin=0,          ! 
+    irest=0,         ! 
+    iwrap=1,         !
+    ntx=1,           !
+    ntb=1,           !
+    cut=10.0,        !
+    ntc=2,           !
+    ntf=2,           !
+    ntt=3,           ! Tipo de termostato a utilizar; =3 Langevin
+    tempi=0.0,       !
+    temp0=300.0,     !
+    gamma_ln=1.0,    !
+    dt=0.001,        !
+    nstlim=3000000,  !
+    ntpr=10000,      !
+    ntwx=10000,      !
+    ntwr=100000,     !
+/
