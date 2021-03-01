@@ -1,0 +1,32 @@
+---
+title: 'Molecular Modeling Resources'
+---
+***
+
+## Análisis de trayectorias de Dinámica Molecular
+
+- [VMD](http://www.ks.uiuc.edu/Research/vmd/) (Visual molecular dynamics): 
+  - [Tutorial VMD](http://www.ks.uiuc.edu/Training/Tutorials/vmd/vmd-tutorial.pdf)
+- [ProDy](http://prody.csb.pitt.edu/tutorials/) - librería de python para análisis estructural.
+- [MDAnalysis](https://www.mdanalysis.org/about/) - librería de python para análisis de trayectorias de DM.
+- [pytraj](https://amber-md.github.io/pytraj/latest/index.html) - librería de python para análisis de trayectorias de DM (alternativa en python de `cpptraj`).
+- TTClust - librería de python para análisis de 
+- [CPPTRAJ](https://amberhub.chpc.utah.edu/cpptraj/) - análisis de trayectorias de DM en Amber.
+- [Bio3D](http://thegrantlab.org/bio3d_v2/index.php) - Análisis estructural, de secuencias y dinámicas de proteínas en [R.](https://www.r-project.org/)
+
+## Visualizadores
+- [PyMOL](https://pymol.org/2/) 
+- [UCSF Chimera](https://www.cgl.ucsf.edu/chimera/)
+- [UCSF Chimera X](https://www.rbvi.ucsf.edu/chimerax/)
+- [VMD](http://www.ks.uiuc.edu/Research/vmd/) 
+- [Maestro](https://www.schrodinger.com/freemaestro)
+- [BIOVIA Discovery Studio](https://discover.3ds.com/discovery-studio-visualizer-download#_ga=2.139527984.2003505014.1614374842-1205daf0-754c-11eb-8d39-116c13c7f4bb)
+- [YASARA](http://www.yasara.org/index.html)
+- [Qutemol](https://sourceforge.net/projects/qutemol/)
+
+
+## Quimioinformática
+
+Miscelaneo:
+
+KNIME
