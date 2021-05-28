@@ -14,32 +14,25 @@ output:
 
 <div class="container">
 <div class="jumbotron">
-  <h1 class="display-4 text-center pb-3">Curso de Dinámica Molecular</h1>
+  <h1 class="display-4 text-center pb-3">Taller de Simulación Molecular</h1>
   <br>
-  <div style="height: 200px; width: 100%; position: relative;" class='viewer_3Dmoljs justify-content-center border' data-pdb='1L2Y' 
+  <div style="height: 230px; width: 100%; position: relative;" class='viewer_3Dmoljs justify-content-center border' data-pdb='1L2Y' 
 data-backgroundcolor='0xeeeeee' 
-data-style1='cartoon:color=0xff6600' 
+data-style1='cartoon:color=0x429CDC' 
 data-surface1='opacity:.5;color:white'>
 </div>
 <br>
-  <p class="lead text-center">
-    Curso de <strong>"Introducción a la Dinámica Molecular"</strong> con <i>namd2</i> y <i>python</i>.
-  </p>
+  <h2 class="lead text-center display-3 pb-3">
+    Acoplamiento y Dinámica Molecular
+  </h2>
   <br>
   <div class="container-fluid p-3">
   <div class="row">
-  <div class="text-center"><img src="http://aguilalab.com/wp-content/uploads/2018/06/aguila_logo.svg" class="img-responsive mx-auto d-block" alt="ÁguilaLab"></div>
+  <!-- <div class="text-center"><img src="http://aguilalab.com/wp-content/uploads/2018/06/aguila_logo.svg" class="img-responsive mx-auto d-block" alt="ÁguilaLab"></div> -->
   </div>
   </div>
   
-  <hr class="my-5">
-  <p class="text-center"><strong>Instructores:</strong></p>
-  <ul class="list-group list-group-flush">
-  <li class="list-group-item col-sm-12 col-md-3">Dr. Segio Águila</li>
-  <li class="list-group-item col-sm-12 col-md-3">Dr. Abraham Vidal</li>
-  <li class="list-group-item col-sm-12 col-md-3">Víctor Vargas</li>
-  <li class="list-group-item col-sm-12 col-md-3">Joel Ricci</li>
-  </ul>
+
   
   <br>
   <hr class="my-4">
@@ -53,7 +46,7 @@ data-surface1='opacity:.5;color:white'>
   </div>
   
   <p class="lead">
-    <a class="btn btn-primary btn-lg btn-block" href="./intro_DM.html" role="button">Comenzar</a>
+    <a class="btn btn-info btn-lg btn-block" href="./intro_DM.html" role="button">Comenzar</a>
   </p>
 
   

@@ -1,0 +1,231 @@
+---
+title: 'AMBER: Preliminares'
+---
+***
+
+```{r setup, include=FALSE}
+library(DiagrammeR)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### Campo de Fuerza de Amber
+
+$$
+\begin{aligned}
+V(r^{N}) & =\sum _{i\in {\text{bonds}}}{k_{b}}_{i}(l_{i}-l_{i}^{0})^{2} \\
+& +\sum _{i\in {\text{angles}}}{k_{a}}_{i}(\theta _{i}-\theta _{i}^{0})^{2} \\
+& +\sum _{i\in {\text{torsions}}}\sum _{n}{\frac {1}{2}}V_{i}^{n}[1+\cos(n\omega _{i}-\gamma _{i})] \\
+& +\sum _{j=1}^{N-1}\sum _{i=j+1}^{N}f_{ij}{\biggl \{}\epsilon _{ij}{\biggl [}\left({\frac {r_{ij}^{0}}{r_{ij}}} \right)^{12}-2\left({\frac {r_{ij}^{0}}{r_{ij}}}\right)^{6}{\biggr ]}+{\frac {q_{i}q_{j}}{4\pi \epsilon _{0}r_{ij}}}{\biggr \}}
+\end{aligned}
+$$
+
+
+
+### Creación de los archivos de topología `.prmtop` y coordenadas `rst7`
+
+```{r, echo=FALSE}
+mermaid("
+graph LR
+    A(prot_unprep.pdb)-->Q[pdb2pqr]
+    Q-->D
+    D(prot.pdb)--> F[LEaP]
+    L(lig.mol2)--> B(lig.mol2)
+    L(lig.mol2)-->Z[Antechamber]
+    L(lig.mol2)--> P[parmchk2]
+    Z-->E(LIG_def.mol2)
+    P-->|GAFF.dat|G(LIG_def.frcmod)
+    B(lig.mol2)--> F
+    E --> K(LIG_def.lib)
+    G --> K(LIG_def.lib)
+    K --> F
+    V(Parámetros Extra)-->|leaprc.xxx.xxx| F
+
+    subgraph Estructura
+    B
+    D
+    end
+
+    subgraph Parámetros-Librería
+    subgraph Ligando - GAFF
+    E
+    G
+    K
+    end
+    V
+    end
+
+    F-->(prot_lig.prmtop)
+    F-->(prot_lig.rst7)
+", height = '80%', width = '100%')
+```
+
+
+### Información contenida en cada tipo de archivo
+
+<div class="table-responsive-sm">
+<table class="table">
+  <thead class='thead-dark'>
+    <tr>
+      <th scope="col"  style="width:140px"><b>Archivo de Estructura</b></th>
+      <th scope="col"  style="width:140px"><b>Archivo de Librería</b></th>
+      <th scope="col"  style="width:140px"><b>Archivo de Parámetros</b></th>
+      <th scope="col" style="width:30px"></th>
+      <th scope="col"  style="width:140px"><b>Topología</b></th>
+      <th scope="col"  style="width:140px"><b>Coordenadas</b></th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td  style="width:140px">
+      Moléculas<br>
+      Nombre/Átomos<br><br><br>
+      <p class="imbed" style="color:#ff0000">Connexiones</p>
+      <br>
+      Coordenadas<br><br><br><br>
+    </td>
+    <td style="width:140px">
+      Residuos<br>
+      Nombre/Átomos<br>
+      Tipos/Átomos<br>
+      Cargas<br>
+      Conexiones<br>
+      <p class="imbed" style="color:#ff0000">Coordenadas</p>
+      <br>
+      Masa<br>
+      Parm. Intramol<br>
+      Parm. Intermol<br>
+    </td>
+    <td style="width:140px">
+      <br><br>
+      Tipos/Átomos<br><br><br><br>
+      Masas<br>
+      Parm. Intramol<br>
+      Parm. Intermol<br>   
+    </td>
+    <td style="width:30px; text-align:center">
+      →<br>→<br>→
+    </td>
+    <td style="width:140px">
+      Residuos<br>
+      Nombre/Átomos<br>
+      Tipos/Átomos<br>
+      Cargas<br>
+      Conexiones<br><br>  
+      Masas<br>
+      Parm. Intramol<br>
+      Parm. Intermol<br>   
+    </td>
+    <td style="width:140px">
+      <br><br><br><br><br>Coordenadas<br><br><br><br>
+    </td>
+  </tr>
+</tbody></table>
+</div>
+
+<div class="table-responsive-sm">
+<table class="table table-bordered table-hover">
+<!-- <caption>Propiedades disponibles en cada tipo de archivo</caption> -->
+  <thead class='thead-dark'>
+    <tr class="table-primary">
+      <th scope="col"  style="width:140px"></th>
+      <th scope="col"  style="width:140px" colspan="2"><b>Estructura (Input)</b></th>
+      <th scope="col"  style="width:140px" colspan="2"><b>Parámetros (Input)</b></th>
+      <th scope="col"  style="width:140px" colspan="2"><b>Output Files</b></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row" style="width:140px">Archivo</th>
+      <td style="text-align:center">.pdb</td>
+      <td style="text-align:center">.mol2</td>
+      <td style="text-align:center">.lib<br>.mol2</td>
+      <td style="text-align:center">.dat<br>.frcmod</td>
+      <td style="text-align:center">.prmtop<br>.parm7</td>
+      <td style="text-align:center">.inpcrd<br>.rst7</td>
+    </tr>
+   <tr>
+      <th scope="row" style="width:140px">Moléculas</th>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">---</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">---</td>
+    </tr>
+    <tr>
+      <th scope="row" style="width:140px">Nombre Átomos</th>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">---</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">---</td>
+    </tr>
+    <tr>
+      <th scope="row" style="width:240px">Tipo de Átomos</th>
+      <td style="text-align:center">---</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">---</td>
+    </tr>
+    <tr>
+      <th scope="row" style="width:240px">Cargas</th>
+      <td style="text-align:center">---</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">---</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">---</td>
+    </tr>
+    <tr>
+      <th scope="row" style="width:240px">Conexiones</th>
+      <td style="text-align:center">---</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">---</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">---</td>
+    </tr>
+    <tr>
+      <th scope="row" style="width:240px">Coordenadas</th>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">---</td>
+      <td style="text-align:center">---</td>
+      <td style="text-align:center">✅</td>
+    </tr>
+    <tr>
+      <th scope="row" style="width:240px">Masa</th>
+      <td style="text-align:center">---</td>
+      <td style="text-align:center">---</td>
+      <td style="text-align:center">---</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">---</td>
+    </tr>
+    <tr>
+      <th scope="row" style="width:240px">Parm. Intramol (Enlazantes)</th>
+      <td style="text-align:center">---</td>
+      <td style="text-align:center">---</td>
+      <td style="text-align:center">---</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">---</td>
+    </tr>
+    <tr>
+      <th scope="row" style="width:240px">Parm. Intermol (No enlazantes)</th>
+      <td style="text-align:center">---</td>
+      <td style="text-align:center">---</td>
+      <td style="text-align:center">---</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">✅</td>
+      <td style="text-align:center">---</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+

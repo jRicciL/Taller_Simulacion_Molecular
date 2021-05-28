@@ -10,20 +10,54 @@ header-includes:
 - \fancyfoot[LE,RO]{\thepage}
 plugins:
  - jekyll-seo-tag
+
+
 navbar:
   title: "Inicio"
+  left:
+  - text: "Inicio"
+    href: index.html
+
+  - text: "Recursos"
+    menu:
+      - text: "► Preparación del Ambiente de Trabajo"
+        href: instalacion_MV.html
+    
+  - text: "Docking Molecular"
+    menu:
+      - text: "► Docking con Autodock 4.2"
+        href: docking_con_adt4.html
+      - text: "► Cribado Virual con VINA/SMINA"
+        href: virtual_screening_vina.html
+
+  - text: "Dinámica Molecular"
+    menu:
+      - text: "► Preparación del Sistema"
+        href: preparacion_del_sistema_md.html
+      - text: "► Configuración de la dinámica"
+        href: configuracion_de_las_fases.html
+
+  - text: "Tareas"
+    menu:
+      - text: "► 📝 Docking con AD4"
+        href: tarea_docking_con_ad4.html
+      - text: "► 📝 Crivado virtual con SMINA"
+        href: tarea_vs_smina.html
 right:
   - icon: fa-question fa-lg
 output:
   html_document:
-    toc: false
-    toc_float: false
+    toc: true
+    toc_float: true
     toc_depth: 2
     toc_collapsed: true
     css: "styles.css"
     theme: journal
     highlight: zenburn
     code_download: false
-    number_sections: false
+    number_sections: 2
     include:
       after_body: footer.html
+
+avatar: "https://avatars.githubusercontent.com/u/39897861?v=4"
+round-avatar: true
