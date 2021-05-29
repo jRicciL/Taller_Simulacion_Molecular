@@ -366,7 +366,63 @@ $(document).ready(function () {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Recursos
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="instalacion_MV.html">► Preparación del Ambiente de Trabajo</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Docking Molecular
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="docking_con_adt4.html">► Docking con Autodock 4.2</a>
+    </li>
+    <li>
+      <a href="virtual_screening_vina.html">► Cribado Virual con VINA/SMINA</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Dinámica Molecular
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="preparacion_del_sistema_md.html">► Preparación del Sistema</a>
+    </li>
+    <li>
+      <a href="configuracion_de_las_fases.html">► Configuración de la dinámica</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Tareas
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="tarea_docking_con_ad4.html">► 📝 Docking con AD4</a>
+    </li>
+    <li>
+      <a href="tarea_vs_smina.html">► 📝 Crivado virtual con SMINA</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -385,8 +441,10 @@ $(document).ready(function () {
 
 
 <hr />
+<div id="dinámica-molecular" class="section level1">
+<h1><span class="header-section-number">1</span> Dinámica Molecular</h1>
 <div id="preliminares" class="section level2">
-<h2>Preliminares</h2>
+<h2><span class="header-section-number">1.1</span> Preliminares</h2>
 <p>Para llevar a cabo la dinámica molecular es necesario <strong>preparar el sistema a simular</strong>. El sistema estará representado por los siguientes dos archivos:</p>
 <ol style="list-style-type: decimal">
 <li>📃 <code>.rst7</code> que contiene:
@@ -404,7 +462,7 @@ $(document).ready(function () {
 </ul></li>
 </ol>
 <div id="información-contenida-en-cada-tipo-de-archivo" class="section level3">
-<h3>Información contenida en cada tipo de archivo</h3>
+<h3><span class="header-section-number">1.1.1</span> Información contenida en cada tipo de archivo</h3>
 <p>Los archivos <code>.rst7</code> y <code>.prmtop</code> se construyen a partir de la información contenida en los archivos de entrada.</p>
 <!-- <div class="table-responsive-sm">
 <table class="table">
@@ -717,13 +775,13 @@ Parm. No enlazantes
 </div>
 </div>
 <div id="creación-de-los-archivos-de-topología-.prmtop-y-coordenadas-rst7" class="section level3">
-<h3>Creación de los archivos de topología <code>.prmtop</code> y coordenadas <code>rst7</code></h3>
+<h3><span class="header-section-number">1.1.2</span> Creación de los archivos de topología <code>.prmtop</code> y coordenadas <code>rst7</code></h3>
 <p>El programa <strong>LEaP</strong> permite utilizar la información de los archivos de entrada: <strong>estructura</strong> y <strong>parámetros de campo de fuerza</strong>, para generar los archivos <code>.rst7</code> y <code>.prmtop</code>.</p>
-<div id="htmlwidget-9e9cc5e7cd8ef7b23739" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9e9cc5e7cd8ef7b23739">{"x":{"diagram":"\ngraph LR\n    A(prot_unprep.pdb)-->Q[pdb2pqr]\n    Q-->D\n    D(prot.pdb)--> F[LEaP]\n    L(lig.mol2)--> B(lig.mol2)\n    L(lig.mol2)-->Z[Antechamber]\n    L(lig.mol2)--> P[parmchk2]\n    Z-->E(LIG_def.mol2)\n    P-->|GAFF.dat|G(LIG_def.frcmod)\n    B(lig.mol2)--> F\n    E --> K(LIG_def.lib)\n    G --> K(LIG_def.lib)\n    K --> F\n    V(Parámetros Extra)-->|leaprc.xxx.xxx| F\n\n    subgraph Inputs\n    A\n    L\n    end\n\n    subgraph Estructura\n    B\n    D\n    end\n\n    subgraph Parámetros-Librería\n    subgraph Ligando - GAFF\n    E\n    G\n    K\n    end\n    V\n    end\n\n    F-->prot_lig.prmtop\n    F-->prot_lig.rst7\n    subgraph Sistema P+L Solv.\n    prot_lig.prmtop\n    prot_lig.rst7 \n    end\n"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-556fc0edab504d8b1bac" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-556fc0edab504d8b1bac">{"x":{"diagram":"\ngraph LR\n    A(prot_unprep.pdb)-->Q[pdb2pqr]\n    Q-->D\n    D(prot.pdb)--> F[LEaP]\n    L(lig.mol2)--> B(lig.mol2)\n    L(lig.mol2)-->Z[Antechamber]\n    L(lig.mol2)--> P[parmchk2]\n    Z-->E(LIG_def.mol2)\n    P-->|GAFF.dat|G(LIG_def.frcmod)\n    B(lig.mol2)--> F\n    E --> K(LIG_def.lib)\n    G --> K(LIG_def.lib)\n    K --> F\n    V(Parámetros Extra)-->|leaprc.xxx.xxx| F\n\n    subgraph Inputs\n    A\n    L\n    end\n\n    subgraph Estructura\n    B\n    D\n    end\n\n    subgraph Parámetros-Librería\n    subgraph Ligando - GAFF\n    E\n    G\n    K\n    end\n    V\n    end\n\n    F-->prot_lig.prmtop\n    F-->prot_lig.rst7\n    subgraph Sistema P+L Solv.\n    prot_lig.prmtop\n    prot_lig.rst7 \n    end\n"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="campo-de-fuerza-de-amber" class="section level3">
-<h3>Campo de Fuerza de Amber</h3>
+<h3><span class="header-section-number">1.1.3</span> Campo de Fuerza de Amber</h3>
 <p>El objetivo de la preparación de los archivos es contar con la información necesaria respecto a las moléculas del sistema para calcular su energía potencial (<span class="math inline">\(V\)</span>) de acuerdo con el campo de fuerza de amber durante la simulación de la dinámica molecular:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -735,7 +793,7 @@ V(r^{N}) &amp; =\sum _{i\in {\text{bonds}}}{\color{red}k_{b}}_{i}(l_{i}-\color{r
 \]</span></p>
 <p>Las constantes de fuerza (<span class="math inline">\(k_{a,b}, V_n, \epsilon\)</span>), constantes de equilibrio (<span class="math inline">\(\theta^0, l^0, \gamma, r^0\)</span>), y las cargas parciales (<span class="math inline">\(q\)</span>), así como la masa de cada tipo de átomo son recuperadas de las librerías de campo de fuerza de AMBER y almacenadas en el archivo <code>.prmtop</code>.</p>
 <div id="biblioteca-de-parámetros" class="section level4">
-<h4>Biblioteca de parámetros</h4>
+<h4><span class="header-section-number">1.1.3.1</span> Biblioteca de parámetros</h4>
 <ol style="list-style-type: decimal">
 <li><strong>Proteínas y péptidos</strong> -&gt; <a href="https://github.com/choderalab/ambermini/blob/master/share/amber/dat/leap/cmd/leaprc.protein.ff14SB" target="_blank">leaprc.protein.ff14SB</a>:
 <ol style="list-style-type: decimal">
@@ -770,12 +828,13 @@ V(r^{N}) &amp; =\sum _{i\in {\text{bonds}}}{\color{red}k_{b}}_{i}(l_{i}-\color{r
 </div>
 </div>
 </div>
+</div>
 <div id="tutorial" class="section level1">
-<h1>Tutorial</h1>
+<h1><span class="header-section-number">2</span> Tutorial</h1>
 <div id="obtención-y-preparación-de-la-proteína-y-el-ligando" class="section level2">
-<h2>Obtención y preparación de la proteína y el ligando:</h2>
+<h2><span class="header-section-number">2.1</span> Obtención y preparación de la proteína y el ligando:</h2>
 <div id="descarga-de-las-moléculas" class="section level3">
-<h3>Descarga de las moléculas:</h3>
+<h3><span class="header-section-number">2.1.1</span> Descarga de las moléculas:</h3>
 <ol style="list-style-type: decimal">
 <li>Definir una carpeta de trabajo para guardar los archivos que se irán generando.</li>
 </ol>
@@ -789,14 +848,14 @@ V(r^{N}) &amp; =\sum _{i\in {\text{bonds}}}{\color{red}k_{b}}_{i}(l_{i}-\color{r
 <li>Ambos archivos pertenecen al modelo <a href="https://www.rcsb.org/structure/4FKW" target="_blank">4fkw</a>.</li>
 <li>Los residuos faltantes de la proteína (<em>loops</em> o regiones sin estructura secundaria definida) fueron añadidos utilizando <a href="https://salilab.org/modeller/" target="_blank">Modeller</a>, en un proceso conocido como <em>Model/Refine Loops</em>. Puedes revisar más sobre el tema de modelado de proteínas en los siguientes links:
 <ol style="list-style-type: decimal">
-<li><a href="https://www.cgl.ucsf.edu/chimera/docs/ContributedSoftware/multalignviewer/modeller.html">Chimera Interface to Modeller</a>
+<li><a href="https://www.cgl.ucsf.edu/chimera/docs/ContributedSoftware/multalignviewer/modeller.html" target="_blank">Chimera Interface to Modeller</a>
 <ol style="list-style-type: decimal">
-<li><a href="https://static-bcrf.biochem.wisc.edu/tutorials/modeller/Chimera_II_Modeller_GUI_document.pdf">Chimera Modeller tutorial</a></li>
+<li><a href="https://static-bcrf.biochem.wisc.edu/tutorials/modeller/Chimera_II_Modeller_GUI_document.pdf" target="_blank">Chimera Modeller tutorial</a></li>
 </ol></li>
-<li><a href="https://salilab.org/modeller/9.24/manual.pdf">Modeller Tutorial</a></li>
-<li><a href="https://swissmodel.expasy.org/">Swiss-Model</a> -&gt; Servidor para <strong>modelado por homología</strong>.</li>
-<li><a href="https://zhanglab.ccmb.med.umich.edu/I-TASSER/">ITASSER</a> -&gt; Servdor para modelado por enhebrado.</li>
-<li><a href="https://swissmodel.expasy.org/coursetext/appendix_B.htm">Más servidores</a> para modelado de estructura 3D de proteínas.</li>
+<li><a href="https://salilab.org/modeller/9.24/manual.pdf" target="_blank">Modeller Tutorial</a></li>
+<li><a href="https://swissmodel.expasy.org/" target="_blank">Swiss-Model</a> -&gt; Servidor para <strong>modelado por homología</strong>.</li>
+<li><a href="https://zhanglab.ccmb.med.umich.edu/I-TASSER/" target="_blank">ITASSER</a> -&gt; Servdor para modelado por enhebrado.</li>
+<li><a href="https://swissmodel.expasy.org/coursetext/appendix_B.htm" target="_blank">Más servidores</a> para modelado de estructura 3D de proteínas.</li>
 </ol></li>
 </ol>
 <!-- 2.  Abrir **UCSF Chimera** y en la opción "*File > Fetch by id...*" descargar del pdb la proteína **<mark>5zty</mark>**.
@@ -814,9 +873,9 @@ V(r^{N}) &amp; =\sum _{i\in {\text{bonds}}}{\color{red}k_{b}}_{i}(l_{i}-\color{r
 <hr />
 </div>
 <div id="preparación-de-la-proteína-con-pdb2pqr" class="section level3">
-<h3>Preparación de la proteína con <a href="https://pdb2pqr.readthedocs.io/en/latest/using/">PDB2PQR</a>:</h3>
-<div id="htmlwidget-5c9c3984b8bb12820bc6" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5c9c3984b8bb12820bc6">{"x":{"diagram":"\ngraph LR\n    A(prot_unprep.pdb)-->|PDB2PQR| B(prot.pdb)\n    A(prot_unprep.pdb)-->|pdb4amber| B(prot.pdb)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<h3><span class="header-section-number">2.1.2</span> Preparación de la proteína con <a href="https://pdb2pqr.readthedocs.io/en/latest/using/">PDB2PQR</a>:</h3>
+<div id="htmlwidget-f423f53299ca31367eba" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f423f53299ca31367eba">{"x":{"diagram":"\ngraph LR\n    A(prot_unprep.pdb)-->|PDB2PQR| B(prot.pdb)\n    A(prot_unprep.pdb)-->|pdb4amber| B(prot.pdb)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Tener el ambiente <code>amber</code> activado y localizarse en la carpeta de trabajo (<code>wd_md</code>).</li>
 <li>Ejecutar <strong>PDB2PQR</strong> con alguno de los siguientes comandos (dependiendo de la versión):</li>
@@ -835,9 +894,9 @@ V(r^{N}) &amp; =\sum _{i\in {\text{bonds}}}{\color{red}k_{b}}_{i}(l_{i}-\color{r
 </blockquote>
 </div>
 <div id="convertir-el-ligando-a-formato-mol2" class="section level3">
-<h3>Convertir el ligando a formato <code>mol2</code></h3>
-<div id="htmlwidget-215995eae5289d943196" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-215995eae5289d943196">{"x":{"diagram":"\ngraph LR\n    A(lig_unprep.pdb)-->|obabel| B(lig.mol2)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<h3><span class="header-section-number">2.1.3</span> Convertir el ligando a formato <code>mol2</code></h3>
+<div id="htmlwidget-872cdff09020f9aa1ff9" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-872cdff09020f9aa1ff9">{"x":{"diagram":"\ngraph LR\n    A(lig_unprep.pdb)-->|obabel| B(lig.mol2)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Ejecutar el siguiente comando usando <em><a href="https://openbabel.org/docs/dev/Command-line_tools/babel.html" target="_blank">Open Babel</a></em>:</li>
 </ol>
@@ -857,12 +916,12 @@ V(r^{N}) &amp; =\sum _{i\in {\text{bonds}}}{\color{red}k_{b}}_{i}(l_{i}-\color{r
 <hr />
 </div>
 <div id="preparación-de-parámetros-y-de-coordenadas-del-ligando" class="section level3">
-<h3>Preparación de parámetros y de coordenadas del ligando</h3>
+<h3><span class="header-section-number">2.1.4</span> Preparación de parámetros y de coordenadas del ligando</h3>
 <p>Un tutorial más a detalle se puede consultar <a href="http://ambermd.org/tutorials/basic/tutorial4b/index.php" target="_blank">aquí</a>.</p>
 <div id="uso-de-antechamber-para-definir-la-estructura-y-nomenclatura-del-ligando" class="section level4">
-<h4>Uso de Antechamber para definir la estructura y nomenclatura del ligando</h4>
-<div id="htmlwidget-51f5044d7fe7598dbe9f" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-51f5044d7fe7598dbe9f">{"x":{"diagram":"\ngraph LR\n    A(lig.mol2)-->|antechamber| B(LIG_def.mol2)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<h4><span class="header-section-number">2.1.4.1</span> Uso de Antechamber para definir la estructura y nomenclatura del ligando</h4>
+<div id="htmlwidget-7a53f7909bfb1c448b4c" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7a53f7909bfb1c448b4c">{"x":{"diagram":"\ngraph LR\n    A(lig.mol2)-->|antechamber| B(LIG_def.mol2)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Desde la terminal con el ambiente de conda <code>amber</code> activado y estando en el directorio de trabajo (<code>wd_md</code>), ejecutar:</li>
 </ol>
@@ -883,9 +942,9 @@ V(r^{N}) &amp; =\sum _{i\in {\text{bonds}}}{\color{red}k_{b}}_{i}(l_{i}-\color{r
 │  🗒 LIG_def.mol2</code></pre>
 </div>
 <div id="uso-de-parmcheck-para-verificar-los-parámetros-del-campo-de-fuerza" class="section level4">
-<h4>Uso de parmcheck para verificar los parámetros del campo de fuerza</h4>
-<div id="htmlwidget-6fe901eef0cc42883dd1" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6fe901eef0cc42883dd1">{"x":{"diagram":"\ngraph LR\n    A(LIG_def.mol2)-->|parmchk2| B(LIG_def.frcmod)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<h4><span class="header-section-number">2.1.4.2</span> Uso de parmcheck para verificar los parámetros del campo de fuerza</h4>
+<div id="htmlwidget-c1eea6dcecd2212f8c02" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c1eea6dcecd2212f8c02">{"x":{"diagram":"\ngraph LR\n    A(LIG_def.mol2)-->|parmchk2| B(LIG_def.frcmod)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Ahora validamos que los parámetros del campo de fuerza necesarios para la molécula estén disponibles en las librerías de AMBER. Para ello ejecutar lo siguiente:</li>
 </ol>
@@ -913,7 +972,7 @@ Más información sobre los parámetros del campo de fuerza GAFF <a href="http:/
 │  🗒 LIG_def.frcmod</code></pre>
 </div>
 <div id="creación-de-la-librería-de-parámetros-con-tleap" class="section level4">
-<h4>Creación de la librería de parámetros con <em>tleap</em></h4>
+<h4><span class="header-section-number">2.1.4.3</span> Creación de la librería de parámetros con <em>tleap</em></h4>
 <p>Los siguientes pasos son para crear una librería de parámetros del ligando que permitan construir el sistema.</p>
 <ol style="list-style-type: decimal">
 <li>En la terminal, ejecutar:</li>
@@ -949,7 +1008,7 @@ Más información sobre los parámetros del campo de fuerza GAFF <a href="http:/
 </div>
 </div>
 <div id="construcción-y-solvatación-del-sistema" class="section level3">
-<h3>Construcción y solvatación del Sistema</h3>
+<h3><span class="header-section-number">2.1.5</span> Construcción y solvatación del Sistema</h3>
 <p>Entra nuevamente a <code>tleap</code> desde la terminal, esta vez tecleando unicamente (o hay que precargar ningún campo de fuerza esta vez):</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="ex">tleap</span></span></code></pre></div>
 <p>Dentro de tleap, ejecutar uno a uno los siguientes comandos:</p>
@@ -1004,7 +1063,7 @@ Más información sobre los parámetros del campo de fuerza GAFF <a href="http:/
 </div>
 </div>
 <div id="referencias-y-recursos" class="section level1">
-<h1>Referencias y Recursos</h1>
+<h1><span class="header-section-number">3</span> Referencias y Recursos</h1>
 <ul>
 <li><a href="https://ambermd.org/doc12/Amber19.pdf" target="_blank">Manual Amber 2019</a></li>
 <li><a href="http://ambermd.org/antechamber/gaff.html" target="_blank">GAFF</a></li>

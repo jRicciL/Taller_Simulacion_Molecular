@@ -9,6 +9,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
+# Dinámica Molecular
+
 ## Preliminares
 
 Para llevar a cabo la dinámica molecular es necesario **preparar el sistema a simular**. El sistema estará representado por los siguientes dos archivos:
@@ -304,12 +306,12 @@ mkdir wd_md
 
 3. Ambos archivos pertenecen al modelo [4fkw](https://www.rcsb.org/structure/4FKW){target="_blank"}.
 4. Los residuos faltantes de la proteína (*loops* o regiones sin estructura secundaria definida) fueron añadidos utilizando [Modeller](https://salilab.org/modeller/){target="_blank"}, en un proceso conocido como *Model/Refine Loops*. Puedes revisar más sobre el tema de modelado de proteínas en los siguientes links:
-   1. [Chimera Interface to Modeller](https://www.cgl.ucsf.edu/chimera/docs/ContributedSoftware/multalignviewer/modeller.html)
-      1. [Chimera Modeller tutorial](https://static-bcrf.biochem.wisc.edu/tutorials/modeller/Chimera_II_Modeller_GUI_document.pdf)
-   2. [Modeller Tutorial](https://salilab.org/modeller/9.24/manual.pdf)
-   3. [Swiss-Model](https://swissmodel.expasy.org/) -> Servidor para **modelado por homología**.
-   4. [ITASSER](https://zhanglab.ccmb.med.umich.edu/I-TASSER/) -> Servdor para modelado por enhebrado.
-   5. [Más servidores](https://swissmodel.expasy.org/coursetext/appendix_B.htm) para modelado de estructura 3D de proteínas.
+   1. [Chimera Interface to Modeller](https://www.cgl.ucsf.edu/chimera/docs/ContributedSoftware/multalignviewer/modeller.html){target="_blank"}
+      1. [Chimera Modeller tutorial](https://static-bcrf.biochem.wisc.edu/tutorials/modeller/Chimera_II_Modeller_GUI_document.pdf){target="_blank"}
+   2. [Modeller Tutorial](https://salilab.org/modeller/9.24/manual.pdf){target="_blank"}
+   3. [Swiss-Model](https://swissmodel.expasy.org/){target="_blank"} -> Servidor para **modelado por homología**.
+   4. [ITASSER](https://zhanglab.ccmb.med.umich.edu/I-TASSER/){target="_blank"} -> Servdor para modelado por enhebrado.
+   5. [Más servidores](https://swissmodel.expasy.org/coursetext/appendix_B.htm){target="_blank"} para modelado de estructura 3D de proteínas.
         
 <!-- 2.  Abrir **UCSF Chimera** y en la opción "*File > Fetch by id...*" descargar del pdb la proteína **<mark>5zty</mark>**.
         

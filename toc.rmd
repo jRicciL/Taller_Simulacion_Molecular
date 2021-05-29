@@ -1,0 +1,40 @@
+<div class="container">
+<div class="jumbotron">
+  <h1 class="display-4 text-center pb-3">Taller de Simulación Molecular</h1>
+  <br>
+  <div style="height: 230px; width: 100%; position: relative;" class='viewer_3Dmoljs justify-content-center border' data-pdb='1L2Y' 
+data-backgroundcolor='0xeeeeee' 
+data-style1='cartoon:color=0x429CDC' 
+data-surface1='opacity:.5;color:white'>
+</div>
+<br>
+  <h2 class="lead text-center display-3 pb-3">
+    Acoplamiento y Dinámica Molecular
+  </h2>
+  <br>
+  <div class="container-fluid p-3">
+  <div class="row">
+  <!-- <div class="text-center"><img src="http://aguilalab.com/wp-content/uploads/2018/06/aguila_logo.svg" class="img-responsive mx-auto d-block" alt="ÁguilaLab"></div> -->
+  </div>
+  </div>
+  
+
+  
+  <br>
+  <hr class="my-4">
+  <br>
+  <div class="container py-5">
+  <div class="alert alert-dismissible alert-warning py-5">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4 class="alert-heading text-center">¡Atención!</h4>
+  <p class="mb-0 text-center small">Utiliza el menú superior y los botones de navegación para dirigirte hacia la sección deseada.</p>
+</div>
+  </div>
+  
+  <p class="lead">
+    <a class="btn btn-info btn-lg btn-block" href="./intro_DM.html" role="button">Comenzar</a>
+  </p>
+
+  
+</div>
+</div>

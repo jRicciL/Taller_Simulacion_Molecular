@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
@@ -335,6 +338,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -342,6 +408,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -358,7 +434,66 @@ $(document).ready(function () {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Recursos
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="instalacion_MV.html">► Preparación del Ambiente de Trabajo</a>
+    </li>
+    <li>
+      <a href="recursos_modelado_molecular.html">► Recursos Externos</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Docking Molecular
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="docking_con_adt4.html">► Docking con Autodock 4.2</a>
+    </li>
+    <li>
+      <a href="virtual_screening_vina.html">► Cribado Virual con VINA/SMINA</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Dinámica Molecular
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="preparacion_del_sistema_md.html">► Preparación del Sistema</a>
+    </li>
+    <li>
+      <a href="configuracion_de_las_fases.html">► Configuración de la dinámica</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Tareas
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="tarea_docking_con_ad4.html">► 📝 Docking con AD4</a>
+    </li>
+    <li>
+      <a href="tarea_vs_smina.html">► 📝 Crivado virtual con SMINA</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -378,12 +513,14 @@ $(document).ready(function () {
 
 <hr />
 <p>En esta sección se muestran los enlaces de descarga y el proceso de instalación de la <strong>Máquina Virtual</strong>.</p>
-<p>Adicionalmente, se ofrecen dos alternativas para aquellos que opten utilizar una versión <a href="#instalación-manual-de-las-librerías-y-creación-de-ambientes-conda">GNU/Linux</a> propia o utilizar <a href="#instalación-de-wsl-en-windows">WSL en Windows</a>. No obstante, quien decida tomar alguna de estas opciones deberá instalar y configurar los programas por su cuenta. La lista de programas se muestra más adelante.</p>
+<p>Adicionalmente, se ofrecen dos alternativas para aquellos que opten utilizar una versión <a href="#instalación-manual-de-las-librerías-y-creación-de-ambientes-conda" target="_blank">GNU/Linux</a> propia o utilizar <a href="#instalación-de-wsl-en-windows">WSL en Windows</a>. No obstante, quien decida tomar alguna de estas opciones deberá instalar y configurar los programas por su cuenta. La lista de programas se muestra más adelante.</p>
+<div id="recursos" class="section level1">
+<h1><span class="header-section-number">1</span> Recursos</h1>
 <hr />
 <div id="máquina-virtual-del-taller-de-smsb" class="section level2">
-<h2>1. Máquina virtual del Taller de SMSB</h2>
+<h2><span class="header-section-number">1.1</span> Máquina virtual del Taller de SMSB</h2>
 <div id="requisitos-mínimos-de-la-máquina-virtual" class="section level3">
-<h3>Requisitos mínimos de la máquina virtual</h3>
+<h3><span class="header-section-number">1.1.1</span> Requisitos mínimos de la máquina virtual</h3>
 <ul>
 <li>20 GB de espacio libre en su disco duro.</li>
 <li>6 GB de RAM.</li>
@@ -391,9 +528,9 @@ $(document).ready(function () {
 </ul>
 </div>
 <div id="descarga-de-virtualbox-y-7zip" class="section level3">
-<h3>Descarga de VirtualBox y 7zip</h3>
+<h3><span class="header-section-number">1.1.2</span> Descarga de VirtualBox y 7zip</h3>
 <ol style="list-style-type: decimal">
-<li>Descarga e instala <strong><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a></strong> en tu sistema operativo:</li>
+<li>Descarga e instala <strong><a href="https://www.virtualbox.org/wiki/Downloads" target="_blank">VirtualBox</a></strong> en tu sistema operativo:</li>
 </ol>
 <blockquote>
 <p><a href="https://www.virtualbox.org/wiki/Downloads"> <img src="https://www.virtualbox.org/graphics/button61.png" alt="virtualbox-link" height="40"/> </a></p>
@@ -406,7 +543,7 @@ $(document).ready(function () {
 </blockquote>
 </div>
 <div id="descarga-de-la-mv" class="section level3">
-<h3>Descarga de la MV</h3>
+<h3><span class="header-section-number">1.1.3</span> Descarga de la MV</h3>
 <ol style="list-style-type: decimal">
 <li>Descarga cada una de las siguientes partes de la máquina virtual:</li>
 </ol>
@@ -486,7 +623,7 @@ $(document).ready(function () {
 </center>
 </div>
 <div id="instalación-de-la-mv" class="section level3">
-<h3>Instalación de la MV</h3>
+<h3><span class="header-section-number">1.1.4</span> Instalación de la MV</h3>
 <ol style="list-style-type: decimal">
 <li><p>Una vez descargadas las 8 partes, y estando todas en el mismo directorio, abre el archivo <strong><mark>SSB.ova.7zip.001</mark></strong> )utilizando <strong>7zip</strong>, y extrae el archivo <strong><mark>SSB.ova</mark></strong>. Puedes extraerla en cualquier directorio al que te sea más cómodo acceder. Más adelante podrás eliminar este archivo, si así lo deseas.</p></li>
 <li><p>Abre VirtualBox y en la barra superior selecciona <em>Archivo &gt; Importar Servicio Virtualizado</em>.</p></li>
@@ -515,7 +652,7 @@ La máquina está instalada y puedes “encenderla” haciendo doble click sobre
 <hr />
 </div>
 <div id="programas-y-librerías" class="section level3">
-<h3>Programas y librerías</h3>
+<h3><span class="header-section-number">1.1.5</span> Programas y librerías</h3>
 <p>La siguiente es una lista de los programas principales a utilizar en el taller. Estos están ya incluidos en la máquina virtual:</p>
 <details>
 <p><summary><b>Da click para desplegar la lista:</b></summary></p>
@@ -541,7 +678,7 @@ La máquina está instalada y puedes “encenderla” haciendo doble click sobre
 </div>
 </div>
 <div id="instalación-de-wsl-en-windows" class="section level2">
-<h2>2. Instalación de WSL en Windows</h2>
+<h2><span class="header-section-number">1.2</span> Instalación de WSL en Windows</h2>
 <p>Una segunda opción, para los que tienen Windows, es <a href="https://ubuntu.com/wsl">instalar la terminal de Ubuntu: WSL</a>. Recomiendo esta opción sólo si no cuentas con los requisitos mínimos para la máquina virtual.</p>
 <div class="alert alert-dismissible alert-warning">
 <h4 class="alert-heading">
@@ -552,8 +689,8 @@ La máquina está instalada y puedes “encenderla” haciendo doble click sobre
 <hr />
 </div>
 <div id="instalación-manual-de-las-librerías-y-creación-de-ambientes-conda" class="section level2">
-<h2>3. Instalación “Manual” de las librerías y creación de ambientes conda</h2>
-<p>Si ya cuentas con una versión de Linux y quieres hacer la instalación manual de los programas te recomiendo instalar <strong>Conda</strong> o <a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a>. Nuevamente, <strong>esta opción sólo es recomendada para quienes tengan experiencia con Linux</strong> y/o estén dispuestos a resolver los problemas de instalación que puedan llegar a surgir. A través de <strong>conda</strong> puedes instalar los paquetes y programas antes mencionados.</p>
+<h2><span class="header-section-number">1.3</span> Instalación “Manual” de las librerías y creación de ambientes conda</h2>
+<p>Si ya cuentas con una versión de Linux y quieres hacer la instalación manual de los programas te recomiendo instalar <strong>Conda</strong> o <a href="https://docs.conda.io/en/latest/miniconda.html" target="_blank">Miniconda</a>. Nuevamente, <strong>esta opción sólo es recomendada para quienes tengan experiencia con Linux</strong> y/o estén dispuestos a resolver los problemas de instalación que puedan llegar a surgir. A través de <strong>conda</strong> puedes instalar los paquetes y programas antes mencionados.</p>
 <blockquote>
 <p><a href="https://www.anaconda.com/products/individual"> <img src="https://assets-cdn.anaconda.com/assets/company/anaconda-logo.png" alt="7zip-link" height="40"/> </a></p>
 </blockquote>
@@ -561,7 +698,7 @@ La máquina está instalada y puedes “encenderla” haciendo doble click sobre
 <p>Cada vez que crees un ambiente no olvides activarlo para instalar las librerías en él. No olvides tampoco desactivarlo cada vez que necesites usar un nuevo ambiente.</p>
 </div>
 <div id="ambiente-autodock4" class="section level4">
-<h4>Ambiente Autodock4</h4>
+<h4><span class="header-section-number">1.3.0.1</span> Ambiente Autodock4</h4>
 <p>Una vez instalado <strong>conda</strong>, crea un ambiente llamado <code>ad4</code>:</p>
 <p>Crea un ambiente para autodock 4:</p>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>conda create <span class="op">-</span>n ad4</span>
@@ -571,7 +708,7 @@ La máquina está instalada y puedes “encenderla” haciendo doble click sobre
 <span id="numCode-5"><a href="#numCode-5"></a>conda deactivate</span></code></pre></div>
 </div>
 <div id="ambiente-smina" class="section level4">
-<h4>Ambiente Smina</h4>
+<h4><span class="header-section-number">1.3.0.2</span> Ambiente Smina</h4>
 <p>Crea uno para <strong>smina</strong> y sofware relacionado con la preparación de las moléculas:</p>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>conda create <span class="op">-</span>n dock</span>
 <span id="numCode-2"><a href="#numCode-2"></a>conda activate dock</span>
@@ -580,7 +717,7 @@ La máquina está instalada y puedes “encenderla” haciendo doble click sobre
 <span id="numCode-5"><a href="#numCode-5"></a>conda deactivate</span></code></pre></div>
 </div>
 <div id="ambiente-ambertools" class="section level4">
-<h4>Ambiente AmberTools</h4>
+<h4><span class="header-section-number">1.3.0.3</span> Ambiente AmberTools</h4>
 <p>Crea un ambiente para dinámica molecular:</p>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>conda create <span class="op">-</span>n mds</span>
 <span id="numCode-2"><a href="#numCode-2"></a>conda activate mds</span>
@@ -588,18 +725,19 @@ La máquina está instalada y puedes “encenderla” haciendo doble click sobre
 <span id="numCode-4"><a href="#numCode-4"></a>conda deactivate</span></code></pre></div>
 </div>
 <div id="ambiente-de-análisis-con-python" class="section level4">
-<h4>Ambiente de análisis con python</h4>
+<h4><span class="header-section-number">1.3.0.4</span> Ambiente de análisis con python</h4>
 <p>Crea un ambiente para análisis de datos con python:</p>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>conda create <span class="op">-</span>n jup python=<span class="fl">3.7</span> numpy scipy pandas seaborn scikit<span class="op">-</span>learn jupyter </span>
 <span id="numCode-2"><a href="#numCode-2"></a>conda install <span class="op">-</span>c ambermd pytraj</span>
 <span id="numCode-3"><a href="#numCode-3"></a>conda deactivate</span></code></pre></div>
 </div>
 <div id="instalación-de-ucsf-chimera" class="section level4">
-<h4>Instalación de UCSF Chimera</h4>
-<p>Descarga e instala UCSF Chimera a través de <a href="https://www.cgl.ucsf.edu/chimera/download.html">este enlace</a>.</p>
+<h4><span class="header-section-number">1.3.0.5</span> Instalación de UCSF Chimera</h4>
+<p>Descarga e instala UCSF Chimera a través de <a href="https://www.cgl.ucsf.edu/chimera/download.html" target="_blank">este enlace</a>.</p>
 <hr />
 <!-- hitwebcounter Code START -->
 <p><a href="https://www.hitwebcounter.com" target="_blank"> <img src="https://hitwebcounter.com/counter/counter.php?page=7742701&style=0008&nbdigits=5&type=page&initCount=0" title="Free Counter" Alt="web counter"   border="0" /></a></p>
+</div>
 </div>
 </div>
 
@@ -622,6 +760,8 @@ La máquina está instalada y puedes “encenderla” haciendo doble click sobre
 <!-- Footer -->
 
 
+</div>
+</div>
 
 </div>
 
@@ -654,6 +794,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

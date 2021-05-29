@@ -266,7 +266,66 @@ $(document).ready(function () {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Recursos
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="instalacion_MV.html">► Preparación del Ambiente de Trabajo</a>
+    </li>
+    <li>
+      <a href="recursos_modelado_molecular.html">► Recursos Externos</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Docking Molecular
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="docking_con_adt4.html">► Docking con Autodock 4.2</a>
+    </li>
+    <li>
+      <a href="virtual_screening_vina.html">► Cribado Virual con VINA/SMINA</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Dinámica Molecular
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="preparacion_del_sistema_md.html">► Preparación del Sistema</a>
+    </li>
+    <li>
+      <a href="configuracion_de_las_fases.html">► Configuración de la dinámica</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Tareas
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="tarea_docking_con_ad4.html">► 📝 Docking con AD4</a>
+    </li>
+    <li>
+      <a href="tarea_vs_smina.html">► 📝 Crivado virtual con SMINA</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -286,9 +345,9 @@ $(document).ready(function () {
 
 <hr />
 <div id="tarea-2-cribado-virtual-con-smina" class="section level1">
-<h1>Tarea 2: Cribado Virtual con Smina</h1>
+<h1><span class="header-section-number">1</span> Tarea 2: Cribado Virtual con Smina</h1>
 <div id="objetivo" class="section level2">
-<h2>Objetivo</h2>
+<h2><span class="header-section-number">1.1</span> Objetivo</h2>
 <ul>
 <li>Realizar <strong><mark>4 ensayos de cribado virtual (CV)</mark></strong> utilizando Smina.</li>
 <li>La librería de moléculas consiste en 50 compuestos del <em>benchmarking set</em> <a href="http://www.csardock.org/" target="_blank">CSAR 2012</a>, el cual incluye compuestos <strong>activos</strong> (<em>true binders - inhibitors</em>) e <strong>inactivos</strong> de la proteína CDK2 (experimentalmente probados). Más sobre este <em>challenge</em> CSAR 2012 <a href="https://pubs.acs.org/doi/10.1021/ci4000486" target="_blank">aquí</a>.</li>
@@ -312,7 +371,7 @@ $(document).ready(function () {
 </ul>
 </div>
 <div id="instrucciones" class="section level2">
-<h2>Instrucciones</h2>
+<h2><span class="header-section-number">1.2</span> Instrucciones</h2>
 <ol style="list-style-type: decimal">
 <li><p><strong>Descarga</strong> el archivo de las proteínas y de las moléculas en formato SMILES ⬇️:</p>
 <ul>
@@ -338,9 +397,18 @@ $(document).ready(function () {
 <li>Usa el notebook de jupyter <code>analisis_resultados_vina.ipynb</code> para generar las gráficas de resultados de cada ensayo.</li>
 </ol></li>
 </ol>
+<!-- <div class="alert alert-dismissible alert-warning">
+<h4 class="alert-heading">🚨 Instala la librería scikit-learn en el ambiente jup: 🚨</h4>
+<ul>
+<li>Para realizar análisis con el notebook de jupyter y generar las gráficas es necesario instalar la librería scikit-learn, o de otro modo verás un error como el siguiente:</li>
+<li><code>ModuleNotFoundError: No module named 'sklearn'</code></li>
+<li>Para hacer la instalación debes activar el ambiente de conda llamado <pm>jup</code></li>
+<li>Ahora instala scikit-learn con el siguite comando <pm>pip install scikit-learn</code></li>
+</ul>
+</div> -->
 </div>
 <div id="reporte" class="section level2">
-<h2>Reporte</h2>
+<h2><span class="header-section-number">1.3</span> Reporte</h2>
 <p><strong>En reporte de resultados consiste en un archivo <code>pdf</code> de cinco diapositivas con lo siguiente:</strong></p>
 <ol style="list-style-type: decimal">
 <li><strong>Mostrar las 3 gráficas de resultados, debidamente tituladas y etiquetadas, de cada ensayo de CV en una diapositiva de <code>ppt</code>:</strong>
@@ -374,7 +442,7 @@ $(document).ready(function () {
 </ol>
 </div>
 <div id="algunos-tips" class="section level2">
-<h2>Algunos <em>tips</em>:</h2>
+<h2><span class="header-section-number">1.4</span> Algunos <em>tips</em>:</h2>
 <ol style="list-style-type: decimal">
 <li>🚨 <strong>¡No te confíes con el tiempo!</strong> 🚨
 <ol style="list-style-type: decimal">
@@ -395,7 +463,7 @@ $(document).ready(function () {
 </ol>
 </div>
 <div id="recursos" class="section level2">
-<h2>Recursos</h2>
+<h2><span class="header-section-number">1.5</span> Recursos</h2>
 <ul>
 <li><a href="https://www.datacamp.com/courses/introduction-to-bash-scripting" target="_blank">Curso de bash scripting en Datacamp</a>. <strong>¡Tienes acceso a todo el contenido!</strong></li>
 <li><a href="https://sourceforge.net/projects/smina/files/" target="_blank">Página de descarga de smina con algunos recursos extra</a></li>

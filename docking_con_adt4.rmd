@@ -1,5 +1,6 @@
 ---
 title: 'Docking con Autodock 4.2'
+
 ---
 ***
 
@@ -7,6 +8,14 @@ title: 'Docking con Autodock 4.2'
 library(DiagrammeR)
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+# Acoplamiento Molecular con AD4
+
+Flujo de ejecución de Autodock 4.2:
+
+<img style='height: 300px
+    width: 100%;
+    object-fit: cover;' src="./images/ad4_wflow.png" alt="ad4_workflow" height="400"/>
 
 
 ## Obtención y preparación de las moléculas
@@ -164,13 +173,19 @@ Consulta aquí otras bases de datos útiles para encontrar moléculas para tus e
 ***
 
 ## Autodock 4.2
+
+Usaremos los siguientes dos archivos que preparamos en las fases previas:
+
+- [prot.pdb](./resurces/docking/prot.pdb)
+- [ATP.mol2](./resurces/docking/ATP.mol2)
+
 ### Preparación de los archivos necesarios para Docking (PDBQT)
 
-En esta sección se preparan los archivos de la proteína y el ligando en formato [PDBQT](http://autodock.scripps.edu/faqs-help/faq/what-is-the-format-of-a-pdbqt-file/), los cuales son necesarios para la ejecución de AD4.
+En esta sección se preparan los archivos de la proteína y el ligando en formato [PDBQT](http://autodock.scripps.edu/faqs-help/faq/what-is-the-format-of-a-pdbqt-file/){target="_blank"}, los cuales son necesarios para la ejecución de AD4.
 
 #### Activar los scripts de ejecución
 
-Si estas usando la [máquina virtual](https://jriccil.github.io/Taller_Simulacion_Molecular/instalacion_MV.html) ejecuta el siguiente comando para agregar al path el directorio con los scripts de análisis.
+Si estas usando la [máquina virtual](https://jriccil.github.io/Taller_Simulacion_Molecular/instalacion_MV.html){target="_blank"} ejecuta el siguiente comando para agregar al path el directorio con los scripts de análisis.
 
 ```{#numCode .R .numberLines}
 echo \
@@ -178,6 +193,7 @@ echo \
     >> ~/.zshrc
 ```
 > Si no estás usando la máquina virtual deberás sustituir la parte `/home/ssb/miniconda3/` con la ruta que corresponda a tu sistema.
+> Revisa el siguiente link para más información: [MGLTools on Linux](http://mgltools.scripps.edu/downloads/instructions/linux/?searchterm=path){target="_blank"}
 
 #### Preparación del ligando
 
@@ -697,7 +713,7 @@ pdbqt_to_pdb.py \
 ### Presentación
 
 <iframe src="http://www.slideshare.net/slideshow/embed_code/key/4WqkRh7da3ARCb" width="620" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> 
-<div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/RicciBW/acoplamiento-molecular-con-autodock-42" title="Acoplamiento molecular con Autodock 4.2" target="_blank">Acoplamiento molecular con Autodock 4.2</a> </strong> de <strong><a href="https://www.slideshare.net/RicciBW" target="_blank">Joel Ricci</a></strong> </div>
+<div style="margin-bottom:5px"> <strong> <a href="http://www.slideshare.net/RicciBW/acoplamiento-molecular-con-autodock-42" title="Acoplamiento molecular con Autodock 4.2" target="_blank">Acoplamiento molecular con Autodock 4.2</a> </strong> de <strong><a href="https://www.slideshare.net/RicciBW" target="_blank">Joel Ricci</a></strong> </div>
 
 ***
 

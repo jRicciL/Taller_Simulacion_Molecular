@@ -8,14 +8,13 @@ library(DiagrammeR)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Tarea 3: Dinámica Molecular
+# Archivos de configuración de Dinámica Molecular
 **<mark>Archivos de configuración para realizar la DM con Amber</mark>**
 
 ## Objetivos
 - 1️⃣ Revisar los **archivos de configuración** que definen el comportamiento de la ejecución de dinámica molecular con Amber.
 - 2️⃣ **Describir** brevemente los **parámetros utilizados** dentro de cada archivo de configuración.
 - 3️⃣ **Responder un cuestionario** sobre las propiedades de la dinámica de acuerdo a los siguientes archivos de configuración.
-- 4️⃣ **En esta tarea no se ejecutará ningún comando.**
 
 ## Instrucciones
 1. Descarga los **archivos de configuración** correspondientes a las siguientes fases de simulación:
@@ -34,7 +33,7 @@ knitr::opts_chunk$set(echo = TRUE)
 4. <mark>📆 Fecha límite para responder el cuestionario es el jueves 4 de marzo a las 24:00 horas.</mark>
 
 ***
-## 1) Fase 1: Minimización de la energía potencial del sistema
+## Fase 1: Minimización de la energía potencial del sistema
 <div style="background-color: #F9E5AB; min-height: 10px"></div>
 
 ```{#numCode .R .numberLines}
@@ -96,7 +95,7 @@ Fase de minimizacion de todo el sistema
 
 
 ***
-## 2) Fase de Calentamiento
+## Fase de Calentamiento
 <div style="background-color: #F9E5AB; min-height: 10px"></div>
 
 ```{#numCode .R .numberLines}
@@ -158,7 +157,7 @@ cat heat.in
 
 
 ***
-## 3) Fase de Equilibrado
+## Fase de Equilibrado
 <div style="background-color: #F9E5AB; min-height: 10px"></div>
 
 ```{#numCode .R .numberLines}
@@ -220,7 +219,7 @@ Fase de Equilibrado
 ```
 
 ***
-## 4) Fase de Producción
+## Fase de Producción
 <div style="background-color: #F9E5AB; min-height: 10px"></div>
 
 ```{#numCode .R .numberLines}
@@ -282,6 +281,7 @@ Fase de Producción
 ```
 
 ***
+<!-->
 # Cuestionario (21 preguntas)
 
 **Responde las preguntas del siguiente cuestionario.** Las preguntas están relacionadas con los archivos de configuración mostrados arriba y el significado de los parámetros usados.
@@ -289,3 +289,4 @@ Fase de Producción
 > 🚨 El cuestionario está dividido en **cuatro secciones** según las fases de la dinámica. Las preguntas dentro de cada sección hacen referencia a la fase correspondiente. 
   
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSejRrmGGhKppqshNFE0e_U7WsPOfHF-Al3nesgGKumjtIZAwQ/viewform?embedded=true" width="720" height="800" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
+<-->

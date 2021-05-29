@@ -16,14 +16,14 @@ output:
 <div class="jumbotron">
   <h1 class="display-4 text-center pb-3">Taller de Simulación Molecular</h1>
   <br>
-  <div style="height: 230px; width: 100%; position: relative;" class='viewer_3Dmoljs justify-content-center border' data-pdb='1L2Y' 
+  <div style="height: 200px; width: 100%; position: relative;" class='viewer_3Dmoljs justify-content-center border' data-pdb='1L2Y' 
 data-backgroundcolor='0xeeeeee' 
 data-style1='cartoon:color=0x429CDC' 
 data-surface1='opacity:.5;color:white'>
 </div>
 <br>
-  <h2 class="lead text-center display-3 pb-3">
-    Acoplamiento y Dinámica Molecular
+  <h2 class="text-center display-3 pb-3">
+    <em>Docking</em> y Dinámica Molecular
   </h2>
   <br>
   <div class="container-fluid p-3">
@@ -31,22 +31,44 @@ data-surface1='opacity:.5;color:white'>
   <!-- <div class="text-center"><img src="http://aguilalab.com/wp-content/uploads/2018/06/aguila_logo.svg" class="img-responsive mx-auto d-block" alt="ÁguilaLab"></div> -->
   </div>
   </div>
-  
 
+             
   
   <br>
-  <hr class="my-4">
   <br>
   <div class="container py-5">
-  <div class="alert alert-dismissible alert-warning py-5">
+  <div class="alert alert-dismissible alert-info py-5">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <h4 class="alert-heading text-center">¡Atención!</h4>
+  <h4 class="alert-heading text-center">¡Bienvenido!</h4>
   <p class="mb-0 text-center small">Utiliza el menú superior y los botones de navegación para dirigirte hacia la sección deseada.</p>
 </div>
   </div>
-  
+
+  <div class="row">
+
+  <div class="col-lg-6 col-md-6">
+
+  <div class="profile-image float-md-left text-center"> 
+  <a href="https://github.com/jRicciL"><img src="https://avatars.githubusercontent.com/u/39897861?v=4" alt=""> </a>
+  </div>
+
+  </div> 
+
+  <div class="col-lg-6 col-md-6">
+
+  <div class="profile-text float-md-left text-center"> 
+  Joel Ricci-López <a title="@jRicciL" href="https://github.com/jRicciL"><i class="fa fa-behance"></i> @jRicciL</a>
+  </div>
+
+  </div> 
+
+  </div>   
+
+  <br>
+  <hr class="my-4">
+
   <p class="lead">
-    <a class="btn btn-info btn-lg btn-block" href="./intro_DM.html" role="button">Comenzar</a>
+    <a class="btn btn-info btn-lg btn-block" href="./instalacion_MV.html" role="button">Comenzar</a>
   </p>
 
   

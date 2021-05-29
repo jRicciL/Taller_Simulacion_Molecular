@@ -1,12 +1,11 @@
 # Taller de Simulación Molecular de Sistemas Biológicos 
-## AguilaLab
+- Joel Ricci López
 
-Website:
+## 👾 Website:
 
-[Website del Taller](https://jriccil.github.io/MD_namd_python/)
+[Website del Taller](https://jriccil.github.io/Taller_Simulacion_Molecular)
 
-![AguilaLab](http://aguilalab.com/wp-content/uploads/2018/06/aguila_logo.svg)
 
-### Copyright
+## Copyright
 
 Copyright (c) 2021, AguilaLab. Joel Ricci López

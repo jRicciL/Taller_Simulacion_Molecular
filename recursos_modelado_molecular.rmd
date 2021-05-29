@@ -3,6 +3,8 @@ title: 'Molecular Modeling Resources'
 ---
 ***
 
+# Recursos de modelado molecular
+
 ## Análisis de trayectorias de Dinámica Molecular
 
 - [VMD](http://www.ks.uiuc.edu/Research/vmd/) (Visual molecular dynamics): 
@@ -29,4 +31,4 @@ title: 'Molecular Modeling Resources'
 
 Miscelaneo:
 
-KNIME
+En construcción

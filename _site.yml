@@ -15,13 +15,13 @@ plugins:
 navbar:
   title: "Inicio"
   left:
-  - text: "Inicio"
-    href: index.html
 
   - text: "Recursos"
     menu:
       - text: "► Preparación del Ambiente de Trabajo"
         href: instalacion_MV.html
+      - text: "► Recursos Externos"
+        href: recursos_modelado_molecular.html
     
   - text: "Docking Molecular"
     menu:
@@ -47,7 +47,7 @@ right:
   - icon: fa-question fa-lg
 output:
   html_document:
-    toc: true
+    toc: false
     toc_float: true
     toc_depth: 2
     toc_collapsed: true

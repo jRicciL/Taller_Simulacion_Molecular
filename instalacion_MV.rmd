@@ -1,17 +1,24 @@
 ---
 title: 'Preparación del Ambiente de Trabajo'
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    toc_collapsed: false
 ---
 ***
 
 
 En esta sección se muestran los enlaces de descarga y el proceso de instalación de la **Máquina Virtual**.
 
-Adicionalmente, se ofrecen dos alternativas para aquellos que opten utilizar una versión [GNU/Linux](#instalación-manual-de-las-librerías-y-creación-de-ambientes-conda) propia o utilizar [WSL en Windows](#instalación-de-wsl-en-windows).
+Adicionalmente, se ofrecen dos alternativas para aquellos que opten utilizar una versión [GNU/Linux](#instalación-manual-de-las-librerías-y-creación-de-ambientes-conda){target="_blank"} propia o utilizar [WSL en Windows](#instalación-de-wsl-en-windows).
 No obstante, quien decida tomar alguna de estas opciones deberá instalar y configurar los programas por su cuenta. La lista de programas se muestra más adelante.
 
+# Recursos
 
 ***
-## 1. Máquina virtual del Taller de SMSB 
+## Máquina virtual del Taller de SMSB 
 
 ### Requisitos mínimos de la máquina virtual
 - 20 GB de espacio libre en su disco duro.
@@ -20,7 +27,7 @@ No obstante, quien decida tomar alguna de estas opciones deberá instalar y conf
 
 ### Descarga de VirtualBox y 7zip
 
-1. Descarga e instala **[VirtualBox](https://www.virtualbox.org/wiki/Downloads)** en tu sistema operativo:
+1. Descarga e instala **[VirtualBox](https://www.virtualbox.org/wiki/Downloads){target="_blank"}** en tu sistema operativo:
 
 > <a href="https://www.virtualbox.org/wiki/Downloads">
     <img src="https://www.virtualbox.org/graphics/button61.png" alt="virtualbox-link" height="40"/>
@@ -117,7 +124,7 @@ La siguiente es una lista de los programas principales a utilizar en el taller. 
 </details>
 
 ***
-## 2. Instalación de WSL en Windows
+## Instalación de WSL en Windows
 Una segunda opción, para los que tienen Windows, es [instalar la terminal de Ubuntu: WSL](https://ubuntu.com/wsl). Recomiendo esta opción sólo si no cuentas con los requisitos mínimos para la máquina virtual.
 
 <div class="alert alert-dismissible alert-warning">
@@ -129,9 +136,9 @@ Una segunda opción, para los que tienen Windows, es [instalar la terminal de Ub
 
 ***
 
-## 3. Instalación "Manual" de las librerías y creación de ambientes conda
+## Instalación "Manual" de las librerías y creación de ambientes conda
 
-Si ya cuentas con una versión de Linux y quieres hacer la instalación manual de los programas te recomiendo instalar **Conda** o [Miniconda](https://docs.conda.io/en/latest/miniconda.html).
+Si ya cuentas con una versión de Linux y quieres hacer la instalación manual de los programas te recomiendo instalar **Conda** o [Miniconda](https://docs.conda.io/en/latest/miniconda.html){target="_blank"}.
 Nuevamente, **esta opción sólo es recomendada para quienes tengan experiencia con Linux** y/o estén dispuestos a resolver los problemas de instalación que puedan llegar a surgir.
 A través de **conda** puedes instalar los paquetes y programas antes mencionados. 
 
@@ -189,7 +196,7 @@ conda deactivate
 ```
 
 #### Instalación de UCSF Chimera
-Descarga e instala UCSF Chimera a través de [este enlace](https://www.cgl.ucsf.edu/chimera/download.html).
+Descarga e instala UCSF Chimera a través de [este enlace](https://www.cgl.ucsf.edu/chimera/download.html){target="_blank"}.
 
 
 ***

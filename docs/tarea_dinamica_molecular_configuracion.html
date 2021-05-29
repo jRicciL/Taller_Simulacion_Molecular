@@ -485,8 +485,8 @@ $(document).ready(function () {
 <span id="numCode-7"><a href="#numCode-7"></a>  <span class="op">-</span>o sistema_MIN.out \    <span class="co"># Archivo de salida (propiedades físicas del sistema)</span></span>
 <span id="numCode-8"><a href="#numCode-8"></a>  <span class="op">-</span>r sistema_MIN.rst7 \   <span class="co"># Archivo restart al finalizar (coords)</span></span>
 <span id="numCode-9"><a href="#numCode-9"></a>  <span class="op">-</span>inf sistema_MIN.mdinfo <span class="co"># Información de la ejecución</span></span></code></pre></div>
-<div id="htmlwidget-be9a5cd19d05809d9ce5" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-be9a5cd19d05809d9ce5">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_MIN.rst7)\n    B --> |Propiedades del sistema|F(sistema_MIN.out)\n    B --> |Info. ejecución|G(sistema_MIN.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5eedde446561e3b4c2dd" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5eedde446561e3b4c2dd">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_MIN.rst7)\n    B --> |Propiedades del sistema|F(sistema_MIN.out)\n    B --> |Info. ejecución|G(sistema_MIN.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <div id="archivo-de-configuración" class="section level3">
 <h3><span class="header-section-number">1.3.1</span> Archivo de configuración</h3>
 <p>La línea 4 muestra un ejemple de comentario. Los comentarios empiezan con el símbolo <code>!</code>.</p>
@@ -528,8 +528,8 @@ $(document).ready(function () {
 <span id="numCode-7"><a href="#numCode-7"></a>  <span class="op">-</span>r sistema_HEAT.rst7 \   <span class="co"># Archivo restart al finalizar (coords y velocidades)</span></span>
 <span id="numCode-8"><a href="#numCode-8"></a>  <span class="op">-</span>x sistema_HEAT.nc \     <span class="co"># Archivo de la trayectoria (mrcd)</span></span>
 <span id="numCode-9"><a href="#numCode-9"></a>  <span class="op">-</span>inf sistema_HEAT.mdinfo <span class="co"># Información de la ejecución</span></span></code></pre></div>
-<div id="htmlwidget-4d93b7e7dce8548d912d" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4d93b7e7dce8548d912d">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema_MIN.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_HEAT.rst7)\n    B --> |Propiedades del sistema|F(sistema_HEAT.out)\n    B --> |Trayectoria|H(sistema_HEAT.nc)\n    B --> |Info. ejecución|G(sistema_HEAT.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-aedb8f5f8479e652cbf3" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-aedb8f5f8479e652cbf3">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema_MIN.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_HEAT.rst7)\n    B --> |Propiedades del sistema|F(sistema_HEAT.out)\n    B --> |Trayectoria|H(sistema_HEAT.nc)\n    B --> |Info. ejecución|G(sistema_HEAT.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <div id="archivo-de-configuración-1" class="section level3">
 <h3><span class="header-section-number">1.4.1</span> Archivo de configuración</h3>
 <p>La línea 10 muestra un ejemple de comentario. Los comentarios empiezan con el símbolo <code>!</code>.</p>
@@ -570,8 +570,8 @@ $(document).ready(function () {
 <span id="numCode-7"><a href="#numCode-7"></a>  <span class="op">-</span>r sistema_EQ.rst7 \    <span class="co"># Archivo restart al finalizar (coords y velocidades)</span></span>
 <span id="numCode-8"><a href="#numCode-8"></a>  <span class="op">-</span>x sistema_EQ.nc \      <span class="co"># Archivo de la trayectoria (mrcd)</span></span>
 <span id="numCode-9"><a href="#numCode-9"></a>  <span class="op">-</span>inf sistema_EQ.mdinfo  <span class="co"># Información de la ejecución</span></span></code></pre></div>
-<div id="htmlwidget-be60e721dc84dee94390" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-be60e721dc84dee94390">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema_HEAT.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_EQ.rst7)\n    B --> |Propiedades del sistema|F(sistema_EQ.out)\n    B --> |Trayectoria|H(sistema_EQ.nc)\n    B --> |Info. ejecución|G(sistema_EQ.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-90ea2df4c31aea6918d6" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-90ea2df4c31aea6918d6">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema_HEAT.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_EQ.rst7)\n    B --> |Propiedades del sistema|F(sistema_EQ.out)\n    B --> |Trayectoria|H(sistema_EQ.nc)\n    B --> |Info. ejecución|G(sistema_EQ.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <div id="archivo-de-configuración-2" class="section level3">
 <h3><span class="header-section-number">1.5.1</span> Archivo de configuración</h3>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>cat eq.in</span></code></pre></div>
@@ -615,8 +615,8 @@ $(document).ready(function () {
 <span id="numCode-7"><a href="#numCode-7"></a>  <span class="op">-</span>r sistema_PROD.rst7 \   <span class="co"># Archivo restart al finalizar (coords y velocidades)</span></span>
 <span id="numCode-8"><a href="#numCode-8"></a>  <span class="op">-</span>x sistema_PROD.nc \     <span class="co"># Archivo de la trayectoria (mrcd)</span></span>
 <span id="numCode-9"><a href="#numCode-9"></a>  <span class="op">-</span>inf sistema_PROD.mdinfo <span class="co"># Información de la ejecución</span></span></code></pre></div>
-<div id="htmlwidget-1708e608368b10968913" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1708e608368b10968913">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema_EQ.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_PROD.rst7)\n    B --> |Propiedades del sistema|F(sistema_PROD.out)\n    B --> |Trayectoria|H(sistema_PROD.nc)\n    B --> |Info. ejecución|G(sistema_PROD.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-809cd5a96543b078d91d" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-809cd5a96543b078d91d">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema_EQ.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_PROD.rst7)\n    B --> |Propiedades del sistema|F(sistema_PROD.out)\n    B --> |Trayectoria|H(sistema_PROD.nc)\n    B --> |Info. ejecución|G(sistema_PROD.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <div id="archivo-de-configuración-3" class="section level3">
 <h3><span class="header-section-number">1.6.1</span> Archivo de configuración</h3>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>cat prod.in</span></code></pre></div>

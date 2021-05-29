@@ -11,7 +11,7 @@
 
 
 
-<title>AMBER: Preliminares</title>
+<title>Molecular Modeling Resources</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,14 +21,6 @@
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="site_libs/d3-3.3.8/d3.min.js"></script>
-<script src="site_libs/dagre-0.4.0/dagre-d3.min.js"></script>
-<link href="site_libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
-<script src="site_libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
-<link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
-<script src="site_libs/chromatography-0.1/chromatography.js"></script>
-<script src="site_libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -284,9 +276,6 @@ $(document).ready(function () {
     <li>
       <a href="instalacion_MV.html">► Preparación del Ambiente de Trabajo</a>
     </li>
-    <li>
-      <a href="recursos_modelado_molecular.html">► Recursos Externos</a>
-    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -346,339 +335,46 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">AMBER: Preliminares</h1>
+<h1 class="title toc-ignore">Molecular Modeling Resources</h1>
 
 </div>
 
 
 <hr />
-<div id="campo-de-fuerza-de-amber" class="section level3">
-<h3><span class="header-section-number">0.0.1</span> Campo de Fuerza de Amber</h3>
-<p><span class="math display">\[
-\begin{aligned}
-V(r^{N}) &amp; =\sum _{i\in {\text{bonds}}}{k_{b}}_{i}(l_{i}-l_{i}^{0})^{2} \\
-&amp; +\sum _{i\in {\text{angles}}}{k_{a}}_{i}(\theta _{i}-\theta _{i}^{0})^{2} \\
-&amp; +\sum _{i\in {\text{torsions}}}\sum _{n}{\frac {1}{2}}V_{i}^{n}[1+\cos(n\omega _{i}-\gamma _{i})] \\
-&amp; +\sum _{j=1}^{N-1}\sum _{i=j+1}^{N}f_{ij}{\biggl \{}\epsilon _{ij}{\biggl [}\left({\frac {r_{ij}^{0}}{r_{ij}}} \right)^{12}-2\left({\frac {r_{ij}^{0}}{r_{ij}}}\right)^{6}{\biggr ]}+{\frac {q_{i}q_{j}}{4\pi \epsilon _{0}r_{ij}}}{\biggr \}}
-\end{aligned}
-\]</span></p>
+<div id="recursos-de-modelado-molecular" class="section level1">
+<h1><span class="header-section-number">1</span> Recursos de modelado molecular</h1>
+<div id="análisis-de-trayectorias-de-dinámica-molecular" class="section level2">
+<h2><span class="header-section-number">1.1</span> Análisis de trayectorias de Dinámica Molecular</h2>
+<ul>
+<li><a href="http://www.ks.uiuc.edu/Research/vmd/">VMD</a> (Visual molecular dynamics):
+<ul>
+<li><a href="http://www.ks.uiuc.edu/Training/Tutorials/vmd/vmd-tutorial.pdf">Tutorial VMD</a></li>
+</ul></li>
+<li><a href="http://prody.csb.pitt.edu/tutorials/">ProDy</a> - librería de python para análisis estructural.</li>
+<li><a href="https://www.mdanalysis.org/about/">MDAnalysis</a> - librería de python para análisis de trayectorias de DM.</li>
+<li><a href="https://amber-md.github.io/pytraj/latest/index.html">pytraj</a> - librería de python para análisis de trayectorias de DM (alternativa en python de <code>cpptraj</code>).</li>
+<li>TTClust - librería de python para análisis de</li>
+<li><a href="https://amberhub.chpc.utah.edu/cpptraj/">CPPTRAJ</a> - análisis de trayectorias de DM en Amber.</li>
+<li><a href="http://thegrantlab.org/bio3d_v2/index.php">Bio3D</a> - Análisis estructural, de secuencias y dinámicas de proteínas en <a href="https://www.r-project.org/">R.</a></li>
+</ul>
 </div>
-<div id="creación-de-los-archivos-de-topología-.prmtop-y-coordenadas-rst7" class="section level3">
-<h3><span class="header-section-number">0.0.2</span> Creación de los archivos de topología <code>.prmtop</code> y coordenadas <code>rst7</code></h3>
-<div id="htmlwidget-32402e97688bf81dedc4" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-32402e97688bf81dedc4">{"x":{"diagram":"\ngraph LR\n    A(prot_unprep.pdb)-->Q[pdb2pqr]\n    Q-->D\n    D(prot.pdb)--> F[LEaP]\n    L(lig.mol2)--> B(lig.mol2)\n    L(lig.mol2)-->Z[Antechamber]\n    L(lig.mol2)--> P[parmchk2]\n    Z-->E(LIG_def.mol2)\n    P-->|GAFF.dat|G(LIG_def.frcmod)\n    B(lig.mol2)--> F\n    E --> K(LIG_def.lib)\n    G --> K(LIG_def.lib)\n    K --> F\n    V(Parámetros Extra)-->|leaprc.xxx.xxx| F\n\n    subgraph Estructura\n    B\n    D\n    end\n\n    subgraph Parámetros-Librería\n    subgraph Ligando - GAFF\n    E\n    G\n    K\n    end\n    V\n    end\n\n    F-->(prot_lig.prmtop)\n    F-->(prot_lig.rst7)\n"},"evals":[],"jsHooks":[]}</script>
+<div id="visualizadores" class="section level2">
+<h2><span class="header-section-number">1.2</span> Visualizadores</h2>
+<ul>
+<li><a href="https://pymol.org/2/">PyMOL</a></li>
+<li><a href="https://www.cgl.ucsf.edu/chimera/">UCSF Chimera</a></li>
+<li><a href="https://www.rbvi.ucsf.edu/chimerax/">UCSF Chimera X</a></li>
+<li><a href="http://www.ks.uiuc.edu/Research/vmd/">VMD</a></li>
+<li><a href="https://www.schrodinger.com/freemaestro">Maestro</a></li>
+<li><a href="https://discover.3ds.com/discovery-studio-visualizer-download#_ga=2.139527984.2003505014.1614374842-1205daf0-754c-11eb-8d39-116c13c7f4bb">BIOVIA Discovery Studio</a></li>
+<li><a href="http://www.yasara.org/index.html">YASARA</a></li>
+<li><a href="https://sourceforge.net/projects/qutemol/">Qutemol</a></li>
+</ul>
 </div>
-<div id="información-contenida-en-cada-tipo-de-archivo" class="section level3">
-<h3><span class="header-section-number">0.0.3</span> Información contenida en cada tipo de archivo</h3>
-<div class="table-responsive-sm">
-<table class="table">
-<thead class='thead-dark'>
-<tr>
-<th scope="col" style="width:140px">
-<b>Archivo de Estructura</b>
-</th>
-<th scope="col" style="width:140px">
-<b>Archivo de Librería</b>
-</th>
-<th scope="col" style="width:140px">
-<b>Archivo de Parámetros</b>
-</th>
-<th scope="col" style="width:30px">
-</th>
-<th scope="col" style="width:140px">
-<b>Topología</b>
-</th>
-<th scope="col" style="width:140px">
-<b>Coordenadas</b>
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="width:140px">
-Moléculas<br> Nombre/Átomos<br><br><br>
-<p class="imbed" style="color:#ff0000">
-Connexiones
-</p>
-<br> Coordenadas<br><br><br><br>
-</td>
-<td style="width:140px">
-Residuos<br> Nombre/Átomos<br> Tipos/Átomos<br> Cargas<br> Conexiones<br>
-<p class="imbed" style="color:#ff0000">
-Coordenadas
-</p>
-<br> Masa<br> Parm. Intramol<br> Parm. Intermol<br>
-</td>
-<td style="width:140px">
-<br><br> Tipos/Átomos<br><br><br><br> Masas<br> Parm. Intramol<br> Parm. Intermol<br><br />
-
-</td>
-<td style="width:30px; text-align:center">
-→<br>→<br>→
-</td>
-<td style="width:140px">
-Residuos<br> Nombre/Átomos<br> Tipos/Átomos<br> Cargas<br> Conexiones<br><br><br />
-Masas<br> Parm. Intramol<br> Parm. Intermol<br><br />
-
-</td>
-<td style="width:140px">
-<br><br><br><br><br>Coordenadas<br><br><br><br>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="table-responsive-sm">
-<table class="table table-bordered table-hover">
-<!-- <caption>Propiedades disponibles en cada tipo de archivo</caption> -->
-<thead class='thead-dark'>
-<tr class="table-primary">
-<th scope="col" style="width:140px">
-</th>
-<th scope="col" style="width:140px" colspan="2">
-<b>Estructura (Input)</b>
-</th>
-<th scope="col" style="width:140px" colspan="2">
-<b>Parámetros (Input)</b>
-</th>
-<th scope="col" style="width:140px" colspan="2">
-<b>Output Files</b>
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th scope="row" style="width:140px">
-Archivo
-</th>
-<td style="text-align:center">
-.pdb
-</td>
-<td style="text-align:center">
-.mol2
-</td>
-<td style="text-align:center">
-.lib<br>.mol2
-</td>
-<td style="text-align:center">
-.dat<br>.frcmod
-</td>
-<td style="text-align:center">
-.prmtop<br>.parm7
-</td>
-<td style="text-align:center">
-.inpcrd<br>.rst7
-</td>
-</tr>
-<tr>
-<th scope="row" style="width:140px">
-Moléculas
-</th>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-—
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-—
-</td>
-</tr>
-<tr>
-<th scope="row" style="width:140px">
-Nombre Átomos
-</th>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-—
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-—
-</td>
-</tr>
-<tr>
-<th scope="row" style="width:240px">
-Tipo de Átomos
-</th>
-<td style="text-align:center">
-—
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-—
-</td>
-</tr>
-<tr>
-<th scope="row" style="width:240px">
-Cargas
-</th>
-<td style="text-align:center">
-—
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-—
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-—
-</td>
-</tr>
-<tr>
-<th scope="row" style="width:240px">
-Conexiones
-</th>
-<td style="text-align:center">
-—
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-—
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-—
-</td>
-</tr>
-<tr>
-<th scope="row" style="width:240px">
-Coordenadas
-</th>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-—
-</td>
-<td style="text-align:center">
-—
-</td>
-<td style="text-align:center">
-✅
-</td>
-</tr>
-<tr>
-<th scope="row" style="width:240px">
-Masa
-</th>
-<td style="text-align:center">
-—
-</td>
-<td style="text-align:center">
-—
-</td>
-<td style="text-align:center">
-—
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-—
-</td>
-</tr>
-<tr>
-<th scope="row" style="width:240px">
-Parm. Intramol (Enlazantes)
-</th>
-<td style="text-align:center">
-—
-</td>
-<td style="text-align:center">
-—
-</td>
-<td style="text-align:center">
-—
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-—
-</td>
-</tr>
-<tr>
-<th scope="row" style="width:240px">
-Parm. Intermol (No enlazantes)
-</th>
-<td style="text-align:center">
-—
-</td>
-<td style="text-align:center">
-—
-</td>
-<td style="text-align:center">
-—
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-✅
-</td>
-<td style="text-align:center">
-—
-</td>
-</tr>
-</tbody>
-</table>
+<div id="quimioinformática" class="section level2">
+<h2><span class="header-section-number">1.3</span> Quimioinformática</h2>
+<p>Miscelaneo:</p>
+<p>En construcción</p>
 </div>
 </div>
 

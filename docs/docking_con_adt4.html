@@ -366,7 +366,66 @@ $(document).ready(function () {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Recursos
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="instalacion_MV.html">► Preparación del Ambiente de Trabajo</a>
+    </li>
+    <li>
+      <a href="recursos_modelado_molecular.html">► Recursos Externos</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Docking Molecular
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="docking_con_adt4.html">► Docking con Autodock 4.2</a>
+    </li>
+    <li>
+      <a href="virtual_screening_vina.html">► Cribado Virual con VINA/SMINA</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Dinámica Molecular
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="preparacion_del_sistema_md.html">► Preparación del Sistema</a>
+    </li>
+    <li>
+      <a href="configuracion_de_las_fases.html">► Configuración de la dinámica</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Tareas
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="tarea_docking_con_ad4.html">► 📝 Docking con AD4</a>
+    </li>
+    <li>
+      <a href="tarea_vs_smina.html">► 📝 Crivado virtual con SMINA</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -385,10 +444,16 @@ $(document).ready(function () {
 
 
 <hr />
+<div id="acoplamiento-molecular-con-ad4" class="section level1">
+<h1><span class="header-section-number">1</span> Acoplamiento Molecular con AD4</h1>
+<p>Flujo de ejecución de Autodock 4.2:</p>
+<p><img style='height: 300px
+    width: 100%;
+    object-fit: cover;' src="./images/ad4_wflow.png" alt="ad4_workflow" height="400"/></p>
 <div id="obtención-y-preparación-de-las-moléculas" class="section level2">
-<h2>Obtención y preparación de las moléculas</h2>
+<h2><span class="header-section-number">1.1</span> Obtención y preparación de las moléculas</h2>
 <div id="ambiente-de-trabajo" class="section level3">
-<h3>Ambiente de trabajo</h3>
+<h3><span class="header-section-number">1.1.1</span> Ambiente de trabajo</h3>
 <ol style="list-style-type: decimal">
 <li>Crea una carpeta de trabajo para guardar los archivos que se irán generando.<br />
 </li>
@@ -398,12 +463,12 @@ $(document).ready(function () {
 <hr />
 </div>
 <div id="obtención-de-la-proteína" class="section level3">
-<h3>Obtención de la Proteína</h3>
+<h3><span class="header-section-number">1.1.2</span> Obtención de la Proteína</h3>
 <ul>
 <li>Información sobre la proteína <a href="https://www.uniprot.org/uniprot/P24941">CDK2</a>.</li>
 </ul>
 <div id="descarga-de-la-proteína" class="section level4">
-<h4>Descarga de la proteína</h4>
+<h4><span class="header-section-number">1.1.2.1</span> Descarga de la proteína</h4>
 <ol style="list-style-type: decimal">
 <li><p>Abrir <strong>UCSF Chimera</strong> y en la opción “<em>File &gt; Fetch by id…</em>” descargar del pdb la proteína <strong><mark>5IF1</mark></strong>.</p></li>
 <li><p>Ahora <strong>guardamos</strong> en un archivo <code>.pdb</code> únicamente los átomos de la proteína CDK2:</p>
@@ -422,7 +487,7 @@ $(document).ready(function () {
 </blockquote>
 </div>
 <div id="prepara-la-estructura-de-la-proteína-con-pdb2pqr" class="section level4">
-<h4>Prepara la estructura de la proteína con <a href="https://pdb2pqr.readthedocs.io/en/latest/using/">PDB2PQR</a>:</h4>
+<h4><span class="header-section-number">1.1.2.2</span> Prepara la estructura de la proteína con <a href="https://pdb2pqr.readthedocs.io/en/latest/using/">PDB2PQR</a>:</h4>
 <ol style="list-style-type: decimal">
 <li>Tener el ambiente de conda <code>dock</code> activado y localizarse en la carpeta de trabajo (<code>wd_dk</code>).</li>
 <li>Ejecutar <strong>PDB2PQR</strong> con alguno de los siguientes comandos (dependiendo de la versión con la que cuentes):</li>
@@ -441,7 +506,7 @@ $(document).ready(function () {
 </blockquote>
 </div>
 <div id="prot.pdb" class="section level4">
-<h4>prot.pdb</h4>
+<h4><span class="header-section-number">1.1.2.3</span> prot.pdb</h4>
 <div class="viewer_3Dmoljs justify-content-center border" style="height: 350px; width: 100%; position: relative;" data-href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/docking/prot.pdb" data-backgroundcolor="0x303030" data-style1="cartoon:color=spectrum">
 
 </div>
@@ -454,10 +519,10 @@ $(document).ready(function () {
 </div>
 </div>
 <div id="obtención-de-la-molécula-ligante" class="section level3">
-<h3>Obtención de la Molécula Ligante</h3>
+<h3><span class="header-section-number">1.1.3</span> Obtención de la Molécula Ligante</h3>
 <p>Existen múltiples bases de datos para poder descargar librerías de moléculas, para efectos del taller recurriremos a la base de datos <strong><a href="https://pubchem.ncbi.nlm.nih.gov/">PubChem</a></strong> para descargar la “estructura” de la molécula de ATP, que usaremos como ligando.</p>
-<div id="htmlwidget-7d6ea0cffd623f4a731f" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7d6ea0cffd623f4a731f">{"x":{"diagram":"\ngraph LR\n    A(ATP - SMILES)-->|obabel| B(ATP.mol2 - 3D info)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7024d48e378a7cae7fe9" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7024d48e378a7cae7fe9">{"x":{"diagram":"\ngraph LR\n    A(ATP - SMILES)-->|obabel| B(ATP.mol2 - 3D info)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Da click en el siguiente link para acceder a Pubchem: <a href="https://pubchem.ncbi.nlm.nih.gov/compound/Adenosine-5_-triphosphate">página ATP Puchem</a>.</li>
 <li>En la sección <em>2.1.4 Canonical Smiles</em> verás la siguiente cadena de texto que corresponde a la representación de la molécula en formato <a href="https://es.wikipedia.org/wiki/SMILES">SMILES</a>:</li>
@@ -494,7 +559,7 @@ GASTEIGER
       4 C           1.3906   -0.7463   -0.7500 C.ar    1  UNL1        0.1473
       5 C           2.1064    0.1471    0.0336 C.ar    1  UNL1        0.1674</code></pre>
 <div id="atp.mol2" class="section level4">
-<h4>ATP.mol2</h4>
+<h4><span class="header-section-number">1.1.3.1</span> ATP.mol2</h4>
 <div class="viewer_3Dmoljs justify-content-center border" style="height: 250px; width: 100%; position: relative;" data-href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/docking/ATP.mol2" data-backgroundcolor="0x303030" data-style1="stick">
 
 </div>
@@ -534,24 +599,29 @@ The <a href="https://www.bindingdb.org/bind/index.jsp">BindingDatabase</a>
 </div>
 </div>
 <div id="autodock-4.2" class="section level2">
-<h2>Autodock 4.2</h2>
+<h2><span class="header-section-number">1.2</span> Autodock 4.2</h2>
+<p>Usaremos los siguientes dos archivos que preparamos en las fases previas:</p>
+<ul>
+<li><a href="./resurces/docking/prot.pdb">prot.pdb</a></li>
+<li><a href="./resurces/docking/ATP.mol2">ATP.mol2</a></li>
+</ul>
 <div id="preparación-de-los-archivos-necesarios-para-docking-pdbqt" class="section level3">
-<h3>Preparación de los archivos necesarios para Docking (PDBQT)</h3>
-<p>En esta sección se preparan los archivos de la proteína y el ligando en formato <a href="http://autodock.scripps.edu/faqs-help/faq/what-is-the-format-of-a-pdbqt-file/">PDBQT</a>, los cuales son necesarios para la ejecución de AD4.</p>
+<h3><span class="header-section-number">1.2.1</span> Preparación de los archivos necesarios para Docking (PDBQT)</h3>
+<p>En esta sección se preparan los archivos de la proteína y el ligando en formato <a href="http://autodock.scripps.edu/faqs-help/faq/what-is-the-format-of-a-pdbqt-file/" target="_blank">PDBQT</a>, los cuales son necesarios para la ejecución de AD4.</p>
 <div id="activar-los-scripts-de-ejecución" class="section level4">
-<h4>Activar los scripts de ejecución</h4>
-<p>Si estas usando la <a href="https://jriccil.github.io/Taller_Simulacion_Molecular/instalacion_MV.html">máquina virtual</a> ejecuta el siguiente comando para agregar al path el directorio con los scripts de análisis.</p>
+<h4><span class="header-section-number">1.2.1.1</span> Activar los scripts de ejecución</h4>
+<p>Si estas usando la <a href="https://jriccil.github.io/Taller_Simulacion_Molecular/instalacion_MV.html" target="_blank">máquina virtual</a> ejecuta el siguiente comando para agregar al path el directorio con los scripts de análisis.</p>
 <div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>echo \</span>
 <span id="numCode-2"><a href="#numCode-2"></a>    <span class="st">&#39;export PATH=&quot;/home/ssb/miniconda3/envs/ad4/MGLToolsPckgs/AutoDockTools/Utilities24/:&quot;$PATH&#39;</span> \</span>
 <span id="numCode-3"><a href="#numCode-3"></a>    <span class="op">&gt;</span><span class="er">&gt;</span><span class="st"> </span><span class="er">~/</span>.zshrc</span></code></pre></div>
 <blockquote>
-<p>Si no estás usando la máquina virtual deberás sustituir la parte <code>/home/ssb/miniconda3/</code> con la ruta que corresponda a tu sistema.</p>
+<p>Si no estás usando la máquina virtual deberás sustituir la parte <code>/home/ssb/miniconda3/</code> con la ruta que corresponda a tu sistema. Revisa el siguiente link para más información: <a href="http://mgltools.scripps.edu/downloads/instructions/linux/?searchterm=path" target="_blank">MGLTools on Linux</a></p>
 </blockquote>
 </div>
 <div id="preparación-del-ligando" class="section level4">
-<h4>Preparación del ligando</h4>
-<div id="htmlwidget-b0ffcb73f7ccef9cd00b" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b0ffcb73f7ccef9cd00b">{"x":{"diagram":"\ngraph LR\n    A(ATP.mol2)-->|prepare_ligand4.py| B(ATP.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<h4><span class="header-section-number">1.2.1.2</span> Preparación del ligando</h4>
+<div id="htmlwidget-c189b406770acec3a9e0" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c189b406770acec3a9e0">{"x":{"diagram":"\ngraph LR\n    A(ATP.mol2)-->|prepare_ligand4.py| B(ATP.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <p>Esta fase consiste en utilizar las coordenadas del archivo ATP.mol2 para generar un archivo <a href="http://autodock.scripps.edu/faqs-help/faq/what-is-the-format-of-a-pdbqt-file/">PDBQT</a> al se le incluirá la siguiente información:</p>
 <ul>
 <li><strong><mark>Q:</mark></strong> Cargas parciales de <a href="http://expertcomputationalchemistry.blogspot.com/2016/08/the-difference-between-kollman-charges.html?m=1">Gasteiger</a>.</li>
@@ -603,9 +673,9 @@ d[&#39;ATP&#39;] = {&#39;atom_types&#39;: [&#39;A&#39;, &#39;C&#39;, &#39;HD&#39
 </ol>
 </div>
 <div id="preparación-del-receptor-en-formato-pdbqt" class="section level4">
-<h4>Preparación del receptor en formato PDBQT</h4>
-<div id="htmlwidget-8ad6e91d3b9e33151530" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8ad6e91d3b9e33151530">{"x":{"diagram":"\ngraph LR\n    A(prot.pdb)-->|prepare_receptor4.py| B(prot.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<h4><span class="header-section-number">1.2.1.3</span> Preparación del receptor en formato PDBQT</h4>
+<div id="htmlwidget-05f8bfa0819939b3b9df" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-05f8bfa0819939b3b9df">{"x":{"diagram":"\ngraph LR\n    A(prot.pdb)-->|prepare_receptor4.py| B(prot.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <!-- 1. **Descargar** el archivo [prepare_receptor4.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_receptor4.py) y guárdalo en la carpeta de trabajo. -->
 <ol style="list-style-type: decimal">
 <li>Ejecuta lo siguiente:</li>
@@ -644,9 +714,9 @@ d[&#39;ATP&#39;] = {&#39;atom_types&#39;: [&#39;A&#39;, &#39;C&#39;, &#39;HD&#39
 </div>
 </div>
 <div id="ejecución-de-autogrid" class="section level3">
-<h3>Ejecución de Autogrid</h3>
+<h3><span class="header-section-number">1.2.2</span> Ejecución de Autogrid</h3>
 <div id="archivo-de-parámetros-de-autogrid-gpf" class="section level4">
-<h4>Archivo de parámetros de Autogrid (GPF)</h4>
+<h4><span class="header-section-number">1.2.2.1</span> Archivo de parámetros de Autogrid (GPF)</h4>
 <p>En este paso se creará un archivo de parámetros para el ejecutable <code>autogrid4</code>: el archivo <code>.gpf</code> (<em>grid parameter file</em>).</p>
 <p>Este <code>gpf</code> es creado a partir de información del receptor y la(s) molécula ligando, y especifica lo siguiente:</p>
 <ul>
@@ -658,7 +728,7 @@ d[&#39;ATP&#39;] = {&#39;atom_types&#39;: [&#39;A&#39;, &#39;C&#39;, &#39;HD&#39
 <li>Los tipos de átomos a usar en los ligandos y el receptor.</li>
 </ul>
 <div id="determinar-el-centro-y-tamaño-de-la-rejilla" class="section level5">
-<h5>Determinar el centro y tamaño de la rejilla</h5>
+<h5><span class="header-section-number">1.2.2.1.1</span> Determinar el centro y tamaño de la rejilla</h5>
 <ol style="list-style-type: decimal">
 <li>Activar el ambiente de conda <code>ad4</code> y localizarse en la carpeta de trabajo.</li>
 <li>Ejecutar:</li>
@@ -689,9 +759,9 @@ d[&#39;ATP&#39;] = {&#39;atom_types&#39;: [&#39;A&#39;, &#39;C&#39;, &#39;HD&#39
 </ol>
 </div>
 <div id="crear-el-archivo-gpf" class="section level5">
-<h5>Crear el archivo GPF</h5>
-<div id="htmlwidget-4279114965d6d6849160" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4279114965d6d6849160">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_gpf4.py]\n    B(ATP.pdbqt)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<h5><span class="header-section-number">1.2.2.1.2</span> Crear el archivo GPF</h5>
+<div id="htmlwidget-f1b01d22bb658934d2d9" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f1b01d22bb658934d2d9">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_gpf4.py]\n    B(ATP.pdbqt)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <!-- 1. **Descargar** el archivo [prepare_gpf4.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_gpf4.py). -->
 <ol style="list-style-type: decimal">
 <li>Ten a la mano la siguiente información necesaria para el siguiente paso:
@@ -752,9 +822,9 @@ dielectric -0.1465                   # &lt;0, AD4 distance-dep.diel;&gt;0, const
 │  🗒 GPF.gpf</code></pre>
 </div>
 <div id="ejecutar-autogrid" class="section level5">
-<h5>Ejecutar Autogrid</h5>
-<div id="htmlwidget-f9dc569ba190a09151d3" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f9dc569ba190a09151d3">{"x":{"diagram":"\ngraph LR\n    A(GPF.gpf)-->C[autogrid4]\n    C-->D(GLG.glg)\n    C-->F(*.map)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<h5><span class="header-section-number">1.2.2.1.3</span> Ejecutar Autogrid</h5>
+<div id="htmlwidget-26fd271318d68e36267a" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-26fd271318d68e36267a">{"x":{"diagram":"\ngraph LR\n    A(GPF.gpf)-->C[autogrid4]\n    C-->D(GLG.glg)\n    C-->F(*.map)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Ejecuta el siguiente comando:</li>
 </ol>
@@ -792,11 +862,11 @@ dielectric -0.1465                   # &lt;0, AD4 distance-dep.diel;&gt;0, const
 </div>
 </div>
 <div id="ejecución-de-autodock4.2" class="section level3">
-<h3>Ejecución de Autodock4.2</h3>
+<h3><span class="header-section-number">1.2.3</span> Ejecución de Autodock4.2</h3>
 <div id="archivo-de-parámetros-de-autodock-dpf" class="section level4">
-<h4>Archivo de parámetros de Autodock (DPF)</h4>
-<div id="htmlwidget-668dfd833f7bef5000a0" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-668dfd833f7bef5000a0">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_dpf42.py]\n    B(ATP.pdbqt)--oC\n    E(Parámetros de búsqueda)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<h4><span class="header-section-number">1.2.3.1</span> Archivo de parámetros de Autodock (DPF)</h4>
+<div id="htmlwidget-d12ac931102d6ba59fa0" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d12ac931102d6ba59fa0">{"x":{"diagram":"\ngraph LR\n    A(prot.pdbqt)--oC[prepare_dpf42.py]\n    B(ATP.pdbqt)--oC\n    E(Parámetros de búsqueda)--oC\n    C --> D(GPF.gpf)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <p>En este paso se crea el archivo de parámetros para el ejecutable <code>autodock4</code>: el archivo <code>.gpf</code> (<em>grid parameter file</em>), los cuales utilizará para llevar a cabo el acoplamiento entre el ligando y el receptor, incluyéndo aquellos que usará para el algoritmo de búsqueda. Especifica además los archivos .map a utilizar para facilitar el cálculo de la función de puntaje.</p>
 <!-- 1. Descarga el archivo [prepare_dpf42.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/prepare_dpf42.py). -->
 <ol style="list-style-type: decimal">
@@ -889,7 +959,7 @@ analysis                             # perform a ranked cluster analysis</code><
 <hr />
 </div>
 <div id="ejecución-del-docking" class="section level4">
-<h4>Ejecución del Docking 🎉🎊</h4>
+<h4><span class="header-section-number">1.2.3.2</span> Ejecución del Docking 🎉🎊</h4>
 <ol style="list-style-type: decimal">
 <li>Ejecuta el siguiente comando:</li>
 </ol>
@@ -907,14 +977,14 @@ analysis                             # perform a ranked cluster analysis</code><
 </div>
 </div>
 <div id="análisis-de-los-resultados" class="section level2">
-<h2>Análisis de los Resultados 🎯</h2>
+<h2><span class="header-section-number">1.3</span> Análisis de los Resultados 🎯</h2>
 <!-- 1. Descarga los siguientes archivos y guárdalos en el directorio de trabajo: 
    a. [pdbqt_to_pdb.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/pdbqt_to_pdb.py)
    b. [write_lowest_energy_ligand.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/write_lowest_energy_ligand.py)
    c. [write_largest_cluster_ligand.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/write_largest_cluster_ligand.py)
    d. [summarize_docking.py](https://github.com/jRicciL/Taller_Simulacion_Molecular/raw/master/resurces/docking/summarize_docking.py) -->
 <div id="análisis-del-archivo-dlg.dlg" class="section level3">
-<h3>Análisis del archivo DLG.dlg</h3>
+<h3><span class="header-section-number">1.3.1</span> Análisis del archivo DLG.dlg</h3>
 <ol style="list-style-type: decimal">
 <li>Inspecciona el archivo <strong><mark>DLG.dlg</mark></strong> y localiza la siguiente información (usa SublimeText o algún otro editor de texto que te sea cómodo):</li>
 </ol>
@@ -970,7 +1040,7 @@ DOCKED: MODEL        3
 </blockquote>
 </div>
 <div id="extrae-un-resumen-de-los-resultados" class="section level3">
-<h3>Extrae un resumen de los resultados</h3>
+<h3><span class="header-section-number">1.3.2</span> Extrae un resumen de los resultados</h3>
 <ol style="list-style-type: decimal">
 <li>Ejecuta el siguiente comando:</li>
 </ol>
@@ -1006,7 +1076,7 @@ DOCKED: MODEL        3
 <hr />
 </div>
 <div id="extrae-la-pose-con-la-mejor-afinidad-menor-energía" class="section level3">
-<h3>Extrae la pose con la mejor afinidad (menor energía)</h3>
+<h3><span class="header-section-number">1.3.3</span> Extrae la pose con la mejor afinidad (menor energía)</h3>
 <ol style="list-style-type: decimal">
 <li>Ejecuta el siguiente comando:</li>
 </ol>
@@ -1022,18 +1092,18 @@ DOCKED: MODEL        3
 </div>
 </div>
 <div id="recursos-extras" class="section level2">
-<h2>Recursos Extras</h2>
+<h2><span class="header-section-number">1.4</span> Recursos Extras</h2>
 <div id="presentación" class="section level3">
-<h3>Presentación</h3>
+<h3><span class="header-section-number">1.4.1</span> Presentación</h3>
 <iframe src="http://www.slideshare.net/slideshow/embed_code/key/4WqkRh7da3ARCb" width="620" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen>
 </iframe>
 <div style="margin-bottom:5px">
-<strong> <a href="//www.slideshare.net/RicciBW/acoplamiento-molecular-con-autodock-42" title="Acoplamiento molecular con Autodock 4.2" target="_blank">Acoplamiento molecular con Autodock 4.2</a> </strong> de <strong><a href="https://www.slideshare.net/RicciBW" target="_blank">Joel Ricci</a></strong>
+<strong> <a href="http://www.slideshare.net/RicciBW/acoplamiento-molecular-con-autodock-42" title="Acoplamiento molecular con Autodock 4.2" target="_blank">Acoplamiento molecular con Autodock 4.2</a> </strong> de <strong><a href="https://www.slideshare.net/RicciBW" target="_blank">Joel Ricci</a></strong>
 </div>
 <hr />
 </div>
 <div id="explora-los-resultados-de-docking-usando-adt-o-chimera" class="section level3">
-<h3>Explora los resultados de docking usando ADT o Chimera</h3>
+<h3><span class="header-section-number">1.4.2</span> Explora los resultados de docking usando ADT o Chimera</h3>
 <ol style="list-style-type: decimal">
 <li>Explora los resultados usando AutoDockTools:
 <ol style="list-style-type: decimal">
@@ -1049,7 +1119,7 @@ DOCKED: MODEL        3
 </ol>
 </div>
 <div id="referencias" class="section level3">
-<h3>Referencias</h3>
+<h3><span class="header-section-number">1.4.3</span> Referencias</h3>
 <ol style="list-style-type: decimal">
 <li>Morris, G. M. et al. (1996). [..] AutoDock 2.4. Journal of Computer-Aided Molecular Design.</li>
 <li>Morris, et al. (1998) Automated Docking Using a Lamarckian Genetic Algorithm and an Empirical Binding Free Energy Function. Journal of Computational Chemistry, Vol. 19, No. 14, 1639]1662</li>
@@ -1059,6 +1129,7 @@ DOCKED: MODEL        3
 <hr />
 <!-- hitwebcounter Code START -->
 <p><a href="https://www.hitwebcounter.com" target="_blank"> <img src="https://hitwebcounter.com/counter/counter.php?page=7748964&style=0007&nbdigits=5&type=ip&initCount=0" title="Free Counter" Alt="web counter"   border="0" /></a></p>
+</div>
 </div>
 </div>
 
