@@ -37,8 +37,7 @@ data-surface1='opacity:.5;color:white'>
   <br>
   <br>
   <div class="container py-5">
-  <div class="alert alert-dismissible alert-info py-5">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <div class="alert  alert-info py-5">
   <h4 class="alert-heading text-center">¡Bienvenido!</h4>
   <p class="mb-0 text-center small">Utiliza el menú superior y los botones de navegación para dirigirte hacia la sección deseada.</p>
 </div>
@@ -46,17 +45,17 @@ data-surface1='opacity:.5;color:white'>
 
   <div class="row">
 
-  <div class="col-lg-6 col-md-6">
+  <div >
 
-  <div class="profile-image float-md-rigth"> 
+  <div class="profile-image text-center"> 
   <a href="https://github.com/jRicciL"><img src="https://avatars.githubusercontent.com/u/39897861?v=4" alt=""> </a>
   </div>
 
   </div> 
 
-  <div class="col-lg-6 col-md-6">
+  <div >
 
-  <div class="profile-text float-md-left"> 
+  <div class="profile-text text-center"> 
   Joel Ricci-López <a title="@jRicciL" href="https://github.com/jRicciL"><i class="fa fa-behance"></i> @jRicciL</a>
   </div>
 
