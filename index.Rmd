@@ -48,7 +48,7 @@ data-surface1='opacity:.5;color:white'>
 
   <div class="col-lg-6 col-md-6">
 
-  <div class="profile-image float-md-left text-center"> 
+  <div class="profile-image float-md-rigth"> 
   <a href="https://github.com/jRicciL"><img src="https://avatars.githubusercontent.com/u/39897861?v=4" alt=""> </a>
   </div>
 
@@ -56,7 +56,7 @@ data-surface1='opacity:.5;color:white'>
 
   <div class="col-lg-6 col-md-6">
 
-  <div class="profile-text float-md-left text-center"> 
+  <div class="profile-text float-md-left"> 
   Joel Ricci-López <a title="@jRicciL" href="https://github.com/jRicciL"><i class="fa fa-behance"></i> @jRicciL</a>
   </div>
 
