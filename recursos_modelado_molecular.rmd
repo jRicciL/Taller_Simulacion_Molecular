@@ -5,6 +5,29 @@ title: 'Molecular Modeling Resources'
 
 # Recursos de modelado molecular
 
+## Acoplamiento Molecular
+### Herramientas de acoplamiento Molecular
+- [Autodock 4.2](http://autodock.scripps.edu/)
+- [AutoDockFR](https://ccsb.scripps.edu/adfr/)
+- [Autodock Vina](http://vina.scripps.edu/)
+- [Smina](https://sourceforge.net/projects/smina/)
+- [Gnina](https://github.com/gnina/gnina)
+- [QVina](https://qvina.github.io/)
+- [PSOVina](https://cbbio.online/software/psovina/index.html)
+- [GWOVina](https://cbbio.online/software/gwovina/index.html)
+- [rDock](http://rdock.sourceforge.net/)
+- [LeDock](http://www.lephar.com/software.html)
+
+### Búsqueda de sitios de unión:
+- [CASTp](http://sts.bioe.uic.edu/castp/)
+- [fpocket](https://bioserv.rpbs.univ-paris-diderot.fr/services/fpocket/)
+- Proteins.plus: [DoGSiteScorer](https://proteins.plus/) -> [Tutorial](https://proteins.plus/help/tutorial)
+
+### Análisis de acoplamientos:
+- [DoGSiteScorer](https://proteins.plus/) -> Pose view
+- [LigPlot](https://www.ebi.ac.uk/thornton-srv/software/LigPlus/)
+- [PLIP](https://plip-tool.biotec.tu-dresden.de/plip-web/plip/index)
+
 ## Análisis de trayectorias de Dinámica Molecular
 
 - [VMD](http://www.ks.uiuc.edu/Research/vmd/) (Visual molecular dynamics): 
