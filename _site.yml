@@ -1,28 +1,21 @@
 name: "Taller_SMSB_2021"
 output_dir: "docs"
 title: "Taller SMSB 2021"
-
 header-includes:
 - \usepackage{fancyhdr}
 - \pagestyle{fancy}
 - \fancyhead[CO,CE]{This is fancy header}
 - \fancyfoot[CO,CE]{And this is a fancy footer}
 - \fancyfoot[LE,RO]{\thepage}
-plugins:
- - jekyll-seo-tag
-
-
 navbar:
   title: "Inicio"
   left:
-
   - text: "Recursos"
     menu:
       - text: "► Preparación del Ambiente de Trabajo"
         href: instalacion_MV.html
       - text: "► Recursos Externos"
         href: recursos_modelado_molecular.html
-    
   - text: "Docking Molecular"
     menu:
       - text: "► Docking con Autodock 4.2"
@@ -41,23 +34,20 @@ navbar:
     menu:
       - text: "► 📝 Docking con AD4"
         href: tarea_docking_con_ad4.html
-      - text: "► 📝 Crivado virtual con SMINA"
+      - text: "► 📝 Cribado virtual con SMINA"
         href: tarea_vs_smina.html
-right:
-  - icon: fa-question fa-lg
-output:
-  html_document:
-    toc: false
-    toc_float: true
-    toc_depth: 2
-    toc_collapsed: true
-    css: "styles.css"
-    theme: journal
-    highlight: zenburn
-    code_download: false
-    number_sections: 2
-    include:
-      after_body: footer.html
-
 avatar: "https://avatars.githubusercontent.com/u/39897861?v=4"
 round-avatar: true
+output: 
+  rmarkdown::html_document:
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 3
+    toc_collapsed: false 
+    number_sections: false
+    css: "styles.css"
+    theme: sandstone 
+    highlight: zenburn
+    includes:
+      in_header: header.html
+      after_body: footer.html

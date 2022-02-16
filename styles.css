@@ -4,6 +4,16 @@
   padding: 0px 10%;
 }
 
+a {
+  color: #009871 !important;
+}
+
+.navbar .nav>li>a {
+    font-size: 13px !important;
+    color: #eee !important;
+    text-transform: capitalize !important;
+}
+
 mark, .mark {
   background-color: #f8f2b7;
   color: #333;
@@ -27,8 +37,15 @@ code span.kw2 {
   color: #46e7b1;
 }
 
+
+h1, h2, h3, h4, h5 {
+  font-family: 'News Cycle', sans-serif;
+  font-weight: bold;
+}
+
   
 code span.op {
+  
   color: #f56d6d;
 }
 
@@ -75,20 +92,34 @@ div h1.title {
   content: "-";
 }
 
+.tocify {
+  max-width: 220px !important;
+    max-height: 85% !important;
+    margin-left: -30px !important;
+}
+
+
 .section h1 {
-  padding: 80px 0px 30px;
+  font-size: 2.1em;
   margin-top: 0px;
+    font-weight: bold;
 }
 
 .section h2 {
-    padding: 80px 0px 20px;
-    margin-top: -20px;
+    font-size: 1.7em;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-weight: bold;
 }
 
-h3 {
-    padding: 80px 0px 20px;
-    margin-top: -20px;
+.section h3 {
+    font-size: 1.4em;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
 }
+
+
 
 ul .tocify ul, .tocify li {
     line-height: 20px;
@@ -181,4 +212,12 @@ pre.scroll-350 {
   display: block;
   padding: 15px 0;
   color: #424242
+}
+
+
+#footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
 }

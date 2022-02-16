@@ -3,13 +3,15 @@ title: 'AMBER: Preliminares'
 ---
 ***
 
-```{r setup, include=FALSE}
+```{r, include=FALSE}
 library(DiagrammeR)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-### Campo de Fuerza de Amber
+# Campo de Fuerza de Amber
+
+## Cálculo de la energía potencial del sistema
 
 $$
 \begin{aligned}
@@ -22,7 +24,7 @@ $$
 
 
 
-### Creación de los archivos de topología `.prmtop` y coordenadas `rst7`
+## Creación de los archivos de topología `.prmtop` y coordenadas `rst7`
 
 ```{r, echo=FALSE}
 mermaid("
@@ -61,12 +63,12 @@ graph LR
 ```
 
 
-### Información contenida en cada tipo de archivo
+## Información contenida en cada tipo de archivo
 
 <div class="table-responsive-sm">
-<table class="table">
+<table class="table table-hover">
   <thead class='thead-dark'>
-    <tr>
+    <tr class="table-primary" style=' background-color: #373737; color: white'>
       <th scope="col"  style="width:140px"><b>Archivo de Estructura</b></th>
       <th scope="col"  style="width:140px"><b>Archivo de Librería</b></th>
       <th scope="col"  style="width:140px"><b>Archivo de Parámetros</b></th>
@@ -127,7 +129,7 @@ graph LR
 <table class="table table-bordered table-hover">
 <!-- <caption>Propiedades disponibles en cada tipo de archivo</caption> -->
   <thead class='thead-dark'>
-    <tr class="table-primary">
+    <tr class="table-primary" style=' background-color: #373737; color: white'>
       <th scope="col"  style="width:140px"></th>
       <th scope="col"  style="width:140px" colspan="2"><b>Estructura (Input)</b></th>
       <th scope="col"  style="width:140px" colspan="2"><b>Parámetros (Input)</b></th>

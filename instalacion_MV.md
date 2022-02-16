@@ -11,15 +11,15 @@ En esta sección se muestran los enlaces de descarga y el proceso de instalació
 Adicionalmente, se ofrecen dos alternativas para aquellos que opten utilizar una versión [GNU/Linux](#instalación-manual-de-las-librerías-y-creación-de-ambientes-conda){target="_blank"} propia o utilizar [WSL en Windows](#instalación-de-wsl-en-windows).
 No obstante, quien decida tomar alguna de estas opciones deberá instalar y configurar los programas por su cuenta. La lista de programas se muestra más adelante.
 
-***
-# Máquina virtual del Taller de SMSB 
 
-## Requisitos mínimos de la máquina virtual
+## Máquina virtual del Taller de SMSB 
+
+### Requisitos mínimos de la máquina virtual
 - 20 GB de espacio libre en su disco duro.
 - 6 GB de RAM.
 - Sistema operativo Windows 10 u 8, o mac OS reciente.
 
-## Descarga de VirtualBox y 7zip
+### Descarga de VirtualBox y 7zip
 
 1. Descarga e instala **[VirtualBox](https://www.virtualbox.org/wiki/Downloads){target="_blank"}** en tu sistema operativo:
 
@@ -33,7 +33,7 @@ No obstante, quien decida tomar alguna de estas opciones deberá instalar y conf
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/7ziplogo.svg/1280px-7ziplogo.svg.png" alt="7zip-link" height="40"/>
 </a>
 
-## Descarga de la MV
+### Descarga de la MV
 
 1. Descarga cada una de las siguientes partes de la máquina virtual:
 
@@ -53,7 +53,7 @@ No obstante, quien decida tomar alguna de estas opciones deberá instalar y conf
 
 </center>
 
-## Instalación de la MV
+### Instalación de la MV
 
 1. Una vez descargadas las 8 partes, y estando todas en el mismo directorio, abre el archivo **<mark>SSB.ova.7zip.001</mark>** )utilizando **7zip**, y extrae el archivo **<mark>SSB.ova</mark>**. Puedes extraerla en cualquier directorio al que te sea más cómodo acceder. Más adelante podrás eliminar este archivo, si así lo deseas.
 
@@ -90,7 +90,7 @@ La máquina está instalada y puedes "encenderla" haciendo doble click sobre su 
 1.    Si hubiese algún problema con la máquina o con el sistema operativo, siempre puedes volver a usar el archivo **<mark>SSB.ova</mark>** para volver a la configuración inicial. Es decir, puedes echarla a perder sin culpa alguna. 
 
 ***
-## Programas y librerías 
+### Programas y librerías 
 
 La siguiente es una lista de los programas principales a utilizar en el taller. Estos están ya incluidos en la máquina virtual:
 
@@ -145,7 +145,7 @@ A través de **conda** puedes instalar los paquetes y programas antes mencionado
     No olvides tampoco desactivarlo cada vez que necesites usar un nuevo ambiente.
 </div>
 
-### Ambiente Autodock4
+#### Ambiente Autodock4
 
 Una vez instalado **conda**, crea un ambiente llamado `ad4`:
 
@@ -158,7 +158,7 @@ conda install -c bioconda mgltools
 conda deactivate
 ```
 
-### Ambiente Smina
+#### Ambiente Smina
 
 Crea uno para **smina** y sofware relacionado con la preparación de las moléculas:
 
@@ -170,7 +170,7 @@ conda install -c bioconda smina autodock-vina
 conda deactivate
 ```
 
-### Ambiente AmberTools
+#### Ambiente AmberTools
 Crea un ambiente para dinámica molecular:
 
 ```{#numCode .R .numberLines}
@@ -180,7 +180,7 @@ conda install -c conda-forge ambertools vmd
 conda deactivate
 ```
 
-### Ambiente de análisis con python
+#### Ambiente de análisis con python
 Crea un ambiente para análisis de datos con python:
 
 ```{#numCode .R .numberLines}
@@ -189,7 +189,7 @@ conda install -c ambermd pytraj
 conda deactivate
 ```
 
-### Instalación de UCSF Chimera
+#### Instalación de UCSF Chimera
 Descarga e instala UCSF Chimera a través de [este enlace](https://www.cgl.ucsf.edu/chimera/download.html){target="_blank"}.
 
 
