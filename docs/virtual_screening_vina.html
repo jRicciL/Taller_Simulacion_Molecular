@@ -13,14 +13,26 @@
 
 <title>Cribado Virtual con Smina</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11.22/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
 <script src="site_libs/d3-3.3.8/d3.min.js"></script>
 <script src="site_libs/dagre-0.4.0/dagre-d3.min.js"></script>
@@ -29,6 +41,7 @@
 <link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
 <script src="site_libs/chromatography-0.1/chromatography.js"></script>
 <script src="site_libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script>
+
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -40,21 +53,29 @@
     </style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -73,7 +94,7 @@ pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   { color: #cccccc; background-color: #303030; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffcfaf; } /* Alert */
 code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
@@ -127,39 +148,8 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
   }
 })();
 </script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -171,10 +161,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -191,40 +177,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 61px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h2 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h3 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h4 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h5 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h6 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -252,7 +214,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -264,7 +226,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -275,10 +237,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -290,7 +265,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -343,6 +317,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -350,6 +387,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -422,7 +469,7 @@ $(document).ready(function () {
       <a href="tarea_docking_con_ad4.html">► 📝 Docking con AD4</a>
     </li>
     <li>
-      <a href="tarea_vs_smina.html">► 📝 Crivado virtual con SMINA</a>
+      <a href="tarea_vs_smina.html">► 📝 Cribado virtual con SMINA</a>
     </li>
   </ul>
 </li>
@@ -434,7 +481,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -445,25 +492,35 @@ $(document).ready(function () {
 
 <hr />
 <div id="acoplamiento-molecular-con-smina" class="section level1">
-<h1><span class="header-section-number">1</span> Acoplamiento molecular con Smina</h1>
-<div id="obtención-y-preparación-de-las-moléculas" class="section level2">
-<h2><span class="header-section-number">1.1</span> Obtención y preparación de las moléculas</h2>
+<h1>Acoplamiento molecular con Smina</h1>
+<div id="obtención-y-preparación-de-las-moléculas"
+class="section level2">
+<h2>Obtención y preparación de las moléculas</h2>
 <ol style="list-style-type: decimal">
 <li>Crea tu directorio de trabajo:</li>
 </ol>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>mkdir wd_vs</span>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>mkdir wd_vs</span>
 <span id="numCode-2"><a href="#numCode-2"></a>cd wd_vs</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
-<li><strong>Descarga</strong> el archivo de la proteína y de las moléculas en formato SMILES ⬇️:
+<li><strong>Descarga</strong> el archivo de la proteína y de las
+moléculas en formato SMILES ⬇️:
 <ul>
-<li>Proteína: <a href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/1fin_PROT.pdb">1fin_PROT.pdb</a></li>
-<li>Archivo de ligandos (SMILES): <a href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/cdk2_sample.smi">cdk2_sample.smi</a></li>
+<li>Proteína: <a
+href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/1fin_PROT.pdb">1fin_PROT.pdb</a></li>
+<li>Archivo de ligandos (SMILES): <a
+href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/cdk2_sample.smi">cdk2_sample.smi</a></li>
 </ul></li>
-<li><strong>Descarga</strong> los siguientes archivos y <strong>guardalos</strong> en tu directorio de trabajo ⬇️ (guárdalos para después):
+<li><strong>Descarga</strong> los siguientes archivos y
+<strong>guardalos</strong> en tu directorio de trabajo ⬇️ (guárdalos
+para después):
 <ul>
-<li><a href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/cdk2_activity_mols.csv">cdk2_activity_mols.csv</a></li>
-<li><a href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/plot_metrics.py">plot_metrics.py</a></li>
-<li><a href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/analisis_resultados_vina.ipynb">analisis_resultados_vina.ipynb</a></li>
+<li><a
+href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/cdk2_activity_mols.csv">cdk2_activity_mols.csv</a></li>
+<li><a
+href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/plot_metrics.py">plot_metrics.py</a></li>
+<li><a
+href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/vs/analisis_resultados_vina.ipynb">analisis_resultados_vina.ipynb</a></li>
 </ul></li>
 </ol>
 <pre><code>📂 wd_vs
@@ -473,41 +530,51 @@ $(document).ready(function () {
 │  🗒 plot_metrics.py
 │  🗒 analisis_resultados_vina.ipynb</code></pre>
 <div id="preparación-de-los-ligandos" class="section level3">
-<h3><span class="header-section-number">1.1.1</span> Preparación de los ligandos</h3>
+<h3>Preparación de los ligandos</h3>
 <ol start="3" style="list-style-type: decimal">
-<li><strong>Extraer</strong> las moléculas del archivo <strong><mark>cdk2_sample.smi</mark></strong> en una nueva carpeta utilizando <a href="https://openbabel.org/docs/dev/Command-line_tools/babel.html">OpenBabel</a></li>
+<li><strong>Extraer</strong> las moléculas del archivo
+<strong><mark>cdk2_sample.smi</mark></strong> en una nueva carpeta
+utilizando <a
+href="https://openbabel.org/docs/dev/Command-line_tools/babel.html">OpenBabel</a></li>
 </ol>
-<div id="htmlwidget-6efdac522efe74423b51" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6efdac522efe74423b51">{"x":{"diagram":"\ngraph LR\n    A(*SMILES)-->|obabel| B(*.mol2 - 3D info)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>mkdir ligands</span></code></pre></div>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>obabel <span class="op">-</span>ismi cdk2_sample.smi <span class="op">-</span>omol2 <span class="op">-</span>O ligands<span class="op">/</span><span class="st"> </span><span class="op">-</span>m <span class="op">--</span>gen3d <span class="op">-</span>p <span class="dv">7</span></span></code></pre></div>
+<div id="htmlwidget-d35d473d87b39042814f" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d35d473d87b39042814f">{"x":{"diagram":"\ngraph LR\n    A(*SMILES)-->|obabel| B(*.mol2 - 3D info)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>mkdir ligands</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>obabel <span class="sc">-</span>ismi cdk2_sample.smi <span class="sc">-</span>omol2 <span class="sc">-</span>O ligands<span class="sc">/</span> <span class="sc">-</span>m <span class="sc">--</span>gen3d <span class="sc">-</span>p <span class="dv">7</span></span></code></pre></div>
 <ol style="list-style-type: decimal">
-<li>Recupera los <strong>nombres originales</strong> de las moléculas</li>
+<li>Recupera los <strong>nombres originales</strong> de las
+moléculas</li>
 </ol>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Entra a la carpeta ligands</span></span>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Entra a la carpeta ligands</span></span>
 <span id="numCode-2"><a href="#numCode-2"></a>cd ligands</span></code></pre></div>
 <blockquote>
 <p>Ejecuta el siguiente comando:</p>
 </blockquote>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Renombra cada archivo para conservar </span></span>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Renombra cada archivo para conservar </span></span>
 <span id="numCode-2"><a href="#numCode-2"></a><span class="co"># el nombre original</span></span>
-<span id="numCode-3"><a href="#numCode-3"></a><span class="cf">for</span> i <span class="cf">in</span> <span class="op">*</span>; </span>
-<span id="numCode-4"><a href="#numCode-4"></a>do name=<span class="st">`</span><span class="dt">head -n 2 $i | tail -n 1</span><span class="st">`</span>; </span>
-<span id="numCode-5"><a href="#numCode-5"></a>mv <span class="op">$</span>i <span class="op">$</span>name.mol2; </span>
+<span id="numCode-3"><a href="#numCode-3"></a><span class="cf">for</span> i <span class="cf">in</span> <span class="sc">*</span>; </span>
+<span id="numCode-4"><a href="#numCode-4"></a>do name<span class="ot">=</span><span class="st">`</span><span class="at">head -n 2 $i | tail -n 1</span><span class="st">`</span>; </span>
+<span id="numCode-5"><a href="#numCode-5"></a>mv <span class="sc">$</span>i <span class="sc">$</span>name.mol2; </span>
 <span id="numCode-6"><a href="#numCode-6"></a>done</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
-<li>Usa <code>obabel</code> para <strong>convertir las moléculas</strong> a <code>pdbqt</code>:</li>
+<li>Usa <code>obabel</code> para <strong>convertir las
+moléculas</strong> a <code>pdbqt</code>:</li>
 </ol>
-<div id="htmlwidget-13afbb6bdcc5d64198e3" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-13afbb6bdcc5d64198e3">{"x":{"diagram":"\ngraph LR\n    A(*.mol2)-->|obabel| B(*.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Sal de la carpeta ligands al directorio padre</span></span>
+<div id="htmlwidget-275c9786852ef0d174f4" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-275c9786852ef0d174f4">{"x":{"diagram":"\ngraph LR\n    A(*.mol2)-->|obabel| B(*.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Sal de la carpeta ligands al directorio padre</span></span>
 <span id="numCode-2"><a href="#numCode-2"></a>cd ..</span>
 <span id="numCode-3"><a href="#numCode-3"></a></span>
 <span id="numCode-4"><a href="#numCode-4"></a><span class="co"># Crea un nuevo directorio para guardar los archivos `pdbqt`</span></span>
 <span id="numCode-5"><a href="#numCode-5"></a>mkdir ligs_pdbqt</span>
 <span id="numCode-6"><a href="#numCode-6"></a></span>
 <span id="numCode-7"><a href="#numCode-7"></a><span class="co"># Ejecuta openbabel para **múltiples** inputs</span></span>
-<span id="numCode-8"><a href="#numCode-8"></a>obabel <span class="op">-</span>imol2 ligands<span class="op">/</span><span class="er">*</span><span class="st"> </span><span class="op">-</span>opdbqt <span class="op">-</span>O ligs_pdbqt<span class="op">/</span>.pdbqt <span class="op">-</span>m</span></code></pre></div>
+<span id="numCode-8"><a href="#numCode-8"></a>obabel <span class="sc">-</span>imol2 ligands<span class="sc">/</span><span class="er">*</span> <span class="sc">-</span>opdbqt <span class="sc">-</span>O ligs_pdbqt<span class="sc">/</span>.pdbqt <span class="sc">-</span>m</span></code></pre></div>
 <pre><code>📂 wd_vs
 |  📜 ...
 │  🗒 1fin_PROT.pdb
@@ -520,41 +587,59 @@ $(document).ready(function () {
 </div>
 </div>
 <div id="preparación-del-receptor" class="section level2">
-<h2><span class="header-section-number">1.2</span> Preparación del Receptor</h2>
+<h2>Preparación del Receptor</h2>
 <ol style="list-style-type: decimal">
-<li>Tener el ambiente de conda <code>dock</code> <strong>activado</strong> y localizarse en la carpeta de trabajo (<code>wd_dk</code>).</li>
-<li>Ejecutar <strong>PDB2PQR</strong> con alguno de los siguientes comandos (dependiendo de la versión con la que cuentes):</li>
+<li>Tener el ambiente de conda <code>dock</code>
+<strong>activado</strong> y localizarse en la carpeta de trabajo
+(<code>wd_dk</code>).</li>
+<li>Ejecutar <strong>PDB2PQR</strong> con alguno de los siguientes
+comandos (dependiendo de la versión con la que cuentes):</li>
 </ol>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Para la versión más reciente</span></span>
-<span id="numCode-2"><a href="#numCode-2"></a>pdb2pqr30 <span class="op">--</span>ff=<span class="st">&#39;AMBER&#39;</span> <span class="op">--</span>ffout=<span class="st">&#39;AMBER&#39;</span> \</span>
-<span id="numCode-3"><a href="#numCode-3"></a>    <span class="op">--</span>with<span class="op">-</span>ph=<span class="fl">7.0</span> <span class="op">--</span>drop<span class="op">-</span>water <span class="op">--</span>keep<span class="op">-</span>chain \</span>
-<span id="numCode-4"><a href="#numCode-4"></a>    <span class="op">--</span>pdb<span class="op">-</span>output prot.pdb \</span>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Para la versión más reciente</span></span>
+<span id="numCode-2"><a href="#numCode-2"></a>pdb2pqr30 <span class="sc">--</span>ff<span class="ot">=</span><span class="st">&#39;AMBER&#39;</span> <span class="sc">--</span>ffout<span class="ot">=</span><span class="st">&#39;AMBER&#39;</span> \</span>
+<span id="numCode-3"><a href="#numCode-3"></a>    <span class="sc">--</span>with<span class="sc">-</span>ph<span class="ot">=</span><span class="fl">7.0</span> <span class="sc">--</span>drop<span class="sc">-</span>water <span class="sc">--</span>keep<span class="sc">-</span>chain \</span>
+<span id="numCode-4"><a href="#numCode-4"></a>    <span class="sc">--</span>pdb<span class="sc">-</span>output prot.pdb \</span>
 <span id="numCode-5"><a href="#numCode-5"></a>    1fin_PROT.pdb pqr_file.pqr</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
-<li>Utiliza <strong>Castp</strong> para identificar el mejor candidato al sitio de unión.</li>
+<li>Utiliza <strong>Castp</strong> para identificar el mejor candidato
+al sitio de unión.</li>
 </ol>
 <blockquote>
-<p><a href="http://sts.bioe.uic.edu/castp/index.html?4jii"> <img src="images/castp_vs.png" alt="castp-link" height="200"/> </a></p>
+<p><a href="http://sts.bioe.uic.edu/castp/index.html?4jii">
+<img src="images/castp_vs.png" alt="castp-link" height="200"/>
+</a></p>
 </blockquote>
 <ol style="list-style-type: decimal">
-<li>Utiliza <strong>UCSF Chimera</strong> para establecer el tamaño y posición del espacio de búsqueda (puedes utilizar <strong>AutodockTools</strong> si lo deseas).
+<li>Utiliza <strong>UCSF Chimera</strong> para establecer el tamaño y
+posición del espacio de búsqueda (puedes utilizar
+<strong>AutodockTools</strong> si lo deseas).
 <ol style="list-style-type: decimal">
-<li>Abre el archivo <strong><mark>prot.pdb</mark></strong> con UCSF Chimera.</li>
-<li>Ve a <em>Tools &gt; Surface/Binding Analysis &gt; Autodock Vina</em></li>
-<li>Utiliza el cursor para dibujar la caja en la posición que consideres adecuada.</li>
+<li>Abre el archivo <strong><mark>prot.pdb</mark></strong> con UCSF
+Chimera.</li>
+<li>Ve a <em>Tools &gt; Surface/Binding Analysis &gt; Autodock
+Vina</em></li>
+<li>Utiliza el cursor para dibujar la caja en la posición que consideres
+adecuada.</li>
 </ol></li>
 </ol>
 <blockquote>
-<p><a href="https://www.cgl.ucsf.edu/chimera/docs/ContributedSoftware/vina/vina.html"> <img src="images/box_chimera.png" alt="box_chimera" height="350"/> </a></p>
+<p><a href="https://www.cgl.ucsf.edu/chimera/docs/ContributedSoftware/vina/vina.html">
+<img src="images/box_chimera.png" alt="box_chimera" height="350"/>
+</a></p>
 </blockquote>
 <div class="alert alert-dismissible alert-warning">
 <h4 class="alert-heading">
 🚨 Sobre el espaciado del grid en Vina/Smina 🚨
 </h4>
-<p>Toma en cuenta que, al contrario que con Autodock4, en Vina el espaciado por default es de 1 Å, y no de 0.375 Å. Si utilizas AutodockTools para obtener las dimensiones de la caja, debes tomar esto en cuenta.</p>
+<p>Toma en cuenta que, al contrario que con Autodock4, en Vina el
+espaciado por default es de 1 Å, y no de 0.375 Å. Si utilizas
+AutodockTools para obtener las dimensiones de la caja, debes tomar esto
+en cuenta.</p>
 </div>
 <ol style="list-style-type: decimal">
-<li><strong>Anota las coordenadas</strong> del tamaño y posición del espacio de búsqueda.</li>
+<li><strong>Anota las coordenadas</strong> del tamaño y posición del
+espacio de búsqueda.</li>
 </ol>
 <pre><code># Centro
 x = -16
@@ -566,13 +651,19 @@ x = 21
 y = 22
 z = 22</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><strong>Convierte</strong> el archivo <code>pdb</code> de la proteína a <code>pdbqt</code>:</li>
+<li><strong>Convierte</strong> el archivo <code>pdb</code> de la
+proteína a <code>pdbqt</code>:</li>
 </ol>
-<div id="htmlwidget-304bedcbd167fffda3e0" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-304bedcbd167fffda3e0">{"x":{"diagram":"\ngraph LR\n    A(prot.pdb)-->|obabel| B(prot.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>obabel <span class="op">-</span>ipdb prot.pdb <span class="op">-</span>xr <span class="op">-</span>opdbqt <span class="op">-</span>O prot.pdbqt</span></code></pre></div>
+<div id="htmlwidget-9eb371c1834e02682dd3" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9eb371c1834e02682dd3">{"x":{"diagram":"\ngraph LR\n    A(prot.pdb)-->|obabel| B(prot.pdbqt)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>obabel <span class="sc">-</span>ipdb prot.pdb <span class="sc">-</span>xr <span class="sc">-</span>opdbqt <span class="sc">-</span>O prot.pdbqt</span></code></pre></div>
 <blockquote>
-<p><code>-x</code> es un <a href="https://openbabel.org/docs/dev/Command-line_tools/babel.html">argumento</a> que permite especificar parámetros específicos del formato de salida, en este caso de <code>pdbqt</code>, usando el parámetro <a href="https://openbabel.org/docs/dev/FileFormats/AutoDock_PDQBT_format.html">r</a>.</p>
+<p><code>-x</code> es un <a
+href="https://openbabel.org/docs/dev/Command-line_tools/babel.html">argumento</a>
+que permite especificar parámetros específicos del formato de salida, en
+este caso de <code>pdbqt</code>, usando el parámetro <a
+href="https://openbabel.org/docs/dev/FileFormats/AutoDock_PDQBT_format.html">r</a>.</p>
 </blockquote>
 <div class="alert alert-dismissible alert-warning">
 <h4 class="alert-heading">
@@ -580,24 +671,31 @@ z = 22</code></pre>
 </h4>
 <ul>
 <li>
-¿Qué tipo de <strong>cargas parciales</strong> estamos usando tanto para la proteína como para los ligandos?
+¿Qué tipo de <strong>cargas parciales</strong> estamos usando tanto para
+la proteína como para los ligandos?
 </li>
 <li>
-¿Por qué no fue necesario utilizar el script <pm>prepare_ligand4.py</code>?
+¿Por qué no fue necesario utilizar el script
+<pm>prepare_ligand4.py</code>?
 </li>
 <li>
-Revisa el apartado <i>Ease of use</i> del <a href="http://vina.scripps.edu/manual.html"><em>Manual de Autodock vina</em></a>
+Revisa el apartado <i>Ease of use</i> del
+<a href="http://vina.scripps.edu/manual.html"><em>Manual de Autodock
+vina</em></a>
 </li>
 </ul>
 </div>
 <hr />
 </div>
-<div id="ejecución-de-smina-con-un-único-ligando" class="section level2">
-<h2><span class="header-section-number">1.3</span> Ejecución de Smina con un único ligando</h2>
+<div id="ejecución-de-smina-con-un-único-ligando"
+class="section level2">
+<h2>Ejecución de Smina con un único ligando</h2>
 <ol style="list-style-type: decimal">
-<li>Observa qué parámetros son necesarios para la ejecución de <code>smina</code>:</li>
+<li>Observa qué parámetros son necesarios para la ejecución de
+<code>smina</code>:</li>
 </ol>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>smina <span class="op">--</span>help</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>smina <span class="sc">--</span>help</span></code></pre></div>
 <pre style='background-color: #ddd;'>
 <code >
 Input:
@@ -629,18 +727,20 @@ Output (optional):
 <ol start="2" style="list-style-type: decimal">
 <li>Realiza el <strong>primer acoplamiento</strong> con smina:</li>
 </ol>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>smina <span class="op">-</span>r prot.pdbqt \</span>
-<span id="numCode-2"><a href="#numCode-2"></a>      <span class="op">-</span>l ligs_pdbqt<span class="op">/</span>CS1.pdbqt \</span>
-<span id="numCode-3"><a href="#numCode-3"></a>      <span class="op">-</span>o CS1_docked.pdbqt \</span>
-<span id="numCode-4"><a href="#numCode-4"></a>      <span class="op">--</span>log CS1_docked.log \</span>
-<span id="numCode-5"><a href="#numCode-5"></a>      <span class="op">--</span>center_x <span class="dv">-16</span> \</span>
-<span id="numCode-6"><a href="#numCode-6"></a>      <span class="op">--</span>center_y <span class="dv">205</span> \</span>
-<span id="numCode-7"><a href="#numCode-7"></a>      <span class="op">--</span>center_z <span class="dv">117</span> \</span>
-<span id="numCode-8"><a href="#numCode-8"></a>      <span class="op">--</span>size_x <span class="dv">21</span> \</span>
-<span id="numCode-9"><a href="#numCode-9"></a>      <span class="op">--</span>size_y <span class="dv">22</span> \</span>
-<span id="numCode-10"><a href="#numCode-10"></a>      <span class="op">--</span>size_z <span class="dv">22</span></span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>smina <span class="sc">-</span>r prot.pdbqt \</span>
+<span id="numCode-2"><a href="#numCode-2"></a>      <span class="sc">-</span>l ligs_pdbqt<span class="sc">/</span>CS1.pdbqt \</span>
+<span id="numCode-3"><a href="#numCode-3"></a>      <span class="sc">-</span>o CS1_docked.pdbqt \</span>
+<span id="numCode-4"><a href="#numCode-4"></a>      <span class="sc">--</span>log CS1_docked.log \</span>
+<span id="numCode-5"><a href="#numCode-5"></a>      <span class="sc">--</span>center_x <span class="sc">-</span><span class="dv">16</span> \</span>
+<span id="numCode-6"><a href="#numCode-6"></a>      <span class="sc">--</span>center_y <span class="dv">205</span> \</span>
+<span id="numCode-7"><a href="#numCode-7"></a>      <span class="sc">--</span>center_z <span class="dv">117</span> \</span>
+<span id="numCode-8"><a href="#numCode-8"></a>      <span class="sc">--</span>size_x <span class="dv">21</span> \</span>
+<span id="numCode-9"><a href="#numCode-9"></a>      <span class="sc">--</span>size_y <span class="dv">22</span> \</span>
+<span id="numCode-10"><a href="#numCode-10"></a>      <span class="sc">--</span>size_z <span class="dv">22</span></span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
-<li>Explora los resultados utilizando <em>UCSF Chimera</em> o <em><a href="http://autodock.scripps.edu/faqs-help/tutorial/using-autodock-4-with-autodocktools/2012_ADTtut.pdf">AutodockTools</a></em>.</li>
+<li>Explora los resultados utilizando <em>UCSF Chimera</em> o <em><a
+href="http://autodock.scripps.edu/faqs-help/tutorial/using-autodock-4-with-autodocktools/2012_ADTtut.pdf">AutodockTools</a></em>.</li>
 </ol>
 <pre><code>📂 wd_vs
 |  📜 ...
@@ -654,21 +754,26 @@ Output (optional):
 │  🗒 CS1_docked.log</code></pre>
 <hr />
 </div>
-<div id="múltiples-acoplamientos-utilizando-smina" class="section level2">
-<h2><span class="header-section-number">1.4</span> Múltiples acoplamientos utilizando smina</h2>
+<div id="múltiples-acoplamientos-utilizando-smina"
+class="section level2">
+<h2>Múltiples acoplamientos utilizando smina</h2>
 <ol style="list-style-type: decimal">
 <li>Crea una carpeta para guardar los resultados:</li>
 </ol>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>mkdir docks</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>mkdir docks</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
-<li>Con tu editor de texto, <strong>crea un archivo de configuración ⚙️</strong> para definir los parámetros generales: <strong><mark>docking_smina.conf</mark></strong>.</li>
+<li>Con tu editor de texto, <strong>crea un archivo de configuración
+⚙️</strong> para definir los parámetros generales:
+<strong><mark>docking_smina.conf</mark></strong>.</li>
 </ol>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource bash numberLines"><code class="sourceCode bash"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Nombre del archivo del receptor</span></span>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource bash numberLines"><code class="sourceCode bash"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Nombre del archivo del receptor</span></span>
 <span id="numCode-2"><a href="#numCode-2"></a><span class="ex">receptor</span> = prot.pdbqt</span>
 <span id="numCode-3"><a href="#numCode-3"></a><span class="co"># Exhaustividad de búsqueda</span></span>
 <span id="numCode-4"><a href="#numCode-4"></a><span class="ex">exhaustiveness</span> = 4</span>
 <span id="numCode-5"><a href="#numCode-5"></a><span class="co"># Posición del centro del grid (en A)</span></span>
-<span id="numCode-6"><a href="#numCode-6"></a><span class="ex">center_x</span> = -16</span>
+<span id="numCode-6"><a href="#numCode-6"></a><span class="ex">center_x</span> = <span class="at">-16</span></span>
 <span id="numCode-7"><a href="#numCode-7"></a><span class="ex">center_y</span> = 205</span>
 <span id="numCode-8"><a href="#numCode-8"></a><span class="ex">center_z</span> = 117</span>
 <span id="numCode-9"><a href="#numCode-9"></a><span class="co"># Dimensiones del espacio de búsqueda (en A)</span></span>
@@ -680,12 +785,14 @@ Output (optional):
 <span id="numCode-15"><a href="#numCode-15"></a><span class="co"># Scoring a utilizar</span></span>
 <span id="numCode-16"><a href="#numCode-16"></a><span class="ex">scoring</span> = vina</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
-<li>Ejecuta <strong>smina</strong> utilizando un ciclo <code>for</code>:</li>
+<li>Ejecuta <strong>smina</strong> utilizando un ciclo
+<code>for</code>:</li>
 </ol>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="cf">for</span> lig <span class="cf">in</span> ligs_pdbqt<span class="op">/</span><span class="er">*</span>.pdbqt;</span>
-<span id="numCode-2"><a href="#numCode-2"></a>do name=<span class="st">`</span><span class="dt">basename $lig .pdbqt</span><span class="st">`</span>;</span>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="cf">for</span> lig <span class="cf">in</span> ligs_pdbqt<span class="sc">/</span><span class="er">*</span>.pdbqt;</span>
+<span id="numCode-2"><a href="#numCode-2"></a>do name<span class="ot">=</span><span class="st">`</span><span class="at">basename $lig .pdbqt</span><span class="st">`</span>;</span>
 <span id="numCode-3"><a href="#numCode-3"></a>echo <span class="st">&quot;Ejecutanto para $name&quot;</span>;</span>
-<span id="numCode-4"><a href="#numCode-4"></a>smina <span class="op">--</span>config docking_smina.conf <span class="op">--</span>ligand <span class="op">$</span>lig <span class="op">--</span>log docks<span class="op">/</span><span class="er">$</span>name.log <span class="op">--</span>out docks<span class="op">/</span><span class="st">&quot;$name&quot;</span>_dk.pdbqt;</span>
+<span id="numCode-4"><a href="#numCode-4"></a>smina <span class="sc">--</span>config docking_smina.conf <span class="sc">--</span>ligand <span class="sc">$</span>lig <span class="sc">--</span>log docks<span class="sc">/</span><span class="er">$</span>name.log <span class="sc">--</span>out docks<span class="sc">/</span><span class="st">&quot;$name&quot;</span>_dk.pdbqt;</span>
 <span id="numCode-5"><a href="#numCode-5"></a>done</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Funciones de <em>scoring</em> disponibles:</li>
@@ -716,11 +823,13 @@ vinardo
 <hr />
 </div>
 <div id="verifica-los-resultados" class="section level2">
-<h2><span class="header-section-number">1.5</span> Verifica los resultados:</h2>
+<h2>Verifica los resultados:</h2>
 <ol style="list-style-type: decimal">
-<li><strong>Inspecciona</strong> uno de los archivos <code>.log</code>:</li>
+<li><strong>Inspecciona</strong> uno de los archivos
+<code>.log</code>:</li>
 </ol>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>cat docks<span class="op">/</span>CS1.log</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>cat docks<span class="sc">/</span>CS1.log</span></code></pre></div>
 <pre><code>smina is based off AutoDock Vina. Please cite appropriately.
 
 Weights      Terms
@@ -746,30 +855,42 @@ mode |   affinity | dist from best mode
 8       -5.8       6.136      6.929
 9       -5.8       5.366      6.335</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>De cada archivo <code>.log</code> nos suele interesar <strong>sólo el valor de energía del primer modo de unión</strong>, es decir, del mejor acoplamiento.</li>
+<li>De cada archivo <code>.log</code> nos suele interesar <strong>sólo
+el valor de energía del primer modo de unión</strong>, es decir, del
+mejor acoplamiento.</li>
 </ol>
 <ul>
-<li>Busca y devuelve en el archivo <code>docks/CS1.log</code> la primera ocurrencia (<code>-m 1</code>) del texto <code>'1   '</code></li>
+<li>Busca y devuelve en el archivo <code>docks/CS1.log</code> la primera
+ocurrencia (<code>-m 1</code>) del texto <code>'1   '</code></li>
 </ul>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>grep <span class="st">&#39;1    &#39;</span> <span class="op">-</span>m <span class="dv">1</span> docks<span class="op">/</span>CS1.log</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>grep <span class="st">&#39;1    &#39;</span> <span class="sc">-</span>m <span class="dv">1</span> docks<span class="sc">/</span>CS1.log</span></code></pre></div>
 <pre><code>1       -7.3       0.000      0.000</code></pre>
 <ul>
 <li>Añadimos el comando <code>tr -s ' '</code>:</li>
 </ul>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>grep <span class="st">&#39;1    &#39;</span> <span class="op">-</span>m <span class="dv">1</span> docks<span class="op">/</span>CS1.log</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>grep <span class="st">&#39;1    &#39;</span> <span class="sc">-</span>m <span class="dv">1</span> docks<span class="sc">/</span>CS1.log</span></code></pre></div>
 <pre><code>1 -7.3 0.000 0.000</code></pre>
 <ul>
-<li>Finalmente añadimos el comando <code>cut</code> que <strong>delimitará</strong> la cadena de texto <code>1 -7.3 0.000 0.000</code> por espacios en blanco (<code>'d ' '</code>) y devolverá <strong>únicamente la columna 2</strong> (<code>-f2</code>):</li>
+<li>Finalmente añadimos el comando <code>cut</code> que
+<strong>delimitará</strong> la cadena de texto
+<code>1 -7.3 0.000 0.000</code> por espacios en blanco
+(<code>'d ' '</code>) y devolverá <strong>únicamente la columna
+2</strong> (<code>-f2</code>):</li>
 </ul>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>grep <span class="st">&#39;1    &#39;</span> <span class="op">-</span>m <span class="dv">1</span> docks<span class="op">/</span>CS1.log <span class="op">|</span><span class="st"> </span>tr <span class="op">-</span>s <span class="st">&#39; &#39;</span> <span class="op">|</span><span class="st">  </span>cut <span class="op">-</span>d <span class="st">&#39; &#39;</span> <span class="op">-</span>f2</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>grep <span class="st">&#39;1    &#39;</span> <span class="sc">-</span>m <span class="dv">1</span> docks<span class="sc">/</span>CS1.log <span class="sc">|</span> tr <span class="sc">-</span>s <span class="st">&#39; &#39;</span> <span class="sc">|</span>  cut <span class="sc">-</span>d <span class="st">&#39; &#39;</span> <span class="sc">-</span>f2</span></code></pre></div>
 <pre><code>-7.3</code></pre>
 <ol style="list-style-type: decimal">
-<li>Usamos nuevamente un clico para <strong>generar los resultados</strong> que nos interesan:</li>
+<li>Usamos nuevamente un clico para <strong>generar los
+resultados</strong> que nos interesan:</li>
 </ol>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="cf">for</span> dklog <span class="cf">in</span> docks<span class="op">/</span><span class="er">*</span>log;</span>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="cf">for</span> dklog <span class="cf">in</span> docks<span class="sc">/</span><span class="er">*</span>log;</span>
 <span id="numCode-2"><a href="#numCode-2"></a>do echo <span class="st">&quot;Procesando ligando $dklog&quot;</span>;</span>
-<span id="numCode-3"><a href="#numCode-3"></a>result=<span class="st">`</span><span class="dt">grep &#39;1    &#39; -m 1 $dklog | tr -s &#39; &#39; |  cut -d &#39; &#39; -f2</span><span class="st">`</span>;</span>
-<span id="numCode-4"><a href="#numCode-4"></a>echo <span class="op">$</span>result;</span>
+<span id="numCode-3"><a href="#numCode-3"></a>result<span class="ot">=</span><span class="st">`</span><span class="at">grep &#39;1    &#39; -m 1 $dklog | tr -s &#39; &#39; |  cut -d &#39; &#39; -f2</span><span class="st">`</span>;</span>
+<span id="numCode-4"><a href="#numCode-4"></a>echo <span class="sc">$</span>result;</span>
 <span id="numCode-5"><a href="#numCode-5"></a>done</span></code></pre></div>
 <pre><code>Procesando ligando docks/CS1.log
 -7.3
@@ -780,30 +901,36 @@ Procesando ligando docks/CS102.log
 Procesando ligando docks/CS154.log
 ...</code></pre>
 <ol style="list-style-type: decimal">
-<li>Usa el mismo ciclo for para guardar los resultados en <strong>un único archivo</strong> llamado <strong><mark>vs_results.csv</mark></strong>:</li>
+<li>Usa el mismo ciclo for para guardar los resultados en <strong>un
+único archivo</strong> llamado
+<strong><mark>vs_results.csv</mark></strong>:</li>
 </ol>
 <ul>
 <li>Creamos el archivo <code>csv</code>:</li>
 </ul>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>echo <span class="st">&quot;ligando,score&quot;</span> <span class="op">&gt;</span><span class="st"> </span>vs_results.csv</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>echo <span class="st">&quot;ligando,score&quot;</span> <span class="sc">&gt;</span> vs_results.csv</span></code></pre></div>
 <ul>
 <li>Ejecutamos nuevamente el ciclo:</li>
 </ul>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="cf">for</span> dklog <span class="cf">in</span> docks<span class="op">/</span><span class="er">*</span>log;</span>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="cf">for</span> dklog <span class="cf">in</span> docks<span class="sc">/</span><span class="er">*</span>log;</span>
 <span id="numCode-2"><a href="#numCode-2"></a>do echo <span class="st">&quot;Procesando ligando $dklog&quot;</span>;</span>
-<span id="numCode-3"><a href="#numCode-3"></a>result=<span class="st">`</span><span class="dt">grep &#39;1    &#39; -m 1 $dklog | tr -s &#39; &#39; |  cut -d &#39; &#39; -f2</span><span class="st">`</span>;</span>
+<span id="numCode-3"><a href="#numCode-3"></a>result<span class="ot">=</span><span class="st">`</span><span class="at">grep &#39;1    &#39; -m 1 $dklog | tr -s &#39; &#39; |  cut -d &#39; &#39; -f2</span><span class="st">`</span>;</span>
 <span id="numCode-4"><a href="#numCode-4"></a><span class="co"># Agregamos estas líneas;</span></span>
-<span id="numCode-5"><a href="#numCode-5"></a>name=<span class="st">`</span><span class="dt">basename $dklog .log</span><span class="st">`</span>;</span>
-<span id="numCode-6"><a href="#numCode-6"></a>echo <span class="st">&quot;$name, $result&quot;</span> <span class="op">&gt;</span><span class="er">&gt;</span><span class="st"> </span>vs_results.csv;</span>
-<span id="numCode-7"><a href="#numCode-7"></a>echo <span class="op">$</span>result;</span>
+<span id="numCode-5"><a href="#numCode-5"></a>name<span class="ot">=</span><span class="st">`</span><span class="at">basename $dklog .log</span><span class="st">`</span>;</span>
+<span id="numCode-6"><a href="#numCode-6"></a>echo <span class="st">&quot;$name, $result&quot;</span> <span class="sc">&gt;</span><span class="er">&gt;</span> vs_results.csv;</span>
+<span id="numCode-7"><a href="#numCode-7"></a>echo <span class="sc">$</span>result;</span>
 <span id="numCode-8"><a href="#numCode-8"></a>done</span></code></pre></div>
 <ul>
-<li>Cuida <strong>no ejecutar el ciclo múltiples</strong> veces para evitar duplicar resultados.</li>
+<li>Cuida <strong>no ejecutar el ciclo múltiples</strong> veces para
+evitar duplicar resultados.</li>
 </ul>
 <ol start="5" style="list-style-type: decimal">
 <li><strong>Visualiza</strong> el resultado:</li>
 </ol>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>head vs_results.csv</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>head vs_results.csv</span></code></pre></div>
 <pre><code>ligando,score
 CS1, -7.3
 CS100, -9.1
@@ -818,13 +945,16 @@ CS47, -7.9</code></pre>
 </div>
 </div>
 <div id="análisis-de-los-resultados-con-jupyter" class="section level1">
-<h1><span class="header-section-number">2</span> Análisis de los resultados con jupyter</h1>
+<h1>Análisis de los resultados con jupyter</h1>
 <blockquote>
-<p><a href="https://jupyter.brynmawr.edu/services/public/dblank/Jupyter%20Notebook%20Users%20Manual.ipynb"> <img src="https://empresas.blogthinkbig.com/wp-content/uploads/2019/03/Figura1LogoJupyter.png" alt="jupyter-link" height="200"/> </a></p>
+<p><a href="https://jupyter.brynmawr.edu/services/public/dblank/Jupyter%20Notebook%20Users%20Manual.ipynb">
+<img src="https://empresas.blogthinkbig.com/wp-content/uploads/2019/03/Figura1LogoJupyter.png" alt="jupyter-link" height="200"/>
+</a></p>
 </blockquote>
 <ol style="list-style-type: decimal">
 <li>Activa el <strong>ambiente</strong> <code>jup</code>con conda.</li>
-<li>Asegurate de haber <strong>descargado</strong> y <strong>guardado</strong> en tu carpeta de trabajo los archivos:
+<li>Asegurate de haber <strong>descargado</strong> y
+<strong>guardado</strong> en tu carpeta de trabajo los archivos:
 <ul>
 <li>cdk2_activity_mols.csv</li>
 <li>plot_metrics.py</li>
@@ -832,23 +962,28 @@ CS47, -7.9</code></pre>
 </ul></li>
 <li><strong>Inicia</strong> el servidor de <em>jupyter</em>:</li>
 </ol>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>jupyter notebook</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>jupyter notebook</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
-<li>Se abrirá el explorador de internet y tendrás acceso a la interfaz de <em>jupyter</em>.</li>
+<li>Se abrirá el explorador de internet y tendrás acceso a la interfaz
+de <em>jupyter</em>.</li>
 <li>Abre el archivo <code>analisis_resultados_vina.ipynb</code></li>
-<li>En la celda de ejecución número 2, asegurate que el nombre del archivo de resultados <code>.csv</code>sea el correcto:</li>
+<li>En la celda de ejecución número 2, asegurate que el nombre del
+archivo de resultados <code>.csv</code>sea el correcto:</li>
 </ol>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Carga de los resultados de vina</span></span>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource python numberLines"><code class="sourceCode python"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Carga de los resultados de vina</span></span>
 <span id="numCode-2"><a href="#numCode-2"></a>dk_res <span class="op">=</span> pd.read_csv(<span class="st">&#39;./vs_results.csv&#39;</span>)</span>
 <span id="numCode-3"><a href="#numCode-3"></a>dk_res.head()</span></code></pre></div>
 <ol start="7" style="list-style-type: decimal">
 <li>Ejecuta el notebook mediante <em>Cell &gt; Run All</em></li>
 </ol>
 <div id="resultados-del-notebook" class="section level3">
-<h3><span class="header-section-number">2.0.1</span> Resultados del notebook</h3>
+<h3>Resultados del notebook</h3>
 <div id="ranking-de-moléculas" class="section level4">
-<h4><span class="header-section-number">2.0.1.1</span> Ranking de moléculas:</h4>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Ejecutar dentro del notebook</span></span>
+<h4>Ranking de moléculas:</h4>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource python numberLines"><code class="sourceCode python"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Ejecutar dentro del notebook</span></span>
 <span id="numCode-2"><a href="#numCode-2"></a>vs_res <span class="op">=</span> PlotMetric(y_true <span class="op">=</span> df.actividad, </span>
 <span id="numCode-3"><a href="#numCode-3"></a>                    y_pred_dict <span class="op">=</span> {<span class="st">&#39;smina&#39;</span>: df.score})</span>
 <span id="numCode-4"><a href="#numCode-4"></a>vs_res.plot_actives_distribution(add_to_title<span class="op">=</span><span class="st">&#39;&#39;</span>)</span></code></pre></div>
@@ -858,8 +993,9 @@ CS47, -7.9</code></pre>
 <hr />
 </div>
 <div id="curva-roc-y-área-bajo-la-curva-roc" class="section level4">
-<h4><span class="header-section-number">2.0.1.2</span> Curva ROC y Área bajo la curva ROC</h4>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Ejecutar dentro del notebook</span></span>
+<h4>Curva ROC y Área bajo la curva ROC</h4>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource python numberLines"><code class="sourceCode python"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Ejecutar dentro del notebook</span></span>
 <span id="numCode-2"><a href="#numCode-2"></a>vs_res.plot_roc_auc(title<span class="op">=</span><span class="st">&#39;VS results&#39;</span>,</span>
 <span id="numCode-3"><a href="#numCode-3"></a>                    fontsize<span class="op">=</span><span class="st">&#39;x-small&#39;</span>, </span>
 <span id="numCode-4"><a href="#numCode-4"></a>                    show_by_itself <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div>
@@ -868,9 +1004,11 @@ CS47, -7.9</code></pre>
 </blockquote>
 <hr />
 </div>
-<div id="distribución-de-los-scores-entre-activos-e-inactivos" class="section level4">
-<h4><span class="header-section-number">2.0.1.3</span> Distribución de los scores entre Activos e Inactivos</h4>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><span id="numCode-1"><a href="#numCode-1"></a>compare_two_distributions(df)</span></code></pre></div>
+<div id="distribución-de-los-scores-entre-activos-e-inactivos"
+class="section level4">
+<h4>Distribución de los scores entre Activos e Inactivos</h4>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource python numberLines"><code class="sourceCode python"><span id="numCode-1"><a href="#numCode-1"></a>compare_two_distributions(df)</span></code></pre></div>
 <pre><code>Normalidad Activos (ShapiroWilks)
 &#39;&gt; W = 0.96 , p-value=0.81&#39;
 
@@ -891,24 +1029,34 @@ Mann-Whitney (no paramétrica)
 </div>
 </div>
 <div id="recursos" class="section level2">
-<h2><span class="header-section-number">2.1</span> Recursos</h2>
+<h2>Recursos</h2>
 <ol style="list-style-type: decimal">
 <li>Sobre curvas ROC:</li>
 </ol>
 <blockquote>
-<p><a href="https://www.youtube.com/watch?v=4jRBRDbJemM&amp;ab_channel=StatQuestwithJoshStarmer" title="Docking desde cero. Tutorial AutodockTools"><img src="http://img.youtube.com/vi/4jRBRDbJemM/0.jpg" alt="IMAGE ALT TEXT" /></a></p>
+<p><a
+href="https://www.youtube.com/watch?v=4jRBRDbJemM&amp;ab_channel=StatQuestwithJoshStarmer"
+title="Docking desde cero. Tutorial AutodockTools"><img
+src="http://img.youtube.com/vi/4jRBRDbJemM/0.jpg"
+alt="IMAGE ALT TEXT" /></a></p>
 </blockquote>
 <ol start="2" style="list-style-type: decimal">
-<li><a href="http://vina.scripps.edu/tutorial.html">Tutorial de Vina.</a></li>
-<li><a href="http://vina.scripps.edu/manual.html#features">Autodock vina Features</a></li>
-<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4801993/">1001 Ways to run AutoDock Vina for virtual screening</a></li>
-<li><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0155183">Vinardo: A Scoring Function Based on Autodock Vina Improves Scoring, Docking, and Virtual Screening</a></li>
+<li><a href="http://vina.scripps.edu/tutorial.html">Tutorial de
+Vina.</a></li>
+<li><a href="http://vina.scripps.edu/manual.html#features">Autodock vina
+Features</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4801993/">1001
+Ways to run AutoDock Vina for virtual screening</a></li>
+<li><a
+href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0155183">Vinardo:
+A Scoring Function Based on Autodock Vina Improves Scoring, Docking, and
+Virtual Screening</a></li>
 </ol>
 </div>
 </div>
 
 <!-- Footer -->
-<footer class="page-footer font-small blue">
+<footer class="page-footer font-small" id='footer'>
   
   <!-- Counter -->
   <div class="container text-center">
@@ -916,16 +1064,17 @@ Mann-Whitney (no paramétrica)
   </div>
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2021 Copyright:
-    <a href="https://github.com/jRicciL"> J. Ricci L.</a>
+  <div class="footer-copyright text-center py-3">© 2022 Copyright:
+    <a href="http://joelriccilopez.com/"> J. Ricci L.</a>
   </div>
   <!-- Copyright -->
-  <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
 
 </footer>
 <!-- Footer -->
 
 
+</div>
+</div>
 
 </div>
 
@@ -951,13 +1100,42 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
