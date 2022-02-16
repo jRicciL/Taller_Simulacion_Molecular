@@ -1,15 +1,17 @@
 ---
-name: "AguilaLab: Taller de Simulación Molecular de Sistemas Biológicos"
+name: 'AguilaLab: Taller de Simulación Molecular de Sistemas Biológicos'
 output:
+  pdf_document:
+    toc: no
   html_document:
-    toc: false
-    toc_float: false
-    toc_collapsed: false
-    css: "styles.css"
+    toc: no
+    toc_float: no
+    toc_collapsed: no
+    css: styles.css
     theme: journal
     highlight: zenburn
-    code_download: false
-    number_sections: true
+    code_download: no
+    number_sections: yes
 ---
 
 <div class="container">
