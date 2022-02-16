@@ -13,14 +13,26 @@
 
 <title>AMBER: Preliminares</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11.22/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
 <script src="site_libs/d3-3.3.8/d3.min.js"></script>
 <script src="site_libs/dagre-0.4.0/dagre-d3.min.js"></script>
@@ -29,6 +41,7 @@
 <link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
 <script src="site_libs/chromatography-0.1/chromatography.js"></script>
 <script src="site_libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script>
+
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -42,32 +55,7 @@
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -79,10 +67,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -99,40 +83,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 61px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h2 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h3 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h4 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h5 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h6 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -160,7 +120,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -172,7 +132,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -183,10 +143,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -198,7 +171,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -251,6 +223,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -258,6 +293,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -330,7 +375,7 @@ $(document).ready(function () {
       <a href="tarea_docking_con_ad4.html">► 📝 Docking con AD4</a>
     </li>
     <li>
-      <a href="tarea_vs_smina.html">► 📝 Crivado virtual con SMINA</a>
+      <a href="tarea_vs_smina.html">► 📝 Cribado virtual con SMINA</a>
     </li>
   </ul>
 </li>
@@ -342,7 +387,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -352,28 +397,41 @@ $(document).ready(function () {
 
 
 <hr />
-<div id="campo-de-fuerza-de-amber" class="section level3">
-<h3><span class="header-section-number">0.0.1</span> Campo de Fuerza de Amber</h3>
+<div id="campo-de-fuerza-de-amber" class="section level1">
+<h1>Campo de Fuerza de Amber</h1>
+<div id="cálculo-de-la-energía-potencial-del-sistema"
+class="section level2">
+<h2>Cálculo de la energía potencial del sistema</h2>
 <p><span class="math display">\[
 \begin{aligned}
-V(r^{N}) &amp; =\sum _{i\in {\text{bonds}}}{k_{b}}_{i}(l_{i}-l_{i}^{0})^{2} \\
-&amp; +\sum _{i\in {\text{angles}}}{k_{a}}_{i}(\theta _{i}-\theta _{i}^{0})^{2} \\
-&amp; +\sum _{i\in {\text{torsions}}}\sum _{n}{\frac {1}{2}}V_{i}^{n}[1+\cos(n\omega _{i}-\gamma _{i})] \\
-&amp; +\sum _{j=1}^{N-1}\sum _{i=j+1}^{N}f_{ij}{\biggl \{}\epsilon _{ij}{\biggl [}\left({\frac {r_{ij}^{0}}{r_{ij}}} \right)^{12}-2\left({\frac {r_{ij}^{0}}{r_{ij}}}\right)^{6}{\biggr ]}+{\frac {q_{i}q_{j}}{4\pi \epsilon _{0}r_{ij}}}{\biggr \}}
+V(r^{N}) &amp; =\sum _{i\in
+{\text{bonds}}}{k_{b}}_{i}(l_{i}-l_{i}^{0})^{2} \\
+&amp; +\sum _{i\in {\text{angles}}}{k_{a}}_{i}(\theta _{i}-\theta
+_{i}^{0})^{2} \\
+&amp; +\sum _{i\in {\text{torsions}}}\sum _{n}{\frac
+{1}{2}}V_{i}^{n}[1+\cos(n\omega _{i}-\gamma _{i})] \\
+&amp; +\sum _{j=1}^{N-1}\sum _{i=j+1}^{N}f_{ij}{\biggl \{}\epsilon
+_{ij}{\biggl [}\left({\frac {r_{ij}^{0}}{r_{ij}}}
+\right)^{12}-2\left({\frac {r_{ij}^{0}}{r_{ij}}}\right)^{6}{\biggr
+]}+{\frac {q_{i}q_{j}}{4\pi \epsilon _{0}r_{ij}}}{\biggr \}}
 \end{aligned}
 \]</span></p>
 </div>
-<div id="creación-de-los-archivos-de-topología-.prmtop-y-coordenadas-rst7" class="section level3">
-<h3><span class="header-section-number">0.0.2</span> Creación de los archivos de topología <code>.prmtop</code> y coordenadas <code>rst7</code></h3>
-<div id="htmlwidget-32402e97688bf81dedc4" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-32402e97688bf81dedc4">{"x":{"diagram":"\ngraph LR\n    A(prot_unprep.pdb)-->Q[pdb2pqr]\n    Q-->D\n    D(prot.pdb)--> F[LEaP]\n    L(lig.mol2)--> B(lig.mol2)\n    L(lig.mol2)-->Z[Antechamber]\n    L(lig.mol2)--> P[parmchk2]\n    Z-->E(LIG_def.mol2)\n    P-->|GAFF.dat|G(LIG_def.frcmod)\n    B(lig.mol2)--> F\n    E --> K(LIG_def.lib)\n    G --> K(LIG_def.lib)\n    K --> F\n    V(Parámetros Extra)-->|leaprc.xxx.xxx| F\n\n    subgraph Estructura\n    B\n    D\n    end\n\n    subgraph Parámetros-Librería\n    subgraph Ligando - GAFF\n    E\n    G\n    K\n    end\n    V\n    end\n\n    F-->(prot_lig.prmtop)\n    F-->(prot_lig.rst7)\n"},"evals":[],"jsHooks":[]}</script>
+<div
+id="creación-de-los-archivos-de-topología-.prmtop-y-coordenadas-rst7"
+class="section level2">
+<h2>Creación de los archivos de topología <code>.prmtop</code> y
+coordenadas <code>rst7</code></h2>
+<div id="htmlwidget-eb4ab742a27e30b422bc" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-eb4ab742a27e30b422bc">{"x":{"diagram":"\ngraph LR\n    A(prot_unprep.pdb)-->Q[pdb2pqr]\n    Q-->D\n    D(prot.pdb)--> F[LEaP]\n    L(lig.mol2)--> B(lig.mol2)\n    L(lig.mol2)-->Z[Antechamber]\n    L(lig.mol2)--> P[parmchk2]\n    Z-->E(LIG_def.mol2)\n    P-->|GAFF.dat|G(LIG_def.frcmod)\n    B(lig.mol2)--> F\n    E --> K(LIG_def.lib)\n    G --> K(LIG_def.lib)\n    K --> F\n    V(Parámetros Extra)-->|leaprc.xxx.xxx| F\n\n    subgraph Estructura\n    B\n    D\n    end\n\n    subgraph Parámetros-Librería\n    subgraph Ligando - GAFF\n    E\n    G\n    K\n    end\n    V\n    end\n\n    F-->(prot_lig.prmtop)\n    F-->(prot_lig.rst7)\n"},"evals":[],"jsHooks":[]}</script>
 </div>
-<div id="información-contenida-en-cada-tipo-de-archivo" class="section level3">
-<h3><span class="header-section-number">0.0.3</span> Información contenida en cada tipo de archivo</h3>
+<div id="información-contenida-en-cada-tipo-de-archivo"
+class="section level2">
+<h2>Información contenida en cada tipo de archivo</h2>
 <div class="table-responsive-sm">
-<table class="table">
-<thead class='thead-dark'>
-<tr>
+<table class="table table-hover">
+<thead class="thead-dark">
+<tr class="table-primary" style=" background-color: #373737; color: white">
 <th scope="col" style="width:140px">
 <b>Archivo de Estructura</b>
 </th>
@@ -403,23 +461,24 @@ Connexiones
 <br> Coordenadas<br><br><br><br>
 </td>
 <td style="width:140px">
-Residuos<br> Nombre/Átomos<br> Tipos/Átomos<br> Cargas<br> Conexiones<br>
+Residuos<br> Nombre/Átomos<br> Tipos/Átomos<br> Cargas<br>
+Conexiones<br>
 <p class="imbed" style="color:#ff0000">
 Coordenadas
 </p>
 <br> Masa<br> Parm. Intramol<br> Parm. Intermol<br>
 </td>
 <td style="width:140px">
-<br><br> Tipos/Átomos<br><br><br><br> Masas<br> Parm. Intramol<br> Parm. Intermol<br><br />
-
+<br><br> Tipos/Átomos<br><br><br><br> Masas<br> Parm. Intramol<br> Parm.
+Intermol<br><br />
 </td>
 <td style="width:30px; text-align:center">
 →<br>→<br>→
 </td>
 <td style="width:140px">
-Residuos<br> Nombre/Átomos<br> Tipos/Átomos<br> Cargas<br> Conexiones<br><br><br />
+Residuos<br> Nombre/Átomos<br> Tipos/Átomos<br> Cargas<br>
+Conexiones<br><br><br />
 Masas<br> Parm. Intramol<br> Parm. Intermol<br><br />
-
 </td>
 <td style="width:140px">
 <br><br><br><br><br>Coordenadas<br><br><br><br>
@@ -431,8 +490,8 @@ Masas<br> Parm. Intramol<br> Parm. Intermol<br><br />
 <div class="table-responsive-sm">
 <table class="table table-bordered table-hover">
 <!-- <caption>Propiedades disponibles en cada tipo de archivo</caption> -->
-<thead class='thead-dark'>
-<tr class="table-primary">
+<thead class="thead-dark">
+<tr class="table-primary" style=" background-color: #373737; color: white">
 <th scope="col" style="width:140px">
 </th>
 <th scope="col" style="width:140px" colspan="2">
@@ -681,9 +740,10 @@ Parm. Intermol (No enlazantes)
 </table>
 </div>
 </div>
+</div>
 
 <!-- Footer -->
-<footer class="page-footer font-small blue">
+<footer class="page-footer font-small" id='footer'>
   
   <!-- Counter -->
   <div class="container text-center">
@@ -691,16 +751,17 @@ Parm. Intermol (No enlazantes)
   </div>
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2021 Copyright:
-    <a href="https://github.com/jRicciL"> J. Ricci L.</a>
+  <div class="footer-copyright text-center py-3">© 2022 Copyright:
+    <a href="http://joelriccilopez.com/"> J. Ricci L.</a>
   </div>
   <!-- Copyright -->
-  <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
 
 </footer>
 <!-- Footer -->
 
 
+</div>
+</div>
 
 </div>
 
@@ -726,13 +787,42 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

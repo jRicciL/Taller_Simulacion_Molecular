@@ -13,14 +13,26 @@
 
 <title>Tarea: Archivos de configuración DM</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11.22/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
 <script src="site_libs/d3-3.3.8/d3.min.js"></script>
 <script src="site_libs/dagre-0.4.0/dagre-d3.min.js"></script>
@@ -29,6 +41,7 @@
 <link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
 <script src="site_libs/chromatography-0.1/chromatography.js"></script>
 <script src="site_libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script>
+
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -40,21 +53,29 @@
     </style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -73,7 +94,7 @@ pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   { color: #cccccc; background-color: #303030; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffcfaf; } /* Alert */
 code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
@@ -127,39 +148,8 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
   }
 })();
 </script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -171,10 +161,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -191,40 +177,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 61px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h2 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h3 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h4 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h5 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h6 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -252,7 +214,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -264,7 +226,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -275,10 +237,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -290,7 +265,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -343,6 +317,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -350,6 +387,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -422,7 +469,7 @@ $(document).ready(function () {
       <a href="tarea_docking_con_ad4.html">► 📝 Docking con AD4</a>
     </li>
     <li>
-      <a href="tarea_vs_smina.html">► 📝 Crivado virtual con SMINA</a>
+      <a href="tarea_vs_smina.html">► 📝 Cribado virtual con SMINA</a>
     </li>
   </ul>
 </li>
@@ -434,7 +481,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -444,210 +491,254 @@ $(document).ready(function () {
 
 
 <hr />
-<div id="archivos-de-configuración-de-dinámica-molecular" class="section level1">
-<h1><span class="header-section-number">1</span> Archivos de configuración de Dinámica Molecular</h1>
-<p><strong><mark>Archivos de configuración para realizar la DM con Amber</mark></strong></p>
+<div id="archivos-de-configuración-de-dinámica-molecular"
+class="section level1">
+<h1>Archivos de configuración de Dinámica Molecular</h1>
+<p><strong><mark>Archivos de configuración para realizar la DM con
+Amber</mark></strong></p>
 <div id="objetivos" class="section level2">
-<h2><span class="header-section-number">1.1</span> Objetivos</h2>
+<h2>Objetivos</h2>
 <ul>
-<li>1️⃣ Revisar los <strong>archivos de configuración</strong> que definen el comportamiento de la ejecución de dinámica molecular con Amber.</li>
-<li>2️⃣ <strong>Describir</strong> brevemente los <strong>parámetros utilizados</strong> dentro de cada archivo de configuración.</li>
-<li>3️⃣ <strong>Responder un cuestionario</strong> sobre las propiedades de la dinámica de acuerdo a los siguientes archivos de configuración.</li>
+<li>1️⃣ Revisar los <strong>archivos de configuración</strong> que
+definen el comportamiento de la ejecución de dinámica molecular con
+Amber.</li>
+<li>2️⃣ <strong>Describir</strong> brevemente los <strong>parámetros
+utilizados</strong> dentro de cada archivo de configuración.</li>
+<li>3️⃣ <strong>Responder un cuestionario</strong> sobre las propiedades
+de la dinámica de acuerdo a los siguientes archivos de
+configuración.</li>
 </ul>
 </div>
 <div id="instrucciones" class="section level2">
-<h2><span class="header-section-number">1.2</span> Instrucciones</h2>
+<h2>Instrucciones</h2>
 <ol style="list-style-type: decimal">
-<li><p>Descarga los <strong>archivos de configuración</strong> correspondientes a las siguientes fases de simulación:</p>
+<li><p>Descarga los <strong>archivos de configuración</strong>
+correspondientes a las siguientes fases de simulación:</p>
 <ol style="list-style-type: lower-alpha">
-<li><a href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/min_all.in">min_all.in</a> -&gt; Minimización de la energía potencial del sistema.</li>
-<li><a href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/heat.in">heat.in</a> -&gt; Calentamiento del sistema.</li>
-<li><a href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/eq.in">eq.in</a> -&gt; Equilibrado del sistema.</li>
-<li><a href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/prod.in">prod.in</a> -&gt; Fase de producción de la dinámica molecular.</li>
+<li><a
+href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/min_all.in">min_all.in</a>
+-&gt; Minimización de la energía potencial del sistema.</li>
+<li><a
+href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/heat.in">heat.in</a>
+-&gt; Calentamiento del sistema.</li>
+<li><a
+href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/eq.in">eq.in</a>
+-&gt; Equilibrado del sistema.</li>
+<li><a
+href="https://raw.githubusercontent.com/jRicciL/Taller_Simulacion_Molecular/master/resurces/md/prod.in">prod.in</a>
+-&gt; Fase de producción de la dinámica molecular.</li>
 </ol></li>
-<li><p>🚨 Utilizando el <a href="https://ambermd.org/doc12/Amber19.pdf">manual de Amber</a>, búsca cada uno de los comandos usados en cada fase y <strong><mark>comenta brevemente qué hace cada uno</mark></strong> (ver ejemplo del comentario más abajo). &gt; Puedes usar <code>Ctrl+F</code> y/o el Índice a partir de la página 949 del <a href="https://ambermd.org/doc12/Amber19.pdf">manual de Amber</a>.</p></li>
-<li><p><strong>Responde las preguntas del cuestionario mostrado al final.</strong></p></li>
-<li><p><mark>📆 Fecha límite para responder el cuestionario es el jueves 4 de marzo a las 24:00 horas.</mark></p></li>
+<li><p>🚨 Utilizando el <a
+href="https://ambermd.org/doc12/Amber19.pdf">manual de Amber</a>, búsca
+cada uno de los comandos usados en cada fase y <strong><mark>comenta
+brevemente qué hace cada uno</mark></strong> (ver ejemplo del comentario
+más abajo). &gt; Puedes usar <code>Ctrl+F</code> y/o el Índice a partir
+de la página 949 del <a
+href="https://ambermd.org/doc12/Amber19.pdf">manual de
+Amber</a>.</p></li>
+<li><p><strong>Responde las preguntas del cuestionario mostrado al
+final.</strong></p></li>
+<li><p><mark>📆 Fecha límite para responder el cuestionario es el jueves
+4 de marzo a las 24:00 horas.</mark></p></li>
 </ol>
 <hr />
 </div>
-<div id="fase-1-minimización-de-la-energía-potencial-del-sistema" class="section level2">
-<h2><span class="header-section-number">1.3</span> Fase 1: Minimización de la energía potencial del sistema</h2>
+<div id="fase-1-minimización-de-la-energía-potencial-del-sistema"
+class="section level2">
+<h2>Fase 1: Minimización de la energía potencial del sistema</h2>
 <div style="background-color: #F9E5AB; min-height: 10px">
 
 </div>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Ejemplo de ejecución de la fase de minimización</span></span>
-<span id="numCode-2"><a href="#numCode-2"></a><span class="op">$</span>AMBERHOME<span class="op">/</span>bin<span class="op">/</span>pmemd.cuda <span class="op">-</span>O \ </span>
-<span id="numCode-3"><a href="#numCode-3"></a>  <span class="op">-</span>i min_solv.in \        <span class="co"># Archivo de configuración</span></span>
-<span id="numCode-4"><a href="#numCode-4"></a>  <span class="op">-</span>p sistema.prmtop \     <span class="co"># Parámetros del FF</span></span>
-<span id="numCode-5"><a href="#numCode-5"></a>  <span class="op">-</span>c sistema.rst7 \       <span class="co"># Coordenadas iniciales del sistema</span></span>
-<span id="numCode-6"><a href="#numCode-6"></a>  <span class="op">-</span>ref sistema.rst7 \     <span class="co"># Coordenadas de referencia (mismas que -r)</span></span>
-<span id="numCode-7"><a href="#numCode-7"></a>  <span class="op">-</span>o sistema_MIN.out \    <span class="co"># Archivo de salida (propiedades físicas del sistema)</span></span>
-<span id="numCode-8"><a href="#numCode-8"></a>  <span class="op">-</span>r sistema_MIN.rst7 \   <span class="co"># Archivo restart al finalizar (coords)</span></span>
-<span id="numCode-9"><a href="#numCode-9"></a>  <span class="op">-</span>inf sistema_MIN.mdinfo <span class="co"># Información de la ejecución</span></span></code></pre></div>
-<div id="htmlwidget-be9a5cd19d05809d9ce5" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-be9a5cd19d05809d9ce5">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_MIN.rst7)\n    B --> |Propiedades del sistema|F(sistema_MIN.out)\n    B --> |Info. ejecución|G(sistema_MIN.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Ejemplo de ejecución de la fase de minimización</span></span>
+<span id="numCode-2"><a href="#numCode-2"></a><span class="sc">$</span>AMBERHOME<span class="sc">/</span>bin<span class="sc">/</span>pmemd.cuda <span class="sc">-</span>O \ </span>
+<span id="numCode-3"><a href="#numCode-3"></a>  <span class="sc">-</span>i min_solv.in \        <span class="co"># Archivo de configuración</span></span>
+<span id="numCode-4"><a href="#numCode-4"></a>  <span class="sc">-</span>p sistema.prmtop \     <span class="co"># Parámetros del FF</span></span>
+<span id="numCode-5"><a href="#numCode-5"></a>  <span class="sc">-</span>c sistema.rst7 \       <span class="co"># Coordenadas iniciales del sistema</span></span>
+<span id="numCode-6"><a href="#numCode-6"></a>  <span class="sc">-</span>ref sistema.rst7 \     <span class="co"># Coordenadas de referencia (mismas que -r)</span></span>
+<span id="numCode-7"><a href="#numCode-7"></a>  <span class="sc">-</span>o sistema_MIN.out \    <span class="co"># Archivo de salida (propiedades físicas del sistema)</span></span>
+<span id="numCode-8"><a href="#numCode-8"></a>  <span class="sc">-</span>r sistema_MIN.rst7 \   <span class="co"># Archivo restart al finalizar (coords)</span></span>
+<span id="numCode-9"><a href="#numCode-9"></a>  <span class="sc">-</span>inf sistema_MIN.mdinfo <span class="co"># Información de la ejecución</span></span></code></pre></div>
+<div id="htmlwidget-d40e45c9f00cd382827e" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d40e45c9f00cd382827e">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_MIN.rst7)\n    B --> |Propiedades del sistema|F(sistema_MIN.out)\n    B --> |Info. ejecución|G(sistema_MIN.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <div id="archivo-de-configuración" class="section level3">
-<h3><span class="header-section-number">1.3.1</span> Archivo de configuración</h3>
-<p>La línea 4 muestra un ejemple de comentario. Los comentarios empiezan con el símbolo <code>!</code>.</p>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>cat min_all.in</span></code></pre></div>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>Fase de minimizacion de todo el sistema</span>
-<span id="numCode-2"><a href="#numCode-2"></a>   System minimization<span class="op">:</span></span>
+<h3>Archivo de configuración</h3>
+<p>La línea 4 muestra un ejemple de comentario. Los comentarios empiezan
+con el símbolo <code>!</code>.</p>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>cat min_all.in</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>Fase de minimizacion de todo el sistema</span>
+<span id="numCode-2"><a href="#numCode-2"></a>   System minimization<span class="sc">:</span></span>
 <span id="numCode-3"><a href="#numCode-3"></a><span class="er">&amp;</span>cntrl</span>
-<span id="numCode-4"><a href="#numCode-4"></a>   imin=<span class="dv">1</span>,         <span class="op">!</span><span class="st"> </span><span class="er">=</span><span class="dv">1</span>, llevar a cabo minimizacion del sistema</span>
-<span id="numCode-5"><a href="#numCode-5"></a>   ntmin=<span class="dv">1</span>,        <span class="op">!</span><span class="st"> </span>Comentario</span>
-<span id="numCode-6"><a href="#numCode-6"></a>   ncyc=<span class="dv">2500</span>,      <span class="op">!</span><span class="st"> </span>Comentario</span>
-<span id="numCode-7"><a href="#numCode-7"></a>   maxcyc=<span class="dv">50000</span>,   <span class="op">!</span><span class="st"> </span>Comentario</span>
-<span id="numCode-8"><a href="#numCode-8"></a>   drms=<span class="fl">0.01</span>,      <span class="op">!</span><span class="st"> </span>Comentario</span>
-<span id="numCode-9"><a href="#numCode-9"></a>   ntx=<span class="dv">1</span>,          <span class="op">!</span><span class="st"> </span>Comentario</span>
-<span id="numCode-10"><a href="#numCode-10"></a>   irest=<span class="dv">0</span>,        <span class="op">!</span><span class="st"> </span>Comentario</span>
-<span id="numCode-11"><a href="#numCode-11"></a>   ntpr=<span class="dv">100</span>,       <span class="op">!</span><span class="st"> </span>Comentario</span>
-<span id="numCode-12"><a href="#numCode-12"></a>   ntwr=<span class="dv">100</span>,       <span class="op">!</span><span class="st"> </span>Comentario</span>
-<span id="numCode-13"><a href="#numCode-13"></a>   iwrap=<span class="dv">0</span>,        <span class="op">!</span><span class="st"> </span>Comentario</span>
-<span id="numCode-14"><a href="#numCode-14"></a>   ntf=<span class="dv">1</span>,          <span class="op">!</span><span class="st"> </span>Comentario</span>
-<span id="numCode-15"><a href="#numCode-15"></a>   igb=<span class="dv">0</span>,          <span class="op">!</span><span class="st"> </span>Comentario</span>
-<span id="numCode-16"><a href="#numCode-16"></a>   ntb=<span class="dv">1</span>,          <span class="op">!</span><span class="st"> </span>Comentario</span>
-<span id="numCode-17"><a href="#numCode-17"></a>   nsnb=<span class="dv">20</span>,        <span class="op">!</span><span class="st"> </span>Comentario</span>
-<span id="numCode-18"><a href="#numCode-18"></a>   cut=<span class="fl">10.0</span>,       <span class="op">!</span><span class="st"> </span>Comentario</span>
-<span id="numCode-19"><a href="#numCode-19"></a><span class="op">&amp;</span>end</span>
-<span id="numCode-20"><a href="#numCode-20"></a> <span class="op">/</span></span></code></pre></div>
+<span id="numCode-4"><a href="#numCode-4"></a>   imin<span class="ot">=</span><span class="dv">1</span>,         <span class="sc">!</span> <span class="er">=</span><span class="dv">1</span>, llevar a cabo minimizacion del sistema</span>
+<span id="numCode-5"><a href="#numCode-5"></a>   ntmin<span class="ot">=</span><span class="dv">1</span>,        <span class="sc">!</span> Comentario</span>
+<span id="numCode-6"><a href="#numCode-6"></a>   ncyc<span class="ot">=</span><span class="dv">2500</span>,      <span class="sc">!</span> Comentario</span>
+<span id="numCode-7"><a href="#numCode-7"></a>   maxcyc<span class="ot">=</span><span class="dv">50000</span>,   <span class="sc">!</span> Comentario</span>
+<span id="numCode-8"><a href="#numCode-8"></a>   drms<span class="ot">=</span><span class="fl">0.01</span>,      <span class="sc">!</span> Comentario</span>
+<span id="numCode-9"><a href="#numCode-9"></a>   ntx<span class="ot">=</span><span class="dv">1</span>,          <span class="sc">!</span> Comentario</span>
+<span id="numCode-10"><a href="#numCode-10"></a>   irest<span class="ot">=</span><span class="dv">0</span>,        <span class="sc">!</span> Comentario</span>
+<span id="numCode-11"><a href="#numCode-11"></a>   ntpr<span class="ot">=</span><span class="dv">100</span>,       <span class="sc">!</span> Comentario</span>
+<span id="numCode-12"><a href="#numCode-12"></a>   ntwr<span class="ot">=</span><span class="dv">100</span>,       <span class="sc">!</span> Comentario</span>
+<span id="numCode-13"><a href="#numCode-13"></a>   iwrap<span class="ot">=</span><span class="dv">0</span>,        <span class="sc">!</span> Comentario</span>
+<span id="numCode-14"><a href="#numCode-14"></a>   ntf<span class="ot">=</span><span class="dv">1</span>,          <span class="sc">!</span> Comentario</span>
+<span id="numCode-15"><a href="#numCode-15"></a>   igb<span class="ot">=</span><span class="dv">0</span>,          <span class="sc">!</span> Comentario</span>
+<span id="numCode-16"><a href="#numCode-16"></a>   ntb<span class="ot">=</span><span class="dv">1</span>,          <span class="sc">!</span> Comentario</span>
+<span id="numCode-17"><a href="#numCode-17"></a>   nsnb<span class="ot">=</span><span class="dv">20</span>,        <span class="sc">!</span> Comentario</span>
+<span id="numCode-18"><a href="#numCode-18"></a>   cut<span class="ot">=</span><span class="fl">10.0</span>,       <span class="sc">!</span> Comentario</span>
+<span id="numCode-19"><a href="#numCode-19"></a><span class="sc">&amp;</span>end</span>
+<span id="numCode-20"><a href="#numCode-20"></a> <span class="sc">/</span></span></code></pre></div>
 <hr />
 </div>
 </div>
 <div id="fase-de-calentamiento" class="section level2">
-<h2><span class="header-section-number">1.4</span> Fase de Calentamiento</h2>
+<h2>Fase de Calentamiento</h2>
 <div style="background-color: #F9E5AB; min-height: 10px">
 
 </div>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Ejemplo de ejecución de la fase de calentamiento</span></span>
-<span id="numCode-2"><a href="#numCode-2"></a><span class="op">$</span>AMBERHOME<span class="op">/</span>bin<span class="op">/</span>pmemd.cuda <span class="op">-</span>O \ </span>
-<span id="numCode-3"><a href="#numCode-3"></a>  <span class="op">-</span>i heat.in \             <span class="co"># Archivo de configuración</span></span>
-<span id="numCode-4"><a href="#numCode-4"></a>  <span class="op">-</span>p sistema.prmtop \      <span class="co"># Parámetros del FF</span></span>
-<span id="numCode-5"><a href="#numCode-5"></a>  <span class="op">-</span>c sistema_MIN.rst7 \    <span class="co"># Coordenadas iniciales del sistema (desde la MIN)</span></span>
-<span id="numCode-6"><a href="#numCode-6"></a>  <span class="op">-</span>o sistema_HEAT.out \    <span class="co"># Archivo de salida</span></span>
-<span id="numCode-7"><a href="#numCode-7"></a>  <span class="op">-</span>r sistema_HEAT.rst7 \   <span class="co"># Archivo restart al finalizar (coords y velocidades)</span></span>
-<span id="numCode-8"><a href="#numCode-8"></a>  <span class="op">-</span>x sistema_HEAT.nc \     <span class="co"># Archivo de la trayectoria (mrcd)</span></span>
-<span id="numCode-9"><a href="#numCode-9"></a>  <span class="op">-</span>inf sistema_HEAT.mdinfo <span class="co"># Información de la ejecución</span></span></code></pre></div>
-<div id="htmlwidget-4d93b7e7dce8548d912d" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4d93b7e7dce8548d912d">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema_MIN.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_HEAT.rst7)\n    B --> |Propiedades del sistema|F(sistema_HEAT.out)\n    B --> |Trayectoria|H(sistema_HEAT.nc)\n    B --> |Info. ejecución|G(sistema_HEAT.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Ejemplo de ejecución de la fase de calentamiento</span></span>
+<span id="numCode-2"><a href="#numCode-2"></a><span class="sc">$</span>AMBERHOME<span class="sc">/</span>bin<span class="sc">/</span>pmemd.cuda <span class="sc">-</span>O \ </span>
+<span id="numCode-3"><a href="#numCode-3"></a>  <span class="sc">-</span>i heat.in \             <span class="co"># Archivo de configuración</span></span>
+<span id="numCode-4"><a href="#numCode-4"></a>  <span class="sc">-</span>p sistema.prmtop \      <span class="co"># Parámetros del FF</span></span>
+<span id="numCode-5"><a href="#numCode-5"></a>  <span class="sc">-</span>c sistema_MIN.rst7 \    <span class="co"># Coordenadas iniciales del sistema (desde la MIN)</span></span>
+<span id="numCode-6"><a href="#numCode-6"></a>  <span class="sc">-</span>o sistema_HEAT.out \    <span class="co"># Archivo de salida</span></span>
+<span id="numCode-7"><a href="#numCode-7"></a>  <span class="sc">-</span>r sistema_HEAT.rst7 \   <span class="co"># Archivo restart al finalizar (coords y velocidades)</span></span>
+<span id="numCode-8"><a href="#numCode-8"></a>  <span class="sc">-</span>x sistema_HEAT.nc \     <span class="co"># Archivo de la trayectoria (mrcd)</span></span>
+<span id="numCode-9"><a href="#numCode-9"></a>  <span class="sc">-</span>inf sistema_HEAT.mdinfo <span class="co"># Información de la ejecución</span></span></code></pre></div>
+<div id="htmlwidget-26eaedfb4c7304aef58e" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-26eaedfb4c7304aef58e">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema_MIN.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_HEAT.rst7)\n    B --> |Propiedades del sistema|F(sistema_HEAT.out)\n    B --> |Trayectoria|H(sistema_HEAT.nc)\n    B --> |Info. ejecución|G(sistema_HEAT.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <div id="archivo-de-configuración-1" class="section level3">
-<h3><span class="header-section-number">1.4.1</span> Archivo de configuración</h3>
-<p>La línea 10 muestra un ejemple de comentario. Los comentarios empiezan con el símbolo <code>!</code>.</p>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>cat heat.in</span></code></pre></div>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="op">&amp;</span>cntrl</span>
-<span id="numCode-2"><a href="#numCode-2"></a>    imin=<span class="dv">0</span>,          <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-3"><a href="#numCode-3"></a><span class="st">    </span>irest=<span class="dv">0</span>,         <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-4"><a href="#numCode-4"></a><span class="st">    </span>iwrap=<span class="dv">1</span>,         <span class="op">!</span></span>
-<span id="numCode-5"><a href="#numCode-5"></a><span class="st">    </span>ntx=<span class="dv">1</span>,           <span class="op">!</span></span>
-<span id="numCode-6"><a href="#numCode-6"></a><span class="st">    </span>ntb=<span class="dv">1</span>,           <span class="op">!</span></span>
-<span id="numCode-7"><a href="#numCode-7"></a><span class="st">    </span>cut=<span class="fl">10.0</span>,        <span class="op">!</span></span>
-<span id="numCode-8"><a href="#numCode-8"></a><span class="st">    </span>ntc=<span class="dv">2</span>,           <span class="op">!</span></span>
-<span id="numCode-9"><a href="#numCode-9"></a><span class="st">    </span>ntf=<span class="dv">2</span>,           <span class="op">!</span></span>
-<span id="numCode-10"><a href="#numCode-10"></a><span class="st">    </span>ntt=<span class="dv">3</span>,           <span class="op">!</span><span class="st"> </span>Tipo de termostato a utilizar; =<span class="dv">3</span> Langevin</span>
-<span id="numCode-11"><a href="#numCode-11"></a>    tempi=<span class="fl">0.0</span>,       <span class="op">!</span></span>
-<span id="numCode-12"><a href="#numCode-12"></a><span class="st">    </span>temp0=<span class="fl">310.0</span>,     <span class="op">!</span></span>
-<span id="numCode-13"><a href="#numCode-13"></a><span class="st">    </span>gamma_ln=<span class="fl">1.0</span>,    <span class="op">!</span></span>
-<span id="numCode-14"><a href="#numCode-14"></a><span class="st">    </span>dt=<span class="fl">0.001</span>,        <span class="op">!</span></span>
-<span id="numCode-15"><a href="#numCode-15"></a><span class="st">    </span>nstlim=<span class="dv">3000000</span>,  <span class="op">!</span></span>
-<span id="numCode-16"><a href="#numCode-16"></a><span class="st">    </span>ntpr=<span class="dv">10000</span>,      <span class="op">!</span></span>
-<span id="numCode-17"><a href="#numCode-17"></a><span class="st">    </span>ntwx=<span class="dv">10000</span>,      <span class="op">!</span></span>
-<span id="numCode-18"><a href="#numCode-18"></a><span class="st">    </span>ntwr=<span class="dv">100000</span>,     <span class="op">!</span></span>
+<h3>Archivo de configuración</h3>
+<p>La línea 10 muestra un ejemple de comentario. Los comentarios
+empiezan con el símbolo <code>!</code>.</p>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>cat heat.in</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="sc">&amp;</span>cntrl</span>
+<span id="numCode-2"><a href="#numCode-2"></a>    imin<span class="ot">=</span><span class="dv">0</span>,          <span class="sc">!</span> </span>
+<span id="numCode-3"><a href="#numCode-3"></a>    irest<span class="ot">=</span><span class="dv">0</span>,         <span class="sc">!</span> </span>
+<span id="numCode-4"><a href="#numCode-4"></a>    iwrap<span class="ot">=</span><span class="dv">1</span>,         <span class="sc">!</span></span>
+<span id="numCode-5"><a href="#numCode-5"></a>    ntx<span class="ot">=</span><span class="dv">1</span>,           <span class="sc">!</span></span>
+<span id="numCode-6"><a href="#numCode-6"></a>    ntb<span class="ot">=</span><span class="dv">1</span>,           <span class="sc">!</span></span>
+<span id="numCode-7"><a href="#numCode-7"></a>    cut<span class="ot">=</span><span class="fl">10.0</span>,        <span class="sc">!</span></span>
+<span id="numCode-8"><a href="#numCode-8"></a>    ntc<span class="ot">=</span><span class="dv">2</span>,           <span class="sc">!</span></span>
+<span id="numCode-9"><a href="#numCode-9"></a>    ntf<span class="ot">=</span><span class="dv">2</span>,           <span class="sc">!</span></span>
+<span id="numCode-10"><a href="#numCode-10"></a>    ntt<span class="ot">=</span><span class="dv">3</span>,           <span class="sc">!</span> Tipo de termostato a utilizar; <span class="ot">=</span><span class="dv">3</span> Langevin</span>
+<span id="numCode-11"><a href="#numCode-11"></a>    tempi<span class="ot">=</span><span class="fl">0.0</span>,       <span class="sc">!</span></span>
+<span id="numCode-12"><a href="#numCode-12"></a>    temp0<span class="ot">=</span><span class="fl">310.0</span>,     <span class="sc">!</span></span>
+<span id="numCode-13"><a href="#numCode-13"></a>    gamma_ln<span class="ot">=</span><span class="fl">1.0</span>,    <span class="sc">!</span></span>
+<span id="numCode-14"><a href="#numCode-14"></a>    dt<span class="ot">=</span><span class="fl">0.001</span>,        <span class="sc">!</span></span>
+<span id="numCode-15"><a href="#numCode-15"></a>    nstlim<span class="ot">=</span><span class="dv">3000000</span>,  <span class="sc">!</span></span>
+<span id="numCode-16"><a href="#numCode-16"></a>    ntpr<span class="ot">=</span><span class="dv">10000</span>,      <span class="sc">!</span></span>
+<span id="numCode-17"><a href="#numCode-17"></a>    ntwx<span class="ot">=</span><span class="dv">10000</span>,      <span class="sc">!</span></span>
+<span id="numCode-18"><a href="#numCode-18"></a>    ntwr<span class="ot">=</span><span class="dv">100000</span>,     <span class="sc">!</span></span>
 <span id="numCode-19"><a href="#numCode-19"></a><span class="er">/</span></span></code></pre></div>
 <hr />
 </div>
 </div>
 <div id="fase-de-equilibrado" class="section level2">
-<h2><span class="header-section-number">1.5</span> Fase de Equilibrado</h2>
+<h2>Fase de Equilibrado</h2>
 <div style="background-color: #F9E5AB; min-height: 10px">
 
 </div>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Ejemplo de ejecución de la fase de equilibrado</span></span>
-<span id="numCode-2"><a href="#numCode-2"></a><span class="op">$</span>AMBERHOME<span class="op">/</span>bin<span class="op">/</span>pmemd.cuda <span class="op">-</span>O \ </span>
-<span id="numCode-3"><a href="#numCode-3"></a>  <span class="op">-</span>i heat.in \            <span class="co"># Archivo de configuración</span></span>
-<span id="numCode-4"><a href="#numCode-4"></a>  <span class="op">-</span>p sistema.prmtop \     <span class="co"># Parámetros del FF</span></span>
-<span id="numCode-5"><a href="#numCode-5"></a>  <span class="op">-</span>c sistema_HEAT.rst7 \  <span class="co"># Coordenadas iniciales del sistema (desde la HEAT)</span></span>
-<span id="numCode-6"><a href="#numCode-6"></a>  <span class="op">-</span>o sistema_EQ.out \     <span class="co"># Archivo de salida</span></span>
-<span id="numCode-7"><a href="#numCode-7"></a>  <span class="op">-</span>r sistema_EQ.rst7 \    <span class="co"># Archivo restart al finalizar (coords y velocidades)</span></span>
-<span id="numCode-8"><a href="#numCode-8"></a>  <span class="op">-</span>x sistema_EQ.nc \      <span class="co"># Archivo de la trayectoria (mrcd)</span></span>
-<span id="numCode-9"><a href="#numCode-9"></a>  <span class="op">-</span>inf sistema_EQ.mdinfo  <span class="co"># Información de la ejecución</span></span></code></pre></div>
-<div id="htmlwidget-be60e721dc84dee94390" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-be60e721dc84dee94390">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema_HEAT.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_EQ.rst7)\n    B --> |Propiedades del sistema|F(sistema_EQ.out)\n    B --> |Trayectoria|H(sistema_EQ.nc)\n    B --> |Info. ejecución|G(sistema_EQ.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Ejemplo de ejecución de la fase de equilibrado</span></span>
+<span id="numCode-2"><a href="#numCode-2"></a><span class="sc">$</span>AMBERHOME<span class="sc">/</span>bin<span class="sc">/</span>pmemd.cuda <span class="sc">-</span>O \ </span>
+<span id="numCode-3"><a href="#numCode-3"></a>  <span class="sc">-</span>i heat.in \            <span class="co"># Archivo de configuración</span></span>
+<span id="numCode-4"><a href="#numCode-4"></a>  <span class="sc">-</span>p sistema.prmtop \     <span class="co"># Parámetros del FF</span></span>
+<span id="numCode-5"><a href="#numCode-5"></a>  <span class="sc">-</span>c sistema_HEAT.rst7 \  <span class="co"># Coordenadas iniciales del sistema (desde la HEAT)</span></span>
+<span id="numCode-6"><a href="#numCode-6"></a>  <span class="sc">-</span>o sistema_EQ.out \     <span class="co"># Archivo de salida</span></span>
+<span id="numCode-7"><a href="#numCode-7"></a>  <span class="sc">-</span>r sistema_EQ.rst7 \    <span class="co"># Archivo restart al finalizar (coords y velocidades)</span></span>
+<span id="numCode-8"><a href="#numCode-8"></a>  <span class="sc">-</span>x sistema_EQ.nc \      <span class="co"># Archivo de la trayectoria (mrcd)</span></span>
+<span id="numCode-9"><a href="#numCode-9"></a>  <span class="sc">-</span>inf sistema_EQ.mdinfo  <span class="co"># Información de la ejecución</span></span></code></pre></div>
+<div id="htmlwidget-d70ed705d5a0f2da5576" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d70ed705d5a0f2da5576">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema_HEAT.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_EQ.rst7)\n    B --> |Propiedades del sistema|F(sistema_EQ.out)\n    B --> |Trayectoria|H(sistema_EQ.nc)\n    B --> |Info. ejecución|G(sistema_EQ.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <div id="archivo-de-configuración-2" class="section level3">
-<h3><span class="header-section-number">1.5.1</span> Archivo de configuración</h3>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>cat eq.in</span></code></pre></div>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>Fase de Equilibrado</span>
-<span id="numCode-2"><a href="#numCode-2"></a><span class="op">&amp;</span>cntrl</span>
-<span id="numCode-3"><a href="#numCode-3"></a>    irest=<span class="dv">1</span>,        <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-4"><a href="#numCode-4"></a><span class="st">    </span>imin=<span class="dv">0</span>,         <span class="op">!</span></span>
-<span id="numCode-5"><a href="#numCode-5"></a><span class="st">    </span>iwrap=<span class="dv">1</span>,        <span class="op">!</span><span class="st"> </span><span class="er">=</span><span class="dv">1</span>, realiza un wrap en favor de la visualización</span>
-<span id="numCode-6"><a href="#numCode-6"></a>    ntx=<span class="dv">5</span>,          <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-7"><a href="#numCode-7"></a><span class="st">    </span>ntb=<span class="dv">2</span>,          <span class="op">!</span><span class="st"> </span><span class="er">=</span><span class="dv">2</span>, conglomerado NPT</span>
-<span id="numCode-8"><a href="#numCode-8"></a>    pres0=<span class="fl">1.0</span>,      <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-9"><a href="#numCode-9"></a><span class="st">    </span>ntp=<span class="dv">1</span>,          <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-10"><a href="#numCode-10"></a><span class="st">    </span>taup=<span class="fl">2.0</span>,       <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-11"><a href="#numCode-11"></a><span class="st">    </span>cut=<span class="fl">10.0</span>,       <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-12"><a href="#numCode-12"></a><span class="st">    </span>ntc=<span class="dv">2</span>,          <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-13"><a href="#numCode-13"></a><span class="st">    </span>ntf=<span class="dv">2</span>,          <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-14"><a href="#numCode-14"></a><span class="st">    </span>temp0=<span class="fl">310.0</span>,    <span class="op">!</span></span>
-<span id="numCode-15"><a href="#numCode-15"></a><span class="st">    </span>ntt=<span class="dv">3</span>,          <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-16"><a href="#numCode-16"></a><span class="st">    </span>gamma_ln=<span class="fl">1.0</span>,   <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-17"><a href="#numCode-17"></a><span class="st">    </span>nstlim=<span class="dv">2500000</span>, <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-18"><a href="#numCode-18"></a><span class="st">    </span>dt=<span class="fl">0.002</span>,       <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-19"><a href="#numCode-19"></a><span class="st">    </span>ntpr=<span class="dv">10000</span>,     <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-20"><a href="#numCode-20"></a><span class="st">    </span>ntwx=<span class="dv">10000</span>,     <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-21"><a href="#numCode-21"></a><span class="st">    </span>ntwr=<span class="dv">100000</span>,    <span class="op">!</span><span class="st"> </span></span>
+<h3>Archivo de configuración</h3>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>cat eq.in</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>Fase de Equilibrado</span>
+<span id="numCode-2"><a href="#numCode-2"></a><span class="sc">&amp;</span>cntrl</span>
+<span id="numCode-3"><a href="#numCode-3"></a>    irest<span class="ot">=</span><span class="dv">1</span>,        <span class="sc">!</span> </span>
+<span id="numCode-4"><a href="#numCode-4"></a>    imin<span class="ot">=</span><span class="dv">0</span>,         <span class="sc">!</span></span>
+<span id="numCode-5"><a href="#numCode-5"></a>    iwrap<span class="ot">=</span><span class="dv">1</span>,        <span class="sc">!</span> <span class="er">=</span><span class="dv">1</span>, realiza un wrap en favor de la visualización</span>
+<span id="numCode-6"><a href="#numCode-6"></a>    ntx<span class="ot">=</span><span class="dv">5</span>,          <span class="sc">!</span> </span>
+<span id="numCode-7"><a href="#numCode-7"></a>    ntb<span class="ot">=</span><span class="dv">2</span>,          <span class="sc">!</span> <span class="er">=</span><span class="dv">2</span>, conglomerado NPT</span>
+<span id="numCode-8"><a href="#numCode-8"></a>    pres0<span class="ot">=</span><span class="fl">1.0</span>,      <span class="sc">!</span> </span>
+<span id="numCode-9"><a href="#numCode-9"></a>    ntp<span class="ot">=</span><span class="dv">1</span>,          <span class="sc">!</span> </span>
+<span id="numCode-10"><a href="#numCode-10"></a>    taup<span class="ot">=</span><span class="fl">2.0</span>,       <span class="sc">!</span> </span>
+<span id="numCode-11"><a href="#numCode-11"></a>    cut<span class="ot">=</span><span class="fl">10.0</span>,       <span class="sc">!</span> </span>
+<span id="numCode-12"><a href="#numCode-12"></a>    ntc<span class="ot">=</span><span class="dv">2</span>,          <span class="sc">!</span> </span>
+<span id="numCode-13"><a href="#numCode-13"></a>    ntf<span class="ot">=</span><span class="dv">2</span>,          <span class="sc">!</span> </span>
+<span id="numCode-14"><a href="#numCode-14"></a>    temp0<span class="ot">=</span><span class="fl">310.0</span>,    <span class="sc">!</span></span>
+<span id="numCode-15"><a href="#numCode-15"></a>    ntt<span class="ot">=</span><span class="dv">3</span>,          <span class="sc">!</span> </span>
+<span id="numCode-16"><a href="#numCode-16"></a>    gamma_ln<span class="ot">=</span><span class="fl">1.0</span>,   <span class="sc">!</span> </span>
+<span id="numCode-17"><a href="#numCode-17"></a>    nstlim<span class="ot">=</span><span class="dv">2500000</span>, <span class="sc">!</span> </span>
+<span id="numCode-18"><a href="#numCode-18"></a>    dt<span class="ot">=</span><span class="fl">0.002</span>,       <span class="sc">!</span> </span>
+<span id="numCode-19"><a href="#numCode-19"></a>    ntpr<span class="ot">=</span><span class="dv">10000</span>,     <span class="sc">!</span> </span>
+<span id="numCode-20"><a href="#numCode-20"></a>    ntwx<span class="ot">=</span><span class="dv">10000</span>,     <span class="sc">!</span> </span>
+<span id="numCode-21"><a href="#numCode-21"></a>    ntwr<span class="ot">=</span><span class="dv">100000</span>,    <span class="sc">!</span> </span>
 <span id="numCode-22"><a href="#numCode-22"></a><span class="er">&amp;</span>end</span>
-<span id="numCode-23"><a href="#numCode-23"></a><span class="op">/</span></span></code></pre></div>
+<span id="numCode-23"><a href="#numCode-23"></a><span class="sc">/</span></span></code></pre></div>
 <hr />
 </div>
 </div>
 <div id="fase-de-producción" class="section level2">
-<h2><span class="header-section-number">1.6</span> Fase de Producción</h2>
+<h2>Fase de Producción</h2>
 <div style="background-color: #F9E5AB; min-height: 10px">
 
 </div>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Ejemplo de ejecución de la fase de equilibrado</span></span>
-<span id="numCode-2"><a href="#numCode-2"></a><span class="op">$</span>AMBERHOME<span class="op">/</span>bin<span class="op">/</span>pmemd.cuda <span class="op">-</span>O \ </span>
-<span id="numCode-3"><a href="#numCode-3"></a>  <span class="op">-</span>i heat.in \             <span class="co"># Archivo de configuración</span></span>
-<span id="numCode-4"><a href="#numCode-4"></a>  <span class="op">-</span>p sistema.prmtop \      <span class="co"># Parámetros del FF</span></span>
-<span id="numCode-5"><a href="#numCode-5"></a>  <span class="op">-</span>c sistema_EQ.rst7 \     <span class="co"># Coordenadas iniciales del sistema (desde EQ)</span></span>
-<span id="numCode-6"><a href="#numCode-6"></a>  <span class="op">-</span>o sistema_PROD.out \    <span class="co"># Archivo de salida</span></span>
-<span id="numCode-7"><a href="#numCode-7"></a>  <span class="op">-</span>r sistema_PROD.rst7 \   <span class="co"># Archivo restart al finalizar (coords y velocidades)</span></span>
-<span id="numCode-8"><a href="#numCode-8"></a>  <span class="op">-</span>x sistema_PROD.nc \     <span class="co"># Archivo de la trayectoria (mrcd)</span></span>
-<span id="numCode-9"><a href="#numCode-9"></a>  <span class="op">-</span>inf sistema_PROD.mdinfo <span class="co"># Información de la ejecución</span></span></code></pre></div>
-<div id="htmlwidget-1708e608368b10968913" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1708e608368b10968913">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema_EQ.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_PROD.rst7)\n    B --> |Propiedades del sistema|F(sistema_PROD.out)\n    B --> |Trayectoria|H(sistema_PROD.nc)\n    B --> |Info. ejecución|G(sistema_PROD.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a><span class="co"># Ejemplo de ejecución de la fase de equilibrado</span></span>
+<span id="numCode-2"><a href="#numCode-2"></a><span class="sc">$</span>AMBERHOME<span class="sc">/</span>bin<span class="sc">/</span>pmemd.cuda <span class="sc">-</span>O \ </span>
+<span id="numCode-3"><a href="#numCode-3"></a>  <span class="sc">-</span>i heat.in \             <span class="co"># Archivo de configuración</span></span>
+<span id="numCode-4"><a href="#numCode-4"></a>  <span class="sc">-</span>p sistema.prmtop \      <span class="co"># Parámetros del FF</span></span>
+<span id="numCode-5"><a href="#numCode-5"></a>  <span class="sc">-</span>c sistema_EQ.rst7 \     <span class="co"># Coordenadas iniciales del sistema (desde EQ)</span></span>
+<span id="numCode-6"><a href="#numCode-6"></a>  <span class="sc">-</span>o sistema_PROD.out \    <span class="co"># Archivo de salida</span></span>
+<span id="numCode-7"><a href="#numCode-7"></a>  <span class="sc">-</span>r sistema_PROD.rst7 \   <span class="co"># Archivo restart al finalizar (coords y velocidades)</span></span>
+<span id="numCode-8"><a href="#numCode-8"></a>  <span class="sc">-</span>x sistema_PROD.nc \     <span class="co"># Archivo de la trayectoria (mrcd)</span></span>
+<span id="numCode-9"><a href="#numCode-9"></a>  <span class="sc">-</span>inf sistema_PROD.mdinfo <span class="co"># Información de la ejecución</span></span></code></pre></div>
+<div id="htmlwidget-87e1a389a6c7ef122c61" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-87e1a389a6c7ef122c61">{"x":{"diagram":"\ngraph LR\n    A(min_all.in)--> |Configuración|B(AMBER-pmed.cuda)\n    C(sistema.prmtop)--> |Parámetros|B\n    D(sistema_EQ.rst7)--> |Coordenadas|B\n    B --> |Coordenadas|E(sistema_PROD.rst7)\n    B --> |Propiedades del sistema|F(sistema_PROD.out)\n    B --> |Trayectoria|H(sistema_PROD.nc)\n    B --> |Info. ejecución|G(sistema_PROD.mdinfo)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <div id="archivo-de-configuración-3" class="section level3">
-<h3><span class="header-section-number">1.6.1</span> Archivo de configuración</h3>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>cat prod.in</span></code></pre></div>
-<div class="sourceCode" id="numCode"><pre class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>Fase de Producción</span>
-<span id="numCode-2"><a href="#numCode-2"></a><span class="op">&amp;</span>cntrl</span>
-<span id="numCode-3"><a href="#numCode-3"></a>    imin=<span class="dv">0</span>,         <span class="op">!</span></span>
-<span id="numCode-4"><a href="#numCode-4"></a><span class="st">    </span>irest=<span class="dv">1</span>,        <span class="op">!</span><span class="st"> </span><span class="er">=</span><span class="dv">1</span>, se continúa con una trayectoria</span>
-<span id="numCode-5"><a href="#numCode-5"></a>    iwrap=<span class="dv">1</span>,        <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-6"><a href="#numCode-6"></a><span class="st">    </span>ntx=<span class="dv">5</span>,          <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-7"><a href="#numCode-7"></a><span class="st">    </span>ntb=<span class="dv">2</span>,          <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-8"><a href="#numCode-8"></a><span class="st">    </span>pres0=<span class="fl">1.0</span>,      <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-9"><a href="#numCode-9"></a><span class="st">    </span>ntp=<span class="dv">1</span>,          <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-10"><a href="#numCode-10"></a><span class="st">    </span>taup=<span class="fl">2.0</span>,       <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-11"><a href="#numCode-11"></a><span class="st">    </span>cut=<span class="fl">10.0</span>,       <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-12"><a href="#numCode-12"></a><span class="st">    </span>ntc=<span class="dv">2</span>,          <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-13"><a href="#numCode-13"></a><span class="st">    </span>ntf=<span class="dv">2</span>,          <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-14"><a href="#numCode-14"></a><span class="st">    </span>temp0=<span class="fl">310.0</span>,    <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-15"><a href="#numCode-15"></a><span class="st">    </span>ntt=<span class="dv">3</span>,          <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-16"><a href="#numCode-16"></a><span class="st">    </span>gamma_ln=<span class="fl">1.0</span>,   <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-17"><a href="#numCode-17"></a><span class="st">    </span>nstlim=<span class="dv">10000000</span>,<span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-18"><a href="#numCode-18"></a><span class="st">    </span>dt=<span class="fl">0.002</span>,       <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-19"><a href="#numCode-19"></a><span class="st">    </span>ntpr=<span class="dv">10000</span>,     <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-20"><a href="#numCode-20"></a><span class="st">    </span>ntwx=<span class="dv">10000</span>,     <span class="op">!</span><span class="st"> </span></span>
-<span id="numCode-21"><a href="#numCode-21"></a><span class="st">    </span>ntwr=<span class="dv">100000</span>,    <span class="op">!</span></span>
+<h3>Archivo de configuración</h3>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>cat prod.in</span></code></pre></div>
+<div class="sourceCode" id="numCode"><pre
+class="sourceCode numberSource R numberLines"><code class="sourceCode r"><span id="numCode-1"><a href="#numCode-1"></a>Fase de Producción</span>
+<span id="numCode-2"><a href="#numCode-2"></a><span class="sc">&amp;</span>cntrl</span>
+<span id="numCode-3"><a href="#numCode-3"></a>    imin<span class="ot">=</span><span class="dv">0</span>,         <span class="sc">!</span></span>
+<span id="numCode-4"><a href="#numCode-4"></a>    irest<span class="ot">=</span><span class="dv">1</span>,        <span class="sc">!</span> <span class="er">=</span><span class="dv">1</span>, se continúa con una trayectoria</span>
+<span id="numCode-5"><a href="#numCode-5"></a>    iwrap<span class="ot">=</span><span class="dv">1</span>,        <span class="sc">!</span> </span>
+<span id="numCode-6"><a href="#numCode-6"></a>    ntx<span class="ot">=</span><span class="dv">5</span>,          <span class="sc">!</span> </span>
+<span id="numCode-7"><a href="#numCode-7"></a>    ntb<span class="ot">=</span><span class="dv">2</span>,          <span class="sc">!</span> </span>
+<span id="numCode-8"><a href="#numCode-8"></a>    pres0<span class="ot">=</span><span class="fl">1.0</span>,      <span class="sc">!</span> </span>
+<span id="numCode-9"><a href="#numCode-9"></a>    ntp<span class="ot">=</span><span class="dv">1</span>,          <span class="sc">!</span> </span>
+<span id="numCode-10"><a href="#numCode-10"></a>    taup<span class="ot">=</span><span class="fl">2.0</span>,       <span class="sc">!</span> </span>
+<span id="numCode-11"><a href="#numCode-11"></a>    cut<span class="ot">=</span><span class="fl">10.0</span>,       <span class="sc">!</span> </span>
+<span id="numCode-12"><a href="#numCode-12"></a>    ntc<span class="ot">=</span><span class="dv">2</span>,          <span class="sc">!</span> </span>
+<span id="numCode-13"><a href="#numCode-13"></a>    ntf<span class="ot">=</span><span class="dv">2</span>,          <span class="sc">!</span> </span>
+<span id="numCode-14"><a href="#numCode-14"></a>    temp0<span class="ot">=</span><span class="fl">310.0</span>,    <span class="sc">!</span> </span>
+<span id="numCode-15"><a href="#numCode-15"></a>    ntt<span class="ot">=</span><span class="dv">3</span>,          <span class="sc">!</span> </span>
+<span id="numCode-16"><a href="#numCode-16"></a>    gamma_ln<span class="ot">=</span><span class="fl">1.0</span>,   <span class="sc">!</span> </span>
+<span id="numCode-17"><a href="#numCode-17"></a>    nstlim<span class="ot">=</span><span class="dv">10000000</span>,<span class="sc">!</span> </span>
+<span id="numCode-18"><a href="#numCode-18"></a>    dt<span class="ot">=</span><span class="fl">0.002</span>,       <span class="sc">!</span> </span>
+<span id="numCode-19"><a href="#numCode-19"></a>    ntpr<span class="ot">=</span><span class="dv">10000</span>,     <span class="sc">!</span> </span>
+<span id="numCode-20"><a href="#numCode-20"></a>    ntwx<span class="ot">=</span><span class="dv">10000</span>,     <span class="sc">!</span> </span>
+<span id="numCode-21"><a href="#numCode-21"></a>    ntwr<span class="ot">=</span><span class="dv">100000</span>,    <span class="sc">!</span></span>
 <span id="numCode-22"><a href="#numCode-22"></a><span class="er">&amp;</span>end</span>
-<span id="numCode-23"><a href="#numCode-23"></a><span class="op">/</span></span></code></pre></div>
+<span id="numCode-23"><a href="#numCode-23"></a><span class="sc">/</span></span></code></pre></div>
 <hr />
 <p>&lt;!–&gt; # Cuestionario (21 preguntas)</p>
-<p><strong>Responde las preguntas del siguiente cuestionario.</strong> Las preguntas están relacionadas con los archivos de configuración mostrados arriba y el significado de los parámetros usados.</p>
+<p><strong>Responde las preguntas del siguiente cuestionario.</strong>
+Las preguntas están relacionadas con los archivos de configuración
+mostrados arriba y el significado de los parámetros usados.</p>
 <blockquote>
-<p>🚨 El cuestionario está dividido en <strong>cuatro secciones</strong> según las fases de la dinámica. Las preguntas dentro de cada sección hacen referencia a la fase correspondiente.</p>
+<p>🚨 El cuestionario está dividido en <strong>cuatro secciones</strong>
+según las fases de la dinámica. Las preguntas dentro de cada sección
+hacen referencia a la fase correspondiente.</p>
 </blockquote>
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSejRrmGGhKppqshNFE0e_U7WsPOfHF-Al3nesgGKumjtIZAwQ/viewform?embedded=true" width="720" height="800" frameborder="0" marginheight="0" marginwidth="0">
 Cargando…
@@ -658,7 +749,7 @@ Cargando…
 </div>
 
 <!-- Footer -->
-<footer class="page-footer font-small blue">
+<footer class="page-footer font-small" id='footer'>
   
   <!-- Counter -->
   <div class="container text-center">
@@ -666,16 +757,17 @@ Cargando…
   </div>
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2021 Copyright:
-    <a href="https://github.com/jRicciL"> J. Ricci L.</a>
+  <div class="footer-copyright text-center py-3">© 2022 Copyright:
+    <a href="http://joelriccilopez.com/"> J. Ricci L.</a>
   </div>
   <!-- Copyright -->
-  <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
 
 </footer>
 <!-- Footer -->
 
 
+</div>
+</div>
 
 </div>
 
@@ -701,13 +793,42 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
