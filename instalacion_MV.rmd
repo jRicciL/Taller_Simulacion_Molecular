@@ -137,7 +137,7 @@ Nuevamente, **esta opción sólo es recomendada para quienes tengan experiencia 
 A través de **conda** puedes instalar los paquetes y programas antes mencionados. 
 
 > <a href="https://www.anaconda.com/products/individual">
-    <img src="https://assets-cdn.anaconda.com/assets/company/anaconda-logo.png" alt="7zip-link" height="40"/>
+    <img src="https://elpythonista.com/wp-content/uploads/2020/10/Anaconda-entrada-hd.jpg" alt="conda" height="120"/>
 </a>
 
 <div class="alert alert-dismissible alert-warning">

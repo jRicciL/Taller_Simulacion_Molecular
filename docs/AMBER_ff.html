@@ -422,8 +422,8 @@ id="creación-de-los-archivos-de-topología-.prmtop-y-coordenadas-rst7"
 class="section level2">
 <h2>Creación de los archivos de topología <code>.prmtop</code> y
 coordenadas <code>rst7</code></h2>
-<div id="htmlwidget-eb4ab742a27e30b422bc" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-eb4ab742a27e30b422bc">{"x":{"diagram":"\ngraph LR\n    A(prot_unprep.pdb)-->Q[pdb2pqr]\n    Q-->D\n    D(prot.pdb)--> F[LEaP]\n    L(lig.mol2)--> B(lig.mol2)\n    L(lig.mol2)-->Z[Antechamber]\n    L(lig.mol2)--> P[parmchk2]\n    Z-->E(LIG_def.mol2)\n    P-->|GAFF.dat|G(LIG_def.frcmod)\n    B(lig.mol2)--> F\n    E --> K(LIG_def.lib)\n    G --> K(LIG_def.lib)\n    K --> F\n    V(Parámetros Extra)-->|leaprc.xxx.xxx| F\n\n    subgraph Estructura\n    B\n    D\n    end\n\n    subgraph Parámetros-Librería\n    subgraph Ligando - GAFF\n    E\n    G\n    K\n    end\n    V\n    end\n\n    F-->(prot_lig.prmtop)\n    F-->(prot_lig.rst7)\n"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-cb34aaa064e9ca32bbe1" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cb34aaa064e9ca32bbe1">{"x":{"diagram":"\ngraph LR\n    A(prot_unprep.pdb)-->Q[pdb2pqr]\n    Q-->D\n    D(prot.pdb)--> F[LEaP]\n    L(lig.mol2)--> B(lig.mol2)\n    L(lig.mol2)-->Z[Antechamber]\n    L(lig.mol2)--> P[parmchk2]\n    Z-->E(LIG_def.mol2)\n    P-->|GAFF.dat|G(LIG_def.frcmod)\n    B(lig.mol2)--> F\n    E --> K(LIG_def.lib)\n    G --> K(LIG_def.lib)\n    K --> F\n    V(Parámetros Extra)-->|leaprc.xxx.xxx| F\n\n    subgraph Estructura\n    B\n    D\n    end\n\n    subgraph Parámetros-Librería\n    subgraph Ligando - GAFF\n    E\n    G\n    K\n    end\n    V\n    end\n\n    F-->(prot_lig.prmtop)\n    F-->(prot_lig.rst7)\n"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="información-contenida-en-cada-tipo-de-archivo"
 class="section level2">
@@ -742,22 +742,6 @@ Parm. Intermol (No enlazantes)
 </div>
 </div>
 
-<!-- Footer -->
-<footer class="page-footer font-small" id='footer'>
-  
-  <!-- Counter -->
-  <div class="container text-center">
-  <!-- a href="https://smallseotools.com/visitor-hit-counter/" target="_blank" title="Traffic Counter by Small Seo Tools" rel="nofollow noopener"><img src="https://smallseotools.com/counterDisplay?code=48f89ebe91e41e4e5cf53c9693a62c10&style=0004&pad=5&type=page&initCount=1" alt="Traffic Counter by Small Seo Tools" border="0"></a-->
-  </div>
-
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2022 Copyright:
-    <a href="http://joelriccilopez.com/"> J. Ricci L.</a>
-  </div>
-  <!-- Copyright -->
-
-</footer>
-<!-- Footer -->
 
 
 </div>

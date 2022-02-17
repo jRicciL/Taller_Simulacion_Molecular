@@ -11,7 +11,7 @@
 
 
 
-<title>Taller de Simulación Molecular</title>
+<title>index.knit</title>
 
 <script src="site_libs/header-attrs-2.11.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,9 +29,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 
 
@@ -215,69 +212,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -285,16 +219,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -387,22 +311,27 @@ div.tocify {
 </div>
 
 
+<script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
 <div class="container">
 <div class="jumbotron">
+<br>
 <h1 class="display-4 text-center pb-3">
 Taller de Simulación Molecular
 </h1>
 <br>
 <div class="viewer_3Dmoljs justify-content-center border"
 style="height: 200px; width: 100%; position: relative;" data-pdb="1L2Y"
-data-backgroundcolor="0xeeeeee" data-style1="cartoon:color=0x429CDC"
+data-backgroundcolor="0xF8F5EF" data-style1="cartoon:color=0x1F9B80"
 data-surface1="opacity:.5;color:white">
 
 </div>
 <br>
 <h2 class="text-center display-3 pb-3">
-<em>Docking</em> y Dinámica Molecular
+Acoplamiento y Dinámica Molecular
 </h2>
+<p class="text-center small">
+Amber, VMD, AutoDock, Smina, Shell, Python
+</p>
 <br>
 <div class="container-fluid p-3">
 <div class="row">
@@ -411,11 +340,11 @@ data-surface1="opacity:.5;color:white">
 </div>
 <br> <br>
 <div class="container py-5">
-<div class="alert alert-info py-5">
-<h4 class="alert-heading text-center">
+<div class="alert alert-info py-5" style="background-color: #1F9B80">
+<h3 class="alert-heading text-center">
 ¡Bienvenido!
-</h4>
-<p class="mb-0 text-center small">
+</h3>
+<p class="mb-0 text-center ">
 Utiliza el menú superior y los botones de navegación para dirigirte
 hacia la sección deseada.
 </p>
@@ -423,47 +352,28 @@ hacia la sección deseada.
 </div>
 <div class="row">
 <div>
+<br>
 <div class="profile-image text-center">
 <a href="https://github.com/jRicciL"><img src="https://avatars.githubusercontent.com/u/39897861?v=4" alt="">
 </a>
 </div>
 </div>
+<p><br></p>
 <div>
 <div class="profile-text text-center">
-Joel Ricci-López
-<a title="@jRicciL" href="https://github.com/jRicciL"><i class="fa fa-behance"></i>
+<a href='http://joelriccilopez.com' target=_blank>Joel Ricci-López</a>
+<a title="@jRicciL" href="https://github.com/jRicciL" target=_blank><i class="fa fa-behance"></i>
 <span class="citation">@jRicciL</span></a>
 </div>
 </div>
 </div>
 <br>
 <hr class="my-4">
-<p class="lead">
-<a class="btn btn-info btn-lg btn-block" href="./instalacion_MV.html" role="button">Comenzar</a>
-</p>
 </div>
 </div>
 
-<!-- Footer -->
-<footer class="page-footer font-small" id='footer'>
-  
-  <!-- Counter -->
-  <div class="container text-center">
-  <!-- a href="https://smallseotools.com/visitor-hit-counter/" target="_blank" title="Traffic Counter by Small Seo Tools" rel="nofollow noopener"><img src="https://smallseotools.com/counterDisplay?code=48f89ebe91e41e4e5cf53c9693a62c10&style=0004&pad=5&type=page&initCount=1" alt="Traffic Counter by Small Seo Tools" border="0"></a-->
-  </div>
-
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2022 Copyright:
-    <a href="http://joelriccilopez.com/"> J. Ricci L.</a>
-  </div>
-  <!-- Copyright -->
-
-</footer>
-<!-- Footer -->
 
 
-</div>
-</div>
 
 </div>
 
@@ -496,35 +406,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

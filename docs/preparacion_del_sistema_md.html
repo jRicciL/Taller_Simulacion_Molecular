@@ -837,8 +837,8 @@ coordenadas <code>rst7</code></h3>
 los archivos de entrada: <strong>estructura</strong> y
 <strong>parámetros de campo de fuerza</strong>, para generar los
 archivos <code>.rst7</code> y <code>.prmtop</code>.</p>
-<div id="htmlwidget-43e2d64f9d9793f0ad22" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-43e2d64f9d9793f0ad22">{"x":{"diagram":"\ngraph LR\n    A(prot_unprep.pdb)-->Q[pdb2pqr]\n    Q-->D\n    D(prot.pdb)--> F[LEaP]\n    L(lig.mol2)--> B(lig.mol2)\n    L(lig.mol2)-->Z[Antechamber]\n    L(lig.mol2)--> P[parmchk2]\n    Z-->E(LIG_def.mol2)\n    P-->|GAFF.dat|G(LIG_def.frcmod)\n    B(lig.mol2)--> F\n    E --> K(LIG_def.lib)\n    G --> K(LIG_def.lib)\n    K --> F\n    V(Parámetros Extra)-->|leaprc.xxx.xxx| F\n\n    subgraph Inputs\n    A\n    L\n    end\n\n    subgraph Estructura\n    B\n    D\n    end\n\n    subgraph Parámetros-Librería\n    subgraph Ligando - GAFF\n    E\n    G\n    K\n    end\n    V\n    end\n\n    F-->prot_lig.prmtop\n    F-->prot_lig.rst7\n    subgraph Sistema P+L Solv.\n    prot_lig.prmtop\n    prot_lig.rst7 \n    end\n"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1d85662ce6821a4f3085" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1d85662ce6821a4f3085">{"x":{"diagram":"\ngraph LR\n    A(prot_unprep.pdb)-->Q[pdb2pqr]\n    Q-->D\n    D(prot.pdb)--> F[LEaP]\n    L(lig.mol2)--> B(lig.mol2)\n    L(lig.mol2)-->Z[Antechamber]\n    L(lig.mol2)--> P[parmchk2]\n    Z-->E(LIG_def.mol2)\n    P-->|GAFF.dat|G(LIG_def.frcmod)\n    B(lig.mol2)--> F\n    E --> K(LIG_def.lib)\n    G --> K(LIG_def.lib)\n    K --> F\n    V(Parámetros Extra)-->|leaprc.xxx.xxx| F\n\n    subgraph Inputs\n    A\n    L\n    end\n\n    subgraph Estructura\n    B\n    D\n    end\n\n    subgraph Parámetros-Librería\n    subgraph Ligando - GAFF\n    E\n    G\n    K\n    end\n    V\n    end\n\n    F-->prot_lig.prmtop\n    F-->prot_lig.rst7\n    subgraph Sistema P+L Solv.\n    prot_lig.prmtop\n    prot_lig.rst7 \n    end\n"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="campo-de-fuerza-de-amber" class="section level3">
 <h3>Campo de Fuerza de Amber</h3>
@@ -992,8 +992,8 @@ proteínas.</li>
 <div id="preparación-de-la-proteína-con-pdb2pqr" class="section level3">
 <h3>Preparación de la proteína con <a
 href="https://pdb2pqr.readthedocs.io/en/latest/using/">PDB2PQR</a>:</h3>
-<div id="htmlwidget-ff838282171af75f8607" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ff838282171af75f8607">{"x":{"diagram":"\ngraph LR\n    A(prot_unprep.pdb)-->|PDB2PQR| B(prot.pdb)\n    A(prot_unprep.pdb)-->|pdb4amber| B(prot.pdb)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-57fc4e54ea75713040bc" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-57fc4e54ea75713040bc">{"x":{"diagram":"\ngraph LR\n    A(prot_unprep.pdb)-->|PDB2PQR| B(prot.pdb)\n    A(prot_unprep.pdb)-->|pdb4amber| B(prot.pdb)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Tener el ambiente <code>amber</code> activado y localizarse en la
 carpeta de trabajo (<code>wd_md</code>).</li>
@@ -1019,8 +1019,8 @@ pH 7 de los residuos ionizables.</p>
 </div>
 <div id="convertir-el-ligando-a-formato-mol2" class="section level3">
 <h3>Convertir el ligando a formato <code>mol2</code></h3>
-<div id="htmlwidget-6a54e21e4ebc1ba5f44f" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6a54e21e4ebc1ba5f44f">{"x":{"diagram":"\ngraph LR\n    A(lig_unprep.pdb)-->|obabel| B(lig.mol2)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8672a8ebda5989d12128" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8672a8ebda5989d12128">{"x":{"diagram":"\ngraph LR\n    A(lig_unprep.pdb)-->|obabel| B(lig.mol2)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Ejecutar el siguiente comando usando <em><a
 href="https://openbabel.org/docs/dev/Command-line_tools/babel.html"
@@ -1057,8 +1057,8 @@ id="uso-de-antechamber-para-definir-la-estructura-y-nomenclatura-del-ligando"
 class="section level4">
 <h4>Uso de Antechamber para definir la estructura y nomenclatura del
 ligando</h4>
-<div id="htmlwidget-2d29b8449c1bb580b827" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2d29b8449c1bb580b827">{"x":{"diagram":"\ngraph LR\n    A(lig.mol2)-->|antechamber| B(LIG_def.mol2)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-907b9c153a1a337fdd91" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-907b9c153a1a337fdd91">{"x":{"diagram":"\ngraph LR\n    A(lig.mol2)-->|antechamber| B(LIG_def.mol2)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Desde la terminal con el ambiente de conda <code>amber</code>
 activado y estando en el directorio de trabajo (<code>wd_md</code>),
@@ -1101,8 +1101,8 @@ id="uso-de-parmcheck-para-verificar-los-parámetros-del-campo-de-fuerza"
 class="section level4">
 <h4>Uso de parmcheck para verificar los parámetros del campo de
 fuerza</h4>
-<div id="htmlwidget-6b2b87400fb006575cee" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6b2b87400fb006575cee">{"x":{"diagram":"\ngraph LR\n    A(LIG_def.mol2)-->|parmchk2| B(LIG_def.frcmod)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1320ced8731a6c7b19dd" style="width:100%;height:80%;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1320ced8731a6c7b19dd">{"x":{"diagram":"\ngraph LR\n    A(LIG_def.mol2)-->|parmchk2| B(LIG_def.frcmod)\n    class A, B mermaid_class;\n    "},"evals":[],"jsHooks":[]}</script>
 <ol style="list-style-type: decimal">
 <li>Ahora validamos que los parámetros del campo de fuerza necesarios
 para la molécula estén disponibles en las librerías de AMBER. Para ello
@@ -1269,22 +1269,6 @@ Force Fields</a></li>
 </ul>
 </div>
 
-<!-- Footer -->
-<footer class="page-footer font-small" id='footer'>
-  
-  <!-- Counter -->
-  <div class="container text-center">
-  <!-- a href="https://smallseotools.com/visitor-hit-counter/" target="_blank" title="Traffic Counter by Small Seo Tools" rel="nofollow noopener"><img src="https://smallseotools.com/counterDisplay?code=48f89ebe91e41e4e5cf53c9693a62c10&style=0004&pad=5&type=page&initCount=1" alt="Traffic Counter by Small Seo Tools" border="0"></a-->
-  </div>
-
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2022 Copyright:
-    <a href="http://joelriccilopez.com/"> J. Ricci L.</a>
-  </div>
-  <!-- Copyright -->
-
-</footer>
-<!-- Footer -->
 
 
 </div>
