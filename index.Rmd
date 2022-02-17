@@ -1,32 +1,27 @@
 ---
 name: 'AguilaLab: Taller de Simulación Molecular de Sistemas Biológicos'
 output:
-  pdf_document:
-    toc: no
-  html_document:
-    toc: no
-    toc_float: no
-    toc_collapsed: no
-    css: styles.css
-    theme: journal
-    highlight: zenburn
-    code_download: no
-    number_sections: yes
+  rmarkdown::html_document:
+    toc: FALSE 
+    theme: sandstone 
 ---
 
+<script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
 <div class="container">
 <div class="jumbotron">
+  <br>
   <h1 class="display-4 text-center pb-3">Taller de Simulación Molecular</h1>
   <br>
   <div style="height: 200px; width: 100%; position: relative;" class='viewer_3Dmoljs justify-content-center border' data-pdb='1L2Y' 
-data-backgroundcolor='0xeeeeee' 
-data-style1='cartoon:color=0x429CDC' 
+data-backgroundcolor='0xF8F5EF' 
+data-style1='cartoon:color=0x1F9B80' 
 data-surface1='opacity:.5;color:white'>
 </div>
 <br>
   <h2 class="text-center display-3 pb-3">
-    <em>Docking</em> y Dinámica Molecular
+    Acoplamiento y Dinámica Molecular
   </h2>
+  <p class='text-center small'>Amber, VMD, AutoDock, Smina, Shell, Python</p>
   <br>
   <div class="container-fluid p-3">
   <div class="row">
@@ -39,9 +34,9 @@ data-surface1='opacity:.5;color:white'>
   <br>
   <br>
   <div class="container py-5">
-  <div class="alert  alert-info py-5">
-  <h4 class="alert-heading text-center">¡Bienvenido!</h4>
-  <p class="mb-0 text-center small">Utiliza el menú superior y los botones de navegación para dirigirte hacia la sección deseada.</p>
+  <div class="alert  alert-info py-5" style="background-color: #1F9B80">
+  <h3 class="alert-heading text-center">¡Bienvenido!</h3>
+  <p class="mb-0 text-center ">Utiliza el menú superior y los botones de navegación para dirigirte hacia la sección deseada.</p>
 </div>
   </div>
 
@@ -49,16 +44,18 @@ data-surface1='opacity:.5;color:white'>
 
   <div >
 
+  <br>
   <div class="profile-image text-center"> 
   <a href="https://github.com/jRicciL"><img src="https://avatars.githubusercontent.com/u/39897861?v=4" alt=""> </a>
   </div>
 
   </div> 
+  <br>
 
   <div >
 
   <div class="profile-text text-center"> 
-  Joel Ricci-López <a title="@jRicciL" href="https://github.com/jRicciL"><i class="fa fa-behance"></i> @jRicciL</a>
+  <a href='http://joelriccilopez.com' target=_blank>Joel Ricci-López</a> <a title="@jRicciL" href="https://github.com/jRicciL" target=_blank><i class="fa fa-behance"></i> @jRicciL</a>
   </div>
 
   </div> 
@@ -67,10 +64,6 @@ data-surface1='opacity:.5;color:white'>
 
   <br>
   <hr class="my-4">
-
-  <p class="lead">
-    <a class="btn btn-info btn-lg btn-block" href="./instalacion_MV.html" role="button">Comenzar</a>
-  </p>
 
   
 </div>
