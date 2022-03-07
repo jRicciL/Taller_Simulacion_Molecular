@@ -727,7 +727,7 @@ pdbqt_to_pdb.py \
 ### Explora los resultados de docking usando ADT o Chimera
 
 1. Explora los resultados usando AutoDockTools:
-   1. Tutorial usando la interfaz de [AutoDockTools](http://autodock.scripps.edu/faqs-help/tutorial/using-autodock-4-with-autodocktools/2012_ADTtut.pdf)
+   1. Tutorial usando la interfaz de [AutoDockTools](https://www.moodle.is.ed.ac.uk/pluginfile.php/87431/mod_resource/content/1/2012_ADTtut.pdf)
    2. Video Tutorial:  
 > [![IMAGE ALT TEXT](http://img.youtube.com/vi/0bj7tImWXSc/0.jpg)](https://www.youtube.com/watch?v=0bj7tImWXSc "Docking desde cero. Tutorial AutodockTools")  
 > Muy buen tutorial en español usando la interfaz gráfica.
