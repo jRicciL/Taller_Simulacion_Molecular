@@ -59,7 +59,7 @@ title: 'Tarea Autodock 4.2'
    1. Puedes usar UCSF Chimera o AD4
    
 3. 🚨 🚨 🚨 **Enviar únicamente el archivo excel por mensaje personal a mi cuenta (Joel Ricci) en el Slack del grupo.**
-4. <mark>Fecha límite de envío es el día jueves 18 de febrero a las 24:00 horas.</mark>
+4. <mark>Fecha límite de envío es el día viernes 11 de marzo a las 23:59 horas.</mark>
 
 
 ***
