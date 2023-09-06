@@ -1,20 +1,21 @@
-Fase de minimizacion de todo el sistema
+Minimize all atoms
    System minimization:
 &cntrl
-   imin=1,         ! =1, llevar a cabo minimizacion del sistema
-   ntmin=1,        ! Comentario
-   ncyc=2500,      ! Comentario
-   maxcyc=50000,   ! Comentario
-   drms=0.01,      ! Comentario
-   ntx=1,          ! Comentario
-   irest=0,        ! Comentario
-   ntpr=100,       ! Comentario
-   ntwr=100,       ! Comentario
-   iwrap=0,        ! Comentario
-   ntf=1,          ! Comentario
-   igb=0,          ! Comentario
-   ntb=1,          ! Comentario
-   nsnb=20,        ! Comentario
-   cut=10.0,       ! Comentario
+   imin=1,      ! Llevar a cabo minimizacion
+   ntmin=1,     ! metodo de minimizacion, 1 steepest decent to onjugate gradients
+   drms=0.1,    ! criterio de convergencia para el gradiente de energía
+   maxcyc=50000, ! maximo numero de ciclos para la minimizacion
+   ncyc=2500,   ! cuando ntmin=NCYC, indica el paso para cambiar de SD a CG
+   ntx=1,       ! #para leerlas coordenadas iniciales, vel y boxsize del inpcrd. 1=para comenzar
+   irest=0,     ! #Flag para reiniciar una simulacion; 0= no reiniciar 
+   ntpr=100,    ! Intervalo de pasos para gardar informacion
+   ntwr=100,    ! Intervalo de pasos para guardar un restart
+   iwrap=0,     ! cuando =1, realiza un wrap en favor de la visualizacion de las mol dentro del box, no tiene efecto sobre la dinamica
+   ntf=1,       ! Tipo de evaluacion de fuerzas, =1 calcula la interaccion total
+   ntb=1,       ! Controla el tipo de simulacion y el PME; =1 NVT =2 NPT
+   cut=10.0,    ! cutoff
+   nsnb=20,     ! frecuencia para actualizar lso valores de las fuerzas no enlazantes
+   ntxo=1,      ! formato ASCII para el .rst7
+   ntr=0,
 &end
  /
