@@ -1,23 +1,26 @@
 Fase de Producción
 &cntrl
-    imin=0,         !
-    irest=1,        ! =1, se continúa con una trayectoria
-    iwrap=1,        ! 
-    ntx=5,          ! 
-    ntb=2,          ! 
-    pres0=1.0,      ! 
-    ntp=1,          ! 
-    taup=2.0,       ! 
-    cut=10.0,       ! 
-    ntc=2,          ! 
-    ntf=2,          ! 
-    temp0=310.0,    ! 
-    ntt=3,          ! 
-    gamma_ln=1.0,   ! 
-    nstlim=10000000,! 
-    dt=0.002,       ! 
-    ntpr=10000,     ! 
-    ntwx=10000,     ! 
-    ntwr=100000,    !
+    imin=0,     ! =0 no llevar a cabo minimizacion
+    irest=1,    ! (1) se continúa con una trayectoria
+    iwrap=1,    ! cuando =1, realiza un wrap en favor de la visualizacion
+    ntx=5,      ! las velocidades de los átomos se leen de un input
+    ntb=2,      ! Simulacion =2 NPT
+    pres0=1.0,  ! valor de la presión de referencia a la cual se mantiene al sistema
+    ntp=1,      ! DM con escalado de posición isotrópica para mantener presión constante
+    taup=2.0,   ! tiempo de relajación de la presión (ps)
+    cut=10.0,   ! Cutoff
+    ntr=0,      ! Sin restricciones
+    ntc=2,      ! Flag to determine whether to use the SHAKE algorithm to constrain bond distances
+    ntf=2,      ! Tipo de evaluacion de fuerzas, =2 omite las interacciones enlazantes de los Hs
+    temp0=305.0,! Temperatura final o de referencia
+    ntt=3,      ! Flag para el tipo de termostato a utilizar; =3 termostato de Langevin
+    gamma_ln=1.0, ! Frecuencia de colición para evaluar T
+    nstlim=1000000, ! Numero de pasos de simulacion a realizar, equivalente a 2 ns
+    dt=0.002,   ! The time step (psec). Recommended MAXIMUM is .002, 1 step = 1fs
+    ntpr=10000, ! Intervalo de pasos para guardar informacion
+    ntwx=10000, ! Intervalo para guardar las coordenadas en el mdcrd (.nc)
+    ntwr=100000,! Cada x pasos se guarda un rst7 con los datos
+    ntxo=1,     ! formato ASCII para el .rst7
+    ioutfm=1    ! formato binario para la trayectoria
 &end
 /
