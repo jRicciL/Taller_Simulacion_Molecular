@@ -1,19 +1,43 @@
+SA modificada para mixed solvents, cambios senalados por *
 &cntrl
-    imin=0,          ! 
-    irest=0,         ! 
-    iwrap=1,         !
-    ntx=1,           !
-    ntb=1,           !
-    cut=10.0,        !
-    ntc=2,           !
-    ntf=2,           !
-    ntt=3,           ! Tipo de termostato a utilizar; =3 Langevin
-    tempi=0.0,       !
-    temp0=300.0,     !
-    gamma_ln=1.0,    !
-    dt=0.001,        !
-    nstlim=3000000,  !
-    ntpr=10000,      !
-    ntwx=10000,      !
-    ntwr=100000,     !
+    imin=0,     ! =0 no llevar a cabo minimizacion
+    irest=0,    ! Flag para reiniciar una simulacion; 0= no reiniciar
+    iwrap=1,    ! cuando =1, realiza un wrap en favor de la visualizacion
+    ntx=1,      ! para leer las coordenadas iniciales, vel y boxsize del inpcrd. 1=para comenzar
+    ntb=1,      ! Controla el tipo de simulacion y el PME; =1 NVT =2 NPT
+    cut=10.0,   ! Cutoff
+    ntr=0,      ! Sin restricciones
+    ntc=2,      ! Flag para activar el algoritmo SHAKE y restringir los enlaces con H
+    ntf=2,      ! Tipo de evaluacion de fuerzas, =2 omite las interacciones enlazantes de los Hs
+    tempi=0.0,  ! Temperatura inicial
+    temp0=305.0,! Temperatura final o de referencia
+    ntt=3,      ! Flag para el tipo de termostato a utilizar; =3 termostato de Langevin
+    gamma_ln=1.0, ! Frecuencia de colición para evaluar T*
+    nstlim=3000000, ! Numero de pasos de simulacion a realizar, equivalente a 3 ns
+    dt=0.001,   ! The time step (psec). Recommended MAXIMUM is .002, 1 step = 1fs
+    ntpr=10000, ! Intervalo de pasos para guardar informacion
+    ntwx=10000, ! Intervalo para guardar las coordenadas en el mdcrd (.nc)
+    ntwr=100000,! Cada x pasos se guarda un rst7 con los datos
+    ntxo=1,     ! formato ASCII para el .rst7*
+    ioutfm=1,   ! formato binario para la trayectoria
+    nmropt=1,   ! Escalamiento programado de SA
 /
+
+! Simulated annealing: http://ambermd.org/tutorials/advanced/tutorial5_amber11/section5.htm
+
+! ##### Para calentar durante 3 ns, 1 fs por paso
+! 1) calienta del paso 1 al paso 1 000 000 (0.5 ns 0K a 300K)
+&wt type='TEMP0', istep1=0, istep2=500000, value1=0.0, value2=300 /
+! 2) equilibra a 300K por 0.5ns
+&wt type='TEMP0', istep1=500001, istep2=1000000, value1=300, value2=300 /
+! 3) calienta a 400K por 0.5ns (0.5 ns, 300K a 400K)
+&wt type='TEMP0', istep1=1000001, istep2=1500000, value1=300.0, value2=400 /
+! 4) equilibra a 400K por 0.5ns
+&wt type='TEMP0', istep1=1500001, istep2=2000000, value1=400, value2=400 /
+! 5) enfria a 310K por 0.5ns (0.5 ns, 400K a 310K)
+&wt type='TEMP0', istep1=2000001, istep2=2500000, value1=400.0, value2=305 /
+! 6) mantiene a 310K por 0.5ns (0.5 ns, 310K)
+&wt type='TEMP0', istep1=2500001, istep2=3000000, value1=310.0, value2=305 /
+
+&wt type='END' /
+~                                                          
